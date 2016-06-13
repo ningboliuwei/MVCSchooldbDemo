@@ -1,0 +1,19 @@
+﻿@model IEnumerable<MVCSchooldbDemo.Student>
+
+@{
+    Layout = null;
+}
+
+<table id="dg"></table>
+<script type="text/javascript">
+    $('#dg').datagrid({
+        url: '@Href("~/Student/GetAll")',
+        columns: [[
+            { field: 'Sno', title: '学号', width: 100 },
+            { field: 'Sname', title: '姓名', width: 100 },
+            { field: 'Ssex', title: '性别', width: 100 },
+            { field: 'Sage', title: '年龄', width: 100 },
+            { field: 'Sdept', title: '系', width: 100 }
+        ]]
+    });
+</script>

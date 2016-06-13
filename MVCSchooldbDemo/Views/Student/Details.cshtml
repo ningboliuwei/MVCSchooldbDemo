@@ -1,0 +1,66 @@
+﻿@model MVCSchooldbDemo.Student
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Student</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Sno)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Sno)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Sname)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Sname)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Ssex)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Ssex)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Sage)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Sage)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Sdept)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Sdept)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
