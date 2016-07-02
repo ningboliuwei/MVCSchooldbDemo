@@ -4,16 +4,62 @@
     Layout = null;
 }
 
+
 <table id="dg"></table>
+<div id="tb" style="padding:2px 5px;">
+    Date From: <input class="easyui-datebox" style="width:110px">
+    To: <input class="easyui-datebox" style="width:110px">
+    Language:
+    <select class="easyui-combobox" panelHeight="auto" style="width:100px">
+        <option value="java">Java</option>
+        <option value="c">C</option>
+        <option value="basic">Basic</option>
+        <option value="perl">Perl</option>
+        <option value="python">Python</option>
+    </select>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+</div>
+<div id="ft" style="padding: 2px 5px;">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true"></a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true"></a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true"></a>
+</div>
 <script type="text/javascript">
-    $('#dg').datagrid({
-        url: '@Href("~/Student/GetAll")',
-        columns: [[
-            { field: 'Sno', title: '学号', width: 100 },
-            { field: 'Sname', title: '姓名', width: 100 },
-            { field: 'Ssex', title: '性别', width: 100 },
-            { field: 'Sage', title: '年龄', width: 100 },
-            { field: 'Sdept', title: '系', width: 100 }
-        ]]
-    });
+    InitGrid();
+    function InitGrid() {
+        $('#dg').datagrid({
+            url: '@Href("~/Student/GetAll")',
+            columns: [
+                [
+                    { field: 'Sno', title: '学号', width: 100 },
+                    { field: 'Sname', title: '姓名', width: 100 },
+                    { field: 'Ssex', title: '性别', width: 100 },
+                    { field: 'Sage', title: '年龄', width: 100 },
+                    { field: 'Sdept', title: '系', width: 100 }
+                ]
+            ],
+            title: '学生信息',
+            fitColumns: true,
+            iconCls: 'icon-view',
+            width: '100%',
+            nowrap: true,
+            autoRowHeight: false,
+            striped: true,
+            collapsible: true,
+            pagination: true,
+            pageSize: 100,
+            pageList: [50, 100, 200],
+            rownumbers: true,
+            SortName: 'Sno', //根据某个字段给easyUI排序
+            sortOrder: 'asc',
+            remoteSort: false,
+            singleSelect: true,
+            ctrlSelect: true,
+            toolbar: '#tb',
+            footer: '#ft'
+        });
+    }
 </script>
+
