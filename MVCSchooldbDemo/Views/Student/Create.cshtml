@@ -4,4 +4,84 @@
     Layout = null;
 }
 
-<div>new student</div>
+<div style="padding: 10px 60px 20px 60px">
+    <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
+        <table cellpadding="5">
+            <tr>
+                <td>学号:</td>
+                <td>
+                    <input class="easyui-textbox" type="text" name="Sno" data-options="required:true" />
+                </td>
+            </tr>
+            <tr>
+                <td>姓名:</td>
+                <td>
+                    <input class="easyui-textbox" type="text" name="Sname" data-options="required:true" />
+                </td>
+            </tr>
+            <tr>
+                <td>性别:</td>
+                <td>
+                    <select class="easyui-combobox" name="Ssex" style="width: 100px">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>年龄:</td>
+                <td>
+                    <input class="easyui-textbox" name="Sage" data-options="required:true" />
+                </td>
+            </tr>
+            <tr>
+                <td>系:</td>
+                <td>
+                    <select name="Sdept" class="easyui-combobox" style="width: 100px">
+                        <option value="CS">计算机</option>
+                        <option value="IS">信息</option>
+                        <option value="MA">数学</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div style="text-align: center; padding: 5px">
+        <a id="btnOK" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="submitForm();" style="width: 90px">
+            确定
+        </a>
+        <a id="btnCancel" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeDialog();" style="width: 90px">取消</a>
+    </div>
+</div>
+
+<script>
+   
+
+    function submitForm() {
+        var url = '@Url.Action("Create", "Student")';
+
+        $('#ff')
+            .form('submit',
+            {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form('enableValidation').form('validate');
+                },
+                success: function () {
+                    closeDialog();
+                    refreshGrid();
+                },
+                error: function () {
+                    $.messager.alert('错误', '添加学生记录遇到问题！', 'error');
+                }
+            });
+    }
+
+    function closeDialog() {
+        $('#addDialog').dialog('close');
+    }
+
+    function refreshGrid() {
+        $('#dg').datagrid('reload');
+    }
+</script>

@@ -21,10 +21,10 @@ namespace MVCSchooldbDemo.Controllers
             return View();
         }
 
-	    public string GetAll()
-	    {
-		    return JsonConvert.SerializeObject(db.Student.ToList());
-	    }
+        public string GetAll()
+        {
+            return JsonConvert.SerializeObject(db.Student.ToList());
+        }
 
         // GET: Student/Details/5
         public ActionResult Details(long? id)
@@ -51,17 +51,21 @@ namespace MVCSchooldbDemo.Controllers
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Sno,Sname,Ssex,Sage,Sdept")] Student student)
+        //        [ValidateAntiForgeryToken]
+        //        [Bind(Include = "Id,Sno,Sname,Ssex,Sage,Sdept")]
+        public ActionResult Create(Student student)
         {
-            if (ModelState.IsValid)
-            {
-                db.Student.Add(student);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(student);
+            //            if (ModelState.IsValid)
+            //            {
+            //                db.Student.Add(student);
+            //                db.SaveChanges();
+            //                return RedirectToAction("Index");
+            //            }
+            //
+            //            return View(student);
+            db.Student.Add(student);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Student/Edit/5
@@ -83,7 +87,6 @@ namespace MVCSchooldbDemo.Controllers
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Sno,Sname,Ssex,Sage,Sdept")] Student student)
         {
             if (ModelState.IsValid)
@@ -95,30 +98,18 @@ namespace MVCSchooldbDemo.Controllers
             return View(student);
         }
 
-        // GET: Student/Delete/5
-        public ActionResult Delete(long? id)
+        [HttpPost]
+        public ActionResult Delete(List<string> ids)
         {
-            if (id == null)
+            foreach (string id in ids)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                Student student = db.Student.First(s => s.Sno == id);
+                db.Student.Remove(student);
             }
-            Student student = db.Student.Find(id);
-            if (student == null)
-            {
-                return HttpNotFound();
-            }
-            return View(student);
-        }
 
-        // POST: Student/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
-        {
-            Student student = db.Student.Find(id);
-            db.Student.Remove(student);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Student");
+
         }
 
         protected override void Dispose(bool disposing)

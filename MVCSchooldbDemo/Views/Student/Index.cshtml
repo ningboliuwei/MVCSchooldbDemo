@@ -21,57 +21,97 @@
         <a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
     </div>
     <div>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="$('#addDialog').dialog('open');">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="ShowAddDialog();">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="">编辑</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="DeleteRecord(); ">删除</a>
     </div>
 </div>
 <div id="addDialog"></div>
 <script type="text/javascript">
-    InitGrid();
-    InitAddDialog();
+    $(document).ready(function () {
+        InitGrid();
+        InitAddDialog();
+    });
 
     function InitGrid() {
-        $('#dg').datagrid({
-            url: '@Href("~/Student/GetAll")',
-            columns: [
-                [
-                    { field: 'Sno', title: '学号', width: 100 },
-                    { field: 'Sname', title: '姓名', width: 100 },
-                    { field: 'Ssex', title: '性别', width: 100 },
-                    { field: 'Sage', title: '年龄', width: 100 },
-                    { field: 'Sdept', title: '系', width: 100 }
-                ]
-            ],
-            title: '学生信息',
-            fitColumns: true,
-            iconCls: 'icon-view',
-            width: '100%',
-            nowrap: true,
-            autoRowHeight: false,
-            striped: true,
-            collapsible: true,
-            pagination: true,
-            pageSize: 100,
-            pageList: [50, 100, 200],
-            rownumbers: true,
-            SortName: 'Sno', //根据某个字段给easyUI排序
-            sortOrder: 'asc',
-            remoteSort: false,
-            singleSelect: true,
-            ctrlSelect: true,
-            toolbar: '#tb',
-        });
+        $('#dg')
+            .datagrid({
+                url: '@Url.Action("GetAll", "Student")',
+                columns: [
+                    [
+                        { field: 'Sno', title: '学号', width: 100 },
+                        { field: 'Sname', title: '姓名', width: 100 },
+                        { field: 'Ssex', title: '性别', width: 100 },
+                        { field: 'Sage', title: '年龄', width: 100 },
+                        { field: 'Sdept', title: '系', width: 100 }
+                    ]
+                ],
+                title: '学生信息',
+                fitColumns: true,
+                iconCls: 'icon-view',
+                width: '100%',
+                nowrap: true,
+                autoRowHeight: false,
+                striped: true,
+                collapsible: true,
+                pagination: true,
+                pageSize: 100,
+                pageList: [50, 100, 200],
+                rownumbers: true,
+                SortName: 'Sno', //根据某个字段给easyUI排序
+                sortOrder: 'asc',
+                remoteSort: false,
+                ctrlSelect: true,
+                toolbar: '#tb'
+            });
     }
 
     function InitAddDialog() {
-        $('#addDialog').dialog({
-            closed: true,
-            title: '添加学生',
-            href: '@Href("~/Student/Create")'
-        });
+        $('#addDialog')
+            .dialog({
+                closed: true,
+                title: '添加学生',
+                href: '@Url.Action("Create", "Student")',
+                width: 400
+            });
     }
 
-    function NewStudent() {
+    function ShowAddDialog() {
         $('#addDialog').dialog('open');
     }
-</script>
 
+    function ShowEditOrViewDialog() {
+
+    }
+
+    function DeleteRecord() {
+        var rows = $('#dg').datagrid('getSelections');
+        var ids = [];
+        var url = '@Url.Action("Delete", "Student")';
+
+        if (rows) {
+            $.messager.confirm('问题',
+                '确认要删除选中的学生吗？',
+                function (result) {
+                    if (result) {
+                        for (var i = 0; i < rows.length; i++) {
+                            ids.push(rows[i].Sno);
+                        }
+
+                        $.ajax({
+                            url: url,
+                            type: 'POST',
+                            data: JSON.stringify(ids),
+
+                            contentType: 'application/json; charset=utf-8',
+                            success: function (data) {
+                                $("#dg").datagrid('reload');
+                                console.log(data);
+                            }
+                        });
+                    }
+                });
+        }
+    }
+
+</script>
