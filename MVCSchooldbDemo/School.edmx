@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SchooldbModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\GitHub\MVCSchooldbDemo\MVCSchooldbDemo\App_Data\Schooldb.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SchooldbModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\GitHub\MVCSchooldbDemo\MVCSchooldbDemo\App_Data\Schooldb.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="Id" />
@@ -29,7 +29,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Sno" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Sno" Type="nvarchar" MaxLength="10" Nullable="false" StoreGeneratedPattern="None" />
           <Property Name="Sname" Type="nvarchar" MaxLength="50" />
           <Property Name="Ssex" Type="nvarchar" MaxLength="10" />
           <Property Name="Sage" Type="integer" />
@@ -40,8 +40,7 @@
           <EntitySet Name="SC" EntityType="Self.SC" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SchooldbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -68,8 +67,8 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Sno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="Sno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="Sname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Ssex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Sage" Type="Int64" />

@@ -69,33 +69,29 @@ namespace MVCSchooldbDemo.Controllers
         }
 
         // GET: Student/Edit/5
-        public ActionResult Edit(long? id)
+        [HttpGet]
+        public ActionResult Edit(string id)
         {
-            if (id == null)
+            if (id != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Student student = db.Student.Find(id);
-            if (student == null)
-            {
-                return HttpNotFound();
-            }
-            return View(student);
+                Student student = db.Student.First(s => s.Id.ToString() == id);
+                return View(student);
+            } //死循环了
+            return View();
+
         }
+
 
         // POST: Student/Edit/5
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id,Sno,Sname,Ssex,Sage,Sdept")] Student student)
+        public ActionResult Edit(Student student)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(student).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(student);
+
+            db.Entry(student).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

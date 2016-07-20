@@ -21,24 +21,28 @@
         <a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
     </div>
     <div>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="ShowAddDialog();">添加</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="">编辑</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="DeleteRecord(); ">删除</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="ShowAddDialog()">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="ShowEditDialog()">编辑</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="DeleteRecord()">删除</a>
     </div>
 </div>
 <div id="addDialog"></div>
+<div id="editDialog"></div>
 <script type="text/javascript">
-    $(document).ready(function () {
+    $(function () {
         InitGrid();
-        InitAddDialog();
+        //        InitAddDialog();
+        //        InitEditDialog();
     });
 
     function InitGrid() {
+        var url = '@Url.Action("GetAll", "Student")';
         $('#dg')
             .datagrid({
-                url: '@Url.Action("GetAll", "Student")',
+                url: url,
                 columns: [
                     [
+                       
                         { field: 'Sno', title: '学号', width: 100 },
                         { field: 'Sname', title: '姓名', width: 100 },
                         { field: 'Ssex', title: '性别', width: 100 },
@@ -55,8 +59,8 @@
                 striped: true,
                 collapsible: true,
                 pagination: true,
-                pageSize: 100,
-                pageList: [50, 100, 200],
+                pageSize: 40,
+                pageList: [10, 20, 40],
                 rownumbers: true,
                 SortName: 'Sno', //根据某个字段给easyUI排序
                 sortOrder: 'asc',
@@ -66,23 +70,37 @@
             });
     }
 
-    function InitAddDialog() {
+    function ShowAddDialog() {
+        var url = '@Url.Action("Create", "Student")';
+
         $('#addDialog')
             .dialog({
                 closed: true,
                 title: '添加学生',
-                href: '@Url.Action("Create", "Student")',
+                href: url,
                 width: 400
             });
-    }
 
-    function ShowAddDialog() {
         $('#addDialog').dialog('open');
     }
 
-    function ShowEditOrViewDialog() {
+    function ShowEditDialog() {
+        var row = $('#dg').datagrid('getSelected');
+        var id = row.Id;
+        var url = '@Url.Action("Edit", "Student")' + '/' + id;
 
-    }
+        if (row) {
+            $('#editDialog')
+           .dialog({
+               closed: true,
+               title: '编辑学生',
+               href: url,
+               width: 400
+           });
+
+            $('#editDialog').dialog('open');
+        }
+    };
 
     function DeleteRecord() {
         var rows = $('#dg').datagrid('getSelections');
@@ -102,11 +120,9 @@
                             url: url,
                             type: 'POST',
                             data: JSON.stringify(ids),
-
                             contentType: 'application/json; charset=utf-8',
-                            success: function (data) {
+                            success: function () {
                                 $("#dg").datagrid('reload');
-                                console.log(data);
                             }
                         });
                     }

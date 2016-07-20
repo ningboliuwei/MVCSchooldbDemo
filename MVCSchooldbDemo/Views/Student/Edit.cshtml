@@ -4,78 +4,96 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    
-    
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>Student</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Sno, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Sno, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Sno, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Sname, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Sname, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Sname, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Ssex, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Ssex, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Ssex, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Sage, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Sage, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Sage, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Sdept, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Sdept, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Sdept, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+<div style="padding: 10px 60px 20px 60px">
+    <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
+        <table cellpadding="5">
+            <tr>
+                <td>学号:</td>
+                <td>
+                    <input id="Sno" class="easyui-textbox" type="text" name="Sno" data-options="required:true" />
+                </td>
+            </tr>
+            <tr>
+                <td>姓名:</td>
+                <td>
+                    <input id="Sname" class="easyui-textbox" type="text" name="Sname" data-options="required:true" />
+                </td>
+            </tr>
+            <tr>
+                <td>性别:</td>
+                <td>
+                    <select id="Ssex" class="easyui-combobox" name="Ssex" style="width: 100px">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>年龄:</td>
+                <td>
+                    <input id="Sage" class="easyui-textbox" name="Sage" data-options="required:true" />
+                </td>
+            </tr>
+            <tr>
+                <td>系:</td>
+                <td>
+                    <select id="Sdept" name="Sdept" class="easyui-combobox" style="width: 100px">
+                        <option value="CS">CS</option>
+                        <option value="IS">IS</option>
+                        <option value="MA">MA</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div style="text-align: center; padding: 5px">
+        <a id="btnOK" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="submitForm();" style="width: 90px">
+            修改
+        </a>
+        <a id="btnCancel" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeDialog();" style="width: 90px">取消</a>
     </div>
-</body>
-</html>
+</div>
+
+<script>
+    $(function () { showInfo(); });
+
+    function showInfo() {
+        $('#Sno').val('@Model.Sno');
+        $('#Sname').val('@Model.Sname');
+        $('#Ssex').val('@Model.Ssex');
+        $('#Sage').val('@Model.Sage');
+        $('#Sdept').val('@Model.Sdept');
+    }
+
+    function submitForm() {
+        //       var url = '@Url.Action("Edit", "Student")' + '/' + id;
+        var url = '@Url.Action("Edit", "Student")';
+
+        $('#ff')
+            .form('submit',
+            {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form('enableValidation').form('validate');
+                },
+                success: function () {
+                    closeDialog();
+                    refreshGrid();
+                },
+                error: function () {
+                    $.messager.alert('错误', '修改学生记录遇到问题！', 'error');
+                }
+            });
+    }
+
+
+
+    function closeDialog() {
+        $('#editDialog').dialog('close');
+
+    }
+
+    function refreshGrid() {
+        $('#dg').datagrid('reload');
+    }
+</script>
