@@ -55,14 +55,17 @@
 </div>
 
 <script>
-    $(function () { showInfo(); });
+    $(function () { showInfo();  });
 
     function showInfo() {
+
+        $('#Sno').attr('disabled', true);//set sno textbox disabled
         $('#Sno').val('@Model.Sno');
         $('#Sname').val('@Model.Sname');
         $('#Ssex').val('@Model.Ssex');
         $('#Sage').val('@Model.Sage');
         $('#Sdept').val('@Model.Sdept');
+        
     }
 
     function submitForm() {

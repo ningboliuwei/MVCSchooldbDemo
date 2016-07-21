@@ -21,10 +21,29 @@ namespace MVCSchooldbDemo.Controllers
             return View();
         }
 
-        public string GetAll()
+        public string GetResult(string sno, string ssex, string sdept)
         {
-            return JsonConvert.SerializeObject(db.Student.ToList());
+            List<Student> students = db.Student.ToList();
+
+            if (!string.IsNullOrEmpty(sno))
+            {
+                students = students.Where(s => s.Sno.Contains(sno)).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(ssex))
+            {
+                students = students.Where(s => s.Ssex.Contains(ssex)).ToList();
+            }
+
+
+            if (!string.IsNullOrEmpty(sdept))
+            {
+                students = students.Where(s => s.Sdept == sdept).ToList();
+            }
+
+            return JsonConvert.SerializeObject(students.ToList());
         }
+
 
         // GET: Student/Details/5
         public ActionResult Details(long? id)
@@ -116,5 +135,7 @@ namespace MVCSchooldbDemo.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }
