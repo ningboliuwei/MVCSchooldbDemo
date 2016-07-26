@@ -1,10 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SchooldbModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\GitHub\MVCSchooldbDemo\MVCSchooldbDemo\App_Data\Schooldb.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SchooldbModel.Store" Provider="System.Data.SQLite.EF6"
+              ProviderManifestToken="data source=C:\GitHub\MVCSchooldbDemo\MVCSchooldbDemo\App_Data\Schooldb.sqlite"
+              Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator"
+              xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation"
+              xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="Id" />
@@ -40,10 +45,14 @@
           <EntitySet Name="SC" EntityType="Self.SC" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SchooldbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SchooldbModel" Alias="Self" annotation:UseStrongSpatialTypes="false"
+              xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation"
+              xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation"
+              xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="Id" />
@@ -67,8 +76,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
-          <Property Name="Sno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity"
+                    xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="Sno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false"
+                    annotation:StoreGeneratedPattern="None" />
           <Property Name="Sname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Ssex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Sage" Type="Int64" />
@@ -84,7 +95,8 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SchooldbModelStoreContainer" CdmEntityContainer="SchooldbEntities">
+        <EntityContainerMapping StorageEntityContainer="SchooldbModelStoreContainer"
+                                CdmEntityContainer="SchooldbEntities">
           <EntitySetMapping Name="Course">
             <EntityTypeMapping TypeName="SchooldbModel.Course">
               <MappingFragment StoreEntitySet="Course">

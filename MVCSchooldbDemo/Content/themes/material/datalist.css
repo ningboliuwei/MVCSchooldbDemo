@@ -1,95 +1,98 @@
-.datalist .datagrid-header {
-  border-width: 0;
-}
+.datalist .datagrid-header { border-width: 0; }
+
 .datalist .datagrid-group,
 .m-list .m-list-group {
-  height: 25px;
-  line-height: 25px;
-  font-weight: bold;
-  overflow: hidden;
-  background-color: #fafafa;
-  border-style: solid;
-  border-width: 0 0 1px 0;
-  border-color: #ebebeb;
+	background-color: #fafafa;
+	border-color: #ebebeb;
+	border-style: solid;
+	border-width: 0 0 1px 0;
+	font-weight: bold;
+	height: 25px;
+	line-height: 25px;
+	overflow: hidden;
 }
-.datalist .datagrid-group-expander {
-  display: none;
-}
-.datalist .datagrid-group-title {
-  padding: 0 4px;
-}
+
+.datalist .datagrid-group-expander { display: none; }
+
+.datalist .datagrid-group-title { padding: 0 4px; }
+
 .datalist .datagrid-btable {
-  width: 100%;
-  table-layout: fixed;
+	table-layout: fixed;
+	width: 100%;
 }
+
 .datalist .datagrid-row td {
-  border-style: solid;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-bottom-width: 0;
+	border-bottom-width: 0;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	border-style: solid;
 }
-.datalist-lines .datagrid-row td {
-  border-bottom-width: 1px;
-}
+
+.datalist-lines .datagrid-row td { border-bottom-width: 1px; }
+
 .datalist .datagrid-cell,
 .m-list li {
-  width: auto;
-  height: auto;
-  padding: 2px 4px;
-  line-height: 18px;
-  position: relative;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+	height: auto;
+	line-height: 18px;
+	overflow: hidden;
+	padding: 2px 4px;
+	position: relative;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: auto;
 }
+
 .datalist-link,
-.m-list li>a {
-  display: block;
-  position: relative;
-  cursor: pointer;
-  color: #404040;
-  text-decoration: none;
-  overflow: hidden;
-  margin: -2px -4px;
-  padding: 2px 4px;
-  padding-right: 16px;
-  line-height: 18px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+.m-list li > a {
+	color: #404040;
+	cursor: pointer;
+	display: block;
+	line-height: 18px;
+	margin: -2px -4px;
+	overflow: hidden;
+	overflow: hidden;
+	padding: 2px 4px;
+	padding-right: 16px;
+	position: relative;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
+
 .datalist-link::after,
-.m-list li>a::after {
-  position: absolute;
-  display: block;
-  width: 8px;
-  height: 8px;
-  content: '';
-  right: 6px;
-  top: 50%;
-  margin-top: -4px;
-  border-style: solid;
-  border-width: 1px 1px 0 0;
-  -ms-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
+.m-list li > a::after {
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	border-style: solid;
+	border-width: 1px 1px 0 0;
+	content: '';
+	display: block;
+	height: 8px;
+	margin-top: -4px;
+	position: absolute;
+	right: 6px;
+	top: 50%;
+	transform: rotate(45deg);
+	width: 8px;
 }
+
 .m-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
+
 .m-list li {
-  border-style: solid;
-  border-width: 0 0 1px 0;
-  border-color: #ebebeb;
+	border-color: #ebebeb;
+	border-style: solid;
+	border-width: 0 0 1px 0;
 }
-.m-list li>a:hover {
-  background: #eee;
-  color: #404040;
+
+.m-list li > a:hover {
+	background: #eee;
+	color: #404040;
 }
-.m-list .m-list-group {
-  padding: 0 4px;
-}
+
+.m-list .m-list-group { padding: 0 4px; }
