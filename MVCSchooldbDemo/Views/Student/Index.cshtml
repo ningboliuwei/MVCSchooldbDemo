@@ -5,7 +5,7 @@
 }
 
 
-<table id="dg"></table>
+<table id="grid"></table>
 <div id="tb" style="padding: 2px 5px;">
     <div>
         Sno<input id="SearchSno" class="easyui-textbox" style="width: 110px">
@@ -25,7 +25,7 @@
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="Delete()">删除</a>
     </div>
 </div>
-<div id="addOrEditDialog"></div>
+<div id="editor"></div>
 <script type="text/javascript">
     var url = '@Url.Action("GetResult", "Student")';
     var columns = [
@@ -78,15 +78,15 @@
     function Add() {
         var url = '@Url.Action("Create", "Student")';
 
-        ShowAddOrEditDialog(url, '添加学生');
+        ShowEditor(url, '添加学生');
     }
 
     function Edit() {
-        var row = $('#dg').datagrid('getSelected');
+        var row = $('#grid').datagrid('getSelected');
         var id = row.Id;
         var url = '@Url.Action("Edit", "Student")' + '/' + id;
 
-        ShowAddOrEditDialog(url, '编辑学生');
+        ShowEditor(url, '编辑学生');
     }
 
     function Search() {

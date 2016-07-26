@@ -1,5 +1,5 @@
 ﻿function BindGrid(url, columns, title, sortName, queryData) {
-    $("#dg")
+    $("#grid")
         .datagrid({
             url: url,
             columns: columns,
@@ -26,7 +26,7 @@
 }
 
 function DeleteRecord(url, confirmMessage, idName) {
-    var rows = $("#dg").datagrid("getSelections");
+    var rows = $("#grid").datagrid("getSelections");
     var ids = [];
 
     if (rows) {
@@ -44,7 +44,7 @@ function DeleteRecord(url, confirmMessage, idName) {
                         data: JSON.stringify(ids),
                         contentType: "application/json; charset=utf-8",
                         success: function() {
-                            $("#dg").datagrid("reload");
+                            $("#grid").datagrid("reload");
                         }
                     });
                 }
@@ -52,8 +52,8 @@ function DeleteRecord(url, confirmMessage, idName) {
     }
 }
 
-function ShowAddOrEditDialog(url, title) {
-    $("#addOrEditDialog")
+function ShowEditor(url, title) {
+    $("#editor")
         .dialog({
             closed: true,
             title: title,
@@ -61,5 +61,28 @@ function ShowAddOrEditDialog(url, title) {
             width: 400
         });
 
-    $("#addOrEditDialog").dialog("open");
+    $("#editor").dialog("open");
+}
+
+function CloseEditor() {
+    $("#editor").dialog("close");
+}
+
+function RefreshGrid() {
+    $("#grid").datagrid("reload");
+}
+
+//添加 Tab 的函数，若已存在则选中已有的 Tab
+function AddTab(title, url) {
+    if ($("#tabs").tabs("exists", title)) {
+        $("#tabs").tabs("select", title);
+    } else {
+        $("#tabs")
+            .tabs("add",
+            {
+                title: title,
+                href: url,
+                closable: true
+            });
+    }
 }

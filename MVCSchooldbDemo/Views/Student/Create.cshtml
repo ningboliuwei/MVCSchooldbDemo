@@ -1,7 +1,7 @@
 ﻿@model Student
 
 @{
-    Layout = null;
+    Layout = "";
 }
 
 <div style="padding: 10px 60px 20px 60px">
@@ -10,10 +10,9 @@
         <a id="btnOK" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="Submit();" style="width: 90px">
             确定
         </a>
-        <a id="btnCancel" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="Close();" style="width: 90px">取消</a>
+        <a id="btnCancel" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="CloseEditor();" style="width: 90px">取消</a>
     </div>
 </div>
-
 <script>
     function Submit() {
         var url = '@Url.Action("Create", "Student")';
@@ -22,24 +21,18 @@
             .form('submit',
             {
                 url: url,
-                onSubmit: function() {
+                onSubmit: function () {
                     return $(this).form('enableValidation').form('validate');
                 },
-                success: function() {
+                success: function () {
                     Close();
                     Refresh();
                 },
-                error: function() {
+                error: function () {
                     $.messager.alert('错误', '添加学生记录遇到问题！', 'error');
                 }
             });
     }
-
-    function Close() {
-        $('#addOrEditDialog').dialog('close');
-    }
-
-    function Refresh() {
-        $('#dg').datagrid('reload');
-    }
 </script>
+}
+
