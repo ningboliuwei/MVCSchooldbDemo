@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using MVCSchooldbDemo;
 using Newtonsoft.Json;
 
 namespace MVCSchooldbDemo.Controllers
 {
     public class StudentController : Controller
     {
-        private SchooldbEntities db = new SchooldbEntities();
+        private readonly SchooldbEntities db = new SchooldbEntities();
 
         // GET: Student
         public ActionResult Index()
@@ -23,7 +19,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public string GetResult(string sno, string ssex, string sdept)
         {
-            List<Student> students = db.Student.ToList();
+            var students = db.Student.ToList();
 
             if (!string.IsNullOrEmpty(sno))
             {
@@ -52,7 +48,7 @@ namespace MVCSchooldbDemo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Student.Find(id);
+            var student = db.Student.Find(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -93,11 +89,10 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                Student student = db.Student.First(s => s.Id.ToString() == id);
+                var student = db.Student.First(s => s.Id.ToString() == id);
                 return View(student);
             } //死循环了
             return View();
-
         }
 
 
@@ -107,7 +102,6 @@ namespace MVCSchooldbDemo.Controllers
         [HttpPost]
         public ActionResult Edit(Student student)
         {
-
             db.Entry(student).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -116,15 +110,14 @@ namespace MVCSchooldbDemo.Controllers
         [HttpPost]
         public ActionResult Delete(List<string> ids)
         {
-            foreach (string id in ids)
+            foreach (var id in ids)
             {
-                Student student = db.Student.First(s => s.Sno == id);
+                var student = db.Student.First(s => s.Sno == id);
                 db.Student.Remove(student);
             }
 
             db.SaveChanges();
             return RedirectToAction("Index", "Student");
-
         }
 
         protected override void Dispose(bool disposing)
@@ -135,7 +128,5 @@ namespace MVCSchooldbDemo.Controllers
             }
             base.Dispose(disposing);
         }
-
-
     }
 }
