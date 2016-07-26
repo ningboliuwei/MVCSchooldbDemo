@@ -3,8 +3,6 @@
 @{
     Layout = null;
 }
-
-
 <table id="grid"></table>
 <div id="tb" style="padding: 2px 5px;">
     <div>
@@ -66,7 +64,8 @@
     var gridTitle = '学生记录';
     var gridSortName = 'Sno';
 
-    $(function() {
+    //when page is loaded
+    $(function () {
         BindGrid(url, columns, gridTitle, gridSortName, {}); //Show all records
     });
 
@@ -86,7 +85,7 @@
         var id = row.Id;
         var url = '@Url.Action("Edit", "Student")' + '/' + id;
 
-        ShowEditor(url, '编辑学生');
+        ShowEditor(url, "修改学生信息");
     }
 
     function Search() {

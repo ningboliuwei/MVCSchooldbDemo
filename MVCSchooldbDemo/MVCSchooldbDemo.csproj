@@ -579,7 +579,7 @@
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\_PartialEditor.cshtml" />
-    <Content Include="Views\Shared\_LayoutEditor.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\themes\metro-blue\" />

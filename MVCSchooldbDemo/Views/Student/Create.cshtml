@@ -1,11 +1,11 @@
 ﻿@model Student
 
 @{
-    Layout = "";
+    Layout = null;
 }
 
 <div style="padding: 10px 60px 20px 60px">
-    @Html.Partial("_PartialEditor");
+    @Html.Partial("_PartialEditor")
     <div style="padding: 5px; text-align: center;">
         <a id="btnOK" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="Submit();" style="width: 90px">
             确定
@@ -34,5 +34,4 @@
             });
     }
 </script>
-}
 

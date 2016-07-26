@@ -1,4 +1,20 @@
-﻿function BindGrid(url, columns, title, sortName, queryData) {
+﻿//添加 Tab 的函数，若已存在则选中已有的 Tab
+function AddTab(title, url) {
+    if ($("#tabs").tabs("exists", title)) {
+        $("#tabs").tabs("select", title);
+    } else {
+        $("#tabs")
+            .tabs("add",
+            {
+                title: title,
+                href: url,
+                closable: true
+            });
+    }
+}
+
+
+function BindGrid(url, columns, title, sortName, queryData) {
     $("#grid")
         .datagrid({
             url: url,
@@ -72,17 +88,3 @@ function RefreshGrid() {
     $("#grid").datagrid("reload");
 }
 
-//添加 Tab 的函数，若已存在则选中已有的 Tab
-function AddTab(title, url) {
-    if ($("#tabs").tabs("exists", title)) {
-        $("#tabs").tabs("select", title);
-    } else {
-        $("#tabs")
-            .tabs("add",
-            {
-                title: title,
-                href: url,
-                closable: true
-            });
-    }
-}
