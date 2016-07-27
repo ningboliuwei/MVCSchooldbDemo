@@ -1,66 +1,24 @@
-﻿@model Student
-
+﻿﻿@model Student
 @{
     Layout = null;
 }
+<script>
+    $(function () {
+        ShowInfo();
+        ReadonlyControls('#Sno,#Sname,#Ssex,#Sage,#Sdept');
+    });
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width"/>
-    <title>Details</title>
-</head>
-<body>
-<div>
-    <h4>Student</h4>
-    <hr/>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Sno)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sno)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Ssex)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ssex)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sage)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sdept)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sdept)
-        </dd>
-
-    </dl>
+    function ShowInfo() {
+        $('#Sno').val('@Model.Sno');
+        $('#Sname').val('@Model.Sname');
+        $('#Ssex').val('@Model.Ssex');
+        $('#Sage').val('@Model.Sage');
+        $('#Sdept').val('@Model.Sdept');
+    }
+</script>
+<div style="padding: 10px 60px 20px 60px">
+    @Html.Partial("_PartialEditor")
+    <div style="padding: 5px; text-align: center;">
+        <a id="btnCancel" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="CloseEditor();" style="width: 90px">确定</a>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new {id = Model.Sno}) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-</body>
-</html>

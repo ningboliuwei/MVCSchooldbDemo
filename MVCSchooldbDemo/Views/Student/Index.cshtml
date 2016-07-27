@@ -1,32 +1,8 @@
-﻿@model IEnumerable<Student>
-
+﻿@model List<Student>
 @{
     Layout = null;
 }
-
-
-<table id="dg"></table>
-<div id="tb" style="padding: 2px 5px;">
-    <div>
-        Sno<input id="SearchSno" class="easyui-textbox" style="width: 110px">
-        Ssex<input id="SearchSsex" class="easyui-textbox" style="width: 110px">
-        Sdept
-        <select id="SearchSdept" class="easyui-combobox" panelHeight="auto" style="width: 100px">
-            <option value="ALL">ALL</option>
-            <option value="MA">MA</option>
-            <option value="CS">CS</option>
-            <option value="IS">IS</option>
-        </select>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
-    </div>
-    <div>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="Add()">添加</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="Edit()">编辑</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="Delete()">删除</a>
-    </div>
-</div>
-<div id="addOrEditDialog"></div>
-<script type="text/javascript">
+<script>
     var url = '@Url.Action("GetResult", "Student")';
     var columns = [
         [
@@ -66,7 +42,8 @@
     var gridTitle = '学生记录';
     var gridSortName = 'Sno';
 
-    $(function() {
+    //when page is loaded
+    $(function () {
         BindGrid(url, columns, gridTitle, gridSortName, {}); //Show all records
     });
 
@@ -78,15 +55,23 @@
     function Add() {
         var url = '@Url.Action("Create", "Student")';
 
-        ShowAddOrEditDialog(url, '添加学生');
+        ShowEditor(url, '添加学生记录');
     }
 
     function Edit() {
-        var row = $('#dg').datagrid('getSelected');
+        var row = $('#grid').datagrid('getSelected');
         var id = row.Id;
         var url = '@Url.Action("Edit", "Student")' + '/' + id;
 
-        ShowAddOrEditDialog(url, '编辑学生');
+        ShowEditor(url, "修改学生记录");
+    }
+
+    function Details() {
+        var row = $('#grid').datagrid('getSelected');
+        var id = row.Id;
+        var url = '@Url.Action("Details", "Student")' + '/' + id;
+
+        ShowEditor(url, "显示学生详细信息");
     }
 
     function Search() {
@@ -98,4 +83,29 @@
 
         BindGrid(url, columns, gridTitle, gridSortName, queryData);
     }
+
+
 </script>
+<table id="grid"></table>
+<div id="tb" style="padding: 2px 5px;">
+    <div>
+        Sno<input id="SearchSno" class="easyui-textbox" style="width: 110px">
+        Ssex<input id="SearchSsex" class="easyui-textbox" style="width: 110px">
+        Sdept
+        <select id="SearchSdept" class="easyui-combobox" data-options="panelHeight:auto;" style="width: 100px">
+            <option value="ALL">ALL</option>
+            <option value="MA">MA</option>
+            <option value="CS">CS</option>
+            <option value="IS">IS</option>
+        </select>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-no" onclick="ClearControls('#SearchSno,#SearchSsex,#SearchSdept');">清空搜索条件</a>
+    </div>
+    <div>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="Add()">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="Edit()">编辑</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="Delete()">删除</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-no" plain="true" onclick="Details()">详细</a>
+    </div>
+</div>
+<div id="editor"></div>
