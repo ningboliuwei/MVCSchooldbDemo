@@ -28,17 +28,17 @@ function BindGrid(url, columns, title, sortName, queryData) {
             striped: true,
             collapsible: true,
             pagination: true,
-            pageSize: 40,
-            pageList: [10, 20, 40],
+            pageSize: 5,
+            pageList: [5, 20, 40],
             rownumbers: true,
-            SortName: sortName, //根据某个字段给easyUI排序
-            sortOrder: "asc",
             ctrlSelect: true,
             toolbar: "#tb",
             queryParams: queryData,
-            remoteSort: false
-        });
+            remoteSort: true,
+            method: 'get'
 
+        });
+    $("#grid").datagrid('sort', { sortName: sortName, sortOrder: 'asc' });
 }
 
 function DeleteRecord(url, confirmMessage, idName) {
@@ -109,3 +109,4 @@ function Submit(url, message) {
 function ReadonlyControls(controlNames) {
     $(controlNames).attr('readonly', true);
 }
+

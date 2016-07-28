@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using System.Linq.Dynamic;
 
 namespace MVCSchooldbDemo.Controllers
 {
@@ -17,7 +18,7 @@ namespace MVCSchooldbDemo.Controllers
             return View();
         }
 
-        public string GetResult(string sno, string ssex, string sdept)
+        public string GetResult(string sno, string ssex, string sdept, string page, string rows, string sort, string order)
         {
             var students = db.Student.ToList();
 
@@ -31,14 +32,19 @@ namespace MVCSchooldbDemo.Controllers
                 students = students.Where(s => s.Ssex.Contains(ssex)).ToList();
             }
 
-
             if (!string.IsNullOrEmpty(sdept))
             {
                 students = students.Where(s => s.Sdept == sdept).ToList();
             }
 
+            if (!string.IsNullOrEmpty(sort) && !string.IsNullOrEmpty(order))
+            {
+                students = students.OrderBy($"{sort} {order}").ToList();
+            }
+
             return JsonConvert.SerializeObject(students.ToList());
         }
+
 
 
         // GET: Student/Details/5

@@ -78,34 +78,44 @@
         var queryData = {
             Sno: $('#SearchSno').textbox('getText'),
             Ssex: $('#SearchSsex').textbox('getText'),
-            Sdept: ($('#SearchSdept').combobox('getText') === 'ALL') ? '' : $('#SearchSdept').combobox('getText')
+            Sdept: ($('#SearchSdept').textbox('getText') === 'ALL') ? '' : $('#SearchSdept').textbox('getText')
         };
 
         BindGrid(url, columns, gridTitle, gridSortName, queryData);
     }
 
+    function ClearSearch() {
+        var queryData = {
+        };
+
+        BindGrid(url, columns, gridTitle, gridSortName, queryData);
+
+        $('#SearchSno').textbox('clear');
+        $('#SearchSsex').textbox('clear');
+        $('#SearchSdept').textbox('clear');
+    }
 
 </script>
 <table id="grid"></table>
 <div id="tb" style="padding: 2px 5px;">
     <div>
-        Sno<input id="SearchSno" class="easyui-textbox" style="width: 110px">
-        Ssex<input id="SearchSsex" class="easyui-textbox" style="width: 110px">
-        Sdept
-        <select id="SearchSdept" class="easyui-combobox" data-options="panelHeight:auto;" style="width: 100px">
+        学号 <input id="SearchSno" class="easyui-textbox" style="width: 110px">
+        性别 <input id="SearchSsex" class="easyui-textbox" style="width: 110px">
+        系
+        <select id="SearchSdept" class="easyui-combobox" style="width: 100px">
             <option value="ALL">ALL</option>
             <option value="MA">MA</option>
             <option value="CS">CS</option>
             <option value="IS">IS</option>
         </select>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-no" onclick="ClearControls('#SearchSno,#SearchSsex,#SearchSdept');">清空搜索条件</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="ClearSearch()">清空搜索条件</a>
     </div>
     <div>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="Add()">添加</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="Edit()">编辑</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="Delete()">删除</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-no" plain="true" onclick="Details()">详细</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="Add()">添加</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="Edit()">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="Delete()">删除</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" plain="true" onclick="Details()">详细</a>
     </div>
 </div>
 <div id="editor"></div>
