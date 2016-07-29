@@ -1,5 +1,5 @@
 
-var AlertType = { Error: 'error', Question: 'question', Info: 'info', Warning: 'warning' }
+var AlertType = { Error: 'error', Question: 'question', Info: 'info', Warning: 'warning' }//警告框的 ICON 类型（仿枚举）
 
 //添加 Tab 的函数，若已存在则选中已有的 Tab
 function AddTab(title, url) {
@@ -16,6 +16,7 @@ function AddTab(title, url) {
     }
 }
 
+//在 easyui datagrid 中显示数据
 function BindGrid(url, columns, title, sortName, sortOrder, queryData) {
     $('#grid')
         .datagrid({
@@ -30,8 +31,8 @@ function BindGrid(url, columns, title, sortName, sortOrder, queryData) {
             striped: true,
             collapsible: true,
             pagination: true,
-            pageSize: 5,
-            pageList: [5, 20, 40],
+            pageSize: 20,
+            pageList: [20, 40, 80],
             rownumbers: true,
             ctrlSelect: true,
             toolbar: '#tb',
@@ -44,14 +45,12 @@ function BindGrid(url, columns, title, sortName, sortOrder, queryData) {
         });
 }
 
-function DeleteRecord(url, idName) {
-   
-}
-
+//显示警告框
 function Alert(title, msg, icon) {
     $.messager.alert(title, msg, icon);
 }
 
+//显示确认框
 function Confirm(title, msg, callback) {
     $.messager.confirm(title,
         msg,
@@ -62,6 +61,7 @@ function Confirm(title, msg, callback) {
         });
 }
 
+//显示编辑对话框
 function ShowEditor(url, title) {
     $('#editor')
         .dialog({
@@ -73,15 +73,18 @@ function ShowEditor(url, title) {
     $('#editor').dialog('open');
 }
 
+//关闭编辑对话框
 function CloseEditor() {
     $('#editor').dialog('close');
 }
 
+//刷新 datagrid
 function RefreshGrid() {
     $('#grid').datagrid('reload');
 }
 
-function Submit(url, message) {
+//向指定 url 提交
+function Submit(url, errorMsg) {
     $('#ff')
         .form('submit',
         {
@@ -90,11 +93,11 @@ function Submit(url, message) {
                 return $(this).form('enableValidation').form('validate');
             },
             success: function () {
-                CloseEditor();
                 RefreshGrid();
+                CloseEditor();
             },
             error: function () {
-                Alert('错误', message, AlertType.Error);
+                Alert('错误', errorMsg, AlertType.Error);
             }
         });
 }
@@ -102,4 +105,70 @@ function Submit(url, message) {
 function ReadonlyControls(controlNames) {
     $(controlNames).attr('readonly', true);
 }
+
+function Delete(url, idName) {
+    var rows = $('#grid').datagrid('getSelections');
+
+    if (rows.length === 0) {
+        Alert('错误', '请至少选中一条记录。', AlertType.Error);
+    } else {
+        Confirm('确认',
+            '确认删除选中的记录吗？',
+            function () {
+                var ids = [];
+
+                for (var i = 0; i < rows.length; i++) {
+                    ids.push(rows[i][idName]);
+                }
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: JSON.stringify(ids),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function () {
+                        RefreshGrid();
+                    }
+                });
+            });
+    }
+}
+
+//打开编辑对话框
+function Edit(url, editorTitle) {
+    var rows = $('#grid').datagrid('getSelections');
+
+    if (rows.length === 0) {
+        Alert('错误', '请先选择一条记录。', AlertType.Error);
+    } else if (rows.length > 1) {
+        Alert('错误', '请只选择一条记录。', AlertType.Error);
+        return;
+    } else {
+        var id = rows[0].Id;
+
+        ShowEditor(url + '/' + id, editorTitle);
+    }
+}
+
+//打开添加对话框
+function Add(url, editorTitle) {
+    ShowEditor(url, editorTitle);
+}
+
+//打开明细对话框
+function Details(url, editorTitle) {
+    var rows = $('#grid').datagrid('getSelections');
+
+    if (rows.length === 0) {
+        Alert('错误', '请先选择一条记录。', AlertType.Error);
+    } else if (rows.length > 1) {
+        Alert('错误', '请只选择一条记录。', AlertType.Error);
+        return;
+    } else {
+        var id = rows[0].Id;
+
+        ShowEditor(url + '/' + id, editorTitle);
+    }
+}
+
 

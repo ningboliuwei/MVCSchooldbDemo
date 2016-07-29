@@ -14,11 +14,10 @@
     @Scripts.Render("~/bundles/jquery")
     <script>
         $(function () {
-            var url = '@Url.Action("Index", "Student")';
             $('#tt')
                 .tree({
                     onClick: function (node) {
-                        AddTab(node.text, url);
+                        AddTab(node.text, '@Url.Action("Index", "Student")');
                     }
                 });
         });
