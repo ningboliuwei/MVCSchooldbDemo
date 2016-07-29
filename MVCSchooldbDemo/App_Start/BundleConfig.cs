@@ -29,8 +29,9 @@ namespace MVCSchooldbDemo
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery.min.js",
                 "~/Scripts/jquery.easyui.min.js",
-                "~/Scripts/common.js",
-                "~/Scripts/easyui-lang-zh_CN.js"));
+                "~/Scripts/easyui-lang-zh_CN.js",
+                "~/Scripts/common.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/themes/default/easyui.css",

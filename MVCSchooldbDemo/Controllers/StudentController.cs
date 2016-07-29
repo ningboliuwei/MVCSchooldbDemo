@@ -1,16 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using System.Linq.Dynamic;
+using MVCSchooldbDemo.Classes;
+using LinqKit;
 
 namespace MVCSchooldbDemo.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly SchooldbEntities db = new SchooldbEntities();
+        private readonly SchooldbEntities _db = new SchooldbEntities();
 
         // GET: Student
         public ActionResult Index()
@@ -18,31 +21,26 @@ namespace MVCSchooldbDemo.Controllers
             return View();
         }
 
-        public string GetResult(string sno, string ssex, string sdept, string page, string rows, string sort, string order)
+        public string GetList(string sno, string ssex, string sdept, int page, int rows, string sort, string order)
         {
-            var students = db.Student.ToList();
+            var list = _db.Student.ToList();
 
             if (!string.IsNullOrEmpty(sno))
             {
-                students = students.Where(s => s.Sno.Contains(sno)).ToList();
+                list = list.Where(s => s.Sno.Contains(sno)).ToList();
             }
 
             if (!string.IsNullOrEmpty(ssex))
             {
-                students = students.Where(s => s.Ssex.Contains(ssex)).ToList();
+                list = list.Where(s => s.Ssex.Contains(ssex)).ToList();
             }
 
             if (!string.IsNullOrEmpty(sdept))
             {
-                students = students.Where(s => s.Sdept == sdept).ToList();
+                list = list.Where(s => s.Sdept == sdept).ToList();
             }
 
-            if (!string.IsNullOrEmpty(sort) && !string.IsNullOrEmpty(order))
-            {
-                students = students.OrderBy($"{sort} {order}").ToList();
-            }
-
-            return JsonConvert.SerializeObject(students.ToList());
+            return DBHelper.SortingAndPaging(list, page, rows, sort, order);
         }
 
 
@@ -54,7 +52,7 @@ namespace MVCSchooldbDemo.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var student = db.Student.Find(id);
+            var student = _db.Student.Find(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -84,8 +82,8 @@ namespace MVCSchooldbDemo.Controllers
             //            }
             //
             //            return View(student);
-            db.Student.Add(student);
-            db.SaveChanges();
+            _db.Student.Add(student);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -95,7 +93,7 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                var student = db.Student.First(s => s.Id.ToString() == id);
+                var student = _db.Student.First(s => s.Id.ToString() == id);
                 return View(student);
             } //死循环了
             return View();
@@ -108,8 +106,8 @@ namespace MVCSchooldbDemo.Controllers
         [HttpPost]
         public ActionResult Edit(Student student)
         {
-            db.Entry(student).State = EntityState.Modified;
-            db.SaveChanges();
+            _db.Entry(student).State = EntityState.Modified;
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -118,11 +116,11 @@ namespace MVCSchooldbDemo.Controllers
         {
             foreach (var id in ids)
             {
-                var student = db.Student.First(s => s.Sno == id);
-                db.Student.Remove(student);
+                var student = _db.Student.First(s => s.Sno == id);
+                _db.Student.Remove(student);
             }
 
-            db.SaveChanges();
+            _db.SaveChanges();
             return RedirectToAction("Index", "Student");
         }
 
@@ -130,7 +128,7 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
