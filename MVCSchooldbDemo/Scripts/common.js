@@ -104,6 +104,24 @@ function Submit(url, errorMsg) {
         });
 }
 
+function Post(url, data, errorMsg) {
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function () {
+            $(function () {
+                RefreshGrid();
+                CloseEditor();
+            });
+        },
+        error: function () {
+            Alert('´íÎó', errorMsg, AlertType.Error);
+        },
+        dataType: "html"
+    });
+}
+
 function ReadonlyControls(controlNames) {
     $(controlNames).attr('readonly', true);
 }

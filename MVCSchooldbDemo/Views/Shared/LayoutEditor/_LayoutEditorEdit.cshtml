@@ -1,9 +1,26 @@
 ﻿<div style="padding: 10px 60px 20px 60px">
     @RenderBody()
     <div style="padding: 5px; text-align: center;">
-        <a id="btnOK" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="Confirm('确认', '确认修改记录吗？', function() { Submit('@Url.Action("Edit", "Student")', '修改学生记录遇到问题！') });" style="width: 90px">
+        <a id="btnOK" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="Submit()" style="width: 90px">
             修改
         </a>
         <a id="btnCancel" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="CloseEditor();" style="width: 90px">取消</a>
     </div>
+
+
 </div>
+<script>
+    function Submit() {
+        var data = {
+            Sno: $('#Sno').textbox('getText'),
+            Sname: $('#Sname').textbox('getText'),
+            Ssex: $('#Ssex').combobox('getText'),
+            Sage: $('#Sage').textbox('getText'),
+            Sdept: $('#Sdept').combobox('getText')
+        }
+
+        Confirm('确认',
+            '确认修改记录吗？',
+            function() { Post('@Url.Action("Edit", "Student")', data, '修改记录遇到问题！') });
+    }
+</script>
