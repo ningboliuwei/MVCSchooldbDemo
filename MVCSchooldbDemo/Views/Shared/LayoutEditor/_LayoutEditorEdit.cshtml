@@ -19,8 +19,10 @@
             Sdept: $('#Sdept').combobox('getText')
         }
 
-        Confirm('确认',
-            '确认修改记录吗？',
-            function() { Post('@Url.Action("Edit", "Student")', data, '修改记录遇到问题！') });
+        if (ValidateForm()) {
+            Confirm('确认',
+                '确认修改记录吗？',
+                function () { Post('@Url.Action("Edit", "Student")', data, '修改记录遇到问题！') });
+        }
     }
 </script>

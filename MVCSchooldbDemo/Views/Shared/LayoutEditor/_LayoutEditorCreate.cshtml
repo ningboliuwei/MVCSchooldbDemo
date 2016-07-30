@@ -17,8 +17,10 @@
             Sdept: $('#Sdept').combobox('getText')
         }
 
-        Confirm('确认',
-            '确认添加记录吗？',
-            function () { Post('@Url.Action("Create", "Student")', data, '添加记录遇到问题！') });
+        if (ValidateForm()) {
+            Confirm('确认',
+                '确认添加记录吗？',
+                function() { Post('@Url.Action("Create", "Student")', data, '添加记录遇到问题！') });
+        }
     }
 </script>

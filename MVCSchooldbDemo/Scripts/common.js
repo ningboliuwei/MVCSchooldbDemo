@@ -1,7 +1,7 @@
+ï»¿
+var AlertType = { Error: 'error', Question: 'question', Info: 'info', Warning: 'warning' }//è­¦å‘Šæ¡†çš„ ICON ç±»å‹ï¼ˆä»¿æšä¸¾ï¼‰
 
-var AlertType = { Error: 'error', Question: 'question', Info: 'info', Warning: 'warning' }//¾¯¸æ¿òµÄ ICON ÀàĞÍ£¨·ÂÃ¶¾Ù£©
-
-//Ìí¼Ó Tab µÄº¯Êı£¬ÈôÒÑ´æÔÚÔòÑ¡ÖĞÒÑÓĞµÄ Tab
+//æ·»åŠ  Tab çš„å‡½æ•°ï¼Œè‹¥å·²å­˜åœ¨åˆ™é€‰ä¸­å·²æœ‰çš„ Tab
 function AddTab(title, url) {
     if ($('#tabs').tabs('exists', title)) {
         $('#tabs').tabs('select', title);
@@ -16,7 +16,7 @@ function AddTab(title, url) {
     }
 }
 
-//ÔÚ easyui datagrid ÖĞÏÔÊ¾Êı¾İ
+//åœ¨ easyui datagrid ä¸­æ˜¾ç¤ºæ•°æ®
 function BindGrid(url, columns, title, sortName, sortOrder, queryData) {
     $('#grid')
         .datagrid({
@@ -45,12 +45,12 @@ function BindGrid(url, columns, title, sortName, sortOrder, queryData) {
         });
 }
 
-//ÏÔÊ¾¾¯¸æ¿ò
+//æ˜¾ç¤ºè­¦å‘Šæ¡†
 function Alert(title, msg, icon) {
     $.messager.alert(title, msg, icon);
 }
 
-//ÏÔÊ¾È·ÈÏ¿ò
+//æ˜¾ç¤ºç¡®è®¤æ¡†
 function Confirm(title, msg, callback) {
     $.messager.confirm(title,
         msg,
@@ -61,7 +61,7 @@ function Confirm(title, msg, callback) {
         });
 }
 
-//ÏÔÊ¾±à¼­¶Ô»°¿ò
+//æ˜¾ç¤ºç¼–è¾‘å¯¹è¯æ¡†
 function ShowEditor(url, title) {
     $('#editor')
         .dialog({
@@ -73,17 +73,17 @@ function ShowEditor(url, title) {
     $('#editor').dialog('open');
 }
 
-//¹Ø±Õ±à¼­¶Ô»°¿ò
+//å…³é—­ç¼–è¾‘å¯¹è¯æ¡†
 function CloseEditor() {
     $('#editor').dialog('close');
 }
 
-//Ë¢ĞÂ datagrid
+//åˆ·æ–° datagrid
 function RefreshGrid() {
     $('#grid').datagrid('reload');
 }
 
-//ÏòÖ¸¶¨ url Ìá½»
+//å‘æŒ‡å®š url æäº¤
 function Submit(url, errorMsg) {
     $('#ff')
         .form('submit',
@@ -99,27 +99,29 @@ function Submit(url, errorMsg) {
                 });
             },
             error: function () {
-                Alert('´íÎó', errorMsg, AlertType.Error);
+                Alert('é”™è¯¯', errorMsg, AlertType.Error);
             }
         });
 }
 
 function Post(url, data, errorMsg) {
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: data,
-        success: function () {
-            $(function () {
-                RefreshGrid();
-                CloseEditor();
-            });
-        },
-        error: function () {
-            Alert('´íÎó', errorMsg, AlertType.Error);
-        },
-        dataType: "html"
-    });
+   
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            success: function() {
+                $(function() {
+                    RefreshGrid();
+                    CloseEditor();
+                });
+            },
+            error: function() {
+                Alert('é”™è¯¯', errorMsg, AlertType.Error);
+            },
+            dataType: "html"
+        });
+    
 }
 
 function ReadonlyControls(controlNames) {
@@ -130,9 +132,9 @@ function Delete(url, idName) {
     var rows = $('#grid').datagrid('getSelections');
 
     if (rows.length === 0) {
-        Alert('´íÎó', 'ÇëÖÁÉÙÑ¡ÖĞÒ»Ìõ¼ÇÂ¼¡£', AlertType.Error);
+        Alert("é”™è¯¯", 'è¯·è‡³å°‘é€‰ä¸­ä¸€æ¡è®°å½•ã€‚', AlertType.Error);
     } else {
-        Confirm('È·ÈÏ', 'È·ÈÏÉ¾³ıÑ¡ÖĞµÄ¼ÇÂ¼Âğ£¿',
+        Confirm("ç¡®è®¤", "ç¡®è®¤åˆ é™¤é€‰ä¸­çš„è®°å½•å—ï¼Ÿ",
             function () {
                 var ids = [];
 
@@ -144,7 +146,7 @@ function Delete(url, idName) {
                     url: url,
                     type: 'POST',
                     data: JSON.stringify(ids),
-                    contentType: 'application/json; charset=utf-8',
+                    contentType: 'application/json;charset=utf-8',
                     success: function () {
                         RefreshGrid();
                     }
@@ -153,14 +155,14 @@ function Delete(url, idName) {
     }
 }
 
-//´ò¿ª±à¼­¶Ô»°¿ò
+//æ‰“å¼€ç¼–è¾‘å¯¹è¯æ¡†
 function Edit(url, editorTitle) {
     var rows = $('#grid').datagrid('getSelections');
 
     if (rows.length === 0) {
-        Alert('´íÎó', 'ÇëÏÈÑ¡ÔñÒ»Ìõ¼ÇÂ¼¡£', AlertType.Error);
+        Alert('é”™è¯¯', 'è¯·å…ˆé€‰æ‹©ä¸€æ¡è®°å½•ã€‚', AlertType.Error);
     } else if (rows.length > 1) {
-        Alert('´íÎó', 'ÇëÖ»Ñ¡ÔñÒ»Ìõ¼ÇÂ¼¡£', AlertType.Error);
+        Alert('é”™è¯¯', 'è¯·åªé€‰æ‹©ä¸€æ¡è®°å½•ã€‚', AlertType.Error);
         return;
     } else {
         var id = rows[0].Id;
@@ -169,19 +171,19 @@ function Edit(url, editorTitle) {
     }
 }
 
-//´ò¿ªÌí¼Ó¶Ô»°¿ò
+//æ‰“å¼€æ·»åŠ å¯¹è¯æ¡†
 function Add(url, editorTitle) {
     ShowEditor(url, editorTitle);
 }
 
-//´ò¿ªÃ÷Ï¸¶Ô»°¿ò
+//æ‰“å¼€æ˜ç»†å¯¹è¯æ¡†
 function Details(url, editorTitle) {
     var rows = $('#grid').datagrid('getSelections');
 
     if (rows.length === 0) {
-        Alert('´íÎó', 'ÇëÏÈÑ¡ÔñÒ»Ìõ¼ÇÂ¼¡£', AlertType.Error);
+        Alert('é”™è¯¯', 'è¯·å…ˆé€‰æ‹©ä¸€æ¡è®°å½•ã€‚', AlertType.Error);
     } else if (rows.length > 1) {
-        Alert('´íÎó', 'ÇëÖ»Ñ¡ÔñÒ»Ìõ¼ÇÂ¼¡£', AlertType.Error);
+        Alert('é”™è¯¯', 'è¯·åªé€‰æ‹©ä¸€æ¡è®°å½•ã€‚', AlertType.Error);
         return;
     } else {
         var id = rows[0].Id;
@@ -190,4 +192,6 @@ function Details(url, editorTitle) {
     }
 }
 
-
+function ValidateForm() {
+    return $('#ff').form('enableValidation').form('validate');
+}
