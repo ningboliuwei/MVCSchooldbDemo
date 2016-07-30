@@ -93,8 +93,10 @@ function Submit(url, errorMsg) {
                 return $(this).form('enableValidation').form('validate');
             },
             success: function () {
-                RefreshGrid();
-                CloseEditor();
+                $(function () {
+                    RefreshGrid();
+                    CloseEditor();
+                });
             },
             error: function () {
                 Alert('错误', errorMsg, AlertType.Error);
@@ -112,8 +114,7 @@ function Delete(url, idName) {
     if (rows.length === 0) {
         Alert('错误', '请至少选中一条记录。', AlertType.Error);
     } else {
-        Confirm('确认',
-            '确认删除选中的记录吗？',
+        Confirm('确认', '确认删除选中的记录吗？',
             function () {
                 var ids = [];
 

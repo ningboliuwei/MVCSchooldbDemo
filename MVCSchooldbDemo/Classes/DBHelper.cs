@@ -23,6 +23,17 @@ namespace MVCSchooldbDemo.Classes
             return JsonConvert.SerializeObject(new { total = totalCount, rows = data });
         }
 
+        public static List<T> FilterByKeywords<T>(List<T> data, string[] propertyNames, string[] keywords)
+        {
+            for (int i = 0; i < keywords.Count(); i++)
+            {
+                if (!string.IsNullOrEmpty(keywords[i]))
+                {
+                    data = data.Where($"{propertyNames[i]}.Contains(\"{keywords[i]}\")").ToList();
+                }
+            }
 
+            return data;
+        }
     }
 }

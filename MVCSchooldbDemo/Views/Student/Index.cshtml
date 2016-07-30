@@ -2,6 +2,7 @@
 @{
     Layout = null;
 }
+
 <script>
     var url = '@Url.Action("GetList", "Student")';
     var columns = [
@@ -49,6 +50,7 @@
     var gridTitle = '学生记录';
     var gridSortName = 'Id';
     var gridSortOrder = 'asc';
+
     function Search() {
         var queryData = {
             Sno: $('#SearchSno').textbox('getText'),
@@ -62,16 +64,12 @@
     function ClearSearch() {
         $('#SearchSno').textbox('clear');
         $('#SearchSsex').textbox('clear');
-        $('#SearchSdept').textbox('clear');
+
+        var data = $('#SearchSdept').combobox('getData');
+        $('#SearchSdept').combobox('select', data[0]["text"]);
 
         BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }
-
-
-    //when page is loaded
-    $(function () {
-        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {}); //Show all records
-    });
 </script>
 <table id="grid" style="height: 100%"></table>
 <div id="tb" style="padding: 2px 5px;">
@@ -99,3 +97,8 @@
     </div>
 </div>
 <div id="editor" style="width: 400px"></div>
+<script>
+    $(document).ready(function () {
+        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {})
+    }); //Show all records
+</script>

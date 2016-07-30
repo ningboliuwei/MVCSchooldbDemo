@@ -25,20 +25,7 @@ namespace MVCSchooldbDemo.Controllers
         {
             var list = _db.Student.ToList();
 
-            if (!string.IsNullOrEmpty(sno))
-            {
-                list = list.Where(s => s.Sno.Contains(sno)).ToList();
-            }
-
-            if (!string.IsNullOrEmpty(ssex))
-            {
-                list = list.Where(s => s.Ssex.Contains(ssex)).ToList();
-            }
-
-            if (!string.IsNullOrEmpty(sdept))
-            {
-                list = list.Where(s => s.Sdept == sdept).ToList();
-            }
+            list = DBHelper.FilterByKeywords(list, new[] { "Sno", "Ssex", "Sdept" }, new[] { sno, ssex, sdept });
 
             return DBHelper.SortingAndPaging(list, page, rows, sort, order);
         }
