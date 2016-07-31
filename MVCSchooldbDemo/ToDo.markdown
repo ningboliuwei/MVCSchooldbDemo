@@ -23,5 +23,7 @@
 21. 增加了 site.css 中的很多样式 —— 2016-07-31 √
 22. 为 editorDialog 增加了标题 —— 通过 ViewBag 2016-07-31 √
 23. 在 DBHelper 中增加了 FindByKeyword() 方法，用于用一种统一的方式获得 model 2016-07-31 √
+24. 解决了 datagrid height 100% 下不显示分页条的问题 原因：不要给 toolbar 的 css 中的 table 设置 100% 宽度 2016-07-31 √
+25. 解决了问题 24 后，新增记录又不行了。
 
 

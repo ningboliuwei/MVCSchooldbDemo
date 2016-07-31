@@ -60,16 +60,16 @@ namespace MVCSchooldbDemo.Controllers
         //        [Bind(Include = "Id,Sno,Sname,Ssex,Sage,Sdept")]
         public ActionResult Create(Student student)
         {
-            //            if (ModelState.IsValid)
-            //            {
-            //                db.Student.Add(student);
-            //                db.SaveChanges();
-            //                return RedirectToAction("Index");
-            //            }
-            //
-            //            return View(student);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _db.Student.Add(student);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View();
+            //            _db.SaveChanges();
+            //            return RedirectToAction("Index");
         }
 
         // GET: Student/Edit/5
