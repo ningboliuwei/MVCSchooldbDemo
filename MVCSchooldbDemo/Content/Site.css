@@ -46,20 +46,14 @@ textarea {
 	background: #FAFAFA;
 }
 
-.toolsTable {
-	width: 100%;
-	float: left;
-	display: block;
+.searchTable {
 }
 
-	.toolsTable td, th {
+	.searchTable td, th {
 		padding: 5px 5px 0 5px;
 	}
 
 .buttonsTable {
-	width: 100%;
-	float: left;
-	display: block;
 }
 
 	.buttonsTable td, th {

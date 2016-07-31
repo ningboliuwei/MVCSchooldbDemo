@@ -5,7 +5,7 @@
 
 <table id="grid" style="height: 100%"></table>
 <div id="tb">
-    <table>
+    <table class="searchTable">
         <tr>
             <td> 学号</td>
             <td><input id="SearchSno" class="easyui-textbox" style="width: 110px"></td>
@@ -26,7 +26,7 @@
             <td> <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="ClearSearch()">清空搜索条件</a></td>
         </tr>
     </table>
-    <table>
+    <table class="buttonsTable">
         <tr>
             <td>
                 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="Add('@Url.Action("Create", "Student")', '添加学生记录')">
