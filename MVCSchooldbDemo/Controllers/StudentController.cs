@@ -30,26 +30,25 @@ namespace MVCSchooldbDemo.Controllers
             return DBHelper.SortingAndPaging(list, page, rows, sort, order);
         }
 
-
-
         // GET: Student/Details/5
         public ActionResult Details(long? id)
         {
-            if (id == null)
+            if (id != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ViewBag.DialogTitle = "查看学生明细";
+                var student = DBHelper.FindByKeyword(_db.Student.ToList(), "Id", id).First();
+
+                return View(student);
             }
-            var student = _db.Student.Find(id);
-            if (student == null)
-            {
-                return HttpNotFound();
-            }
-            return View(student);
+
+            return HttpNotFound();
+
         }
 
         // GET: Student/Create
         public ActionResult Create()
         {
+            ViewBag.DialogTitle = "添加学生记录";
             return View();
         }
 
@@ -69,21 +68,22 @@ namespace MVCSchooldbDemo.Controllers
             //            }
             //
             //            return View(student);
-            _db.Student.Add(student);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         // GET: Student/Edit/5
         [HttpGet]
-        public ActionResult Edit(string id)
+        public ActionResult Edit(long? id)
         {
             if (id != null)
             {
-                var student = _db.Student.First(s => s.Id.ToString() == id);
+                var student = DBHelper.FindByKeyword(_db.Student.ToList(), "Id", id).First();
+                ViewBag.DialogTitle = "编辑学生记录";
                 return View(student);
             } //死循环了
-            return View();
+
+            return HttpNotFound();
         }
 
 
@@ -99,11 +99,11 @@ namespace MVCSchooldbDemo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(List<string> ids)
+        public ActionResult Delete(List<long> ids)
         {
             foreach (var id in ids)
             {
-                var student = _db.Student.First(s => s.Sno == id);
+                var student = DBHelper.FindByKeyword(_db.Student.ToList(), "Id", id).First();
                 _db.Student.Remove(student);
             }
 
@@ -119,5 +119,6 @@ namespace MVCSchooldbDemo.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

@@ -1,19 +1,20 @@
-﻿﻿<form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
-    <table>
+﻿<div class="dialogTitle">@ViewBag.DialogTitle</div>﻿
+<form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
+    <table class="editorTable">
         <tr>
-            <td>学号:</td>
+            <td class="editorNameColumn" style="width: 100px">学号:</td>
             <td>
                 <input id="Sno" class="easyui-textbox" type="text" name="Sno" />
             </td>
         </tr>
         <tr>
-            <td>姓名:</td>
+            <td class="editorNameColumn">姓名：</td>
             <td>
                 <input id="Sname" class="easyui-textbox" type="text" name="Sname" />
             </td>
         </tr>
         <tr>
-            <td>性别:</td>
+            <td class="editorNameColumn">性别:</td>
             <td>
                 <select id="Ssex" class="easyui-combobox" name="Ssex" style="width: 100px">
                     <option value="男">男</option>
@@ -22,13 +23,13 @@
             </td>
         </tr>
         <tr>
-            <td>年龄:</td>
+            <td class="editorNameColumn">年龄:</td>
             <td>
                 <input id="Sage" class="easyui-textbox" name="Sage" data-options="required:true" />
             </td>
         </tr>
         <tr>
-            <td>系:</td>
+            <td class="editorNameColumn">系:</td>
             <td>
                 <select id="Sdept" name="Sdept" class="easyui-combobox" style="width: 100px">
                     <option value="CS">CS</option>

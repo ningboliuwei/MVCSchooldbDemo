@@ -27,6 +27,51 @@ textarea {
 	max-width: 280px;
 }**/
 
-body {
-	
+.editorLayout {
+	padding: 0 20px 10px 20px;
+}
+
+.editorTable {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+
+	.editorTable td, th {
+		border: 1px dotted #ccc;
+		padding: 5px 10px 5px 10px;
+	}
+
+.editorNameColumn {
+	background: #FAFAFA;
+}
+
+.toolsTable {
+	width: 100%;
+	float: left;
+	display: block;
+}
+
+	.toolsTable td, th {
+		padding: 5px 5px 0 5px;
+	}
+
+.buttonsTable {
+	width: 100%;
+	float: left;
+	display: block;
+}
+
+	.buttonsTable td, th {
+		padding: 5px 5px 5px 5px;
+	}
+
+.dialogTitle {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.dialogButton {
+	float: right;
+	padding: 10px 0;
 }

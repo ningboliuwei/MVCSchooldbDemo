@@ -2,31 +2,60 @@
 @{
     Layout = null;
 }
+
 <table id="grid" style="height: 100%"></table>
-<div id="tb" style="padding: 2px 5px;">
-    <div>
-        学号 <input id="SearchSno" class="easyui-textbox" style="width: 110px">
-        性别 <input id="SearchSsex" class="easyui-textbox" style="width: 110px">
-        系&nbsp;&nbsp;<select id="SearchSdept" class="easyui-combobox" style="width: 100px">
-            <option value="ALL">ALL</option>
-            <option value="MA">MA</option>
-            <option value="CS">CS</option>
-            <option value="IS">IS</option>
-        </select>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="ClearSearch()">清空搜索条件</a>
-    </div>
-    <div>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="Add('@Url.Action("Create", "Student")', '添加学生记录')">
-            添加
-        </a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="Edit('@Url.Action("Edit", "Student")',
+<div id="tb" style="padding:5px">
+    <table class="toolsTable">
+        <tr>
+            <td>
+                学号
+            </td>
+            <td>
+                <input id="SearchSno" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td>
+                性别
+            </td>
+            <td>
+                <input id="SearchSsex" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td>
+                系
+            </td>
+            <td>
+                <select id="SearchSdept" class="easyui-combobox" style="width: 100px">
+                    <option value="ALL">ALL</option>
+                    <option value="MA">MA</option>
+                    <option value="CS">CS</option>
+                    <option value="IS">IS</option>
+                </select>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
+            </td>
+            <td> <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="ClearSearch()">清空搜索条件</a></td>
+    </table>
+    <table class="buttonsTable">
+        <tr>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="Add('@Url.Action("Create", "Student")', '添加学生记录')">
+                    添加
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="Edit('@Url.Action("Edit", "Student")',
     '修改学生记录')">编辑</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="Delete('@Url.Action("Delete", "Student")', 'Sno')">
-            删除
-        </a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" plain="true" onclick="Details('@Url.Action("Details", "Student")', '学生记录明细')">详细</a>
-    </div>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="Delete('@Url.Action("Delete", "Student")', 'Id')">
+                    删除
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" plain="true" onclick="Details('@Url.Action("Details", "Student")', '学生记录明细')">详细</a>
+            </td>
+        </tr>
+    </table>
 </div>
 <div id="editor" style="width: 400px"></div>
 <script>

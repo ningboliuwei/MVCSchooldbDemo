@@ -41,7 +41,6 @@ function BindGrid(url, columns, title, sortName, sortOrder, queryData) {
             method: 'post',
             sortName: sortName,
             sortOrder: sortOrder
-
         });
 }
 
@@ -128,7 +127,7 @@ function ReadonlyControls(controlNames) {
     $(controlNames).attr('readonly', true);
 }
 
-function Delete(url, idName) {
+function Delete(url) {
     var rows = $('#grid').datagrid('getSelections');
 
     if (rows.length === 0) {
@@ -139,7 +138,7 @@ function Delete(url, idName) {
                 var ids = [];
 
                 for (var i = 0; i < rows.length; i++) {
-                    ids.push(rows[i][idName]);
+                    ids.push(rows[i].Id);
                 }
 
                 $.ajax({

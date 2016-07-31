@@ -35,5 +35,22 @@ namespace MVCSchooldbDemo.Classes
 
             return data;
         }
+
+        public static List<T> FindByKeyword<T>(List<T> data, string propertyName, object keyword)
+        {
+            string expression;
+
+            if (keyword is string)
+            {
+                expression = $"{propertyName}=\"{keyword}\"";
+            }
+            else
+            {
+                expression = $"{propertyName}={keyword}";
+            }
+
+            return data.Where(expression).ToList();
+
+        }
     }
 }
