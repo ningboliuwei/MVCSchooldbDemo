@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using System.Linq.Dynamic;
+using System.Web;
 using MVCSchooldbDemo.Classes;
 using LinqKit;
 
@@ -118,6 +120,38 @@ namespace MVCSchooldbDemo.Controllers
                 _db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult SaveFile(HttpPostedFileBase fileData)
+        {
+            if (fileData != null)
+            {
+                try
+                {
+                    string dir = Server.MapPath("~/UploadFiles/");
+
+                    if (!Directory.Exists(dir))
+                    {
+                        Directory.CreateDirectory(dir);
+                    }
+
+                    string fileName = fileData.FileName;
+                    string fileExtension = Path.GetExtension(fileName);
+                    string saveName = $"{Guid.NewGuid()}{fileExtension}";
+                    string savePath = $"{dir}\\{saveName}";
+
+                    fileData.SaveAs(savePath);
+
+                    return Content(saveName);
+                }
+                catch (Exception ex)
+                {
+                    return Content(ex.Message);
+                }
+
+
+            }
+            return Content("uploaded file is null"); ;
         }
 
     }

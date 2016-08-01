@@ -1,5 +1,5 @@
 ﻿
-var AlertType = { Error: 'error', Question: 'question', Info: 'info', Warning: 'warning' }//警告框的 ICON 类型（仿枚举）
+var AlertType = { Error: 'error', Question: 'question', Info: 'info', Warning: 'warning' };//警告框的 ICON 类型（仿枚举）
 
 //添加 Tab 的函数，若已存在则选中已有的 Tab
 function AddTab(title, url) {
@@ -104,23 +104,23 @@ function Submit(url, errorMsg) {
 }
 
 function Post(url, data, errorMsg) {
-   
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: data,
-            success: function() {
-                $(function() {
-                    RefreshGrid();
-                    CloseEditor();
-                });
-            },
-            error: function() {
-                Alert('错误', errorMsg, AlertType.Error);
-            },
-            dataType: "html"
-        });
-    
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function () {
+            $(function () {
+                RefreshGrid();
+                CloseEditor();
+            });
+        },
+        error: function () {
+            Alert('错误', errorMsg, AlertType.Error);
+        },
+        dataType: "html"
+    });
+
 }
 
 function ReadonlyControls(controlNames) {
@@ -193,4 +193,33 @@ function Details(url, editorTitle) {
 
 function ValidateForm() {
     return $('#ff').form('enableValidation').form('validate');
+}
+
+
+function InitUploadify(url, fileTypeExts, fileTypeDesc) {
+    $('#uploadify')
+        .uploadify({
+            uploader: url, // 服务器端处理地址
+            swf: '../Content/Uploadify/uploadify.swf', // 上传使用的 Flash
+            width: 60, // 按钮的宽度
+            height: 23, // 按钮的高度
+            buttonText: "上传", // 按钮上的文字
+            buttonCursor: 'hand', // 按钮的鼠标图标
+            fileObjName: 'fileData', // 上传参数名称
+            // 两个配套使用
+            fileTypeExts: fileTypeExts, // 扩展名
+            fileTypeDesc: fileTypeDesc, // 文件说明
+            auto: true, // 选择之后，自动开始上传
+            multi: false, // 是否支持同时上传多个文件
+            queueSizeLimit: 5, // 允许多文件上传的时候，同时上传文件的个数
+            onUploadSuccess: function (file, data, response) {
+                //                ChangeImage('#studentPhoto', data);
+                $('#studentPhoto').attr('src', '../UploadFiles/' + data.substring(1, data.length - 1));
+
+            }
+        });
+}
+
+function ChangeImage(controlName, fileName) {
+    $(name).attr('src', 'Images/' + fileName);
 }

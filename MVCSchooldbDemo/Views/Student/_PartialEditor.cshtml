@@ -1,4 +1,4 @@
-﻿<div class="dialogTitle">@ViewBag.DialogTitle</div>﻿
+﻿<div class="dialogTitle">@ViewBag.DialogTitle</div>
 <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
     <table class="editorTable">
         <tr>
@@ -38,5 +38,12 @@
                 </select>
             </td>
         </tr>
+        <tr><td colspan="2"><img id="studentPhoto" src="#" style="width:100px;" /></td></tr>
+        <tr>
+            <td colspan="2">
+                <span id="uploadify"></span>
+            </td>
+        </tr>
     </table>
+    <script>$(function () { InitUploadify("@Url.Action("SaveFile", "Student")", "*.*", "支持所有类型文件"); });</script>
 </form>

@@ -30,14 +30,16 @@ namespace MVCSchooldbDemo
                 "~/Scripts/jquery.min.js",
                 "~/Scripts/jquery.easyui.min.js",
                 "~/Scripts/easyui-lang-zh_CN.js",
+                "~/Scripts/jquery.uploadify.min.js",
                 "~/Scripts/common.js"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/themes/default/easyui.css",
-                "~/Content/themes/icon.css",
-                "~/Content/themes/color.css",
-                "~/Content/Site.css"));
+                "~/Content/EasyUI/themes/default/easyui.css",
+                "~/Content/EasyUI/themes/icon.css",
+                "~/Content/EasyUI/themes/color.css",
+                "~/Content/Site.css",
+                "~/Content/Uploadify/uploadify.css"));
         }
     }
 }
