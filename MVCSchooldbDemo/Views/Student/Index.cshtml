@@ -8,7 +8,9 @@
     <table class="searchTable">
         <tr>
             <td> 学号</td>
-            <td><input id="SearchSno" class="easyui-textbox" style="width: 110px"></td>
+            <td>
+                <input id="SearchSno" class="easyui-textbox" style="width: 110px">
+            </td>
             <td> 性别</td>
             <td>
                 <input id="SearchSsex" class="easyui-textbox" style="width: 110px">
@@ -22,29 +24,35 @@
                     <option value="IS">IS</option>
                 </select>
             </td>
-            <td> <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a></td>
-            <td> <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="ClearSearch()">清空搜索条件</a></td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="ClearSearch()">清空搜索条件</a>
+            </td>
         </tr>
     </table>
     <table class="buttonsTable">
         <tr>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" onclick="Add('@Url.Action("Create", "Student")', '添加学生记录')">
-                    添加
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('@Url.Action("Edit", "Student")',
-    '修改学生记录')">编辑</a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" onclick="Delete('@Url.Action("Delete", "Student")', 'Sno')">
-                    删除
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="Details('@Url.Action("Details", "Student")', '学生记录明细')">详细</a>
-            </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" onclick="Add('@Url.Action("Create", "Student")', '添加学生记录')">
+                添加
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('@Url.Action("Edit", "Student")',
+    '修改学生记录')">
+                编辑
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" onclick="Delete('@Url.Action("Delete", "Student")', 'Sno')">
+                删除
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="Details('@Url.Action("Details", "Student")', '学生记录明细')">详细</a>
+        </td>
     </table>
 </div>
 <div id="editor" style="width: 400px"></div>
@@ -116,7 +124,7 @@
         BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }
 
-    $(function () {
+    $(function() {
         BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }); //Show all records
 </script>

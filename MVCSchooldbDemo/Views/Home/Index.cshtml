@@ -5,18 +5,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
-    <meta name="description" content="The description of my page" />
+    <meta name="description" content="The description of my page"/>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     <script>
-        $(function () {
+        $(function() {
             $('#tt')
                 .tree({
-                    onClick: function (node) {
+                    onClick: function(node) {
                         AddTab(node.text, '@Url.Action("Index", "Student")');
                     }
                 });
@@ -24,33 +24,33 @@
     </script>
 </head>
 <body class="easyui-layout">
-    <div data-options="region:'north'" style="height: 50px"></div>
-    <div data-options="region:'south',split:true" style="height: 50px;"></div>
-    <div data-options="region:'west',split:true" title="West" style="width: 200px;">
-        <div id="aa" class="easyui-accordion" data-options="fit:true">
-            <div title="Title1" data-options="iconCls:'icon-save',selected:true" style="overflow: auto; padding: 10px;">
-                <ul id="tt" class="easyui-tree">
-                    <li>
-                        <span>Folder</span>
-                        <ul>
-                            <li>
-                                <span>Student</span>
-                            </li>
-                            <li>
-                                <span>Course</span>
-                            </li>
-                            <li>
-                                <span>SC</span>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+<div data-options="region:'north'" style="height: 50px"></div>
+<div data-options="region:'south',split:true" style="height: 50px;"></div>
+<div data-options="region:'west',split:true" title="West" style="width: 200px;">
+    <div id="aa" class="easyui-accordion" data-options="fit:true">
+        <div title="Title1" data-options="iconCls:'icon-save',selected:true" style="overflow: auto; padding: 10px;">
+            <ul id="tt" class="easyui-tree">
+                <li>
+                    <span>Folder</span>
+                    <ul>
+                        <li>
+                            <span>Student</span>
+                        </li>
+                        <li>
+                            <span>Course</span>
+                        </li>
+                        <li>
+                            <span>SC</span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
-    <div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
-        <div id="tabs" class="easyui-tabs" fit="true">
-        </div>
+</div>
+<div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+    <div id="tabs" class="easyui-tabs" fit="true">
     </div>
+</div>
 </body>
 </html>

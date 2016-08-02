@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
-using Newtonsoft.Json;
-using System.Linq.Dynamic;
-using System.Web;
 using MVCSchooldbDemo.Classes;
-using LinqKit;
 
 namespace MVCSchooldbDemo.Controllers
 {
@@ -27,7 +20,7 @@ namespace MVCSchooldbDemo.Controllers
         {
             var list = _db.Student.ToList();
 
-            list = DBHelper.FilterByKeywords(list, new[] { "Sno", "Ssex", "Sdept" }, new[] { sno, ssex, sdept });
+            list = DBHelper.FilterByKeywords(list, new[] {"Sno", "Ssex", "Sdept"}, new[] {sno, ssex, sdept});
 
             return DBHelper.SortingAndPaging(list, page, rows, sort, order);
         }
@@ -44,7 +37,6 @@ namespace MVCSchooldbDemo.Controllers
             }
 
             return HttpNotFound();
-
         }
 
         // GET: Student/Create
@@ -121,38 +113,5 @@ namespace MVCSchooldbDemo.Controllers
             }
             base.Dispose(disposing);
         }
-
-        public ActionResult SaveFile(HttpPostedFileBase fileData)
-        {
-            if (fileData != null)
-            {
-                try
-                {
-                    string dir = Server.MapPath("~/UploadFiles/");
-
-                    if (!Directory.Exists(dir))
-                    {
-                        Directory.CreateDirectory(dir);
-                    }
-
-                    string fileName = fileData.FileName;
-                    string fileExtension = Path.GetExtension(fileName);
-                    string saveName = $"{Guid.NewGuid()}{fileExtension}";
-                    string savePath = $"{dir}\\{saveName}";
-
-                    fileData.SaveAs(savePath);
-
-                    return Content(saveName);
-                }
-                catch (Exception ex)
-                {
-                    return Content(ex.Message);
-                }
-
-
-            }
-            return Content("uploaded file is null"); ;
-        }
-
     }
 }

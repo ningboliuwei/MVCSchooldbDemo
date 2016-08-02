@@ -4,13 +4,13 @@
         <tr>
             <td class="editorNameColumn" style="width: 100px">学号:</td>
             <td>
-                <input id="Sno" class="easyui-textbox" type="text" name="Sno" />
+                <input id="Sno" class="easyui-textbox" type="text" name="Sno"/>
             </td>
         </tr>
         <tr>
             <td class="editorNameColumn">姓名：</td>
             <td>
-                <input id="Sname" class="easyui-textbox" type="text" name="Sname" />
+                <input id="Sname" class="easyui-textbox" type="text" name="Sname"/>
             </td>
         </tr>
         <tr>
@@ -25,7 +25,7 @@
         <tr>
             <td class="editorNameColumn">年龄:</td>
             <td>
-                <input id="Sage" class="easyui-textbox" name="Sage" data-options="required:true" />
+                <input id="Sage" class="easyui-textbox" name="Sage" data-options="required:true"/>
             </td>
         </tr>
         <tr>
@@ -38,12 +38,32 @@
                 </select>
             </td>
         </tr>
-        <tr><td colspan="2"><img id="studentPhoto" src="#" style="width:100px;" /></td></tr>
+        <tr>
+            <td colspan="2">
+                <img id="studentPhoto" src="#" style="width: 100px;"/>
+            </td>
+        </tr>
         <tr>
             <td colspan="2">
                 <span id="uploadify"></span>
             </td>
         </tr>
     </table>
-    <script>$(function () { InitUploadify("@Url.Action("SaveFile", "Student")", "*.*", "支持所有类型文件"); });</script>
+    <script>
+        $(function() {
+            var targetDir = 'Photos';
+            InitUploadify("@Url.Action("Upload", "FileUpload")",
+                true,
+                false,
+                1,
+                "*.*",
+                "支持所有类型文件",
+                function(file, data, response) {
+                    $('#studentPhoto').attr('src', '../' + targetDir + '/' + JSON.parse(data).TargetName);
+                },
+                function() {},
+                function() {},
+                { targetDir: targetDir });
+        });
+    </script>
 </form>

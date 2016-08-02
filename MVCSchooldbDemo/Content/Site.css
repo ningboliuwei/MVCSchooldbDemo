@@ -27,38 +27,28 @@ textarea {
 	max-width: 280px;
 }**/
 
-.editorLayout {
-	padding: 0 20px 10px 20px;
-}
+.editorLayout { padding: 0 20px 10px 20px; }
 
 .editorTable {
-	width: 100%;
 	border-collapse: collapse;
 	margin: 0 auto;
+	width: 100%;
 }
 
-	.editorTable td, th {
-		border: 1px dotted #ccc;
-		padding: 5px 10px 5px 10px;
-	}
-
-.editorNameColumn {
-	background: #FAFAFA;
+.editorTable td, th {
+	border: 1px dotted #ccc;
+	padding: 5px 10px 5px 10px;
 }
 
-.searchTable {
-}
+.editorNameColumn { background: #FAFAFA; }
 
-	.searchTable td, th {
-		padding: 5px 5px 0 5px;
-	}
+.searchTable { }
 
-.buttonsTable {
-}
+.searchTable td, th { padding: 5px 5px 0 5px; }
 
-	.buttonsTable td, th {
-		padding: 5px 5px 5px 5px;
-	}
+.buttonsTable { }
+
+.buttonsTable td, th { padding: 5px 5px 5px 5px; }
 
 .dialogTitle {
 	font-size: 20px;
