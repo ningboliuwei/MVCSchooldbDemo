@@ -12,7 +12,7 @@ namespace MVCSchooldbDemo.Views.Student
         //如果您想要针对其他数据库和/或数据库提供程序，请在应用程序配置文件中修改“Schooldb”
         //连接字符串。
         public SchooldDbContext()
-            : base("name=SchooldbEntities")
+            : base("name=Schooldb")
         {
         }
 
@@ -23,7 +23,7 @@ namespace MVCSchooldbDemo.Views.Student
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<SchooldDbContext>(modelBuilder);
+            var sqliteConnectionInitializer = new SqliteDropCreateDatabaseWhenModelChanges<SchooldDbContext>(modelBuilder);
             Database.SetInitializer(sqliteConnectionInitializer);
         }
     }
