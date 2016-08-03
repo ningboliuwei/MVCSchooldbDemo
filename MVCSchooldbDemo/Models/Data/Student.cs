@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.InteropServices;
 
 namespace MVCSchooldbDemo.Models.Data
 {
     public class Student
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        [Key]
+        public long Id { get; set; }
         public string Sno { get; set; }
         public string Sname { get; set; }
         public int Sage { get; set; }

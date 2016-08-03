@@ -20,7 +20,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public string GetList(string sno, string ssex, string sdept, int page, int rows, string sort, string order)
         {
-            var list = _db.Students.ToList();
+	        var list = _db.Students.ToList();
 
             list = DBHelper.FilterByKeywords(list, new[] {"Sno", "Ssex", "Sdept"}, new[] {sno, ssex, sdept});
 

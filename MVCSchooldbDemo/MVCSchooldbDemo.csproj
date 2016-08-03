@@ -554,7 +554,6 @@
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
@@ -563,6 +562,7 @@
     <Content Include="Views\Shared\LayoutEditor\_LayoutEditorCreate.cshtml" />
     <Content Include="Views\Shared\LayoutEditor\_LayoutEditorDetails.cshtml" />
     <Content Include="Views\Shared\LayoutEditor\_LayoutEditorEdit.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\EasyUI\themes\metro-blue\" />
