@@ -3,12 +3,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using MVCSchooldbDemo.Classes;
+using MVCSchooldbDemo.Models.Data;
+using MVCSchooldbDemo.Views.Student;
 
 namespace MVCSchooldbDemo.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly SchooldbEntities _db = new SchooldbEntities();
+        private readonly SchooldDbContext _db = new SchooldDbContext();
 
         // GET: Student
         public ActionResult Index()
@@ -18,7 +20,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public string GetList(string sno, string ssex, string sdept, int page, int rows, string sort, string order)
         {
-            var list = _db.Student.ToList();
+            var list = _db.Students.ToList();
 
             list = DBHelper.FilterByKeywords(list, new[] {"Sno", "Ssex", "Sdept"}, new[] {sno, ssex, sdept});
 
@@ -31,7 +33,7 @@ namespace MVCSchooldbDemo.Controllers
             if (id != null)
             {
                 ViewBag.DialogTitle = "查看学生明细";
-                var student = DBHelper.FindByKeyword(_db.Student.ToList(), "Id", id).First();
+                var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
 
                 return View(student);
             }
@@ -56,7 +58,7 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Student.Add(student);
+                _db.Students.Add(student);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -72,7 +74,7 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                var student = DBHelper.FindByKeyword(_db.Student.ToList(), "Id", id).First();
+                var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
                 ViewBag.DialogTitle = "编辑学生记录";
                 return View(student);
             } //死循环了
@@ -97,8 +99,8 @@ namespace MVCSchooldbDemo.Controllers
         {
             foreach (var id in ids)
             {
-                var student = DBHelper.FindByKeyword(_db.Student.ToList(), "Id", id).First();
-                _db.Student.Remove(student);
+                var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
+                _db.Students.Remove(student);
             }
 
             _db.SaveChanges();
