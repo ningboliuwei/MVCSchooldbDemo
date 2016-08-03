@@ -45,7 +45,7 @@ namespace MVCSchooldbDemo.Controllers
         public ActionResult Create()
         {
             ViewBag.DialogTitle = "添加学生记录";
-            return View();
+	        return View();
         }
 
         // POST: Student/Create

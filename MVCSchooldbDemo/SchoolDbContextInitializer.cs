@@ -9,7 +9,7 @@ using SQLite.CodeFirst;
 
 namespace MVCSchooldbDemo
 {
-	public class SchoolDbContextInitializer : SqliteCreateDatabaseIfNotExists<SchooldDbContext>
+	public class SchoolDbContextInitializer : SqliteDropCreateDatabaseWhenModelChanges<SchooldDbContext>
 	{
 		public SchoolDbContextInitializer(DbModelBuilder modelBuilder) :base(modelBuilder)
 		{
@@ -17,8 +17,7 @@ namespace MVCSchooldbDemo
 
 		protected override void Seed(SchooldDbContext context)
 		{
-			context.Set<Student>().Add(new Student() {Sage = 10, Sdept = "CS", Sname = "Jane", Sno = "95012"});
-			context.Set<Student>().Add(new Student() { Sage = 20, Sdept = "MA", Sname = "Tom", Sno = "95013" });
+			context.Students.Add(new Student() {Sage = 20, Sdept = "CS", Sname = "Jane", Sno = "95012", Ssex="女"});
 		}
 	}
 }
