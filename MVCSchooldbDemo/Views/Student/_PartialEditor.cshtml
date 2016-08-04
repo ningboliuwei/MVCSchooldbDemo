@@ -40,7 +40,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <img id="studentPhoto" src="#" style="width: 100px;"/>
+                <img id="Sphoto" src="#" style="width: 100px;"/>
             </td>
         </tr>
         <tr>
@@ -51,19 +51,19 @@
     </table>
     <script>
         $(function() {
-            var targetDir = 'Photos';
-            InitUploadify("@Url.Action("Upload", "FileUpload")",
+            InitUploadify("@Url.Action("UploadPhoto", "Student")",
                 true,
                 false,
                 1,
                 "*.*",
                 "支持所有类型文件",
                 function(file, data, response) {
-                    $('#studentPhoto').attr('src', '../' + targetDir + '/' + JSON.parse(data).TargetName);
+                    var fileInfo = JSON.parse(data);
+                    $('#Sphoto').attr('src', '../' + fileInfo.BaseDirectory + fileInfo.FileName);
                 },
                 function() {},
                 function() {},
-                { targetDir: targetDir });
+                {});
         });
     </script>
 </form>

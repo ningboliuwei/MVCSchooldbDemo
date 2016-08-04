@@ -9,12 +9,18 @@
 </div>
 <script>
     function Submit() {
+        var photoFilePath = $('#Sphoto').attr('src');
+        var photoFileName = photoFilePath.substr(photoFilePath.lastIndexOf('/') + 1);
+        var photoGuid = photoFileName.substr(0, photoFileName.lastIndexOf('.'));
+
+        console.log(photoFileName);
         var data = {
             Sno: $('#Sno').textbox('getText'),
             Sname: $('#Sname').textbox('getText'),
             Ssex: $('#Ssex').combobox('getText'),
             Sage: $('#Sage').textbox('getText'),
-            Sdept: $('#Sdept').combobox('getText')
+            Sdept: $('#Sdept').combobox('getText'),
+            SphotoGuid: photoGuid
         };
         if (ValidateForm()) {
             Confirm('确认',

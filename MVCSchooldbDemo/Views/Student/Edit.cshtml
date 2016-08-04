@@ -1,4 +1,6 @@
-﻿﻿@model MVCSchooldbDemo.Models.Data.Student
+﻿@using MVCSchooldbDemo.Common
+﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
+
 @{
     Layout = Layout = "~/Views/Shared/LayoutEditor/_LayoutEditorEdit.cshtml";
     ;
@@ -9,12 +11,18 @@
         ShowInfo();
     });
 
+    @{
+        var fileInfo = FileUploadHelper.GetFileInfoByGuid(@Model.SphotoGuid);
+        var photoPath = fileInfo.BaseDirectory + fileInfo.FileName;
+    }
+
     function ShowInfo() {
         $('#Sno').val('@Model.Sno');
         $('#Sname').val('@Model.Sname');
         $('#Ssex').val('@Model.Ssex');
         $('#Sage').val('@Model.Sage');
         $('#Sdept').val('@Model.Sdept');
+        $('#Sphoto').attr('src', '../@photoPath');
     }
 </script>
 @Html.Partial("_PartialEditor")

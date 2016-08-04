@@ -17,7 +17,6 @@ namespace MVCSchooldbDemo
 
 		protected override void Seed(SchooldDbContext context)
 		{
-			context.Students.Add(new Student() {Sage = 20, Sdept = "CS", Sname = "Jane", Sno = "95012", Ssex="女"});
 		}
 	}
 }

@@ -154,15 +154,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\DBHelper.cs" />
-    <Compile Include="Common\FeatureHelper.cs" />
-    <Compile Include="Controllers\FileUploadController.cs" />
+    <Compile Include="Common\FileUploadHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Data\Student.cs" />
-    <Compile Include="Models\UploadFileInfo.cs" />
+    <Compile Include="Models\Data\StudentInfo.cs" />
+    <Compile Include="Models\Data\UploadedFileInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchoolDbContextInitializer.cs" />
     <Compile Include="SchooldDbContext.cs" />
@@ -571,7 +570,7 @@
     <Folder Include="Content\EasyUI\themes\metro-orange\" />
     <Folder Include="Content\EasyUI\themes\metro-red\" />
     <Folder Include="Content\Images\" />
-    <Folder Include="UploadFiles\" />
+    <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
