@@ -1,28 +1,21 @@
-﻿@using MVCSchooldbDemo.Common
+﻿@using MVCSchooldbDemo.Models.Data
 ﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
 
 @{
-    Layout = Layout = "~/Views/Shared/LayoutEditor/_LayoutEditorEdit.cshtml";
-    ;
+    Layout = "~/Views/Shared/LayoutEditor/_LayoutEditorEdit.cshtml";
 }
+
+@Html.Partial("_PartialEditor", Model as StudentInfo)
+
+
 <script>
     $(function() {
         ReadonlyControls('#Sno');
-        ShowInfo();
+
+        $('#btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('@Url.Action("Edit", "Student")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');
+                });
     });
-
-    @{
-        var fileInfo = FileUploadHelper.GetFileInfoByGuid(@Model.SphotoGuid);
-        var photoPath = fileInfo.BaseDirectory + fileInfo.FileName;
-    }
-
-    function ShowInfo() {
-        $('#Sno').val('@Model.Sno');
-        $('#Sname').val('@Model.Sname');
-        $('#Ssex').val('@Model.Ssex');
-        $('#Sage').val('@Model.Sage');
-        $('#Sdept').val('@Model.Sdept');
-        $('#Sphoto').attr('src', '../@photoPath');
-    }
 </script>
-@Html.Partial("_PartialEditor")

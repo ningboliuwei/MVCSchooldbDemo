@@ -1,6 +1,18 @@
-﻿﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
+﻿@using MVCSchooldbDemo.Models.Data
+﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
 @{
     Layout = "~/Views/Shared/LayoutEditor/_LayoutEditorCreate.cshtml";
 }
 
+
 @Html.Partial("_PartialEditor")
+<script>
+    $(function() {
+        $('#btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('@Url.Action("Create", "Student")', window.GetData(), "确认添加记录吗？", '添加记录出现错误');
+                }
+            );
+    });
+</script>

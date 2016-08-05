@@ -1,7 +1,7 @@
 ﻿<div class="editorLayout">
     @RenderBody()
     <div class="dialogButton">
-        <a id="btnOK" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="Submit()" style="width: 90px">
+        <a id="btnOK" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" style="width: 90px">
             修改
         </a>
         <a id="btnCancel" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="CloseEditor();" style="width: 90px">取消</a>
@@ -9,19 +9,3 @@
 
 
 </div>
-<script>
-    function Submit() {
-        var data = {
-            Sno: $('#Sno').textbox('getText'),
-            Sname: $('#Sname').textbox('getText'),
-            Ssex: $('#Ssex').combobox('getText'),
-            Sage: $('#Sage').textbox('getText'),
-            Sdept: $('#Sdept').combobox('getText')
-        };
-        if (ValidateForm()) {
-            Confirm('确认',
-                '确认修改记录吗？',
-                function() { Post('@Url.Action("Edit", "Student")', data, '修改记录遇到问题！') });
-        }
-    }
-</script>

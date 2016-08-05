@@ -120,7 +120,7 @@ namespace MVCSchooldbDemo.Controllers
 
 		public ActionResult UploadPhoto(HttpPostedFileBase fileData)
 		{
-			var fileInfo = FileUploadHelper.Upload(fileData, "Photos/");
+			var fileInfo = UploadFileHelper.Upload(fileData, "Photos/");
 			return new JsonResult {Data = fileInfo};
 		}
 	}

@@ -35,7 +35,7 @@ namespace MVCSchooldbDemo
                 ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/EasyUI/themes/default/easyui.css",
+                "~/Content/EasyUI/themes/metro-blue/easyui.css",
                 "~/Content/EasyUI/themes/icon.css",
                 "~/Content/EasyUI/themes/color.css",
                 "~/Content/Site.css",

@@ -7,7 +7,7 @@ using MVCSchooldbDemo.Views.Student;
 
 namespace MVCSchooldbDemo.Common
 {
-	public class FileUploadHelper
+	public class UploadFileHelper
 	{
 		public static UploadedFileInfo Upload(HttpPostedFileBase fileData, string targetDirectory)
 		{

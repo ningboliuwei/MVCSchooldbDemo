@@ -67,8 +67,8 @@ function ShowEditor(url, title) {
             closed: true,
             title: title,
             href: url
-        });
-
+});
+ 
     $("#editor").dialog("open");
 }
 
@@ -83,7 +83,7 @@ function RefreshGrid() {
 }
 
 //向指定 url 提交
-function Submit(url, errorMsg) {
+function FormSubmit(url, errorMsg) {
     $("#ff")
         .form("submit",
         {
@@ -104,7 +104,6 @@ function Submit(url, errorMsg) {
 }
 
 function Post(url, data, errorMsg) {
-
     $.ajax({
         type: "POST",
         url: url,
@@ -120,7 +119,6 @@ function Post(url, data, errorMsg) {
         },
         dataType: "html"
     });
-
 }
 
 function ReadonlyControls(controlNames) {
@@ -226,4 +224,12 @@ function InitUploadify(url,
             onUploadStart: uploadStartCallback,
             formData: data
         });
+}
+
+function EditorSubmit(url, data, confirmMsg, errorMsg) {
+    if (ValidateForm()) {
+        Confirm("确认",
+           confirmMsg,
+            function() { Post(url, data, errorMsg) });
+    }
 }

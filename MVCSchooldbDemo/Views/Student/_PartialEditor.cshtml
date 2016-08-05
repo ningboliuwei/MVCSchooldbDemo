@@ -1,22 +1,24 @@
-﻿<div class="dialogTitle">@ViewBag.DialogTitle</div>
+﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
+
+<div class="dialogTitle">@ViewBag.DialogTitle</div>
 <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
     <table class="editorTable">
         <tr>
             <td class="editorNameColumn" style="width: 100px">学号:</td>
             <td>
-                <input id="Sno" class="easyui-textbox" type="text" name="Sno"/>
+                <input id="Sno" class="easyui-textbox"/>
             </td>
         </tr>
         <tr>
             <td class="editorNameColumn">姓名：</td>
             <td>
-                <input id="Sname" class="easyui-textbox" type="text" name="Sname"/>
+                <input id="Sname" class="easyui-textbox"/>
             </td>
         </tr>
         <tr>
             <td class="editorNameColumn">性别:</td>
             <td>
-                <select id="Ssex" class="easyui-combobox" name="Ssex" style="width: 100px">
+                <select id="Ssex" class="easyui-combobox" style="width: 100px">
                     <option value="男">男</option>
                     <option value="女">女</option>
                 </select>
@@ -25,13 +27,13 @@
         <tr>
             <td class="editorNameColumn">年龄:</td>
             <td>
-                <input id="Sage" class="easyui-textbox" name="Sage" data-options="required:true"/>
+                <input id="Sage" class="easyui-textbox"/>
             </td>
         </tr>
         <tr>
             <td class="editorNameColumn">系:</td>
             <td>
-                <select id="Sdept" name="Sdept" class="easyui-combobox" style="width: 100px">
+                <select id="Sdept" class="easyui-combobox" style="width: 100px">
                     <option value="CS">CS</option>
                     <option value="IS">IS</option>
                     <option value="MA">MA</option>
@@ -49,21 +51,63 @@
             </td>
         </tr>
     </table>
-    <script>
-        $(function() {
-            InitUploadify("@Url.Action("UploadPhoto", "Student")",
-                true,
-                false,
-                1,
-                "*.*",
-                "支持所有类型文件",
-                function(file, data, response) {
-                    var fileInfo = JSON.parse(data);
-                    $('#Sphoto').attr('src', '../' + fileInfo.BaseDirectory + fileInfo.FileName);
-                },
-                function() {},
-                function() {},
-                {});
-        });
-    </script>
+
 </form>
+
+<script>
+    $(function() {
+        InitUploadify("@Url.Action("UploadPhoto", "Student")",
+            true,
+            false,
+            1,
+            "*.*",
+            "支持所有类型文件",
+            function(file, data, response) {
+                var fileInfo = JSON.parse(data);
+                $('#Sphoto').attr('src', '../' + fileInfo.BaseDirectory + fileInfo.FileName);
+            },
+            function() {},
+            function() {},
+            {});
+
+
+    });
+
+
+    function GetData() {
+        var photoFilePath = $('#Sphoto').attr('src');
+        var photoFileName = photoFilePath.substr(photoFilePath.lastIndexOf('/') + 1);
+        var photoGuid = photoFileName.substr(0, photoFileName.lastIndexOf('.'));
+
+        return {
+            Sno: $('#Sno').textbox('getText'),
+            Sname: $('#Sname').textbox('getText'),
+            Ssex: $('#Ssex').combobox('getText'),
+            Sage: $('#Sage').textbox('getText'),
+            Sdept: $('#Sdept').combobox('getText'),
+            SphotoGuid: photoGuid
+        };
+    }
+
+//    @{
+          //        var fileInfo = Model != null ? UploadFileHelper.GetFileInfoByGuid(Model.SphotoGuid) : null;
+          //        var photoPath = fileInfo != null ? fileInfo.BaseDirectory + fileInfo.FileName : "#";
+      }
+
+
+</script>
+
+@if (Model != null)
+{
+    <script>
+        $(function() { ShowData(); });
+
+        function ShowData() {
+            $('#Sno').val('@Model.Sno');
+            $('#Sname').val('@Model.Sname');
+            $('#Sage').val('@Model.Sage');
+            $('#Ssex').val('@Model.Ssex');
+            $('#Sdept').val('@Model.Sdept');
+        }
+    </script>
+}

@@ -154,7 +154,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\DBHelper.cs" />
-    <Compile Include="Common\FileUploadHelper.cs" />
+    <Compile Include="Common\UploadFileHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
@@ -167,6 +167,24 @@
     <Compile Include="SchooldDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\EasyUI\themes\black\images\passwordbox_close.png" />
+    <Content Include="Content\EasyUI\themes\black\images\passwordbox_open.png" />
+    <Content Include="Content\EasyUI\themes\black\passwordbox.css" />
+    <Content Include="Content\EasyUI\themes\bootstrap\images\passwordbox_close.png" />
+    <Content Include="Content\EasyUI\themes\bootstrap\images\passwordbox_open.png" />
+    <Content Include="Content\EasyUI\themes\bootstrap\passwordbox.css" />
+    <Content Include="Content\EasyUI\themes\default\images\passwordbox_close.png" />
+    <Content Include="Content\EasyUI\themes\default\images\passwordbox_open.png" />
+    <Content Include="Content\EasyUI\themes\default\passwordbox.css" />
+    <Content Include="Content\EasyUI\themes\gray\images\passwordbox_close.png" />
+    <Content Include="Content\EasyUI\themes\gray\images\passwordbox_open.png" />
+    <Content Include="Content\EasyUI\themes\gray\passwordbox.css" />
+    <Content Include="Content\EasyUI\themes\material\images\passwordbox_close.png" />
+    <Content Include="Content\EasyUI\themes\material\images\passwordbox_open.png" />
+    <Content Include="Content\EasyUI\themes\material\passwordbox.css" />
+    <Content Include="Content\EasyUI\themes\metro\images\passwordbox_close.png" />
+    <Content Include="Content\EasyUI\themes\metro\images\passwordbox_open.png" />
+    <Content Include="Content\EasyUI\themes\metro\passwordbox.css" />
     <Content Include="Content\Uploadify\uploadify-cancel.png" />
     <Content Include="Content\Uploadify\uploadify.swf" />
     <Content Include="Content\EasyUI\themes\black\accordion.css" />
@@ -510,33 +528,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\EasyUI\themes\material\images\Thumbs.db" />
     <Content Include="App_Data\Schooldb.sqlite" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\easyui-lang-zh_CN.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <None Include="Scripts\jquery-3.1.0.intellisense.js" />
-    <Content Include="Scripts\jquery-3.1.0.js" />
-    <Content Include="Scripts\jquery-3.1.0.min.js" />
-    <Content Include="Scripts\jquery-3.1.0.slim.js" />
-    <Content Include="Scripts\jquery-3.1.0.slim.min.js" />
     <Content Include="Scripts\jquery.easyui.min.js" />
     <Content Include="Scripts\jquery.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.uploadify.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\common.js" />
-    <Content Include="Scripts\_references.js" />
     <None Include="ToDo.markdown" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -575,8 +575,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.0.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

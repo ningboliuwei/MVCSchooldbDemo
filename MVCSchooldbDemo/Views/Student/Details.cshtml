@@ -1,20 +1,15 @@
-﻿﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
+﻿@using MVCSchooldbDemo.Models.Data
+﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
 @{
     Layout = "~/Views/Shared/LayoutEditor/_LayoutEditorDetails.cshtml";
 }
+
+
+@Html.Partial("_PartialEditor", Model as StudentInfo)
+
 <script>
     $(function() {
-        ShowInfo();
+//        ShowData();
         ReadonlyControls('#Sno,#Sname,#Ssex,#Sage,#Sdept');
     });
-
-    function ShowInfo() {
-        $('#Sno').val('@Model.Sno');
-        $('#Sname').val('@Model.Sname');
-        $('#Ssex').val('@Model.Ssex');
-        $('#Sage').val('@Model.Sage');
-        $('#Sdept').val('@Model.Sdept');
-    }
 </script>
-
-@Html.Partial("_PartialEditor")
