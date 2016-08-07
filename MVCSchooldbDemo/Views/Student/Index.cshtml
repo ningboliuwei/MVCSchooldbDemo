@@ -55,7 +55,7 @@
         </td>
     </table>
 </div>
-<div id="editor" style="width: 400px" ></div>
+<div id="editor" style="width: 400px"></div>
 <script>
     var url = '@Url.Action("GetList", "Student")';
     var columns = [
@@ -104,7 +104,8 @@
     var gridSortName = 'Id';
     var gridSortOrder = 'asc';
 
-    $(function () {
+
+    $(function() {
         BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }); //Show all records
 
@@ -115,7 +116,7 @@
             Sdept: ($('#SearchSdept').textbox('getText') === 'ALL') ? '' : $('#SearchSdept').textbox('getText')
         };
 
-        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, queryData);
+        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, { queryParasString: JSON.stringify(queryData) });
     }
 
     function ClearSearch() {

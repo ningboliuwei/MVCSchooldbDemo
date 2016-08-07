@@ -1,33 +1,50 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic;
+using System.Runtime.Remoting.Messaging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MVCSchooldbDemo.Classes
 {
     public class DBHelper
     {
-        public static string SortingAndPaging<T>(List<T> data, int page, int rows, string sort, string order)
+        public static string Paging<T>(List<T> data, int page, int rows)
+        {
+            var totalCount = data.Count;
+
+            data = data.Take(rows * page).Skip(rows * (page - 1)).ToList();
+
+            return JsonConvert.SerializeObject(new { total = totalCount, rows = data });
+        }
+
+
+        public static List<T> Sorting<T>(List<T> data, string sort, string order)
         {
             if (!string.IsNullOrEmpty(sort) && !string.IsNullOrEmpty(order))
             {
                 data = data.OrderBy($"{sort} {order}").ToList();
             }
 
-            var totalCount = data.Count;
-
-            data = data.Take(rows * page).Skip(rows * (page - 1)).ToList();
-
-            return JsonConvert.SerializeObject(new {total = totalCount, rows = data});
+            return data;
         }
 
-        public static List<T> FilterByKeywords<T>(List<T> data, string[] propertyNames, string[] keywords)
+        public static List<T> FilterByKeywords<T>(List<T> data, string queryData)
         {
-            for (var i = 0; i < keywords.Count(); i++)
+            if (!string.IsNullOrEmpty(queryData))
             {
-                if (!string.IsNullOrEmpty(keywords[i]))
+                JObject v = JObject.Parse(queryData);
+
+                List<string> propertyNames = v.Properties().Select(p => p.Name).ToList();
+                List<string> keywords = v.Properties().Select(p => p.Value.ToString()).ToList();
+
+
+                for (var i = 0; i < keywords.Count(); i++)
                 {
-                    data = data.Where($"{propertyNames[i]}.Contains(\"{keywords[i]}\")").ToList();
+                    if (!string.IsNullOrEmpty(keywords[i]))
+                    {
+                        data = data.Where($"{propertyNames[i]}.Contains(\"{keywords[i]}\")").ToList();
+                    }
                 }
             }
 
@@ -48,6 +65,18 @@ namespace MVCSchooldbDemo.Classes
             }
 
             return data.Where(expression).ToList();
+        }
+
+        public static string GetGridResult<T>(List<T> data, string queryParasString, int page, int rows, string sort, string order)
+        {
+            if (!string.IsNullOrEmpty(queryParasString))
+            {
+                data = DBHelper.FilterByKeywords(data, queryParasString);
+            }
+
+            data = DBHelper.Sorting(data, sort, order);
+
+            return DBHelper.Paging(data, page, rows);
         }
     }
 }
