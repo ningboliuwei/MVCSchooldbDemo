@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic;
-using System.Runtime.Remoting.Messaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -15,7 +15,7 @@ namespace MVCSchooldbDemo.Classes
 
             data = data.Take(rows * page).Skip(rows * (page - 1)).ToList();
 
-            return JsonConvert.SerializeObject(new { total = totalCount, rows = data });
+            return JsonConvert.SerializeObject(new {total = totalCount, rows = data});
         }
 
 
@@ -33,10 +33,10 @@ namespace MVCSchooldbDemo.Classes
         {
             if (!string.IsNullOrEmpty(queryData))
             {
-                JObject v = JObject.Parse(queryData);
+                var v = JObject.Parse(queryData);
 
-                List<string> propertyNames = v.Properties().Select(p => p.Name).ToList();
-                List<string> keywords = v.Properties().Select(p => p.Value.ToString()).ToList();
+                var propertyNames = v.Properties().Select(p => p.Name).ToList();
+                var keywords = v.Properties().Select(p => p.Value.ToString()).ToList();
 
 
                 for (var i = 0; i < keywords.Count(); i++)
@@ -67,16 +67,25 @@ namespace MVCSchooldbDemo.Classes
             return data.Where(expression).ToList();
         }
 
-        public static string GetGridResult<T>(List<T> data, string queryParasString, int page, int rows, string sort, string order)
+        public static string GetResult<T>(List<T> data, string queryParasString, int page, int rows, string sort,
+            string order)
         {
             if (!string.IsNullOrEmpty(queryParasString))
             {
-                data = DBHelper.FilterByKeywords(data, queryParasString);
+                data = FilterByKeywords(data, queryParasString);
             }
 
-            data = DBHelper.Sorting(data, sort, order);
+            data = Sorting(data, sort, order);
 
-            return DBHelper.Paging(data, page, rows);
+            return Paging(data, page, rows);
+        }
+
+        public static List<T2> GetListFromResultString<T1, T2>(Func<T1, T2> lambdaExpr, string resultString)
+        {
+            return
+                JsonConvert.DeserializeObject<List<T1>>(JObject.Parse(resultString)["rows"].ToString())
+                    .Select(lambdaExpr)
+                    .ToList();
         }
     }
 }

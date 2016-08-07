@@ -7,8 +7,6 @@ using MVCSchooldbDemo.Classes;
 using MVCSchooldbDemo.Common;
 using MVCSchooldbDemo.Models.Data;
 using MVCSchooldbDemo.Views.Student;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace MVCSchooldbDemo.Controllers
 {
@@ -24,7 +22,11 @@ namespace MVCSchooldbDemo.Controllers
 
         public string GetList(string queryParasString, int page, int rows, string sort, string order)
         {
-            return DBHelper.GetGridResult(_db.Students.ToList(), queryParasString, page, rows, sort, order);
+            var result = DBHelper.GetResult(_db.Students.ToList(), queryParasString, page, rows, sort, order);
+
+            ViewBag.Ids = DBHelper.GetListFromResultString<StudentInfo, long>(s => s.Id, result);
+
+            return result;
         }
 
         // GET: Student/Details/5

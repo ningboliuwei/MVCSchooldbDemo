@@ -66,9 +66,12 @@ function ShowEditor(url, title) {
         .dialog({
             closed: true,
             title: title,
-            href: url
-});
- 
+            href: url,
+            fit: false,
+            onOpen: function() { $("#editor").dialog("hcenter"); }
+        });
+
+
     $("#editor").dialog("open");
 }
 
@@ -234,7 +237,7 @@ function InitUploadify(url,
 function EditorSubmit(url, data, confirmMsg, errorMsg) {
     if (ValidateForm()) {
         Confirm("确认",
-           confirmMsg,
+            confirmMsg,
             function() { Post(url, data, errorMsg) });
     }
 }

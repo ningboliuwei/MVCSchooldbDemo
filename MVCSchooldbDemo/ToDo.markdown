@@ -1,5 +1,5 @@
 ﻿1. 查询 √
-2. 分页（页码不对）——需要在返回的 JSON 中加入 total，还有 rows 序列化后的结果。解决办法：使用匿名类 √ 
+2. 分页（页码不对）——需要在返回的 JSON 中加入 total，还有 rows 序列化后的结果。解决办法：使用匿名类 √
 3. 明细在不同记录间切换——Pagination 不适合使用，换成 “上一条”，“下一条” 按钮
 4. 弹出对话框居中 √
 5. 分页导航条总在最底下——将 table 标签中设置 width = 100% 即可 √
@@ -12,7 +12,7 @@
 10. 添加，修改都需要确认框 √
 11. 将添加，修改，删除操作都放到 common.js 中——目前完成一半，Student/Index 中的完成，需要迁移到 common.js 中 2016-07-30 √
 12. Add，Edit，Details 对话框的按钮也抽取为统一布局——一半完成，点击按钮的事件需要重新弄
-13. 添加新记录后，$ is not defined 错误——通过将 submit 方法改为 Post 方法（在 common.js中）解决。主要要将 .ajax 的 datatype 设为 "html"（使 success: 后的回调可以正确执行，原因是通过 chrome f12 得到的 response 是 html 类型的）。（原代码： Confirm('确认', '确认修改记录吗？', function () { Submit('@Url.Action("Edit", "Student")', '修改记录遇到问题！') });）2016-07-30 22:02 √ 
+13. 添加新记录后，$ is not defined 错误——通过将 submit 方法改为 Post 方法（在 common.js中）解决。主要要将 .ajax 的 datatype 设为 "html"（使 success: 后的回调可以正确执行，原因是通过 chrome f12 得到的 response 是 html 类型的）。（原代码： Confirm('确认', '确认修改记录吗？', function () { Submit('@Url.Action("Edit", "Student")', '修改记录遇到问题！') });）2016-07-30 22:02 √
 14. 解决 “清空搜索条件” 后将下拉菜单置为初始值的问题。—— 注意 data[0]["text"] 的使用 2016-07-30 √
 15. 将 edit 与 create 的发送数据方式进行修改 —— 已改为 POST 2016-07-30 √
 16. 修改为 POST 后，对 form 中数据没有验证 —— 已搞定（ValidateForm()） 2016-07-30 √
@@ -28,10 +28,24 @@
 26. 使用 uploadify 上传文件—— 部分搞定，可以上传。 2016-08-01 √ ==== 需要增加数据库中文件信息添加功能，需要上传完毕后立即显示图片。需要更换上传按钮的图——做到一半_ ==== 基本重构。
 27. 需要增加附件信息记录功能（代码与数据库）——以照片为例 同28 2016-08-04 √
 28. 增加学生记录时要把上传的附件信息也给记录下来 ==== Student 记录仅记录附件的 GUID，上传时会在 UploadFile 表中增加一条新的记录，通过 GUID 获取具体信息  2016-08-04 √
-29. 将 LayoutEditorCreate 等 Layout 中的 Submit 中的数据也给抽取出来 ====== 1. 进一步分离了 Layout 与 Editor 与 Create / Edit/ Details 页面，将对于表单数据的获取与显示放在了 Editor 中 2. 特别注意：easyui 自带的 jquery 版本很老，利用 nuget 下载最新版本 3. 注意 Partal 也可以传入 Model，需要判断是否为空 √ 2016-08-06 
+29. 将 LayoutEditorCreate 等 Layout 中的 Submit 中的数据也给抽取出来 ====== 1. 进一步分离了 Layout 与 Editor 与 Create / Edit/ Details 页面，将对于表单数据的获取与显示放在了 Editor 中 2. 特别注意：easyui 自带的 jquery 版本很老，利用 nuget 下载最新版本 3. 注意 Partal 也可以传入 Model，需要判断是否为空 √ 2016-08-06
 30. 将学号设置为不可编辑
 31. Details 表中通过点击 “上一条” 与 “下一条” 进行切换。注意：切换的全集应该是根据关键词过滤出的结果。===== 需要把 Sorting 和 Paging 再分离开来。   2016-08-07 √
 32. 重构了 GetList() 及 FilterByKeywords，将所有查询参数打包为一个 string 参数，更加灵活。 2016-08-07 √
+33. 利用 GetList() 方法返回的查询结果 JSON 字符串，获取查询结果中 Id 的集合。通过泛型委托，对代码进行重构。代码如下：
+        public static List<T2> GetListFromResultString<T1, T2>
+        (Func<T1, T2>
+            func, string resultString)
+            {
+            return
+            JsonConvert.DeserializeObject<List<T1>>(JObject.Parse(resultString)["rows"].ToString())
+                    .Select(func)
+                    .ToList();
+        }
 
+    StudentController 中：
+    ViewBag.Ids = DBHelper.GetListFromResultString<StudentInfo, long>(s => s.Id, result);
+    ============== 2016-08-07 √
+34. 在 CSS 中将字体设置为微软雅黑 2016-08-07 √
 
 
