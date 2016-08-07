@@ -121,8 +121,13 @@ function Post(url, data, errorMsg) {
     });
 }
 
-function ReadonlyControls(controlNames) {
-    $(controlNames).attr("readonly", true);
+function DisableControls(controlNames) {
+    $(controlNames).disabled = true;
+}
+
+function HideControls(controlNames) {
+    $(controlNames).hide();
+
 }
 
 function Delete(url) {

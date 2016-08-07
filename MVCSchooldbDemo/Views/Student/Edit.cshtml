@@ -1,4 +1,5 @@
-﻿@using MVCSchooldbDemo.Models.Data
+﻿@using MVCSchooldbDemo.Common
+@using MVCSchooldbDemo.Models.Data
 ﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
 
 @{
@@ -6,11 +7,9 @@
 }
 
 @Html.Partial("_PartialEditor", Model as StudentInfo)
-
-
 <script>
     $(function() {
-        ReadonlyControls('#Sno');
+        DisableControls('#Sno');
 
         $('#btnOK')
             .bind('click',

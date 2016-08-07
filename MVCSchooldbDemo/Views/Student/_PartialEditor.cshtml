@@ -1,4 +1,5 @@
-﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
+﻿@using MVCSchooldbDemo.Common
+@model MVCSchooldbDemo.Models.Data.StudentInfo
 
 <div class="dialogTitle">@ViewBag.DialogTitle</div>
 <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
@@ -53,7 +54,6 @@
     </table>
 
 </form>
-
 <script>
     $(function() {
         InitUploadify("@Url.Action("UploadPhoto", "Student")",
@@ -89,10 +89,10 @@
         };
     }
 
-//    @{
-          //        var fileInfo = Model != null ? UploadFileHelper.GetFileInfoByGuid(Model.SphotoGuid) : null;
-          //        var photoPath = fileInfo != null ? fileInfo.BaseDirectory + fileInfo.FileName : "#";
-      }
+    @{
+        var fileInfo = Model != null ? UploadFileHelper.GetFileInfoByGuid(Model.SphotoGuid) : null;
+        var photoPath = fileInfo != null ? fileInfo.BaseDirectory + fileInfo.FileName : "#";
+    }
 
 
 </script>
@@ -103,11 +103,12 @@
         $(function() { ShowData(); });
 
         function ShowData() {
-            $('#Sno').val('@Model.Sno');
-            $('#Sname').val('@Model.Sname');
-            $('#Sage').val('@Model.Sage');
-            $('#Ssex').val('@Model.Ssex');
-            $('#Sdept').val('@Model.Sdept');
+            $('#Sno').textbox('setText', '@Model.Sno');
+            $('#Sname').textbox('setText', '@Model.Sname');
+            $('#Sage').textbox('setText', '@Model.Sage');
+            $('#Ssex').textbox('setText', '@Model.Ssex');
+            $('#Sdept').textbox('setText', '@Model.Sdept');
+            $('#Sphoto').attr('src', '../@photoPath');
         }
     </script>
 }

@@ -27,7 +27,7 @@ namespace MVCSchooldbDemo
             //                "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/jquery.min.js",
+                "~/Scripts/jquery-{version}.js",
                 "~/Scripts/jquery.easyui.min.js",
                 "~/Scripts/easyui-lang-zh_CN.js",
                 "~/Scripts/jquery.uploadify.min.js",
