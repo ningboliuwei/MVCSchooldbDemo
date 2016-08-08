@@ -1,11 +1,14 @@
 ﻿@using MVCSchooldbDemo.Models.Data
 ﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
 @{
-    Layout = "~/Views/Shared/LayoutEditor/_LayoutEditorCreate.cshtml";
+    Layout = null;
 }
 
 
-@Html.Partial("_PartialEditor")
+<div class="editorLayout">
+    @Html.Partial("~/Views/Student/_StudentEditor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForCreate.cshtml")
+</div>
 <script>
     $(function() {
         $('#btnOK')

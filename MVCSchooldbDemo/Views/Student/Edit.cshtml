@@ -3,10 +3,13 @@
 ﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
 
 @{
-    Layout = "~/Views/Shared/LayoutEditor/_LayoutEditorEdit.cshtml";
+    Layout = null;
 }
 
-@Html.Partial("_PartialEditor", Model as StudentInfo)
+<div class="editorLayout">
+    @Html.Partial("~/Views/Student/_StudentEditor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForEdit.cshtml")
+</div>
 <script>
     $(function() {
         DisableControls('#Sno');

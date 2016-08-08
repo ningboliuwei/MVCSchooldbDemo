@@ -61,16 +61,14 @@ function Confirm(title, msg, callback) {
 }
 
 //显示编辑对话框
-function ShowEditor(url, title) {
+function ShowEditor(url, title, buttons) {
     $("#editor")
         .dialog({
             closed: true,
             title: title,
             href: url,
-            fit: false,
-            onOpen: function() { $("#editor").dialog("hcenter"); }
+            buttons: buttons
         });
-
 
     $("#editor").dialog("open");
 }
@@ -137,7 +135,7 @@ function Delete(url) {
     var rows = $("#grid").datagrid("getSelections");
 
     if (rows.length === 0) {
-        Alert("错误", "请至少选中一条记录。", AlertType.Error);
+        Alert("错误", "请至少选中一条记录。", window.AlertType.Error);
     } else {
         Confirm("确认",
             "确认删除选中的记录吗？",
@@ -179,7 +177,11 @@ function Edit(url, editorTitle) {
 
 //打开添加对话框
 function Add(url, editorTitle) {
-    ShowEditor(url, editorTitle);
+
+
+    ShowEditor(url,
+        editorTitle)
+       ;
 }
 
 //打开明细对话框
