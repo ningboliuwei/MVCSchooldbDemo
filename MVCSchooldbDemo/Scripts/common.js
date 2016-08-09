@@ -61,16 +61,17 @@ function Confirm(title, msg, callback) {
 }
 
 //显示编辑对话框
-function ShowEditor(url, title, buttons) {
+function ShowEditor(url, title) {
     $("#editor")
         .dialog({
             closed: true,
             title: title,
             href: url,
-            buttons: buttons
+            cache: false,
+            doSize: false
         });
 
-    $("#editor").dialog("open");
+    $("#editor").dialog("open").dialog("refresh");
 }
 
 //关闭编辑对话框
@@ -177,11 +178,8 @@ function Edit(url, editorTitle) {
 
 //打开添加对话框
 function Add(url, editorTitle) {
-
-
     ShowEditor(url,
-        editorTitle)
-       ;
+        editorTitle);
 }
 
 //打开明细对话框
