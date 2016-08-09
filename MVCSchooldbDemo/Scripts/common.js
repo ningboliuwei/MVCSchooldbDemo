@@ -67,10 +67,14 @@ function ShowEditor(url, title, buttons) {
             closed: true,
             title: title,
             href: url,
-            buttons: buttons
+            buttons: buttons,
+            doSize: false,
+            width: 500,
+            height: 400,
+            cache: false
         });
 
-    $("#editor").dialog("open");
+    $("#editor").dialog("open").dialog("refresh");
 }
 
 //关闭编辑对话框
@@ -180,8 +184,7 @@ function Add(url, editorTitle) {
 
 
     ShowEditor(url,
-        editorTitle)
-       ;
+        editorTitle);
 }
 
 //打开明细对话框

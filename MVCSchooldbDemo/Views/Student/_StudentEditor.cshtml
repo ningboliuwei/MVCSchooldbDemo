@@ -55,9 +55,10 @@
 
 </form>
 <script>
-    $(function() {
-        $("#editor").dialog('center');
-        InitUploadify("@Url.Action("UploadPhoto", "Student")",
+    $(function () {
+        //        $("#editor").dialog('center');
+        $(window).load(function () { $("#editor").dialog('doLayout'); });
+        window.InitUploadify("@Url.Action("UploadPhoto", "Student")",
             true,
             false,
             1,

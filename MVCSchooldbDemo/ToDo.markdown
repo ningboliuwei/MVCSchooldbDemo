@@ -47,5 +47,6 @@
     ViewBag.Ids = DBHelper.GetListFromResultString<StudentInfo, long>(s => s.Id, result);
     ============== 2016-08-07 √
 34. 在 CSS 中将字体设置为微软雅黑 2016-08-07 √
+35. 解决 Editor 打开刷新的问题========= 1. 为 dialog 设置初始 width 和 height 2. 将 dialog 的 cache 属性设置为 false 3. 使用 $("#editor").dialog("open").dialog("refresh");
 
 
