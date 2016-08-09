@@ -30,7 +30,7 @@
 28. 增加学生记录时要把上传的附件信息也给记录下来 ==== Student 记录仅记录附件的 GUID，上传时会在 UploadFile 表中增加一条新的记录，通过 GUID 获取具体信息  2016-08-04 √
 29. 将 LayoutEditorCreate 等 Layout 中的 Submit 中的数据也给抽取出来 ====== 1. 进一步分离了 Layout 与 Editor 与 Create / Edit/ Details 页面，将对于表单数据的获取与显示放在了 Editor 中 2. 特别注意：easyui 自带的 jquery 版本很老，利用 nuget 下载最新版本 3. 注意 Partal 也可以传入 Model，需要判断是否为空 √ 2016-08-06
 30. 将学号设置为不可编辑
-31. Details 表中通过点击 “上一条” 与 “下一条” 进行切换。注意：切换的全集应该是根据关键词过滤出的结果。===== 需要把 Sorting 和 Paging 再分离开来。   2016-08-07 √
+31. Details 表中通过点击 “上一条” 与 “下一条” 进行切换。注意：切换的全集应该是根据关键词过滤出的结果。===== 需要把 Sorting 和 Paging 再分离开来。 ========== 搞定，利用 ViewBag 以及 static 变量进行传递 2016-08-09 √
 32. 重构了 GetList() 及 FilterByKeywords，将所有查询参数打包为一个 string 参数，更加灵活。 2016-08-07 √
 33. 利用 GetList() 方法返回的查询结果 JSON 字符串，获取查询结果中 Id 的集合。通过泛型委托，对代码进行重构。代码如下：
         public static List<T2> GetListFromResultString<T1, T2>
@@ -48,5 +48,6 @@
     ============== 2016-08-07 √
 34. 在 CSS 中将字体设置为微软雅黑 2016-08-07 √
 35. 解决 Editor 打开刷新的问题========= 1. 为 dialog 设置初始 width 和 height 2. 将 dialog 的 cache 属性设置为 false 3. 使用 $("#editor").dialog("open").dialog("refresh");
+36. 点击创建按钮后，会出现两个 Confirm  ======  common.js 中的 ShowEditor() 中的 dialog('open') 后的 dialog('refresh') 造成，去掉即可。
 
 

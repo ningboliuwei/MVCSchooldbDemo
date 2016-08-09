@@ -13,6 +13,7 @@ namespace MVCSchooldbDemo.Controllers
     public class StudentController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
+        private static List<long?> _ids = new List<long?>();
 
         // GET: Student
         public ActionResult Index()
@@ -24,12 +25,12 @@ namespace MVCSchooldbDemo.Controllers
         {
             var result = DBHelper.GetResult(_db.Students.ToList(), queryParasString, page, rows, sort, order);
 
-            TempData["ids"] = DBHelper.GetListFromResultString<StudentInfo, long>(s => s.Id, result);
+            _ids = DBHelper.GetListFromResultString<StudentInfo, long?>(s => s.Id, result);
 
             return result;
         }
 
-		[HttpGet]
+        [HttpGet]
         // GET: Student/Details/5
         public ActionResult Details(long? id)
         {
@@ -37,6 +38,11 @@ namespace MVCSchooldbDemo.Controllers
             {
                 ViewBag.DialogTitle = "查看学生明细";
                 var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
+
+                var currentIndex = _ids.IndexOf(id);
+                ViewBag.CurrentIndex = currentIndex;
+                ViewBag.PreviousId = (currentIndex == 0 ? -1 : _ids[currentIndex - 1]);
+                ViewBag.NextId = (currentIndex == _ids.Count - 1 ? -1 : _ids[currentIndex + 1]);
 
                 return View(student);
             }
@@ -67,8 +73,6 @@ namespace MVCSchooldbDemo.Controllers
             }
 
             return View();
-            //            _db.SaveChanges();
-            //            return RedirectToAction("Index");
         }
 
         // GET: Student/Edit/5

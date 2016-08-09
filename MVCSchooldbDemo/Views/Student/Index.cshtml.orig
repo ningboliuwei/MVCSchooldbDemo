@@ -1,4 +1,4 @@
-﻿@model List<MVCSchooldbDemo.Models.Data.Student>
+﻿@model List<MVCSchooldbDemo.Models.Data.StudentInfo>
 @{
     Layout = null;
 }
@@ -40,7 +40,8 @@
             </a>
         </td>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('@Url.Action("Edit", "Student")', '修改学生记录')">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('@Url.Action("Edit", "Student")',
+    '修改学生记录')">
                 编辑
             </a>
         </td>
@@ -54,29 +55,11 @@
         </td>
     </table>
 </div>
-<table id="dg"></table>
-<div id="tb" style="padding: 2px 5px;">
-    Date From: <input class="easyui-datebox" style="width: 110px">
-    To: <input class="easyui-datebox" style="width: 110px">
-    Language:
-    <select class="easyui-combobox" panelHeight="auto" style="width: 100px">
-        <option value="java">Java</option>
-        <option value="c">C</option>
-        <option value="basic">Basic</option>
-        <option value="perl">Perl</option>
-        <option value="python">Python</option>
-    </select>
-    <a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
-    <div>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true"></a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true"></a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true"></a>
-    </div>
-</div>
-<div id="ft" ></div>
-<div id="editor" style="width: 400px"></div>
+<<<<<<< HEAD
+<div id="editor" ></div>
+=======
+<div id="editor" style="width: 500px; height: 450px; display: none"></div>
+>>>>>>> origin/RefactEditorWithButtons
 <script>
     var url = '@Url.Action("GetList", "Student")';
     var columns = [
@@ -125,6 +108,11 @@
     var gridSortName = 'Id';
     var gridSortOrder = 'asc';
 
+
+    $(function() {
+        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }); //Show all records
+
     function Search() {
         var queryData = {
             Sno: $('#SearchSno').textbox('getText'),
@@ -132,7 +120,7 @@
             Sdept: ($('#SearchSdept').textbox('getText') === 'ALL') ? '' : $('#SearchSdept').textbox('getText')
         };
 
-        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, queryData);
+        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, { queryParasString: JSON.stringify(queryData) });
     }
 
     function ClearSearch() {
@@ -145,7 +133,5 @@
         BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }
 
-    $(function() {
-        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {});
-    }); //Show all records
+
 </script>
