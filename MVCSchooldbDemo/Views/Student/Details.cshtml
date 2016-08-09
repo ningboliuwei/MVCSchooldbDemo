@@ -1,4 +1,4 @@
-﻿@using MVCSchooldbDemo.Models.Data
+﻿@using System.Linq.Dynamic
 ﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
 @{
     Layout = null;
@@ -9,9 +9,30 @@
     @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForDetails.cshtml")
 </div>
 
+@{
+    List<long> ids = TempData["ids"] as List<long>;
+    var currentId = ViewContext.RouteData.Values["id"];
+    var previousId = ids[ids.IndexOf(Convert.ToInt32(currentId))];
+}
+
 <script>
     $(function() {
 //        ShowData();
         DisableControls('#Sno,#Sname,#Ssex,#Sage,#Sdept');
+
+        $('#btnPrevious')
+            .bind('click',
+                function() {
+                    var url = '@Url.Action("Details", "Student", new { Id = previousId })';
+                    $("#editor").dialog("refresh", url);
+                }
+            );
+
+//        $('#btnNext')
+//          .bind('click',
+//              function () {
+//                   ShowEditor(url + "/" + id, editorTitle);
+//              }
+//          );
     });
 </script>

@@ -24,11 +24,12 @@ namespace MVCSchooldbDemo.Controllers
         {
             var result = DBHelper.GetResult(_db.Students.ToList(), queryParasString, page, rows, sort, order);
 
-            ViewBag.Ids = DBHelper.GetListFromResultString<StudentInfo, long>(s => s.Id, result);
+            TempData["ids"] = DBHelper.GetListFromResultString<StudentInfo, long>(s => s.Id, result);
 
             return result;
         }
 
+		[HttpGet]
         // GET: Student/Details/5
         public ActionResult Details(long? id)
         {
