@@ -89,40 +89,40 @@
 
 </script>
 
-@*@if (Model != null)*@
-@*{*@
-<script>
-    window.previousId = -1;
-    window.nextId = -1;
+@if (Model != null)
+{
+    <script>
+        window.previousId = -1;
+        window.nextId = -1;
 
-    $(function() { ShowData('@Url.Action("GetStudentData", "Student")' + '/' + @ViewBag.CurrentId); });
+        $(function() { ShowData('@Url.Action("GetStudentData", "Student")' + '/' + @ViewBag.CurrentId); });
 
-    function ShowData(url) {
-        $.ajax({
-            type: "POST",
-            url: url,
-            success: function(data) {
-                var item = data.Item;
+        function ShowData(url) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                success: function(data) {
+                    var item = data.Item;
 
-                $('#Sno').textbox('setText', item.Sno);
-                $('#Sname').textbox('setText', item.Sname);
-                $('#Sage').textbox('setText', item.Sage);
-                $('#Ssex').combobox('setText', item.Ssex);
-                $('#Sdept').combobox('setText', item.Sdept);
-                $('#Sphoto').attr('src', '../' + item.SphotoPath);
+                    $('#Sno').textbox('setText', item.Sno);
+                    $('#Sname').textbox('setText', item.Sname);
+                    $('#Sage').textbox('setText', item.Sage);
+                    $('#Ssex').combobox('setText', item.Ssex);
+                    $('#Sdept').combobox('setText', item.Sdept);
+                    $('#Sphoto').attr('src', '../' + item.SphotoPath);
 
-                window.previousId = data.PreviousId;
-                window.nextId = data.NextId;
-            },
-            error: function() {
-                Alert("错误", 'error', AlertType.Error);
-            },
-            dataType: "json"
-        });
-    };
+                    window.previousId = data.PreviousId;
+                    window.nextId = data.NextId;
+                },
+                error: function() {
+                    Alert("错误", 'error', AlertType.Error);
+                },
+                dataType: "json"
+            });
+        };
 
-    function test(a) {
-        a = 3;
-    }
-</script>
-@*}*@
+        function test(a) {
+            a = 3;
+        }
+    </script>
+}
