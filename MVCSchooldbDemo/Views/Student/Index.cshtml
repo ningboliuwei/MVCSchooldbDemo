@@ -55,7 +55,7 @@
         </td>
     </table>
 </div>
-<div id="editor" style="width: 500px; height: 450px; display: none"></div>
+<div id="editor" style="display: none; height: 450px; width: 500px;"></div>
 <script>
     var url = '@Url.Action("GetList", "Student")';
     var columns = [
@@ -128,6 +128,7 @@
 
         BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }
+
 
 
 </script>

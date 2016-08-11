@@ -237,6 +237,6 @@ function EditorSubmit(url, data, confirmMsg, errorMsg) {
     if (ValidateForm()) {
         Confirm("确认",
             confirmMsg,
-            function() { Post(url, data, errorMsg) });
+            function() { Post(url, data, errorMsg); });
     }
 }

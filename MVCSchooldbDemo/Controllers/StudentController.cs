@@ -12,8 +12,8 @@ namespace MVCSchooldbDemo.Controllers
 {
     public class StudentController : Controller
     {
+//        private static List<long?> _ids = new List<long?>();
         private readonly SchooldDbContext _db = new SchooldDbContext();
-        private static List<long?> _ids = new List<long?>();
 
         // GET: Student
         public ActionResult Index()
@@ -25,26 +25,41 @@ namespace MVCSchooldbDemo.Controllers
         {
             var result = DBHelper.GetResult(_db.Students.ToList(), queryParasString, page, rows, sort, order);
 
-            _ids = DBHelper.GetListFromResultString<StudentInfo, long?>(s => s.Id, result);
+//            _ids = DBHelper.GetListFromResultString<StudentInfo, long?>(s => s.Id, result);
 
+            
             return result;
         }
 
-        [HttpGet]
-        // GET: Student/Details/5
+
         public ActionResult Details(long? id)
+        {
+            ViewBag.DialogTitle = "查看学生明细";
+            ViewBag.PreviousId = 4;
+            var item = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
+            return View(item);
+        }
+
+        public ActionResult GetStudentData(long? id)
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "查看学生明细";
-                var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
+                var item = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
+                var list = _db.Students.ToList();
+                var currentIndex = list.IndexOf(item);
 
-                var currentIndex = _ids.IndexOf(id);
-                ViewBag.CurrentIndex = currentIndex;
-                ViewBag.PreviousId = (currentIndex == 0 ? -1 : _ids[currentIndex - 1]);
-                ViewBag.NextId = (currentIndex == _ids.Count - 1 ? -1 : _ids[currentIndex + 1]);
-
-                return View(student);
+                return new JsonResult
+                {
+                    Data =
+                        new
+                        {
+                            Item = item,
+                            CurrentIndex = currentIndex,
+                            PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,
+                            NextId = currentIndex == list.Count - 1 ? -1 : list[currentIndex + 1].Id
+                        },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
             }
 
             return HttpNotFound();

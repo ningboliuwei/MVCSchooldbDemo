@@ -18,22 +18,34 @@
                     if (@ViewBag.PreviousId == -1) {
                     } else {
                         var url = '@Url.Action("Details", "Student", new {Id = ViewBag.PreviousId})';
-
-                        $("#editor").dialog("refresh", url);
+                        $.ajax({
+                            type: "GET",
+                            url: url,
+                            success: function(data) {
+                                //                                var s = JSON.parse(data);
+                                $("#editor").html(data);
+                                //                                console.log( $("#editor").html());
+                            },
+                            error: function() {
+                                Alert("错误", '', AlertType.Error);
+                            },
+                            dataType: "html"
+                        });
                     }
+
                 }
             );
 
-        $('#btnNext')
-            .bind('click',
-                function() {
-                      if (@ViewBag.NextId == -1) {
-                    } else {
-                        var url = '@Url.Action("Details", "Student", new {Id = ViewBag.NextId})';
-
-                        $("#editor").dialog("refresh", url);
-                    }
-                }
-            );
+//        $('#btnNext')
+//            .bind('click',
+//                function() {
+//                    if (@ViewBag.NextId == -1) {
+//                    } else {
+//                        var url = '@Url.Action("Details", "Student", new {Id = ViewBag.NextId})';
+//
+//                        $("#editor").dialog("refresh", url);
+//                    }
+//                }
+//            );
     });
 </script>

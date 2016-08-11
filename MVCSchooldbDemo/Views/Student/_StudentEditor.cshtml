@@ -55,7 +55,7 @@
 
 </form>
 <script>
-    $(function () {
+    $(function() {
         window.InitUploadify("@Url.Action("UploadPhoto", "Student")",
             true,
             false,
@@ -87,26 +87,43 @@
         };
     }
 
-    @{
-        var fileInfo = Model != null ? UploadFileHelper.GetFileInfoByGuid(Model.SphotoGuid) : null;
-        var photoPath = fileInfo != null ? fileInfo.BaseDirectory + fileInfo.FileName : "#";
-    }
-
 
 </script>
 
 @if (Model != null)
 {
     <script>
-        $(function() { ShowData(); });
+        $(function () { ShowData() ;});
 
         function ShowData() {
+//            $.ajax({
+//                type: "GET",
+//                url: url,
+//                success: function(data) {
+//                    var s = JSON.parse(data);
+//                    var item = s.Item;
+//
             $('#Sno').textbox('setText', '@Model.Sno');
             $('#Sname').textbox('setText', '@Model.Sname');
             $('#Sage').textbox('setText', '@Model.Sage');
-            $('#Ssex').textbox('setText', '@Model.Ssex');
-            $('#Sdept').textbox('setText', '@Model.Sdept');
+            $('#Ssex').combobox('setText', '@Model.Ssex');
+            $('#Sdept').combobox('setText', '@Model.Sdept');
+
+
+            @{
+                var fileInfo = Model != null ? UploadFileHelper.GetFileInfoByGuid(Model.SphotoGuid) : null;
+                var photoPath = fileInfo != null ? fileInfo.BaseDirectory + fileInfo.FileName : "#";
+            }
+
             $('#Sphoto').attr('src', '../@photoPath');
+
         }
+//                error: function() {
+//                    Alert("错误", errorMsg, AlertType.Error);
+//                },
+//                dataType: "json"
+//            });
+
+
     </script>
 }
