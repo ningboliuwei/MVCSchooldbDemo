@@ -28,26 +28,7 @@
     <div data-options="region:'north'" style="height: 50px"></div>
     <div data-options="region:'south',split:true" style="height: 50px;"></div>
     <div data-options="region:'west',split:true" title="West" style="width: 200px;">
-        <div id="aa" class="easyui-accordion" data-options="fit:true">
-            <div title="Title1" data-options="iconCls:'icon-save',selected:true" style="overflow: auto; padding: 10px;">
-                <ul id="tt" class="easyui-tree">
-                    <li>
-                        <span>Folder</span>
-                        <ul>
-                            <li>
-                                <span>Student</span>
-                            </li>
-                            <li>
-                                <span>Course</span>
-                            </li>
-                            <li>
-                                <span>SC</span>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
+       @Html.Partial("_WestRegion")
     </div>
     <div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
         <div id="tabs" class="easyui-tabs" fit="true">

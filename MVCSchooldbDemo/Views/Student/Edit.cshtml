@@ -1,6 +1,4 @@
-﻿@using MVCSchooldbDemo.Common
-@using MVCSchooldbDemo.Models.Data
-﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
+﻿﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
 
 @{
     Layout = null;
@@ -15,7 +13,7 @@
         $('#btnOK')
             .bind('click',
                 function() {
-                    EditorSubmit('@Url.Action("Edit", "Student")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');
+                    EditorSubmit('@Url.Action("Edit", "Student")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
                 });
     });
 </script>

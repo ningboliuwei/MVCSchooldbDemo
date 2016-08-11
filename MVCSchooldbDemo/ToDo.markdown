@@ -49,6 +49,6 @@
 34. 在 CSS 中将字体设置为微软雅黑 2016-08-07 √
 35. 解决 Editor 打开刷新的问题========= 1. 为 dialog 设置初始 width 和 height 2. 将 dialog 的 cache 属性设置为 false 3. 使用 $("#editor").dialog("open").dialog("refresh");
 36. 点击创建按钮后，会出现两个 Confirm  ======  common.js 中的 ShowEditor() 中的 dialog('open') 后的 dialog('refresh') 造成，去掉即可。
-37. Editor 中加 Tab
+37. Editor 中加 Tab  ============ 搞定  2016-08-11 √
 
 
