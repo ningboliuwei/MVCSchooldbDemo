@@ -118,10 +118,15 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
+                //                var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
+                //                ViewBag.DialogTitle = "编辑学生记录";
+                //                return View(student);
                 ViewBag.DialogTitle = "编辑学生记录";
-                return View(student);
+                ViewBag.CurrentId = id;
+                return View(new StudentInfo());
             } //死循环了
+
+          
 
             return HttpNotFound();
         }
