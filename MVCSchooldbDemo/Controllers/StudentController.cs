@@ -27,7 +27,7 @@ namespace MVCSchooldbDemo.Controllers
 
 //            _ids = DBHelper.GetListFromResultString<StudentInfo, long?>(s => s.Id, result);
 
-            
+
             return result;
         }
 
@@ -35,11 +35,11 @@ namespace MVCSchooldbDemo.Controllers
         public ActionResult Details(long? id)
         {
             ViewBag.DialogTitle = "查看学生明细";
-            ViewBag.PreviousId = 4;
-            var item = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
-            return View(item);
+            ViewBag.CurrentId = id;
+            return View();
         }
 
+        [HttpPost]
         public ActionResult GetStudentData(long? id)
         {
             if (id != null)
@@ -142,6 +142,15 @@ namespace MVCSchooldbDemo.Controllers
         {
             var fileInfo = UploadFileHelper.Upload(fileData, "Photos/");
             return new JsonResult {Data = fileInfo};
+        }
+
+        [HttpPost]
+        public ActionResult GetPhotoPath(string photoGuid)
+        {
+            var fileInfo = UploadFileHelper.GetFileInfoByGuid(photoGuid);
+            var photoPath = fileInfo != null ? fileInfo.BaseDirectory + fileInfo.FileName : "#";
+
+            return new JsonResult {Data = photoPath};
         }
     }
 }

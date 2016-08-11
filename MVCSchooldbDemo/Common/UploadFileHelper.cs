@@ -60,5 +60,6 @@ namespace MVCSchooldbDemo.Common
 			var db = new SchooldDbContext();
 			return db.UploadFiles.ToList().Find(g => g.Guid == guid);
 		}
+
 	}
 }

@@ -1,5 +1,4 @@
-﻿@using MVCSchooldbDemo.Common
-@model MVCSchooldbDemo.Models.Data.StudentInfo
+﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
 
 <div class="dialogTitle">@ViewBag.DialogTitle</div>
 <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
@@ -93,37 +92,36 @@
 @if (Model != null)
 {
     <script>
-        $(function () { ShowData() ;});
+        $(function() { ShowData(); });
 
-        function ShowData() {
-//            $.ajax({
-//                type: "GET",
-//                url: url,
-//                success: function(data) {
-//                    var s = JSON.parse(data);
-//                    var item = s.Item;
-//
-            $('#Sno').textbox('setText', '@Model.Sno');
-            $('#Sname').textbox('setText', '@Model.Sname');
-            $('#Sage').textbox('setText', '@Model.Sage');
-            $('#Ssex').combobox('setText', '@Model.Ssex');
-            $('#Sdept').combobox('setText', '@Model.Sdept');
+        function ShowData(url) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                success: function(data) {
+                    var s = JSON.parse(data);
+                    var item = s.Item;
+                    var photoGuid = s.SphotoGuid;
 
+                    var photoPath;
 
-            @{
-                var fileInfo = Model != null ? UploadFileHelper.GetFileInfoByGuid(Model.SphotoGuid) : null;
-                var photoPath = fileInfo != null ? fileInfo.BaseDirectory + fileInfo.FileName : "#";
-            }
-
-            $('#Sphoto').attr('src', '../@photoPath');
-
-        }
-//                error: function() {
-//                    Alert("错误", errorMsg, AlertType.Error);
-//                },
-//                dataType: "json"
-//            });
+                    $.ajax({
+                        type:"POST",
+                        url:
+                    }})
 
 
-    </script>
+                    $('#Sno').textbox('setText', item.Sno);
+                    $('#Sname').textbox('setText', item.Sname);
+                    $('#Sage').textbox('setText', item.Sage);
+                    $('#Ssex').combobox('setText', item.Ssex);
+                    $('#Sdept').combobox('setText', item.Sdept);
+                    $('#Sphoto').attr('src', '../photoPath');
+                },
+                error: function() {
+                    Alert("错误", errorMsg, AlertType.Error);
+                },
+                dataType: "json"
+            });
+            </script>
 }
