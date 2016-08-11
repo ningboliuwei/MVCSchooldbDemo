@@ -36,7 +36,7 @@ namespace MVCSchooldbDemo.Controllers
         {
             ViewBag.DialogTitle = "查看学生明细";
             ViewBag.CurrentId = id;
-            return View();
+            return View(new StudentInfo());
         }
 
         [HttpPost]
@@ -48,12 +48,34 @@ namespace MVCSchooldbDemo.Controllers
                 var list = _db.Students.ToList();
                 var currentIndex = list.IndexOf(item);
 
+                string photoPath;
+
+                if (!string.IsNullOrEmpty(item.SphotoGuid))
+                {
+                    var fileInfo = UploadFileHelper.GetFileInfoByGuid(item.SphotoGuid);
+                    photoPath = fileInfo.BaseDirectory + fileInfo.FileName;
+                }
+                else
+                {
+                    photoPath = "#";
+                }
+
                 return new JsonResult
                 {
                     Data =
                         new
                         {
-                            Item = item,
+                            Item =
+                                new
+                                {
+                                    item.Sno,
+                                    item.Sname,
+                                    item.Sage,
+                                    item.Ssex,
+                                    item.Sdept,
+                                    item.SphotoGuid,
+                                    SphotoPath = photoPath
+                                },
                             CurrentIndex = currentIndex,
                             PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,
                             NextId = currentIndex == list.Count - 1 ? -1 : list[currentIndex + 1].Id
@@ -144,13 +166,13 @@ namespace MVCSchooldbDemo.Controllers
             return new JsonResult {Data = fileInfo};
         }
 
-        [HttpPost]
-        public ActionResult GetPhotoPath(string photoGuid)
-        {
-            var fileInfo = UploadFileHelper.GetFileInfoByGuid(photoGuid);
-            var photoPath = fileInfo != null ? fileInfo.BaseDirectory + fileInfo.FileName : "#";
+//        }
+//            return new JsonResult {Data = photoPath};
+//
+//           
+//        {
+//        public ActionResult GetPhotoPath(string photoGuid)
 
-            return new JsonResult {Data = photoPath};
-        }
+//        [HttpPost]
     }
 }

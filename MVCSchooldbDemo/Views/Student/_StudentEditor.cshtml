@@ -89,39 +89,40 @@
 
 </script>
 
-@if (Model != null)
-{
-    <script>
-        $(function() { ShowData(); });
+@*@if (Model != null)*@
+@*{*@
+<script>
+    window.previousId = -1;
+    window.nextId = -1;
 
-        function ShowData(url) {
-            $.ajax({
-                type: "POST",
-                url: url,
-                success: function(data) {
-                    var s = JSON.parse(data);
-                    var item = s.Item;
-                    var photoGuid = s.SphotoGuid;
+    $(function() { ShowData('@Url.Action("GetStudentData", "Student")' + '/' + @ViewBag.CurrentId); });
 
-                    var photoPath;
+    function ShowData(url) {
+        $.ajax({
+            type: "POST",
+            url: url,
+            success: function(data) {
+                var item = data.Item;
 
-                    $.ajax({
-                        type:"POST",
-                        url:
-                    }})
+                $('#Sno').textbox('setText', item.Sno);
+                $('#Sname').textbox('setText', item.Sname);
+                $('#Sage').textbox('setText', item.Sage);
+                $('#Ssex').combobox('setText', item.Ssex);
+                $('#Sdept').combobox('setText', item.Sdept);
+                $('#Sphoto').attr('src', '../' + item.SphotoPath);
 
+                window.previousId = data.PreviousId;
+                window.nextId = data.NextId;
+            },
+            error: function() {
+                Alert("错误", 'error', AlertType.Error);
+            },
+            dataType: "json"
+        });
+    };
 
-                    $('#Sno').textbox('setText', item.Sno);
-                    $('#Sname').textbox('setText', item.Sname);
-                    $('#Sage').textbox('setText', item.Sage);
-                    $('#Ssex').combobox('setText', item.Ssex);
-                    $('#Sdept').combobox('setText', item.Sdept);
-                    $('#Sphoto').attr('src', '../photoPath');
-                },
-                error: function() {
-                    Alert("错误", errorMsg, AlertType.Error);
-                },
-                dataType: "json"
-            });
-            </script>
-}
+    function test(a) {
+        a = 3;
+    }
+</script>
+@*}*@
