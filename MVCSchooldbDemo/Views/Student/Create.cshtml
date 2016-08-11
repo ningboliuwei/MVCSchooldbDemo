@@ -1,37 +1,21 @@
-﻿@model Student
-
+﻿@using MVCSchooldbDemo.Models.Data
+﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
 @{
     Layout = null;
 }
 
-<div style="padding: 10px 60px 20px 60px">
-    @Html.Partial("_PartialEditor")
-    <div style="padding: 5px; text-align: center;">
-        <a id="btnOK" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="Submit();" style="width: 90px">
-            确定
-        </a>
-        <a id="btnCancel" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="CloseEditor();" style="width: 90px">取消</a>
-    </div>
+
+<div class="editorLayout">
+    @Html.Partial("~/Views/Student/_StudentEditor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForCreate.cshtml")
 </div>
 <script>
-    function Submit() {
-        var url = '@Url.Action("Create", "Student")';
-
-        $('#ff')
-            .form('submit',
-            {
-                url: url,
-                onSubmit: function () {
-                    return $(this).form('enableValidation').form('validate');
-                },
-                success: function () {
-                    Close();
-                    Refresh();
-                },
-                error: function () {
-                    $.messager.alert('错误', '添加学生记录遇到问题！', 'error');
+    $(function() {
+        $('#btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('@Url.Action("Create", "Student")', window.GetData(), "确认添加记录吗？", '添加记录出现错误');
                 }
-            });
-    }
+            );
+    });
 </script>
-

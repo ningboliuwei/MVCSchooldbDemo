@@ -1,52 +1,21 @@
-﻿@model Student
+﻿@using MVCSchooldbDemo.Common
+@using MVCSchooldbDemo.Models.Data
+﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
 
 @{
     Layout = null;
 }
 
-<div style="padding: 10px 60px 20px 60px">
-    @Html.Partial("_PartialEditor")
-    <div style="padding: 5px; text-align: center;">
-        <a id="btnOK" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="Submit();" style="width: 90px">
-            修改
-        </a>
-        <a id="btnCancel" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="CloseEditor();" style="width: 90px">取消</a>
-    </div>
+<div class="editorLayout">
+    @Html.Partial("~/Views/Student/_StudentEditor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForEdit.cshtml")
 </div>
-
 <script>
     $(function() {
-        ShowInfo();
+        $('#btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('@Url.Action("Edit", "Student")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');
+                });
     });
-
-    function ShowInfo() {
-        $('#Sno').attr('disabled', true);
-        $('#Sno').val('@Model.Sno');
-        $('#Sname').val('@Model.Sname');
-        $('#Ssex').val('@Model.Ssex');
-        $('#Sage').val('@Model.Sage');
-        $('#Sdept').val('@Model.Sdept');
-
-    }
-
-    function Submit() {
-        //       var url = '@Url.Action("Edit", "Student")' + '/' + id;
-        var url = '@Url.Action("Edit", "Student")';
-
-        $('#ff')
-            .form('submit',
-            {
-                url: url,
-                onSubmit: function() {
-                    return $(this).form('enableValidation').form('validate');
-                },
-                success: function() {
-                    CloseEditor();
-                    RefreshGrid();
-                },
-                error: function() {
-                    $.messager.alert('错误', '修改学生记录遇到问题！', 'error');
-                }
-            });
-    }
 </script>

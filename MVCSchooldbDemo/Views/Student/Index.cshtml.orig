@@ -1,0 +1,137 @@
+﻿@model List<MVCSchooldbDemo.Models.Data.StudentInfo>
+@{
+    Layout = null;
+}
+
+<table id="grid" style="height: 100%"></table>
+<div id="tb">
+    <table class="searchTable">
+        <tr>
+            <td> 学号</td>
+            <td>
+                <input id="SearchSno" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td> 性别</td>
+            <td>
+                <input id="SearchSsex" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td>系</td>
+            <td>
+                <select id="SearchSdept" class="easyui-combobox" style="width: 100px">
+                    <option value="ALL">ALL</option>
+                    <option value="MA">MA</option>
+                    <option value="CS">CS</option>
+                    <option value="IS">IS</option>
+                </select>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="ClearSearch()">清空搜索条件</a>
+            </td>
+        </tr>
+    </table>
+    <table class="buttonsTable">
+        <tr>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" onclick="Add('@Url.Action("Create", "Student")', '添加学生记录')">
+                添加
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('@Url.Action("Edit", "Student")',
+    '修改学生记录')">
+                编辑
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" onclick="Delete('@Url.Action("Delete", "Student")', 'Sno')">
+                删除
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="Details('@Url.Action("Details", "Student")', '学生记录明细')">详细</a>
+        </td>
+    </table>
+</div>
+<<<<<<< HEAD
+<div id="editor" ></div>
+=======
+<div id="editor" style="width: 500px; height: 450px; display: none"></div>
+>>>>>>> origin/RefactEditorWithButtons
+<script>
+    var url = '@Url.Action("GetList", "Student")';
+    var columns = [
+        [
+            {
+                field: 'Id',
+                title: 'ID',
+                width: 100,
+                sortable: true,
+                hidden: true
+            },
+            {
+                field: 'Sno',
+                title: '学号',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: 'Sname',
+                title: '姓名',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: 'Ssex',
+                title: '性别',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: 'Sage',
+                title: '年龄',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: 'Sdept',
+                title: '系',
+                width: 100,
+                sortable: true
+            }
+        ]
+    ];
+
+    var gridTitle = '学生记录';
+    var gridSortName = 'Id';
+    var gridSortOrder = 'asc';
+
+
+    $(function() {
+        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }); //Show all records
+
+    function Search() {
+        var queryData = {
+            Sno: $('#SearchSno').textbox('getText'),
+            Ssex: $('#SearchSsex').textbox('getText'),
+            Sdept: ($('#SearchSdept').textbox('getText') === 'ALL') ? '' : $('#SearchSdept').textbox('getText')
+        };
+
+        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, { queryParasString: JSON.stringify(queryData) });
+    }
+
+    function ClearSearch() {
+        $('#SearchSno').textbox('clear');
+        $('#SearchSsex').textbox('clear');
+
+        var data = $('#SearchSdept').combobox('getData');
+        $('#SearchSdept').combobox('select', data[0]["text"]);
+
+        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }
+
+
+</script>

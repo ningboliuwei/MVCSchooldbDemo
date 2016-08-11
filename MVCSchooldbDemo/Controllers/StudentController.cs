@@ -1,15 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
+using System.Web;
 using System.Web.Mvc;
-using Newtonsoft.Json;
+using MVCSchooldbDemo.Classes;
+using MVCSchooldbDemo.Common;
+using MVCSchooldbDemo.Models.Data;
+using MVCSchooldbDemo.Views.Student;
 
 namespace MVCSchooldbDemo.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly SchooldbEntities db = new SchooldbEntities();
+//        private static List<long?> _ids = new List<long?>();
+        private readonly SchooldDbContext _db = new SchooldDbContext();
 
         // GET: Student
         public ActionResult Index()
@@ -17,106 +21,133 @@ namespace MVCSchooldbDemo.Controllers
             return View();
         }
 
-        public string GetResult(string sno, string ssex, string sdept)
+        public string GetList(string queryParasString, int page, int rows, string sort, string order)
         {
-            var students = db.Student.ToList();
+            var result = DBHelper.GetResult(_db.Students.ToList(), queryParasString, page, rows, sort, order);
 
-            if (!string.IsNullOrEmpty(sno))
-            {
-                students = students.Where(s => s.Sno.Contains(sno)).ToList();
-            }
-
-            if (!string.IsNullOrEmpty(ssex))
-            {
-                students = students.Where(s => s.Ssex.Contains(ssex)).ToList();
-            }
+//            _ids = DBHelper.GetListFromResultString<StudentInfo, long?>(s => s.Id, result);
 
 
-            if (!string.IsNullOrEmpty(sdept))
-            {
-                students = students.Where(s => s.Sdept == sdept).ToList();
-            }
-
-            return JsonConvert.SerializeObject(students.ToList());
+            return result;
         }
 
 
-        // GET: Student/Details/5
         public ActionResult Details(long? id)
         {
-            if (id == null)
+            ViewBag.DialogTitle = "查看学生明细";
+            ViewBag.CurrentId = id;
+            return View(new StudentInfo());
+        }
+
+        [HttpPost]
+        public ActionResult GetStudentData(long? id)
+        {
+            if (id != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var item = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
+                var list = _db.Students.ToList();
+                var currentIndex = list.IndexOf(item);
+
+                string photoPath;
+
+                if (!string.IsNullOrEmpty(item.SphotoGuid))
+                {
+                    var fileInfo = UploadFileHelper.GetFileInfoByGuid(item.SphotoGuid);
+                    photoPath = fileInfo.BaseDirectory + fileInfo.FileName;
+                }
+                else
+                {
+                    photoPath = "#";
+                }
+
+                return new JsonResult
+                {
+                    Data =
+                        new
+                        {
+                            Item =
+                                new
+                                {
+                                    item.Sno,
+                                    item.Sname,
+                                    item.Sage,
+                                    item.Ssex,
+                                    item.Sdept,
+                                    item.SphotoGuid,
+                                    SphotoPath = photoPath
+                                },
+                            CurrentIndex = currentIndex,
+                            PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,
+                            NextId = currentIndex == list.Count - 1 ? -1 : list[currentIndex + 1].Id
+                        },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
             }
-            var student = db.Student.Find(id);
-            if (student == null)
-            {
-                return HttpNotFound();
-            }
-            return View(student);
+
+            return HttpNotFound();
         }
 
         // GET: Student/Create
         public ActionResult Create()
         {
+            ViewBag.DialogTitle = "添加学生记录";
             return View();
         }
 
         // POST: Student/Create
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
+        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         //        [ValidateAntiForgeryToken]
         //        [Bind(Include = "Id,Sno,Sname,Ssex,Sage,Sdept")]
-        public ActionResult Create(Student student)
+        public ActionResult Create(StudentInfo student)
         {
-            //            if (ModelState.IsValid)
-            //            {
-            //                db.Student.Add(student);
-            //                db.SaveChanges();
-            //                return RedirectToAction("Index");
-            //            }
-            //
-            //            return View(student);
-            db.Student.Add(student);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _db.Students.Add(student);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View();
         }
 
         // GET: Student/Edit/5
         [HttpGet]
-        public ActionResult Edit(string id)
+        public ActionResult Edit(long? id)
         {
             if (id != null)
             {
-                var student = db.Student.First(s => s.Id.ToString() == id);
+                var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
+                ViewBag.DialogTitle = "编辑学生记录";
                 return View(student);
             } //死循环了
-            return View();
+
+            return HttpNotFound();
         }
 
 
         // POST: Student/Edit/5
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
+        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        public ActionResult Edit(Student student)
+        public ActionResult Edit(StudentInfo student)
         {
-            db.Entry(student).State = EntityState.Modified;
-            db.SaveChanges();
+            _db.Entry(student).State = EntityState.Modified;
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public ActionResult Delete(List<string> ids)
+        public ActionResult Delete(List<long> ids)
         {
             foreach (var id in ids)
             {
-                var student = db.Student.First(s => s.Sno == id);
-                db.Student.Remove(student);
+                var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
+                _db.Students.Remove(student);
             }
 
-            db.SaveChanges();
+            _db.SaveChanges();
             return RedirectToAction("Index", "Student");
         }
 
@@ -124,9 +155,24 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult UploadPhoto(HttpPostedFileBase fileData)
+        {
+            var fileInfo = UploadFileHelper.Upload(fileData, "Photos/");
+            return new JsonResult {Data = fileInfo};
+        }
+
+//        }
+//            return new JsonResult {Data = photoPath};
+//
+//           
+//        {
+//        public ActionResult GetPhotoPath(string photoGuid)
+
+//        [HttpPost]
     }
 }

@@ -1,0 +1,33 @@
+﻿@model Student
+
+@{
+    Layout = null;
+}
+
+<script>
+    $(function () {
+        ShowInfo();
+        DisableControls('#Sno');
+    });
+
+    function ShowInfo() {
+        $('#Sno').val('@Model.Sno');
+        $('#Sname').val('@Model.Sname');
+        $('#Ssex').val('@Model.Ssex');
+        $('#Sage').val('@Model.Sage');
+        $('#Sdept').val('@Model.Sdept');
+    }
+</script>
+
+<div style="padding: 10px 60px 20px 60px">
+    @Html.Partial("_PartialEditor")
+    <div style="padding: 5px; text-align: center;">
+        <a id="btnOK" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="$.messager.confirm('问题',
+            '确定修改学生记录吗？',
+            function (result) {
+                if (result) {Submit('@Url.Action("Edit", "Student")', '修改学生记录遇到问题！')};});" style="width: 90px">
+            修改
+        </a>
+        <a id="btnCancel" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="CloseEditor();" style="width: 90px">取消</a>
+    </div>
+</div>

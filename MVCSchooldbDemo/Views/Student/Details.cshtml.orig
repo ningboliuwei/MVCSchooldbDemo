@@ -1,0 +1,27 @@
+﻿@model Student
+
+@{
+    Layout = null;
+}
+
+<script>
+    $(function () {
+        ShowInfo();
+        DisableControls('#Sno,#Sname,#Ssex,#Sage,#Sdept');
+    });
+
+    function ShowInfo() {
+        $('#Sno').val('@Model.Sno');
+        $('#Sname').val('@Model.Sname');
+        $('#Ssex').val('@Model.Ssex');
+        $('#Sage').val('@Model.Sage');
+        $('#Sdept').val('@Model.Sdept');
+    }
+</script>
+
+<div style="padding: 10px 60px 20px 60px">
+    @Html.Partial("_PartialEditor")
+    <div style="padding: 5px; text-align: center;">
+        <a id="btnCancel" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="CloseEditor();" style="width: 90px">确定</a>
+    </div>
+</div>
