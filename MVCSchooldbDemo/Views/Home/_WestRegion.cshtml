@@ -1,36 +1,36 @@
 ﻿<div id="aa" class="easyui-accordion" data-options="fit:true">
     <div title="Title1" data-options="iconCls:'icon-save',selected:false" style="overflow: auto; padding: 10px;">
-        <ul id="tt" class="easyui-tree">
-            <li>
-                <span>Folder</span>
-                <ul>
-                    <li>
-                        <span>Student</span>
-                    </li>
-                    <li>
-                        <span>Course</span>
-                    </li>
-                    <li>
-                        <span>SC</span>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        <ul id="tt" class="easyui-tree" data-options="animate:true,lines:true"></ul>
     </div>
     <div title="系统维护" data-options="iconCls:'icon-save',selected:true" style="overflow: auto; padding: 10px;">
-        <ul id="tt2" class="easyui-tree" data-options="animate:true,lines:true">
-            <li>
-                <span>用户管理</span>
-                <ul>
-                    <li>
-                        <span>用户管理</span>
-                    </li>
-                    <li>
-                        <span>角色管理</span>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        <ul id="tt2" class="easyui-tree" data-options="animate:true,lines:true"></ul>
     </div>
-
 </div>
+<script>
+        $(function() {
+            InitTree('#tt', '#tabsHome',
+            [
+                {
+                    "id": 1,
+                    "text": "学生管理",
+                    "iconCls": "icon-save",
+                    "attributes": { url: "@Url.Action("Index", "Student")" }
+                }, {
+                    "id": 2,
+                    "text": "课程管理"
+                }
+            ]);
+            InitTree('#tt2', '#tabsHome',
+            [
+                {
+                    "id": 1,
+                    "text": "用户管理",
+                    "iconCls": "icon-save",
+                    "attributes": { url: "@Url.Action("Index", "User")" }
+                }, {
+                    "id": 2,
+                    "text": "角色管理"
+                }
+            ]);
+        });
+</script>

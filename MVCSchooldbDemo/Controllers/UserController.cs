@@ -10,7 +10,7 @@ using MVCSchooldbDemo.Views.Student;
 
 namespace MVCSchooldbDemo.Controllers
 {
-    public class StudentController : Controller
+    public class UserController : Controller
     {
 //        private static List<long?> _ids = new List<long?>();
         private readonly SchooldDbContext _db = new SchooldDbContext();
@@ -23,10 +23,10 @@ namespace MVCSchooldbDemo.Controllers
 
         public string GetList(string queryParasString, int page, int rows, string sort, string order)
         {
-            var result = DBHelper.GetResult(_db.Students.ToList(), queryParasString, page, rows, sort, order);
-
-//            _ids = DBHelper.GetListFromResultString<StudentInfo, long?>(s => s.Id, result);
-
+            var list = from r in _db.Roles join u in _db.Users
+                               on r.Id  equals u.RoleId
+                               select new { u.Id, u.Account, u.FullName, r.Name };
+            var result = DBHelper.GetResult(list.ToList(), queryParasString, page, rows, sort, order);
 
             return result;
         }
@@ -36,30 +36,23 @@ namespace MVCSchooldbDemo.Controllers
         {
             ViewBag.DialogTitle = "查看学生明细";
             ViewBag.CurrentId = id;
-            return View(new StudentInfo());
+            return View(new UserInfo());
         }
 
         [HttpPost]
-        public ActionResult GetStudentData(long? id)
+        public ActionResult GetUserData(long? id)
         {
             if (id != null)
             {
-                var item = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
-                var list = _db.Students.ToList();
-                var currentIndex = list.IndexOf(item);
+                var user = DBHelper.FindByKeyword(_db.Users.ToList(), "Id", id).First();
+                var list = _db.Users.ToList();
+                var currentIndex = list.IndexOf(user);
 
-                string photoPath;
+                var item = (from r in _db.Roles
+                    where r.Id == user.RoleId
+                    select new {user.Id, user.Account, user.FullName, r.Name}).ToList().First();
+                        
 
-                if (!string.IsNullOrEmpty(item.SphotoGuid))
-                {
-                    var fileInfo =(_db.UploadFiles.Where(f => f.Guid == item.SphotoGuid)).ToList()[0];
-                    //                    var fileInfo = UploadFileHelper.GetFileInfoByGuid(item.SphotoGuid);
-                    photoPath = fileInfo.BaseDirectory + fileInfo.FileName;
-                }
-                else
-                {
-                    photoPath = "#";
-                }
 
                 return new JsonResult
                 {
@@ -69,13 +62,10 @@ namespace MVCSchooldbDemo.Controllers
                             Item =
                                 new
                                 {
-                                    item.Sno,
-                                    item.Sname,
-                                    item.Sage,
-                                    item.Ssex,
-                                    item.Sdept,
-                                    item.SphotoGuid,
-                                    SphotoPath = photoPath
+                                    item.Id,
+                                    item.Account,
+                                    item.FullName,
+                                    item.Name
                                 },
                             CurrentIndex = currentIndex,
                             PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,
@@ -166,19 +156,7 @@ namespace MVCSchooldbDemo.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult UploadPhoto(HttpPostedFileBase fileData)
-        {
-            var fileInfo = UploadFileHelper.Upload(fileData, "Photos/");
-            return new JsonResult {Data = fileInfo};
-        }
 
-//        }
-//            return new JsonResult {Data = photoPath};
-//
-//           
-//        {
-//        public ActionResult GetPhotoPath(string photoGuid)
 
-//        [HttpPost]
     }
 }

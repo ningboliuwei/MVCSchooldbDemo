@@ -1,11 +1,11 @@
 ﻿var AlertType = { Error: "error", Question: "question", Info: "info", Warning: "warning" }; //警告框的 ICON 类型（仿枚举）
 
 //添加 Tab 的函数，若已存在则选中已有的 Tab
-function AddTab(title, url) {
-    if ($("#tabs").tabs("exists", title)) {
-        $("#tabs").tabs("select", title);
+function AddTab(name, title, url) {
+    if ($(name).tabs("exists", title)) {
+        $(name).tabs("select", title);
     } else {
-        $("#tabs")
+        $(name)
             .tabs("add",
             {
                 title: title,
@@ -16,8 +16,8 @@ function AddTab(title, url) {
 }
 
 //在 easyui datagrid 中显示数据
-function BindGrid(url, columns, title, sortName, sortOrder, queryData) {
-    $("#grid")
+function BindGrid(gridname, toolbarname, url, columns, title, sortName, sortOrder, queryData) {
+    $(gridname)
         .datagrid({
             url: url,
             columns: columns,
@@ -34,7 +34,7 @@ function BindGrid(url, columns, title, sortName, sortOrder, queryData) {
             pageList: [20, 40, 80],
             rownumbers: true,
             ctrlSelect: true,
-            toolbar: "#tb",
+            toolbar: toolbarname,
             queryParams: queryData,
             remoteSort: true,
             method: "post",
@@ -60,8 +60,8 @@ function Confirm(title, msg, callback) {
 }
 
 //显示编辑对话框
-function ShowEditor(url, title) {
-    $("#editor")
+function ShowEditor(name, url, title) {
+    $(name)
         .dialog({
             closed: true,
             title: title,
@@ -70,22 +70,22 @@ function ShowEditor(url, title) {
             doSize: false
         });
 
-    $("#editor").dialog("open");
+    $(name).dialog("open");
 }
 
 //关闭编辑对话框
-function CloseEditor() {
-    $("#editor").dialog("close");
+function CloseEditor(name) {
+    $(name).dialog("close");
 }
 
 //刷新 datagrid
-function RefreshGrid() {
-    $("#grid").datagrid("reload");
+function RefreshGrid(name) {
+    $(name).datagrid("reload");
 }
 
 //向指定 url 提交
-function FormSubmit(url, errorMsg) {
-    $("#ff")
+function FormSubmit(name, url, errorMsg) {
+    $(name)
         .form("submit",
         {
             url: url,
@@ -131,8 +131,8 @@ function HideControls(controlNames) {
 
 }
 
-function Delete(url) {
-    var rows = $("#grid").datagrid("getSelections");
+function Delete(name, url) {
+    var rows = $(name).datagrid("getSelections");
 
     if (rows.length === 0) {
         Alert("错误", "请至少选中一条记录。", window.AlertType.Error);
@@ -160,8 +160,8 @@ function Delete(url) {
 }
 
 //打开编辑对话框
-function Edit(url, editorTitle) {
-    var rows = $("#grid").datagrid("getSelections");
+function Edit(name, url, editorTitle) {
+    var rows = $(name).datagrid("getSelections");
 
     if (rows.length === 0) {
         Alert("错误", "请先选择一条记录。", AlertType.Error);
@@ -182,8 +182,8 @@ function Add(url, editorTitle) {
 }
 
 //打开明细对话框
-function Details(url, editorTitle) {
-    var rows = $("#grid").datagrid("getSelections");
+function Details(name, url, editorTitle) {
+    var rows = $(name).datagrid("getSelections");
 
     if (rows.length === 0) {
         Alert("错误", "请先选择一条记录。", AlertType.Error);
@@ -197,12 +197,13 @@ function Details(url, editorTitle) {
     }
 }
 
-function ValidateForm() {
-    return $("#ff").form("enableValidation").form("validate");
+function ValidateForm(name) {
+    return $(name).form("enableValidation").form("validate");
 }
 
 
-function InitUploadify(url,
+function InitUploadify(name,
+    url,
     ifAuto,
     ifMulti,
     queueLimit,
@@ -212,7 +213,7 @@ function InitUploadify(url,
     uploadErrorCallback,
     uploadStartCallback,
     data) {
-    $("#uploadify")
+    $(name)
         .uploadify({
             uploader: url,
             swf: "../Content/Uploadify/uploadify.swf",
@@ -239,4 +240,14 @@ function EditorSubmit(url, data, confirmMsg, errorMsg) {
             confirmMsg,
             function() { Post(url, data, errorMsg); });
     }
+}
+
+function InitTree(treename, tabsname, data) {
+    $(treename)
+        .tree({
+            data: data,
+            onClick: function(node) {
+                AddTab(tabsname, node.text, node.attributes.url);
+            }
+        });
 }

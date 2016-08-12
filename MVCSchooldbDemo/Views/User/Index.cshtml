@@ -1,0 +1,128 @@
+﻿@model List<MVCSchooldbDemo.Models.Data.StudentInfo>
+@{
+    Layout = null;
+}
+
+
+<table id="gridUser" style="height: 100%"></table>
+<div id="tbUser">
+    <table class="searchTable">
+        <tr>
+            <td>账号</td>
+            <td>
+                <input id="SearchAccount" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td>全名</td>
+            <td>
+                <input id="SearchFullName" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td>类别</td>
+            <td>
+                <select id="SearchRole" class="easyui-combobox" style="width: 100px">
+                    <option value="all">全部用户</option>
+                    <option value="admin">管理员</option>
+                    <option value="user">普通用户</option>
+                </select>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="ClearSearch()">清空搜索条件</a>
+            </td>
+        </tr>
+    </table>
+    <table class="buttonsTable">
+        <tr>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" onclick="Add('@Url.Action("Create", "User")', '添加用户记录')">
+                添加
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('@Url.Action("Edit", "User")',
+    '修改用户记录')">
+                编辑
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" onclick="Delete('@Url.Action("Delete", "User")', 'Sno')">
+                删除
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="Details('@Url.Action("Details", "User")', '用户记录明细')">详细</a>
+        </td>
+    </table>
+</div>
+<div id="editorUser" style="display: none; height: 450px; width: 500px;"></div>
+<script>
+    var url = '@Url.Action("GetList", "User")';
+    var columns = [
+        [
+            {
+                field: 'Id',
+                title: 'ID',
+                width: 100,
+                sortable: true,
+                hidden: true
+            },
+            {
+                field: 'Account',
+                title: '账户',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: 'FullName',
+                title: '全名',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: 'Role',
+                title: '类别',
+                width: 100,
+                sortable: true
+            }
+        ]
+    ];
+
+    var gridTitle = '用户记录';
+    var gridSortName = 'Id';
+    var gridSortOrder = 'asc';
+
+
+    $(function() {
+        BindGrid('#gridUser', '#tbUser', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }); //Show all records
+
+    function Search() {
+        var queryData = {
+            Account: $('#SearchAccount').textbox('getText'),
+            FullName: $('#SearchFullName').textbox('getText'),
+            Role: ($('#SearchRole').combobox('getText') === 'ALL') ? '' : $('#SearchSdept').combobox('getText')
+        };
+
+        BindGrid('#gridUser',
+            '#tbUser',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            { queryParasString: JSON.stringify(queryData) });
+    }
+
+    function ClearSearch() {
+        $('#SearchAccount').textbox('clear');
+        $('#SearchFullName').textbox('clear');
+
+        var data = $('#SearchRole').combobox('getData');
+        $('#SearchSdept').combobox('select', data[0]["text"]);
+
+        BindGrid('#gridUser', '#tbUser', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }
+
+
+</script>

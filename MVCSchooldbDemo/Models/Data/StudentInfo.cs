@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace MVCSchooldbDemo.Models.Data
 {
+    [Table("T_Student")]
     public class StudentInfo
     {
         [Key]

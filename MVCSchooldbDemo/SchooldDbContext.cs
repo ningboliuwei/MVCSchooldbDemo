@@ -23,7 +23,11 @@ namespace MVCSchooldbDemo.Views.Student
 		public virtual DbSet<Models.Data.StudentInfo> Students { get; set; }
 		public virtual DbSet<Models.Data.UploadedFileInfo> UploadFiles { get; set; }
 
-		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public virtual DbSet<Models.Data.UserInfo> Users { get; set; }
+
+        public virtual DbSet<Models.Data.RoleInfo> Roles { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			Database.SetInitializer(new SchoolDbContextInitializer(modelBuilder));
 		}

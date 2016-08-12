@@ -3,15 +3,16 @@
     Layout = null;
 }
 
-<table id="grid" style="height: 100%"></table>
-<div id="tb">
+
+<table id="gridStudent" style="height: 100%"></table>
+<div id="tbStudent">
     <table class="searchTable">
         <tr>
-            <td> 学号</td>
+            <td>学号</td>
             <td>
                 <input id="SearchSno" class="easyui-textbox" style="width: 110px">
             </td>
-            <td> 性别</td>
+            <td>性别</td>
             <td>
                 <input id="SearchSsex" class="easyui-textbox" style="width: 110px">
             </td>
@@ -55,7 +56,7 @@
         </td>
     </table>
 </div>
-<div id="editor" style="display: none; height: 450px; width: 500px;"></div>
+<div id="editorStudent" style="display: none; height: 450px; width: 500px;"></div>
 <script>
     var url = '@Url.Action("GetList", "Student")';
     var columns = [
@@ -106,7 +107,7 @@
 
 
     $(function() {
-        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {});
+        BindGrid('#gridStudent', '#tbStudent', url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }); //Show all records
 
     function Search() {
@@ -116,7 +117,7 @@
             Sdept: ($('#SearchSdept').textbox('getText') === 'ALL') ? '' : $('#SearchSdept').textbox('getText')
         };
 
-        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, { queryParasString: JSON.stringify(queryData) });
+        BindGrid('#gridStudent','#tbStudent', url, columns, gridTitle, gridSortName, gridSortOrder, { queryParasString: JSON.stringify(queryData) });
     }
 
     function ClearSearch() {
@@ -126,9 +127,6 @@
         var data = $('#SearchSdept').combobox('getData');
         $('#SearchSdept').combobox('select', data[0]["text"]);
 
-        BindGrid(url, columns, gridTitle, gridSortName, gridSortOrder, {});
+        BindGrid('#gridStudent', '#tbStudent',url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }
-
-
-
 </script>
