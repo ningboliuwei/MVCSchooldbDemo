@@ -561,7 +561,7 @@
     <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
-    <Content Include="Views\Student\_StudentEditor.cshtml" />
+    <Content Include="Views\Student\_Editor.cshtml" />
     <Content Include="Views\Shared\LayoutEditor\_ButtonsForCreate.cshtml" />
     <Content Include="Views\Shared\LayoutEditor\_ButtonsForDetails.cshtml" />
     <Content Include="Views\Shared\LayoutEditor\_ButtonsForEdit.cshtml" />

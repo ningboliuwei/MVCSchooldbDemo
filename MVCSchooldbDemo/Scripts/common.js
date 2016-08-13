@@ -1,11 +1,11 @@
 ﻿var AlertType = { Error: "error", Question: "question", Info: "info", Warning: "warning" }; //警告框的 ICON 类型（仿枚举）
 
 //添加 Tab 的函数，若已存在则选中已有的 Tab
-function AddTab(name, title, url) {
-    if ($(name).tabs("exists", title)) {
-        $(name).tabs("select", title);
+function AddTab(tabsName, title, url) {
+    if ($(tabsName).tabs("exists", title)) {
+        $(tabsName).tabs("select", title);
     } else {
-        $(name)
+        $(tabsName)
             .tabs("add",
             {
                 title: title,
@@ -16,8 +16,8 @@ function AddTab(name, title, url) {
 }
 
 //在 easyui datagrid 中显示数据
-function BindGrid(gridname, toolbarname, url, columns, title, sortName, sortOrder, queryData) {
-    $(gridname)
+function BindGrid(gridName, toolbarName, url, columns, title, sortName, sortOrder, queryData) {
+    $(gridName)
         .datagrid({
             url: url,
             columns: columns,
@@ -25,8 +25,8 @@ function BindGrid(gridname, toolbarname, url, columns, title, sortName, sortOrde
             fitColumns: true,
             iconCls: "icon-view",
             width: "100%",
-            nowrap: true,
-            autoRowHeight: false,
+            nowrap: false,
+            autoRowHeight: true,
             striped: true,
             collapsible: true,
             pagination: true,
@@ -34,7 +34,7 @@ function BindGrid(gridname, toolbarname, url, columns, title, sortName, sortOrde
             pageList: [20, 40, 80],
             rownumbers: true,
             ctrlSelect: true,
-            toolbar: toolbarname,
+            toolbar: toolbarName,
             queryParams: queryData,
             remoteSort: true,
             method: "post",
@@ -60,32 +60,32 @@ function Confirm(title, msg, callback) {
 }
 
 //显示编辑对话框
-function ShowEditor(name, url, title) {
-    $(name)
+function ShowEditor(editorName, url, title) {
+    $(editorName)
         .dialog({
             closed: true,
             title: title,
-            href: url,
-            cache: false,
-            doSize: false
+            href: url
+//            cache: false,
+//            doSize: false
         });
 
-    $(name).dialog("open");
+    $(editorName).dialog("open");
 }
 
 //关闭编辑对话框
-function CloseEditor(name) {
-    $(name).dialog("close");
+function CloseEditor(editorName) {
+    $(editorName).dialog("close");
 }
 
 //刷新 datagrid
-function RefreshGrid(name) {
-    $(name).datagrid("reload");
+function RefreshGrid(gridName) {
+    $(gridName).datagrid("reload");
 }
 
 //向指定 url 提交
-function FormSubmit(name, url, errorMsg) {
-    $(name)
+function FormSubmit(formName, gridName, editorName, url, errorMsg) {
+    $(formName)
         .form("submit",
         {
             url: url,
@@ -94,8 +94,8 @@ function FormSubmit(name, url, errorMsg) {
             },
             success: function() {
                 $(function() {
-                    RefreshGrid();
-                    CloseEditor();
+                    RefreshGrid(gridName);
+                    CloseEditor(editorName);
                 });
             },
             error: function() {
@@ -104,15 +104,15 @@ function FormSubmit(name, url, errorMsg) {
         });
 }
 
-function Post(url, data, errorMsg) {
+function Post(gridName, editorName, url, data, errorMsg) {
     $.ajax({
         type: "POST",
         url: url,
         data: data,
         success: function() {
             $(function() {
-                RefreshGrid();
-                CloseEditor();
+                RefreshGrid(gridName);
+                CloseEditor(editorName);
             });
         },
         error: function() {
@@ -131,8 +131,8 @@ function HideControls(controlNames) {
 
 }
 
-function Delete(name, url) {
-    var rows = $(name).datagrid("getSelections");
+function Delete(gridName, url) {
+    var rows = $(gridName).datagrid("getSelections");
 
     if (rows.length === 0) {
         Alert("错误", "请至少选中一条记录。", window.AlertType.Error);
@@ -152,7 +152,7 @@ function Delete(name, url) {
                     data: JSON.stringify(ids),
                     contentType: "application/json;charset=utf-8",
                     success: function() {
-                        RefreshGrid();
+                        RefreshGrid(gridName);
                     }
                 });
             });
@@ -160,8 +160,8 @@ function Delete(name, url) {
 }
 
 //打开编辑对话框
-function Edit(name, url, editorTitle) {
-    var rows = $(name).datagrid("getSelections");
+function Edit(gridName, editorName, url, editorTitle) {
+    var rows = $(gridName).datagrid("getSelections");
 
     if (rows.length === 0) {
         Alert("错误", "请先选择一条记录。", AlertType.Error);
@@ -171,19 +171,19 @@ function Edit(name, url, editorTitle) {
     } else {
         var id = rows[0].Id;
 
-        ShowEditor(url + "/" + id, editorTitle);
+        ShowEditor(editorName, url + "/" + id, editorTitle);
     }
 }
 
 //打开添加对话框
-function Add(url, editorTitle) {
-    ShowEditor(url,
+function Add(editorName, url, editorTitle) {
+    ShowEditor(editorName, url,
         editorTitle);
 }
 
 //打开明细对话框
-function Details(name, url, editorTitle) {
-    var rows = $(name).datagrid("getSelections");
+function Details(gridName, editorName, url, editorTitle) {
+    var rows = $(gridName).datagrid("getSelections");
 
     if (rows.length === 0) {
         Alert("错误", "请先选择一条记录。", AlertType.Error);
@@ -193,16 +193,16 @@ function Details(name, url, editorTitle) {
     } else {
         var id = rows[0].Id;
 
-        ShowEditor(url + "/" + id, editorTitle);
+        ShowEditor(editorName, url + "/" + id, editorTitle);
     }
 }
 
-function ValidateForm(name) {
-    return $(name).form("enableValidation").form("validate");
+function ValidateForm(formName) {
+    return $(formName).form("enableValidation").form("validate");
 }
 
 
-function InitUploadify(name,
+function InitUploadify(uploadifyName,
     url,
     ifAuto,
     ifMulti,
@@ -213,7 +213,7 @@ function InitUploadify(name,
     uploadErrorCallback,
     uploadStartCallback,
     data) {
-    $(name)
+    $(uploadifyName)
         .uploadify({
             uploader: url,
             swf: "../Content/Uploadify/uploadify.swf",
@@ -234,20 +234,20 @@ function InitUploadify(name,
         });
 }
 
-function EditorSubmit(url, data, confirmMsg, errorMsg) {
-    if (ValidateForm()) {
+function EditorSubmit(formName, gridName, editorName, url, data, confirmMsg, errorMsg) {
+    if (ValidateForm(formName)) {
         Confirm("确认",
             confirmMsg,
-            function() { Post(url, data, errorMsg); });
+            function() { Post(gridName, editorName, url, data, errorMsg); });
     }
 }
 
-function InitTree(treename, tabsname, data) {
-    $(treename)
+function InitTree(treeName, tabsName, data) {
+    $(treeName)
         .tree({
             data: data,
             onClick: function(node) {
-                AddTab(tabsname, node.text, node.attributes.url);
+                AddTab(tabsName, node.text, node.attributes.url);
             }
         });
 }

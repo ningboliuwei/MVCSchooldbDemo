@@ -5,7 +5,7 @@
 }
 
 <div class="editorLayout">
-    @Html.Partial("~/Views/Student/_StudentEditor.cshtml")
+    @Html.Partial("~/Views/Student/_Editor.cshtml")
     @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForEdit.cshtml")
 </div>
 <script>
@@ -13,7 +13,7 @@
         $('#btnOK')
             .bind('click',
                 function() {
-                    EditorSubmit('@Url.Action("Edit", "Student")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
+                    EditorSubmit('#formEditorStudent','#gridStudent','#editorStudent','@Url.Action("Edit", "Student")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
                 });
     });
 </script>

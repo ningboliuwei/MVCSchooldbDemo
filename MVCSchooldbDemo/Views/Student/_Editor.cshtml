@@ -1,7 +1,7 @@
 ﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
 
 <div class="dialogTitle">@ViewBag.DialogTitle</div>
-<form id="ff" method="post" class="easyui-form" data-options="novalidate:true">
+<form id="formStudent" method="post" class="easyui-form" data-options="novalidate:true">
     <div id="editorTabs" class="easyui-tabs" style="padding: 5px;">
         <div title="Tab1">
             <table class="editorTable">
@@ -29,15 +29,15 @@
             </table>
         </div>
         <div title="Tab2">
-            
+
             <table class="editorTable">
                 <tr>
-                    <tr>
-                        <td class="editorNameColumn">年龄：</td>
-                        <td>
-                            <input id="Sage" class="easyui-textbox"/>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="editorNameColumn">年龄：</td>
+                    <td>
+                        <input id="Sage" class="easyui-textbox"/>
+                    </td>
+                </tr>
                 <tr>
                     <td class="editorNameColumn">系:</td>
                     <td>
@@ -65,7 +65,8 @@
 </form>
 <script>
     $(function() {
-        window.InitUploadify("@Url.Action("UploadPhoto", "Student")",
+        window.InitUploadify('#uploadify',
+            "@Url.Action("UploadPhoto", "Student")",
             true,
             false,
             1,
@@ -78,8 +79,14 @@
             function() {},
             function() {},
             {});
-    });
 
+        $('#btnCancel')
+            .bind('click',
+                function() {
+                    CloseEditor('#editorStudent');
+                }
+            );
+    });
 
     function GetData() {
         var photoFilePath = $('#Sphoto').attr('src');

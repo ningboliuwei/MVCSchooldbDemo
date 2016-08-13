@@ -3,7 +3,6 @@
     Layout = null;
 }
 
-
 <table id="gridStudent" style="height: 100%"></table>
 <div id="tbStudent">
     <table class="searchTable">
@@ -36,36 +35,36 @@
     <table class="buttonsTable">
         <tr>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" onclick="Add('@Url.Action("Create", "Student")', '添加学生记录')">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" onclick="Add('#editorStudent', '@Url.Action("Create", "Student")', '添加学生记录')">
                 添加
             </a>
         </td>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('@Url.Action("Edit", "Student")',
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('#gridStudent',    '#editorStudent',    '@Url.Action("Edit", "Student")',
     '修改学生记录')">
                 编辑
             </a>
         </td>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" onclick="Delete('@Url.Action("Delete", "Student")', 'Sno')">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" onclick="Delete('#gridStudent', '@Url.Action("Delete", "Student")', 'Sno')">
                 删除
             </a>
         </td>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="Details('@Url.Action("Details", "Student")', '学生记录明细')">详细</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="Details('#gridStudent', '#editorStudent', '@Url.Action("Details", "Student")', '学生记录明细')">
+                详细
+            </a>
         </td>
     </table>
 </div>
 <div id="editorStudent" style="display: none; height: 450px; width: 500px;"></div>
 <script>
-    var url = '@Url.Action("GetList", "Student")';
     var columns = [
         [
             {
                 field: 'Id',
                 title: 'ID',
                 width: 100,
-                sortable: true,
                 hidden: true
             },
             {
@@ -104,10 +103,10 @@
     var gridTitle = '学生记录';
     var gridSortName = 'Id';
     var gridSortOrder = 'asc';
-
+    var url = '@Url.Action("GetList", "Student")';
 
     $(function() {
-        BindGrid('#gridStudent', '#tbStudent', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+        BindGrid('#gridStudent','#tbStudent', url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }); //Show all records
 
     function Search() {
@@ -117,7 +116,14 @@
             Sdept: ($('#SearchSdept').textbox('getText') === 'ALL') ? '' : $('#SearchSdept').textbox('getText')
         };
 
-        BindGrid('#gridStudent','#tbStudent', url, columns, gridTitle, gridSortName, gridSortOrder, { queryParasString: JSON.stringify(queryData) });
+        BindGrid('#gridStudent',
+            '#tbStudent',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            { queryParasString: JSON.stringify(queryData) });
     }
 
     function ClearSearch() {
@@ -127,6 +133,7 @@
         var data = $('#SearchSdept').combobox('getData');
         $('#SearchSdept').combobox('select', data[0]["text"]);
 
-        BindGrid('#gridStudent', '#tbStudent',url, columns, gridTitle, gridSortName, gridSortOrder, {});
+        BindGrid('#gridStudent',
+            '#tbStudent', url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }
 </script>
