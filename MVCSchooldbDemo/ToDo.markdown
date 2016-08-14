@@ -50,5 +50,7 @@
 35. 解决 Editor 打开刷新的问题========= 1. 为 dialog 设置初始 width 和 height 2. 将 dialog 的 cache 属性设置为 false 3. 使用 $("#editor").dialog("open").dialog("refresh");
 36. 点击创建按钮后，会出现两个 Confirm  ======  common.js 中的 ShowEditor() 中的 dialog('open') 后的 dialog('refresh') 造成，去掉即可。
 37. Editor 中加 Tab  ============ 搞定  2016-08-11 √
+38. 在 Combobox 中增加一个默认项（如 全部） =======  详见 common.js 中的 BindComboBox ，尤其是 [textfield] 与 [valueField]，中括号作用是将其作为变量而不是常量（键值）。另外注意 loadsuccess 的作用
+
 
 

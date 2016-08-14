@@ -8,7 +8,9 @@
         <tr>
             <td>角色名</td>
             <td>
-                <select id="SearchName" class="easyui-combobox" style="width: 100px"></select>
+                <select id="SearchName" class="easyui-combobox" style="width: 100px">
+                </select>
+                
             </td>
             <td>
                 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
@@ -69,7 +71,7 @@
 
     $(function () {
         BindGrid('#gridRole', '#tbRole', url, columns, gridTitle, gridSortName, gridSortOrder, {});
-        BindCombobox('#SearchName', '@Url.Action("GetAllRoles","Role")', 'Id', 'Name');
+        BindCombobox('#SearchName', '@Url.Action("GetAllRoles","Role")', 'Id', 'Name', '全部');
     }); //Show all records
 
     function Search() {
@@ -89,7 +91,7 @@
 
     function ClearSearch() {
         var data = $('#SearchName').combobox('getData');
-        $('#SearchName').combobox('select', data[0]["text"]);
+        $('#SearchName').combobox('select', 0);
 
         BindGrid('#gridRole',
             '#tbRole', url, columns, gridTitle, gridSortName, gridSortOrder, {});

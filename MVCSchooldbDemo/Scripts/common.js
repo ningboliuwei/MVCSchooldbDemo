@@ -177,7 +177,8 @@ function Edit(gridName, editorName, url, editorTitle) {
 
 //打开添加对话框
 function Add(editorName, url, editorTitle) {
-    ShowEditor(editorName, url,
+    ShowEditor(editorName,
+        url,
         editorTitle);
 }
 
@@ -252,15 +253,21 @@ function InitTree(treeName, tabsName, data) {
         });
 }
 
-function BindCombobox(comboboxName, url, valueField, textField) {
-    $(comboboxName)
-        .combobox({
-            url: url,
-            panelHeight: 'auto',
-            valueField: valueField,
-            textField: textField,
-            onLoadSuccess: function() {
-                $(comboboxName).combobox('select', ($(comboboxName).combobox('getData')[0][valueField]));
-            }
-        });
+function BindCombobox(comboboxName, url, valueField, textField, initalText) {
+    $.ajax({
+        url: url,
+        success: function (data) {
+            var a = data;
+            console.log(a);
+            a.unshift({ [valueField]: 0, [textField]: initalText });
+            $(comboboxName)
+                .combobox({
+                    data: a,
+                    panelHeight: "auto",
+                    valueField: valueField,
+                    textField: textField,
+                    dataType: "json"
+                });
+        }
+    });
 }
