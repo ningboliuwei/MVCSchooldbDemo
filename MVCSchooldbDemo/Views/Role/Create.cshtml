@@ -1,0 +1,22 @@
+﻿@using MVCSchooldbDemo.Models.Data
+﻿@model MVCSchooldbDemo.Models.Data.RoleInfo
+@{
+    Layout = null;
+
+}
+
+
+<div class="editorLayout">
+    @Html.Partial("~/Views/Role/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForCreate.cshtml")
+</div>
+<script>
+    $(function() {
+        $('#btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('#formRole',  '#gridRole','#editorRole', '@Url.Action("Create", "Role")', window.GetData(), "确认添加角色吗？", '添加角色出现错误');
+                }
+            );
+    });
+</script>

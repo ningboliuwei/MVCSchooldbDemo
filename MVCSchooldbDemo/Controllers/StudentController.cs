@@ -6,8 +6,6 @@ using System.Web.Mvc;
 using MVCSchooldbDemo.Classes;
 using MVCSchooldbDemo.Common;
 using MVCSchooldbDemo.Models.Data;
-using MVCSchooldbDemo.Views.Student;
-
 namespace MVCSchooldbDemo.Controllers
 {
     public class StudentController : Controller

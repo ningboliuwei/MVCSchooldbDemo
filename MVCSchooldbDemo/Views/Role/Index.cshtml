@@ -1,0 +1,97 @@
+﻿@model List<MVCSchooldbDemo.Models.Data.RoleInfo>
+@{
+    Layout = null;
+}
+
+<table id="gridRole" style="height: 100%"></table>
+<div id="tbRole">
+    <table class="searchTable">
+        <tr>
+            <td>
+                <select id="SearchName" class="easyui-combobox" style="width: 100px">
+                </select>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="ClearSearch()">清空搜索条件</a>
+            </td>
+        </tr>
+    </table>
+    <table class="buttonsTable">
+        <tr>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" onclick="Add('#editorRole', '@Url.Action("Create", "Role")', '添加角色')">
+                    添加
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('#gridRole',    '#editorRole',    '@Url.Action("Edit", "Role")',
+    '修改角色')">
+                    编辑
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" onclick="Delete('#gridRole', '@Url.Action("Delete", "Role")', 'Id')">
+                    删除
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="Details('#gridRole', '#editorRole', '@Url.Action("Details", "Role")', '角色明细')">
+                    详细
+                </a>
+            </td>
+    </table>
+</div>
+<div id="editorRole" style="display: none; height: 450px; width: 500px;"></div>
+<script>
+    var columns = [
+        [
+            {
+                field: 'Id',
+                title: 'ID',
+                width: 100,
+                hidden: true
+            },
+            {
+                field: 'Name',
+                title: '角色名称',
+                width: 100,
+                sortable: true
+            }
+        ]
+    ];
+
+    var gridTitle = '角色记录';
+    var gridSortName = 'Id';
+    var gridSortOrder = 'asc';
+    var url = '@Url.Action("GetList", "Role")';
+
+    $(function() {
+        BindGrid('#gridRole','#tbRole', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }); //Show all records
+
+    function Search() {
+        var queryData = {
+            Name: ($('#SearchName').combobox('getText') === 'ALL') ? '' : $('#SearchName').combobox('getText')
+        };
+
+        BindGrid('#gridRole',
+            '#tbRole',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            { queryParasString: JSON.stringify(queryData) });
+    }
+
+    function ClearSearch() {
+        var data = $('#SearchName').combobox('getData');
+        $('#SearchName').combobox('select', data[0]["text"]);
+
+        BindGrid('#gridRole',
+            '#tbRole', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }
+</script>

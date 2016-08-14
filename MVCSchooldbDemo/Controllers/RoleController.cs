@@ -9,12 +9,10 @@ using MVCSchooldbDemo.Models.Data;
 
 namespace MVCSchooldbDemo.Controllers
 {
-    public class UserController : Controller
+    public class RoleController : Controller
     {
-//        private static List<long?> _ids = new List<long?>();
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
-        // GET: Student
         public ActionResult Index()
         {
             return View();
@@ -22,10 +20,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public string GetList(string queryParasString, int page, int rows, string sort, string order)
         {
-            var list = from r in _db.Roles join u in _db.Users
-                               on r.Id  equals u.RoleId
-                               select new { u.Id, u.Account, u.FullName, r.Name };
-            var result = DBHelper.GetResult(list.ToList(), queryParasString, page, rows, sort, order);
+            var result = DBHelper.GetResult(_db.Roles.ToList(), queryParasString, page, rows, sort, order);
 
             return result;
         }
@@ -33,25 +28,19 @@ namespace MVCSchooldbDemo.Controllers
 
         public ActionResult Details(long? id)
         {
-            ViewBag.DialogTitle = "查看学生明细";
+            ViewBag.DialogTitle = "查看角色明细";
             ViewBag.CurrentId = id;
-            return View(new UserInfo());
+            return View(new RoleInfo());
         }
 
         [HttpPost]
-        public ActionResult GetUserData(long? id)
+        public ActionResult GetRoleData(long? id)
         {
             if (id != null)
             {
-                var user = DBHelper.FindByKeyword(_db.Users.ToList(), "Id", id).First();
-                var list = _db.Users.ToList();
-                var currentIndex = list.IndexOf(user);
-
-                var item = (from r in _db.Roles
-                    where r.Id == user.RoleId
-                    select new {user.Id, user.Account, user.FullName, r.Name}).ToList().First();
-                        
-
+                var item = DBHelper.FindByKeyword(_db.Roles.ToList(), "Id", id).First();
+                var list = _db.Roles.ToList();
+                var currentIndex = list.IndexOf(item);
 
                 return new JsonResult
                 {
@@ -62,8 +51,6 @@ namespace MVCSchooldbDemo.Controllers
                                 new
                                 {
                                     item.Id,
-                                    item.Account,
-                                    item.FullName,
                                     item.Name
                                 },
                             CurrentIndex = currentIndex,
@@ -77,24 +64,21 @@ namespace MVCSchooldbDemo.Controllers
             return HttpNotFound();
         }
 
-        // GET: Student/Create
         public ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加学生记录";
+            ViewBag.DialogTitle = "添加角色";
             return View();
         }
 
-        // POST: Student/Create
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关
-        // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
+        
         [HttpPost]
         //        [ValidateAntiForgeryToken]
         //        [Bind(Include = "Id,Sno,Sname,Ssex,Sage,Sdept")]
-        public ActionResult Create(StudentInfo student)
+        public ActionResult Create(RoleInfo item)
         {
             if (ModelState.IsValid)
             {
-                _db.Students.Add(student);
+                _db.Roles.Add(item);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -102,33 +86,23 @@ namespace MVCSchooldbDemo.Controllers
             return View();
         }
 
-        // GET: Student/Edit/5
         [HttpGet]
         public ActionResult Edit(long? id)
         {
             if (id != null)
             {
-                //                var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
-                //                ViewBag.DialogTitle = "编辑学生记录";
-                //                return View(student);
-                ViewBag.DialogTitle = "编辑学生记录";
+                ViewBag.DialogTitle = "编辑角色";
                 ViewBag.CurrentId = id;
-                return View(new StudentInfo());
-            } //死循环了
-
-          
+                return View(new RoleInfo());
+            }
 
             return HttpNotFound();
         }
 
-
-        // POST: Student/Edit/5
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关
-        // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        public ActionResult Edit(StudentInfo student)
+        public ActionResult Edit(RoleInfo item)
         {
-            _db.Entry(student).State = EntityState.Modified;
+            _db.Entry(item).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -138,12 +112,12 @@ namespace MVCSchooldbDemo.Controllers
         {
             foreach (var id in ids)
             {
-                var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
-                _db.Students.Remove(student);
+                var item = DBHelper.FindByKeyword(_db.Roles.ToList(), "Id", id).First();
+                _db.Roles.Remove(item);
             }
 
             _db.SaveChanges();
-            return RedirectToAction("Index", "Student");
+            return RedirectToAction("Index", "Role");
         }
 
         protected override void Dispose(bool disposing)
@@ -154,8 +128,5 @@ namespace MVCSchooldbDemo.Controllers
             }
             base.Dispose(disposing);
         }
-
-
-
     }
 }

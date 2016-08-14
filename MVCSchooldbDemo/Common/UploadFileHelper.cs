@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using MVCSchooldbDemo.Models.Data;
-using MVCSchooldbDemo.Views.Student;
 
 namespace MVCSchooldbDemo.Common
 {

@@ -1,0 +1,92 @@
+﻿@model MVCSchooldbDemo.Models.Data.UserInfo
+<div class="dialogTitle">@ViewBag.DialogTitle</div>
+<form id="formUser" method="post" class="easyui-form" data-options="novalidate:true">
+    <table class="editorTable">
+        <tr>
+            <td class="editorNameColumn" style="width: 100px">账号</td>
+            <td>
+                <input id="Account" class="easyui-textbox"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="editorNameColumn">密码</td>
+            <td>
+                <input id="Password" class="easyui-textbox"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="editorNameColumn">确认密码</td>
+            <td>
+                <input id="ConfirmPassword" class="easyui-textbox"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="editorNameColumn">全名</td>
+            <td>
+                <input id="FullName" class="easyui-textbox" />
+            </td>
+        </tr>
+        <tr>
+            <td class="editorNameColumn">用户类别</td>
+            <td>
+                <select id="Ssex" class="easyui-combobox" style="width: 100px">
+                    <option value="普通用户">普通用户</option>
+                    <option value="管理员">管理员</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    $(function() {
+        $('#btnCancel')
+            .bind('click',
+                function() {
+                    CloseEditor('#editorStudent');
+                }
+            );
+    });
+
+    function GetData() {
+        return {
+            Account: $('#Account').textbox('getText'),
+            Password: $('#Password').textbox('getText'),
+            FullName: $('#FullName').textbox('getText'),
+            RoleId: $('#Sdept').combobox('getText')
+        };
+    }
+</script>
+
+@if (Model != null)
+{
+    <script>
+        window.previousId = -1;
+        window.nextId = -1;
+
+        $(function() { ShowData('@Url.Action("GetStudentData", "Student")' + '/' + @ViewBag.CurrentId); });
+
+        function ShowData(url) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                success: function(data) {
+                    var item = data.Item;
+
+                    $('#Sno').textbox('setText', item.Sno);
+                    $('#Sname').textbox('setText', item.Sname);
+                    $('#Sage').textbox('setText', item.Sage);
+                    $('#Ssex').combobox('setText', item.Ssex);
+                    $('#Sdept').combobox('setText', item.Sdept);
+                    $('#Sphoto').attr('src', '../' + item.SphotoPath);
+
+                    window.previousId = data.PreviousId;
+                    window.nextId = data.NextId;
+                },
+                error: function() {
+                    Alert("错误", 'error', AlertType.Error);
+                },
+                dataType: "json"
+            });
+        };
+    </script>
+}

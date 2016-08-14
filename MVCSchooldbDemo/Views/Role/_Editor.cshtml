@@ -1,0 +1,58 @@
+﻿@model MVCSchooldbDemo.Models.Data.RoleInfo
+
+<div class="dialogTitle">@ViewBag.DialogTitle</div>
+<form id="formRole" method="post" class="easyui-form" data-options="novalidate:true">
+    <table class="editorTable">
+        <tr>
+            <td class="editorNameColumn" style="width: 100px">角色名</td>
+            <td>
+                <input id="Sno" class="easyui-textbox"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    $(function() {
+        $('#btnCancel')
+            .bind('click',
+                function() {
+                    CloseEditor('#editorRole');
+                }
+            );
+    });
+
+    function GetData() {
+        return {
+            Name: $('#Name').textbox('getText'),
+        };
+    }
+</script>
+
+@if (Model != null)
+{
+    <script>
+        window.previousId = -1;
+        window.nextId = -1;
+
+        $(function() { ShowData('@Url.Action("GetRoleData", "Role")' + '/' + @ViewBag.CurrentId); });
+
+        function ShowData(url) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                success: function(data) {
+                    var item = data.Item;
+
+                    $('#Name').textbox('setText', item.Name);
+
+                    window.previousId = data.PreviousId;
+                    window.nextId = data.NextId;
+                },
+                error: function() {
+                    Alert("错误", 'error', AlertType.Error);
+                },
+                dataType: "json"
+            });
+        };
+    </script>
+}

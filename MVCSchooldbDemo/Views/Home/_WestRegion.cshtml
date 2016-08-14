@@ -1,5 +1,5 @@
-﻿<div id="aa" class="easyui-accordion" data-options="fit:true">
-    <div title="Title1" data-options="iconCls:'icon-save',selected:false" style="overflow: auto; padding: 10px;">
+﻿<div id="aa" class="easyui-accordion" data-options="mulitple:true, fit:true" >
+    <div title="Title1" data-options="iconCls:'icon-save',selected:false" style="overflow:  auto; padding: 10px;">
         <ul id="tt" class="easyui-tree" data-options="animate:true,lines:true"></ul>
     </div>
     <div title="系统维护" data-options="iconCls:'icon-save',selected:true" style="overflow: auto; padding: 10px;">
@@ -20,6 +20,7 @@
                     "text": "课程管理"
                 }
             ]);
+
             InitTree('#tt2', '#tabsHome',
             [
                 {
@@ -29,7 +30,9 @@
                     "attributes": { url: "@Url.Action("Index", "User")" }
                 }, {
                     "id": 2,
-                    "text": "角色管理"
+                    "text": "角色管理",
+                    "iconCls": "icon-save",
+                    "attributes": { url: "@Url.Action("Index", "Role")" }
                 }
             ]);
         });

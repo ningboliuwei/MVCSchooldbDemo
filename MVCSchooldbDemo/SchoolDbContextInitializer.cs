@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using MVCSchooldbDemo.Models.Data;
-using MVCSchooldbDemo.Views.Student;
 using SQLite.CodeFirst;
 
 namespace MVCSchooldbDemo
