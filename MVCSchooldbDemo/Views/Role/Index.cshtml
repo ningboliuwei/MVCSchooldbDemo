@@ -2,14 +2,13 @@
 @{
     Layout = null;
 }
-
 <table id="gridRole" style="height: 100%"></table>
 <div id="tbRole">
     <table class="searchTable">
         <tr>
+            <td>角色名</td>
             <td>
-                <select id="SearchName" class="easyui-combobox" style="width: 100px">
-                </select>
+                <select id="SearchName" class="easyui-combobox" style="width: 100px"></select>
             </td>
             <td>
                 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
@@ -27,7 +26,7 @@
                 </a>
             </td>
             <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('#gridRole',    '#editorRole',    '@Url.Action("Edit", "Role")',
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('#gridRole', '#editorRole',    '@Url.Action("Edit", "Role")',
     '修改角色')">
                     编辑
                 </a>
@@ -63,13 +62,14 @@
         ]
     ];
 
-    var gridTitle = '角色记录';
+    var gridTitle = '角色';
     var gridSortName = 'Id';
     var gridSortOrder = 'asc';
     var url = '@Url.Action("GetList", "Role")';
 
-    $(function() {
-        BindGrid('#gridRole','#tbRole', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    $(function () {
+        BindGrid('#gridRole', '#tbRole', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+        BindCombobox('#SearchName', '@Url.Action("GetAllRoles","Role")', 'Id', 'Name');
     }); //Show all records
 
     function Search() {
@@ -94,4 +94,6 @@
         BindGrid('#gridRole',
             '#tbRole', url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }
+
+
 </script>

@@ -251,3 +251,16 @@ function InitTree(treeName, tabsName, data) {
             }
         });
 }
+
+function BindCombobox(comboboxName, url, valueField, textField) {
+    $(comboboxName)
+        .combobox({
+            url: url,
+            panelHeight: 'auto',
+            valueField: valueField,
+            textField: textField,
+            onLoadSuccess: function() {
+                $(comboboxName).combobox('select', ($(comboboxName).combobox('getData')[0][valueField]));
+            }
+        });
+}

@@ -25,6 +25,12 @@ namespace MVCSchooldbDemo.Controllers
             return result;
         }
 
+	    public ActionResult GetAllRoles()
+	    {
+		    return new JsonResult() {Data = _db.Roles.ToList(),
+				JsonRequestBehavior = JsonRequestBehavior.AllowGet
+			};
+	    }
 
         public ActionResult Details(long? id)
         {
