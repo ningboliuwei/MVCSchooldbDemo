@@ -66,8 +66,8 @@ function ShowEditor(editorName, url, title) {
             closed: true,
             title: title,
             href: url
-//            cache: false,
-//            doSize: false
+            //            cache: false,
+            //            doSize: false
         });
 
     $(editorName).dialog("open");
@@ -140,9 +140,9 @@ function Delete(gridName, url) {
         Confirm("确认",
             "确认删除选中的记录吗？",
             function() {
-                var ids = [];
+                const ids = [];
 
-                for (var i = 0; i < rows.length; i++) {
+                for (let i = 0; i < rows.length; i++) {
                     ids.push(rows[i].Id);
                 }
 
@@ -161,7 +161,7 @@ function Delete(gridName, url) {
 
 //打开编辑对话框
 function Edit(gridName, editorName, url, editorTitle) {
-    var rows = $(gridName).datagrid("getSelections");
+    const rows = $(gridName).datagrid("getSelections");
 
     if (rows.length === 0) {
         Alert("错误", "请先选择一条记录。", AlertType.Error);
@@ -169,7 +169,7 @@ function Edit(gridName, editorName, url, editorTitle) {
         Alert("错误", "请只选择一条记录。", AlertType.Error);
         return;
     } else {
-        var id = rows[0].Id;
+        const id = rows[0].Id;
 
         ShowEditor(editorName, url + "/" + id, editorTitle);
     }
@@ -184,7 +184,7 @@ function Add(editorName, url, editorTitle) {
 
 //打开明细对话框
 function Details(gridName, editorName, url, editorTitle) {
-    var rows = $(gridName).datagrid("getSelections");
+    const rows = $(gridName).datagrid("getSelections");
 
     if (rows.length === 0) {
         Alert("错误", "请先选择一条记录。", AlertType.Error);
@@ -192,7 +192,7 @@ function Details(gridName, editorName, url, editorTitle) {
         Alert("错误", "请只选择一条记录。", AlertType.Error);
         return;
     } else {
-        var id = rows[0].Id;
+        const id = rows[0].Id;
 
         ShowEditor(editorName, url + "/" + id, editorTitle);
     }
@@ -239,7 +239,9 @@ function EditorSubmit(formName, gridName, editorName, url, data, confirmMsg, err
     if (ValidateForm(formName)) {
         Confirm("确认",
             confirmMsg,
-            function() { Post(gridName, editorName, url, data, errorMsg); });
+            function() {
+                Post(gridName, editorName, url, data, errorMsg);
+            });
     }
 }
 
@@ -256,13 +258,11 @@ function InitTree(treeName, tabsName, data) {
 function BindCombobox(comboboxName, url, valueField, textField, initalText) {
     $.ajax({
         url: url,
-        success: function (data) {
-            var a = data;
-            console.log(a);
-            a.unshift({ [valueField]: 0, [textField]: initalText });
+        success: function(data) {
+            data.unshift({ [valueField]: 0, [textField]: initalText });
             $(comboboxName)
                 .combobox({
-                    data: a,
+                    data: data,
                     panelHeight: "auto",
                     valueField: valueField,
                     textField: textField,
@@ -270,4 +270,8 @@ function BindCombobox(comboboxName, url, valueField, textField, initalText) {
                 });
         }
     });
+}
+
+function RefreshCombobox(comboboxName) {
+    $(comboboxName).combobox("reload");
 }
