@@ -52,6 +52,8 @@
 37. Editor 中加 Tab  ============ 搞定  2016-08-11 √
 38. Combobox 绑定数据。在 Combobox 中增加一个默认项（如 全部） =======  详见 common.js 中的 BindComboBox ，尤其是 [textfield] 与 [valueField]，中括号作用是将其作为变量而不是常量（键值）。另外注意 loadsuccess 的作用
 39. 点击 Combobox 时获取最新数据  ========== 在 select 标签外加上 div 标签，并在 onclick 事件中重新绑定 combobox 的数据
+40. 若碰到 datagrid 的 resizing 问题（很多 exception），很大概率是因为在 Index.cshtml 中的 添加/删除/修改 几个按钮的 onclick 事件中调用 Add() 等方法把 editor 名当做 datagrid 在用了，注意一下。（也就是注意这几个函数的参数对不对）
+41. 需要解决点击 combobo 一下，不选择，又点一下，combobox 为空的问题。
 
 
 

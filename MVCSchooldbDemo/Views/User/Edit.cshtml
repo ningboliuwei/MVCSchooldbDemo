@@ -1,17 +1,19 @@
-﻿
+﻿﻿@model MVCSchooldbDemo.Models.Data.UserInfo
+
 @{
     Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+<div class="editorLayout">
+    @Html.Partial("~/Views/User/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForEdit.cshtml")
+</div>
+<script>
+    $(function() {
+        $('#btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('#formUser','#gridUser','#editorUser','@Url.Action("Edit", "User")', window.GetData(), "确认修改用户吗？", '修改用户出现错误');;
+                });
+    });
+</script>

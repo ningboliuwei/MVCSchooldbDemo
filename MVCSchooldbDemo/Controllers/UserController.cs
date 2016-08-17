@@ -11,10 +11,8 @@ namespace MVCSchooldbDemo.Controllers
 {
     public class UserController : Controller
     {
-//        private static List<long?> _ids = new List<long?>();
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
-        // GET: Student
         public ActionResult Index()
         {
             return View();
@@ -30,14 +28,6 @@ namespace MVCSchooldbDemo.Controllers
             return result;
         }
 
-
-        public ActionResult Details(long? id)
-        {
-            ViewBag.DialogTitle = "查看学生明细";
-            ViewBag.CurrentId = id;
-            return View(new UserInfo());
-        }
-
         [HttpPost]
         public ActionResult GetUserData(long? id)
         {
@@ -49,9 +39,7 @@ namespace MVCSchooldbDemo.Controllers
 
                 var item = (from r in _db.Roles
                     where r.Id == user.RoleId
-                    select new {user.Id, user.Account, user.FullName, r.Name}).ToList().First();
-                        
-
+                    select new {user.Id, user.Account, user.FullName, user.RoleId, RoleName = r.Name}).ToList().First();
 
                 return new JsonResult
                 {
@@ -64,7 +52,8 @@ namespace MVCSchooldbDemo.Controllers
                                     item.Id,
                                     item.Account,
                                     item.FullName,
-                                    item.Name
+                                    item.RoleId,
+                                    item.RoleName
                                 },
                             CurrentIndex = currentIndex,
                             PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,
@@ -77,16 +66,12 @@ namespace MVCSchooldbDemo.Controllers
             return HttpNotFound();
         }
 
-        // GET: Student/Create
         public ActionResult Create()
         {
             ViewBag.DialogTitle = "添加用户";
             return View();
         }
-
-        // POST: Student/Create
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关
-        // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
+      
         [HttpPost]
         //        [ValidateAntiForgeryToken]
         //        [Bind(Include = "Id,Sno,Sname,Ssex,Sage,Sdept")]
@@ -108,27 +93,18 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                //                var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
-                //                ViewBag.DialogTitle = "编辑学生记录";
-                //                return View(student);
-                ViewBag.DialogTitle = "编辑学生记录";
+                ViewBag.DialogTitle = "编辑用户";
                 ViewBag.CurrentId = id;
-                return View(new StudentInfo());
-            } //死循环了
-
-          
+                return View(new UserInfo());
+            } 
 
             return HttpNotFound();
         }
 
-
-        // POST: Student/Edit/5
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关
-        // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        public ActionResult Edit(StudentInfo student)
+        public ActionResult Edit(UserInfo user)
         {
-            _db.Entry(student).State = EntityState.Modified;
+            _db.Entry(user).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -138,12 +114,12 @@ namespace MVCSchooldbDemo.Controllers
         {
             foreach (var id in ids)
             {
-                var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
-                _db.Students.Remove(student);
+                var user = DBHelper.FindByKeyword(_db.Users.ToList(), "Id", id).First();
+                _db.Users.Remove(user);
             }
 
             _db.SaveChanges();
-            return RedirectToAction("Index", "Student");
+            return RedirectToAction("Index", "User");
         }
 
         protected override void Dispose(bool disposing)
@@ -154,8 +130,5 @@ namespace MVCSchooldbDemo.Controllers
             }
             base.Dispose(disposing);
         }
-
-
-
     }
 }

@@ -29,7 +29,7 @@
         <tr>
             <td class="editorNameColumn">用户类别</td>
             <td>
-                <div onclick="$('#Role').combobox('clear');BindCombobox('#UserRole', '@Url.Action("GetAllRoles","Role")', 'Id', 'Name', null);">
+                <div onclick="$('#UserRole').combobox('clear');BindCombobox('#UserRole', '@Url.Action("GetAllRoles","Role")', 'Id', 'Name', null);">
                     <select id="UserRole" class="easyui-combobox" style="width: 100px"></select>
                 </div>
             </td>
@@ -38,13 +38,13 @@
 </form>
 <script>
     $(function() {
-        BindCombobox('#Role', '@Url.Action("GetAllRoles","Role")', 'Id', 'Name', null);
+        BindCombobox('#UserRole', '@Url.Action("GetAllRoles","Role")', 'Id', 'Name', null);
         $('#Role').combobox('select', 0);
 
         $('#btnCancel')
             .bind('click',
                 function() {
-                    CloseEditor('#editorRole');
+                    CloseEditor('#editorUser');
                 }
             );
     });
@@ -65,7 +65,7 @@
         window.previousId = -1;
         window.nextId = -1;
 
-        $(function() { ShowData('@Url.Action("GetRoleData", "Role")' + '/' + @ViewBag.CurrentId); });
+        $(function() { ShowData('@Url.Action("GetUserData", "User")' + '/' + @ViewBag.CurrentId); });
 
         function ShowData(url) {
             $.ajax({
@@ -77,6 +77,8 @@
                     $('#Account').textbox('setText', item.Account);
                     $('#Password').textbox('setText', item.Password);
                     $('#FullName').textbox('setText', item.FullName);
+                    console.log(item.RoleId);
+                    $('#UserRole').combobox('setValue', item.RoleId);
 
                     window.previousId = data.PreviousId;
                     window.nextId = data.NextId;
