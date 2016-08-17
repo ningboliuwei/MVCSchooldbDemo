@@ -24,7 +24,7 @@ namespace MVCSchooldbDemo.Controllers
         {
             var list = from r in _db.Roles join u in _db.Users
                                on r.Id  equals u.RoleId
-                               select new { u.Id, u.Account, u.FullName, r.Name };
+                               select new { u.Id, u.Account, u.FullName, RoleName = r.Name };
             var result = DBHelper.GetResult(list.ToList(), queryParasString, page, rows, sort, order);
 
             return result;
@@ -80,7 +80,7 @@ namespace MVCSchooldbDemo.Controllers
         // GET: Student/Create
         public ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加学生记录";
+            ViewBag.DialogTitle = "添加用户";
             return View();
         }
 
@@ -90,11 +90,11 @@ namespace MVCSchooldbDemo.Controllers
         [HttpPost]
         //        [ValidateAntiForgeryToken]
         //        [Bind(Include = "Id,Sno,Sname,Ssex,Sage,Sdept")]
-        public ActionResult Create(StudentInfo student)
+        public ActionResult Create(UserInfo user)
         {
             if (ModelState.IsValid)
             {
-                _db.Students.Add(student);
+                _db.Users.Add(user);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }

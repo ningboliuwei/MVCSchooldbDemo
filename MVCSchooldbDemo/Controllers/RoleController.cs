@@ -32,13 +32,6 @@ namespace MVCSchooldbDemo.Controllers
 			};
 	    }
 
-        public ActionResult Details(long? id)
-        {
-            ViewBag.DialogTitle = "查看角色明细";
-            ViewBag.CurrentId = id;
-            return View(new RoleInfo());
-        }
-
         [HttpPost]
         public ActionResult GetRoleData(long? id)
         {
@@ -80,11 +73,11 @@ namespace MVCSchooldbDemo.Controllers
         [HttpPost]
         //        [ValidateAntiForgeryToken]
         //        [Bind(Include = "Id,Sno,Sname,Ssex,Sage,Sdept")]
-        public ActionResult Create(RoleInfo item)
+        public ActionResult Create(RoleInfo role)
         {
             if (ModelState.IsValid)
             {
-                _db.Roles.Add(item);
+                _db.Roles.Add(role);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }

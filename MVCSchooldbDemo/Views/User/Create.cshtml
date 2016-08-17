@@ -1,17 +1,25 @@
-﻿@{
+﻿﻿@model MVCSchooldbDemo.Models.Data.RoleInfo
+@{
     Layout = null;
 }
+<div class="editorLayout">
+    @Html.Partial("~/Views/User/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForCreate.cshtml")
+</div>
+<script>
+    $(function() {
+            $('#btnOK')
+                .bind('click',
+                    function() {
+                        EditorSubmit('#formUser',
+                            '#gridUser',
+                            '#editorUser',
+                            '@Url.Action("Create", "User")',
+                            window.GetData(),
+                            "确认添加角色吗？",
+                            '添加角色出现错误');
+                    });
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+        }
+    );
+</script>

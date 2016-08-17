@@ -259,7 +259,10 @@ function BindCombobox(comboboxName, url, valueField, textField, initalText) {
     $.ajax({
         url: url,
         success: function(data) {
-            data.unshift({ [valueField]: 0, [textField]: initalText });
+            if (initalText !== null) {
+                data.unshift({ [valueField]: 0, [textField]: initalText });
+            }
+
             $(comboboxName)
                 .combobox({
                     data: data,

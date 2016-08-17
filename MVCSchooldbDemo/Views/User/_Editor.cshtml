@@ -29,20 +29,22 @@
         <tr>
             <td class="editorNameColumn">用户类别</td>
             <td>
-                <select id="Ssex" class="easyui-combobox" style="width: 100px">
-                    <option value="普通用户">普通用户</option>
-                    <option value="管理员">管理员</option>
-                </select>
+                <div onclick="$('#Role').combobox('clear');BindCombobox('#UserRole', '@Url.Action("GetAllRoles","Role")', 'Id', 'Name', null);">
+                    <select id="UserRole" class="easyui-combobox" style="width: 100px"></select>
+                </div>
             </td>
         </tr>
     </table>
 </form>
 <script>
     $(function() {
+        BindCombobox('#Role', '@Url.Action("GetAllRoles","Role")', 'Id', 'Name', null);
+        $('#Role').combobox('select', 0);
+
         $('#btnCancel')
             .bind('click',
                 function() {
-                    CloseEditor('#editorStudent');
+                    CloseEditor('#editorRole');
                 }
             );
     });
@@ -52,7 +54,7 @@
             Account: $('#Account').textbox('getText'),
             Password: $('#Password').textbox('getText'),
             FullName: $('#FullName').textbox('getText'),
-            RoleId: $('#Sdept').combobox('getText')
+            RoleId: $('#UserRole').combobox('getValue')
         };
     }
 </script>
@@ -63,7 +65,7 @@
         window.previousId = -1;
         window.nextId = -1;
 
-        $(function() { ShowData('@Url.Action("GetStudentData", "Student")' + '/' + @ViewBag.CurrentId); });
+        $(function() { ShowData('@Url.Action("GetRoleData", "Role")' + '/' + @ViewBag.CurrentId); });
 
         function ShowData(url) {
             $.ajax({
@@ -72,12 +74,9 @@
                 success: function(data) {
                     var item = data.Item;
 
-                    $('#Sno').textbox('setText', item.Sno);
-                    $('#Sname').textbox('setText', item.Sname);
-                    $('#Sage').textbox('setText', item.Sage);
-                    $('#Ssex').combobox('setText', item.Ssex);
-                    $('#Sdept').combobox('setText', item.Sdept);
-                    $('#Sphoto').attr('src', '../' + item.SphotoPath);
+                    $('#Account').textbox('setText', item.Account);
+                    $('#Password').textbox('setText', item.Password);
+                    $('#FullName').textbox('setText', item.FullName);
 
                     window.previousId = data.PreviousId;
                     window.nextId = data.NextId;

@@ -575,7 +575,6 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\_Editor.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
-    <Content Include="Views\Role\Details.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\Edit.cshtml" />
     <Content Include="Views\Role\_Editor.cshtml" />
@@ -588,6 +587,7 @@
     <Folder Include="Content\EasyUI\themes\metro-red\" />
     <Folder Include="Content\Images\" />
     <Folder Include="UploadedFiles\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

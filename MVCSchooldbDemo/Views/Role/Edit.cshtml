@@ -1,18 +1,19 @@
-﻿@model MVCSchooldbDemo.Models.Data.RoleInfo
+﻿﻿@model MVCSchooldbDemo.Models.Data.RoleInfo
 
 @{
     Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+<div class="editorLayout">
+    @Html.Partial("~/Views/Role/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForEdit.cshtml")
+</div>
+<script>
+    $(function() {
+        $('#btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('#formRole','#gridRole','#editorRole','@Url.Action("Edit", "Role")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
+                });
+    });
+</script>

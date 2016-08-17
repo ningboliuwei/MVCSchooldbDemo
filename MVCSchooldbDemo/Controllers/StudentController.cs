@@ -10,7 +10,6 @@ namespace MVCSchooldbDemo.Controllers
 {
     public class StudentController : Controller
     {
-//        private static List<long?> _ids = new List<long?>();
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
         // GET: Student
@@ -22,9 +21,6 @@ namespace MVCSchooldbDemo.Controllers
         public string GetList(string queryParasString, int page, int rows, string sort, string order)
         {
             var result = DBHelper.GetResult(_db.Students.ToList(), queryParasString, page, rows, sort, order);
-
-//            _ids = DBHelper.GetListFromResultString<StudentInfo, long?>(s => s.Id, result);
-
 
             return result;
         }
