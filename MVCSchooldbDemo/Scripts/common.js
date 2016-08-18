@@ -255,26 +255,28 @@ function InitTree(treeName, tabsName, data) {
         });
 }
 
-function BindCombobox(comboboxName, url, valueField, textField, initalText) {
-    $.ajax({
-        url: url,
-        success: function(data) {
-            if (initalText !== null) {
-                data.unshift({ [valueField]: 0, [textField]: initalText });
-            }
+function BindCombobox(comboboxName, url, valueField, textField, initalText, callbackOnHidePanel) {
+    $(comboboxName)
+        .combobox({
+            url: url,
+            panelHeight: "auto",
+            valueField: valueField,
+            textField: textField,
+            dataType: "json",
+            onShowPanel: function() {
+                $(comboboxName).combobox("reload");
 
-            $(comboboxName)
-                .combobox({
-                    data: data,
-                    panelHeight: "auto",
-                    valueField: valueField,
-                    textField: textField,
-                    dataType: "json"
-                });
-        }
-    });
+            },
+            onLoadSuccess: function() {
+                const data = $(comboboxName).combobox("getData");
+                if (initalText !== null && data[0][[textField]] !== initalText) {
+                    data.unshift({ [valueField]: 0, [textField]: initalText });
+                    $(comboboxName).combobox("loadData", data);
+                }
+            }
+        });
 }
 
 function RefreshCombobox(comboboxName) {
     $(comboboxName).combobox("reload");
-}
+};

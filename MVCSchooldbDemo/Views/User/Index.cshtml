@@ -10,15 +10,15 @@
         <tr>
             <td>账号</td>
             <td>
-                <input id="SearchAccount" class="easyui-textbox" style="width: 110px">
+                <input id="User_SearchAccount" class="easyui-textbox" style="width: 110px">
             </td>
             <td>全名</td>
             <td>
-                <input id="SearchFullName" class="easyui-textbox" style="width: 110px">
+                <input id="User_SearchFullName" class="easyui-textbox" style="width: 110px">
             </td>
             <td>类别</td>
             <td>
-                <select id="SearchRole" class="easyui-combobox" style="width: 100px">
+                <select id="User_SearchRole" class="easyui-combobox" style="width: 100px">
                 </select>
             </td>
             <td>
@@ -89,12 +89,18 @@
 
     $(function() {
         BindGrid('#gridUser', '#tbUser', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+
+        BindCombobox('#User_SearchRole',
+            '@Url.Action("GetAllRoles", "Role")',
+            'Id',
+            'Name',
+            '全部类型');
     }); //Show all records
 
     function Search() {
         const queryData = {
-            Account: $('#SearchAccount').textbox('getText'),
-            FullName: $('#SearchFullName').textbox('getText'),
+            Account: $('#User_SearchAccount').textbox('getText'),
+            FullName: $('#User_SearchFullName').textbox('getText'),
 //            Role: ($('#SearchRole').combobox('getText') === 'ALL') ? '' : $('#SearchSdept').combobox('getText')
         };
 
@@ -109,11 +115,11 @@
     }
 
     function ClearSearch() {
-        $('#SearchAccount').textbox('clear');
-        $('#SearchFullName').textbox('clear');
+        $('#User_SearchAccount').textbox('clear');
+        $('#User_SearchFullName').textbox('clear');
 
         const data = $('#SearchRole').combobox('getData');
-        $('#SearchRole').combobox('select', data[0]["text"]);
+        $('#User_SearchRole').combobox('select', data[0]["text"]);
 
         BindGrid('#gridUser', '#tbUser', url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }

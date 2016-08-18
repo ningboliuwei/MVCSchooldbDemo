@@ -8,9 +8,7 @@
         <tr>
             <td>角色名</td>
             <td>
-                <div onclick="$('#SearchName').combobox('clear');BindCombobox('#SearchName', '@Url.Action("GetAllRoles","Role")', 'Id', 'Name', '全部');">
-                    <select id="SearchName" class="easyui-combobox" style="width: 100px"></select>
-                </div>
+                <select id="Role_SearchRole" class="easyui-combobox" style="width: 100px"></select>
             </td>
             <td>
                 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
@@ -22,22 +20,22 @@
     </table>
     <table class="buttonsTable">
         <tr>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" onclick="Add('#editorRole', '@Url.Action("Create", "Role")', '添加角色')">
-                    添加
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('#gridRole', '#editorRole',    '@Url.Action("Edit", "Role")',
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" onclick="Add('#editorRole', '@Url.Action("Create", "Role")', '添加角色')">
+                添加
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('#gridRole',    '#editorRole',    '@Url.Action("Edit", "Role")',
     '修改角色')">
-                    编辑
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" onclick="Delete('#gridRole', '@Url.Action("Delete", "Role")')">
-                    删除
-                </a>
-            </td>
+                编辑
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" onclick="Delete('#gridRole', '@Url.Action("Delete", "Role")')">
+                删除
+            </a>
+        </td>
     </table>
 </div>
 <div id="editorRole" style="display: none; height: 450px; width: 500px;"></div>
@@ -64,16 +62,19 @@
     var gridSortOrder = 'asc';
     var url = '@Url.Action("GetList", "Role")';
 
-    $(function () {
+    $(function() {
         BindGrid('#gridRole', '#tbRole', url, columns, gridTitle, gridSortName, gridSortOrder, {});
-        BindCombobox('#SearchName', '@Url.Action("GetAllRoles","Role")', 'Id', 'Name', '全部');
 
-       
-    }); //Show all records
+        BindCombobox('#Role_SearchRole',
+            '@Url.Action("GetAllRoles", "Role")',
+            'Id',
+            'Name',
+            '全部类型');
+    });
 
     function Search() {
-        var queryData = {
-            Name: ($('#SearchName').combobox('getText') === 'ALL') ? '' : $('#SearchName').combobox('getText')
+        const queryData = {
+            Name: ($('#Role_SearchRole').combobox('getText') === 'ALL') ? '' : $('#Role_SearchRole').combobox('getText')
         };
 
         BindGrid('#gridRole',
@@ -87,9 +88,15 @@
     }
 
     function ClearSearch() {
-        $('#SearchName').combobox('select', 0);
+        $('#Role_SearchRole').combobox('select', 0);
 
         BindGrid('#gridRole',
-            '#tbRole', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+            '#tbRole',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            {});
     }
 </script>

@@ -39,7 +39,10 @@
 <script>
     $(function() {
         BindCombobox('#UserRole', '@Url.Action("GetAllRoles","Role")', 'Id', 'Name', null);
-        $('#Role').combobox('select', 0);
+//        $('#Role').combobox('select', 0);
+
+
+
 
         $('#btnCancel')
             .bind('click',
