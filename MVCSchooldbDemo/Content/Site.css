@@ -28,9 +28,8 @@ textarea {
 }**/
 
 
-body {
-	font-family: "Microsoft YaHei";
-}
+body { font-family: "微软雅黑"; }
+
 .editorLayout { padding: 0 20px 10px 20px; }
 
 .editorTable {
@@ -59,3 +58,17 @@ body {
 	float: right;
 	padding: 10px 0;
 }
+
+#footer {
+	text-align: center;
+	padding: 3px;
+}
+
+#header {
+}
+
+.navBar {
+	float: right;
+	margin: auto 10px auto auto;
+}
+

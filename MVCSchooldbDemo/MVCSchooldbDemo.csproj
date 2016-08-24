@@ -190,6 +190,8 @@
     <Content Include="Content\EasyUI\themes\metro\images\passwordbox_close.png" />
     <Content Include="Content\EasyUI\themes\metro\images\passwordbox_open.png" />
     <Content Include="Content\EasyUI\themes\metro\passwordbox.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\bullet_error.png" />
     <Content Include="Content\Images\loading1.gif" />
     <Content Include="Content\Images\loginbj.png" />
@@ -533,11 +535,17 @@
     <Content Include="Content\EasyUI\themes\mobile.css" />
     <Content Include="Content\Uploadify\uploadify.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\EasyUI\themes\material\images\Thumbs.db" />
     <Content Include="App_Data\Schooldb.sqlite" />
     <Content Include="Scripts\easyui-lang-zh_CN.js" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
@@ -584,6 +592,8 @@
     <Content Include="Views\Role\Edit.cshtml" />
     <Content Include="Views\Role\_Editor.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\_SouthRegion.cshtml" />
+    <Content Include="Views\Home\_NorthRegion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\EasyUI\themes\metro-blue\" />

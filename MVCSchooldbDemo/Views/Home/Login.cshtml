@@ -83,7 +83,7 @@
                                             $("#txtPassword").val("");
                                             formMessage('密码错误', 'error');
                                         } else if (rs === '1') {
-                                            formMessage('登录成功，正在跳转', 'succeed');
+                                            formMessage('登录成功，正在跳转...', 'succeed');
                                             window.location.href = '@Url.Action("Index", "Home")';
                                         } else {
                                             alert(rs);
