@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Login</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body class="Loginbody">
+<div class="logo">
+</div>
+<div class="content">
+    <div class="Loginform">
+        <div class="form-message">
+        </div>
+        <div class="form-account">
+            账户
+            <input id="txtAccount" type="text"/>
+        </div>
+        <div class="form-password">
+            密码
+            <input id="txtPassword" type="password"/>
+        </div>
+        <div class="form-bottom">
+            <div id="btnLogin" class="btnLogin"></div>
+        </div>
+    </div>
+</div>
+<script>
+    /*
+检查浏览器是否支持
+*/
+    var isIE = !!window.ActiveXObject;
+    var isIE6 = isIE && !window.XMLHttpRequest;
+    if (isIE6) {
+        window.location.href = "../Error/Browser";
+    }
+    //回车键
+    document.onkeydown = function(e) {
+        if (!e) e = window.event; //火狐中是 window.event
+        if ((e.keyCode || e.which) === 13) {
+            $("#btnLogin").focus();
+            $("#btnLogin").click();
+        }
+    };
+
+    $(function() {
+        $("#btnLogin")
+            .bind('click',
+                function() {
+                    const account = $("#txtAccount").val();
+                    const password = $("#txtPassword").val();
+                    if (account === "") {
+                        $("#txtAccount").focus();
+                        formMessage('账户输入框不能为空', 'warning');
+                        return false;
+                    } else if (password === "") {
+                        $("#txtPassword").focus();
+                        formMessage('密码输入框不能为空', 'warning');
+                        return false;
+                    } else {
+                        const url = '@Url.Action("Login", "Home")';
+                        formMessage('正在登录...', 'succeed');
+                        window.setTimeout(function() {
+                                const data = {
+                                    Account: $('#txtAccount').val(),
+                                    Password: $('#txtPassword').val()
+                                };
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: url,
+                                    data: data,
+                                    success: function(rs) {
+                                        if (rs === '-1') {
+                                            $("#txtaccount").focus();
+                                            formMessage('账户不存在', 'error');
+                                        } else if (rs === '-2') {
+                                            $("#txtAccount").focus();
+                                            $("#txtPassword").val("");
+                                            formMessage('密码错误', 'error');
+                                        } else if (rs === '1') {
+                                            formMessage('登录成功，正在跳转', 'succeed');
+                                            window.location.href = '@Url.Action("Index", "Home")';
+                                        } else {
+                                            alert(rs);
+                                        }
+                                    },
+                                    error: function() {
+                                        Alert("错误", errorMsg, AlertType.Error);
+                                    },
+                                    dataType: "html"
+                                });
+                            },
+                            500);
+                    }
+                });
+    });
+
+    //提示信息
+    function formMessage(msg, type) {
+        $('.form-message').html('');
+        $('.form-message').append(`<div class="form-${type}-text">${msg}</div>`);
+    }
+</script>
+</body>
+</html>

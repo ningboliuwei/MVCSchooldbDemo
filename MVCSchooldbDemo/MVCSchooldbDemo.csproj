@@ -155,6 +155,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\DBHelper.cs" />
     <Compile Include="Common\UploadFileHelper.cs" />
+    <Compile Include="Common\UtilityHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -189,6 +190,11 @@
     <Content Include="Content\EasyUI\themes\metro\images\passwordbox_close.png" />
     <Content Include="Content\EasyUI\themes\metro\images\passwordbox_open.png" />
     <Content Include="Content\EasyUI\themes\metro\passwordbox.css" />
+    <Content Include="Content\Images\bullet_error.png" />
+    <Content Include="Content\Images\loading1.gif" />
+    <Content Include="Content\Images\loginbj.png" />
+    <Content Include="Content\Images\validatebox_warning.png" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\Uploadify\uploadify-cancel.png" />
     <Content Include="Content\Uploadify\uploadify.swf" />
     <Content Include="Content\EasyUI\themes\black\accordion.css" />
@@ -577,6 +583,7 @@
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\Edit.cshtml" />
     <Content Include="Views\Role\_Editor.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\EasyUI\themes\metro-blue\" />
@@ -584,7 +591,6 @@
     <Folder Include="Content\EasyUI\themes\metro-green\" />
     <Folder Include="Content\EasyUI\themes\metro-orange\" />
     <Folder Include="Content\EasyUI\themes\metro-red\" />
-    <Folder Include="Content\Images\" />
     <Folder Include="UploadedFiles\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

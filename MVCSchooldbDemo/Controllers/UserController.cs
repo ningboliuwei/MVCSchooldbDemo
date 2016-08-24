@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using MVCSchooldbDemo.Classes;
@@ -79,6 +80,7 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.Password = UtilityHelper.MD5(user.Password);
                 _db.Users.Add(user);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
@@ -105,6 +107,7 @@ namespace MVCSchooldbDemo.Controllers
         public ActionResult Edit(UserInfo user)
         {
             _db.Entry(user).State = EntityState.Modified;
+            user.Password = UtilityHelper.MD5(user.Password);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }

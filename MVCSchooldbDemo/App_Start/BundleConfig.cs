@@ -39,6 +39,7 @@ namespace MVCSchooldbDemo
                 "~/Content/EasyUI/themes/icon.css",
                 "~/Content/EasyUI/themes/color.css",
                 "~/Content/Site.css",
+                "~/Content/Login.css",
                 "~/Content/Uploadify/uploadify.css"));
         }
     }
