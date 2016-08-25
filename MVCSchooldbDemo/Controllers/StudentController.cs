@@ -8,6 +8,7 @@ using MVCSchooldbDemo.Common;
 using MVCSchooldbDemo.Models.Data;
 namespace MVCSchooldbDemo.Controllers
 {
+    [Authorize]
     public class StudentController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();

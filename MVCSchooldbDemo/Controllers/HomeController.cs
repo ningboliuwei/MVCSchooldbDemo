@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
 using MVCSchooldbDemo.Classes;
 using MVCSchooldbDemo.Common;
 
 namespace MVCSchooldbDemo.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
@@ -17,6 +20,7 @@ namespace MVCSchooldbDemo.Controllers
 
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(string account, string password)
         {
             if (!string.IsNullOrEmpty(account) && !string.IsNullOrEmpty(password))
@@ -35,10 +39,19 @@ namespace MVCSchooldbDemo.Controllers
                     return Content("-2");
                 }
                 //right account, right password
+                FormsAuthentication.SetAuthCookie(account, false);
                 Session["account"] = account;
                 return Content("1");
             }
             return RedirectToAction("Login");
+        }
+
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            
+            return Content("1");
         }
 
         public ActionResult Index()

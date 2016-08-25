@@ -33,7 +33,8 @@
 31. Details 表中通过点击 “上一条” 与 “下一条” 进行切换。注意：切换的全集应该是根据关键词过滤出的结果。===== 需要把 Sorting 和 Paging 再分离开来。 ========== 搞定，利用 ViewBag 以及 static 变量进行传递 ======= 进一步实现无刷新  2016-08-11 √
 32. 重构了 GetList() 及 FilterByKeywords，将所有查询参数打包为一个 string 参数，更加灵活。 2016-08-07 √
 33. 利用 GetList() 方法返回的查询结果 JSON 字符串，获取查询结果中 Id 的集合。通过泛型委托，对代码进行重构。代码如下：
-        public static List<T2> GetListFromResultString<T1, T2>
+        public static List<T2>
+    GetListFromResultString<T1, T2>
         (Func<T1, T2>
             func, string resultString)
             {
@@ -75,9 +76,17 @@
 
 40. 若碰到 datagrid 的 resizing 问题（很多 exception），很大概率是因为在 Index.cshtml 中的 添加/删除/修改 几个按钮的 onclick 事件中调用 Add() 等方法把 editor 名当做 datagrid 在用了，注意一下。（也就是注意这几个函数的参数对不对）
 41. 添加与编辑用户时，保存的密码为 MD5 加密 ======== 2016-08-23 √
-42. 添加系统登录界面 =========== 半成品
+42. 添加系统登录界面 =========== 未授权的访问都跳转到 ~/Home/Login，方法：1. 在 Web.config 的 <system.web> 节中增加：
+    <authentication mode="Forms">
+      <forms loginUrl="~/Home/Login" timeout="2880"></forms>
+    </authentication>
+
+    登录成功后使用代码：FormsAuthentication.SetAuthCookie(account, false);
+    ========== 2016-08-25 √
+
 43. 使用了 font awesome =========== 2016-08-24 √
 44. 增加了导航栏上几个按钮（仿力软） ================ 半成品
+45. 增加了注销功能  =========== 要是有延时效果就更好了 2016-08-25 √
 
 
 
