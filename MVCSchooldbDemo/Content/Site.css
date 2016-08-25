@@ -60,15 +60,15 @@ body { font-family: "微软雅黑"; }
 }
 
 #footer {
-	text-align: center;
 	padding: 3px;
+	text-align: center;
 }
 
-#header {
-}
+#header { }
 
 .navBar {
 	float: right;
 	margin: auto 10px auto auto;
 }
 
+.fa-icon { padding-top: 2px; }

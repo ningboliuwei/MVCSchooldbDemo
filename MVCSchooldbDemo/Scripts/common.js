@@ -23,7 +23,6 @@ function BindGrid(gridName, toolbarName, url, columns, title, sortName, sortOrde
             columns: columns,
             title: title,
             fitColumns: true,
-            iconCls: "icon-view",
             width: "100%",
             nowrap: false,
             autoRowHeight: true,

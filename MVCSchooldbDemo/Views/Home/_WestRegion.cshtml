@@ -2,7 +2,7 @@
     <div title="Title1" data-options="iconCls:'icon-save',selected:false" style="overflow:  auto; padding: 10px;">
         <ul id="tt" class="easyui-tree" data-options="animate:true,lines:true"></ul>
     </div>
-    <div title="系统维护" data-options="iconCls:'icon-save',selected:true" style="overflow: auto; padding: 10px;">
+    <div title="系统维护" data-options="iconCls:'fa fa-gear fa-lg',selected:true" style="overflow: auto; padding: 10px;">
         <ul id="tt2" class="easyui-tree" data-options="animate:true,lines:true"></ul>
     </div>
 </div>
@@ -13,7 +13,7 @@
                 {
                     "id": 1,
                     "text": "学生管理",
-                    "iconCls": "icon-save",
+                    "iconCls": "",
                     "attributes": { url: "@Url.Action("Index", "Student")" }
                 }, {
                     "id": 2,
@@ -26,12 +26,12 @@
                 {
                     "id": 1,
                     "text": "用户管理",
-                    "iconCls": "icon-save",
+                    "iconCls": "fa fa-user",
                     "attributes": { url: "@Url.Action("Index", "User")" }
                 }, {
                     "id": 2,
                     "text": "角色管理",
-                    "iconCls": "icon-save",
+                    "iconCls": "fa fa-users",
                     "attributes": { url: "@Url.Action("Index", "Role")" }
                 }
             ]);
