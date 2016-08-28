@@ -1,33 +1,47 @@
 ﻿<style>
-    .tree-file {
-        background: none;
+    .tree-folder, .tree-file { background: none; }
+
+    .tree-node {
+        height: 16px;
+        padding: 5px;
     }
 
-    .tree-title {
-        font-size: 12px;
+    .tree-node-hover {
+        background-color: transparent;
+        border: 2px solid #9cc8f7;
+        color: #404040;
     }
+
+    .tree-expanded {background: url('../../Content/Images/caret-down.png') no-repeat; }
+
+    .tree-expanded-hover { background: url('../../Content/Images/caret-down-hover.png') no-repeat;}
+
+    .tree-collapsed { background: url('../../Content/Images/caret-right.png') no-repeat ;}
+
+    .tree-collapsed-hover { background: url('../../Content/Images/caret-right-hover.png') no-repeat;}
 </style>
 <div id="aa" class="easyui-accordion" data-options="fit:true">
-    <div title="数据管理" data-options="iconCls:'zmdi zmdi-floppy zmdi-16px',selected:false" style="overflow: auto;">
+    <div title="数据管理" data-options="iconCls:'fa fa-database fa-16px',selected:false" style="overflow: auto;">
         <ul id="tt" class="easyui-tree" data-options="animate:true,lines:false"></ul>
     </div>
-    <div title="系统维护" data-options="iconCls:'zmdi zmdi-settings zmdi-16px',selected:true" style="overflow: auto;">
+    <div title="系统维护" data-options="iconCls:'fa fa-cog fa-16px',selected:true" style="overflow: auto;">
         <ul id="tt2" class="easyui-tree" data-options="animate:true,lines:false"></ul>
     </div>
 </div>
 <script>
-    $(function () {
+    $(function() {
         InitTree('#tt',
             '#tabsHome',
             [
                 {
                     "id": 1,
                     "text": "学生管理",
-                    "iconCls": "",
+                    "iconCls": "fa fa-graduation-cap fa-16px fa-fw",
                     "attributes": { url: "@Url.Action("Index", "Student")" }
                 }, {
                     "id": 2,
-                    "text": "课程管理"
+                    "text": "课程管理",
+                    "iconCls": "fa fa-book fa-16px fa-fw"
                 }
             ]);
 
@@ -37,13 +51,26 @@
                 {
                     "id": 1,
                     "text": "用户管理",
-                    "iconCls": "zmdi zmdi-account zmdi-16px",
+                    "iconCls": "fa fa-user fa-16px fa-fw",
                     "attributes": { url: "@Url.Action("Index", "User")" }
                 }, {
                     "id": 2,
                     "text": "角色管理",
-                    "iconCls": "zmdi zmdi-accounts zmdi-16px",
-                    "attributes": { url: "@Url.Action("Index", "Role")" }
+                    "iconCls": "fa fa-users fa-16px fa-fw",
+                    "attributes": { url: "@Url.Action("Index", "Role")" },
+                    "children": [
+                        {
+                            "id": 3,
+                            "text": "学生管理",
+                            "iconCls": "fa fa-graduation-cap fa-16px fa-fw",
+                            "attributes": { url: "@Url.Action("Index", "Student")" }
+                        }, {
+                            "id": 4,
+                            "text": "课程管理",
+                            "iconCls": "fa fa-book fa-16px fa-fw"
+                        }
+                    ]
+
                 }
             ]);
     });

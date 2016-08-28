@@ -23,7 +23,7 @@ namespace MVCSchooldbDemo
                 "~/Content/Login.css",
                 "~/Content/font-awesome.min.css",
                 "~/Content/Uploadify/uploadify.css",
-                "~/Content/material-design-iconic-font.css"));
+                "~/Content/font-awesome.css"));
         }
     }
 }
