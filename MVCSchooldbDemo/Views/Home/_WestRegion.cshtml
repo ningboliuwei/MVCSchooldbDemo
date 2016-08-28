@@ -1,14 +1,24 @@
-﻿<div id="aa" class="easyui-accordion" data-options="mulitple:true, fit:true" >
-    <div title="Title1" data-options="iconCls:'icon-save',selected:false" style="overflow:  auto; padding: 10px;">
-        <ul id="tt" class="easyui-tree" data-options="animate:true,lines:true"></ul>
+﻿<style>
+    .tree-file {
+        background: none;
+    }
+
+    .tree-title {
+        font-size: 12px;
+    }
+</style>
+<div id="aa" class="easyui-accordion" data-options="fit:true">
+    <div title="数据管理" data-options="iconCls:'zmdi zmdi-floppy zmdi-16px',selected:false" style="overflow: auto;">
+        <ul id="tt" class="easyui-tree" data-options="animate:true,lines:false"></ul>
     </div>
-    <div title="系统维护" data-options="iconCls:'fa fa-gear fa-lg',selected:true" style="overflow: auto; padding: 10px;">
-        <ul id="tt2" class="easyui-tree" data-options="animate:true,lines:true"></ul>
+    <div title="系统维护" data-options="iconCls:'zmdi zmdi-settings zmdi-16px',selected:true" style="overflow: auto;">
+        <ul id="tt2" class="easyui-tree" data-options="animate:true,lines:false"></ul>
     </div>
 </div>
 <script>
-        $(function() {
-            InitTree('#tt', '#tabsHome',
+    $(function () {
+        InitTree('#tt',
+            '#tabsHome',
             [
                 {
                     "id": 1,
@@ -21,19 +31,20 @@
                 }
             ]);
 
-            InitTree('#tt2', '#tabsHome',
+        InitTree('#tt2',
+            '#tabsHome',
             [
                 {
                     "id": 1,
                     "text": "用户管理",
-                    "iconCls": "fa fa-user",
+                    "iconCls": "zmdi zmdi-account zmdi-16px",
                     "attributes": { url: "@Url.Action("Index", "User")" }
                 }, {
                     "id": 2,
                     "text": "角色管理",
-                    "iconCls": "fa fa-users",
+                    "iconCls": "zmdi zmdi-accounts zmdi-16px",
                     "attributes": { url: "@Url.Action("Index", "Role")" }
                 }
             ]);
-        });
+    });
 </script>

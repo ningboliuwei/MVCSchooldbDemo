@@ -28,7 +28,9 @@ textarea {
 }**/
 
 
-body { font-family: "微软雅黑"; }
+body {
+	font-family: "微软雅黑";
+}
 
 .editorLayout { padding: 0 20px 10px 20px; }
 

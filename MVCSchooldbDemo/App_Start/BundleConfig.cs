@@ -16,13 +16,14 @@ namespace MVCSchooldbDemo
                 ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/EasyUI/themes/bootstrap/easyui.css",
+                "~/Content/EasyUI/themes/metro-blue/easyui.css",
                 "~/Content/EasyUI/themes/icon.css",
                 "~/Content/EasyUI/themes/color.css",
                 "~/Content/Site.css",
                 "~/Content/Login.css",
                 "~/Content/font-awesome.min.css",
-                "~/Content/Uploadify/uploadify.css"));
+                "~/Content/Uploadify/uploadify.css",
+                "~/Content/material-design-iconic-font.css"));
         }
     }
 }
