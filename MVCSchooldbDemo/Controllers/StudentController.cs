@@ -9,12 +9,12 @@ using MVCSchooldbDemo.Models.Data;
 namespace MVCSchooldbDemo.Controllers
 {
     [Authorize]
-    public class StudentController : Controller
+    public partial class StudentController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
         // GET: Student
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }
@@ -27,15 +27,15 @@ namespace MVCSchooldbDemo.Controllers
         }
 
 
-        public ActionResult Details(long? id)
+        public virtual ActionResult Details(long? id)
         {
-            ViewBag.DialogTitle = "查看学生明细";
+            ViewBag.DialogTitle = "查看学生明细";//TODO
             ViewBag.CurrentId = id;
             return View(new StudentInfo());
         }
 
         [HttpPost]
-        public ActionResult GetStudentData(long? id)
+        public virtual ActionResult GetStudentData(long? id)
         {
             if (id != null)
             {
@@ -47,7 +47,7 @@ namespace MVCSchooldbDemo.Controllers
 
                 if (!string.IsNullOrEmpty(item.SphotoGuid))
                 {
-                    var fileInfo =(_db.UploadFiles.Where(f => f.Guid == item.SphotoGuid)).ToList()[0];
+                    var fileInfo = (_db.UploadFiles.Where(f => f.Guid == item.SphotoGuid)).ToList()[0];
                     //                    var fileInfo = UploadFileHelper.GetFileInfoByGuid(item.SphotoGuid);
                     photoPath = fileInfo.BaseDirectory + fileInfo.FileName;
                 }
@@ -84,7 +84,7 @@ namespace MVCSchooldbDemo.Controllers
         }
 
         // GET: Student/Create
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             ViewBag.DialogTitle = "添加学生记录";
             return View();
@@ -94,9 +94,7 @@ namespace MVCSchooldbDemo.Controllers
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        //        [ValidateAntiForgeryToken]
-        //        [Bind(Include = "Id,Sno,Sname,Ssex,Sage,Sdept")]
-        public ActionResult Create(StudentInfo student)
+        public virtual ActionResult Create(StudentInfo student)
         {
             if (ModelState.IsValid)
             {
@@ -110,7 +108,7 @@ namespace MVCSchooldbDemo.Controllers
 
         // GET: Student/Edit/5
         [HttpGet]
-        public ActionResult Edit(long? id)
+        public virtual ActionResult Edit(long? id)
         {
             if (id != null)
             {
@@ -122,7 +120,7 @@ namespace MVCSchooldbDemo.Controllers
                 return View(new StudentInfo());
             } //死循环了
 
-          
+
 
             return HttpNotFound();
         }
@@ -132,7 +130,7 @@ namespace MVCSchooldbDemo.Controllers
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        public ActionResult Edit(StudentInfo student)
+        public virtual ActionResult Edit(StudentInfo student)
         {
             _db.Entry(student).State = EntityState.Modified;
             _db.SaveChanges();
@@ -140,7 +138,7 @@ namespace MVCSchooldbDemo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(List<long> ids)
+        public virtual ActionResult Delete(List<long> ids)
         {
             foreach (var id in ids)
             {
@@ -161,19 +159,19 @@ namespace MVCSchooldbDemo.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult UploadPhoto(HttpPostedFileBase fileData)
+        public virtual ActionResult UploadPhoto(HttpPostedFileBase fileData)
         {
             var fileInfo = UploadFileHelper.Upload(fileData, "Photos/");
-            return new JsonResult {Data = fileInfo};
+            return new JsonResult { Data = fileInfo };
         }
 
-//        }
-//            return new JsonResult {Data = photoPath};
-//
-//           
-//        {
-//        public ActionResult GetPhotoPath(string photoGuid)
+        //        }
+        //            return new JsonResult {Data = photoPath};
+        //
+        //           
+        //        {
+        //        public ActionResult GetPhotoPath(string photoGuid)
 
-//        [HttpPost]
+        //        [HttpPost]
     }
 }

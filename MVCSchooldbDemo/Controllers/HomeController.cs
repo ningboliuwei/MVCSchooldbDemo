@@ -8,20 +8,19 @@ using MVCSchooldbDemo.Common;
 namespace MVCSchooldbDemo.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public partial class HomeController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
         [AllowAnonymous]
-        public ActionResult Login()
+        public virtual ActionResult Login()
         {
             return View();
         }
 
-
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Login(string account, string password)
+        public virtual ActionResult Login(string account, string password)
         {
             if (!string.IsNullOrEmpty(account) && !string.IsNullOrEmpty(password))
             {
@@ -47,26 +46,26 @@ namespace MVCSchooldbDemo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Logout()
+        public virtual ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            
+
             return Content("1");
         }
 
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public virtual ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public virtual ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 

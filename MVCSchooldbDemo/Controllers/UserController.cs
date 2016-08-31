@@ -11,27 +11,28 @@ using MVCSchooldbDemo.Models.Data;
 namespace MVCSchooldbDemo.Controllers
 {
     [Authorize]
-    public class UserController : Controller
+    public partial class UserController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }
 
         public string GetList(string queryParasString, int page, int rows, string sort, string order)
         {
-            var list = from r in _db.Roles join u in _db.Users
-                               on r.Id  equals u.RoleId
-                               select new { u.Id, u.Account, u.FullName, RoleName = r.Name };
+            var list = from r in _db.Roles
+                       join u in _db.Users
+           on r.Id equals u.RoleId
+                       select new { u.Id, u.Account, u.FullName, RoleName = r.Name };
             var result = DBHelper.GetResult(list.ToList(), queryParasString, page, rows, sort, order);
 
             return result;
         }
 
         [HttpPost]
-        public ActionResult GetUserData(long? id)
+        public virtual ActionResult GetUserData(long? id)
         {
             if (id != null)
             {
@@ -40,8 +41,8 @@ namespace MVCSchooldbDemo.Controllers
                 var currentIndex = list.IndexOf(user);
 
                 var item = (from r in _db.Roles
-                    where r.Id == user.RoleId
-                    select new {user.Id, user.Account, user.FullName, user.RoleId, RoleName = r.Name}).ToList().First();
+                            where r.Id == user.RoleId
+                            select new { user.Id, user.Account, user.FullName, user.RoleId, RoleName = r.Name }).ToList().First();
 
                 return new JsonResult
                 {
@@ -68,16 +69,14 @@ namespace MVCSchooldbDemo.Controllers
             return HttpNotFound();
         }
 
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             ViewBag.DialogTitle = "添加用户";
             return View();
         }
-      
+
         [HttpPost]
-        //        [ValidateAntiForgeryToken]
-        //        [Bind(Include = "Id,Sno,Sname,Ssex,Sage,Sdept")]
-        public ActionResult Create(UserInfo user)
+        public virtual ActionResult Create(UserInfo user)
         {
             if (ModelState.IsValid)
             {
@@ -92,20 +91,20 @@ namespace MVCSchooldbDemo.Controllers
 
         // GET: Student/Edit/5
         [HttpGet]
-        public ActionResult Edit(long? id)
+        public virtual ActionResult Edit(long? id)
         {
             if (id != null)
             {
                 ViewBag.DialogTitle = "编辑用户";
                 ViewBag.CurrentId = id;
                 return View(new UserInfo());
-            } 
+            }
 
             return HttpNotFound();
         }
 
         [HttpPost]
-        public ActionResult Edit(UserInfo user)
+        public virtual ActionResult Edit(UserInfo user)
         {
             _db.Entry(user).State = EntityState.Modified;
             user.Password = UtilityHelper.MD5(user.Password);
@@ -114,7 +113,7 @@ namespace MVCSchooldbDemo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(List<long> ids)
+        public virtual ActionResult Delete(List<long> ids)
         {
             foreach (var id in ids)
             {

@@ -1,0 +1,190 @@
+﻿@model List<MVCSchooldbDemo.Models.Data.PatientInfo>
+@{
+    Layout = null;
+}
+
+<table id="gridPatient" style="height: 100%"></table>
+<div id="tbPatient">
+    <table class="searchTable">
+        <tr>
+            <td>住院号</td>
+            <td>
+                <input id="Patient_Search_住院号" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td>姓名</td>
+            <td>
+                <input id="Patient_Search_姓名" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td>联系电话</td>
+            <td>
+                <input id="Patient_Search_联系电话" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td>保险类别</td>
+            <td>
+                <select id="Patient_Search_保险类别" class="easyui-combobox" style="width: 100px">
+                    <option value="自费">自费</option>
+                    <option value="公务员医保">公务员医保</option>
+                </select>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-search fa-16px" onclick="Search()">搜索</a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-times-circle-o fa-16px" onclick="ClearSearch()">清空搜索条件</a>
+            </td>
+        </tr>
+    </table>
+    <table class="buttonsTable">
+        <tr>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorPatient', '@Url.Action("Create", "Patient")', '添加病人基本信息')">
+                    添加
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridPatient',    '#editorPatient',    '@Url.Action("Edit", "Patient")',
+    '编辑病人基本信息')">
+                    编辑
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridPatient', '@Url.Action("Delete", "Patient")')">
+                    删除
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridPatient', '#editorPatient', '@Url.Action("Details", "Patient")', '病人基本信息明细')">
+                    详细
+                </a>
+            </td>
+    </table>
+</div>
+<div id="editorPatient" style="display: none; height: 600px; width: 900px;"></div>
+<script>
+    var columns = [
+        [
+            {
+                field: 'Id',
+                title: 'ID',
+                width: 100,
+                hidden: true
+            },
+            {
+                field: '住院号',
+                title: '住院号',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: '姓名',
+                title: '姓名',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: '性别',
+                title: '性别',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: '出生日期',
+                title: '出生日期',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: '入组日期',
+                title: '入组日期',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: '民族',
+                title: '民族',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: '婚姻状况',
+                title: '婚姻状况',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: '文化程度',
+                title: '文化程度',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: '职业',
+                title: '职业',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: '年收入',
+                title: '年收入',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: '保险类别',
+                title: '保险类别',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: '联系电话',
+                title: '联系电话',
+                width: 100,
+                sortable: true
+            },
+            {
+                field: '联系地址',
+                title: '联系地址',
+                width: 100,
+                sortable: true
+            }
+        ]
+    ];
+
+    var gridTitle = '病人基本信息';
+    var gridSortName = 'Id';
+    var gridSortOrder = 'asc';
+    var url = '@Url.Action("GetList", "Patient")';
+
+    $(function() {
+        BindGrid('#gridPatient','#tbPatient', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }); //Show all records
+
+    function Search() {
+        var queryData = {
+            住院号: $('#Patient_Search_住院号').textbox('getText'),
+            姓名: $('#Patient_Search_姓名').textbox('getText'),
+            联系电话: $('#Patient_Search_联系电话').textbox('getText')
+        };
+
+        BindGrid('#gridPatient',
+            '#tbPatient',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            { queryParasString: JSON.stringify(queryData) });
+    }
+
+    function ClearSearch() {
+        $('#Patient_Search_住院号').textbox('clear');
+        $('#Patient_Search_姓名').textbox('clear');
+        $('#Patient_Search_联系电话').textbox('clear');
+
+//        var data = $('#SearchSdept').combobox('getData');
+//        $('#SearchSdept').combobox('select', data[0]["text"]);
+
+        BindGrid('#gridPatient',
+            '#tbPatient', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }
+</script>

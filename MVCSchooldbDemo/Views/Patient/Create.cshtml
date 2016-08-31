@@ -1,0 +1,20 @@
+﻿﻿@model MVCSchooldbDemo.Models.Data.PatientInfo
+@{
+    Layout = null;
+
+}
+
+<div class="editorLayout">
+    @Html.Partial("~/Views/Patient/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForCreate.cshtml")
+</div>
+<script>
+    $(function() {
+        $('#btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('#formPatient',  '#gridPatient','#editorPatient', '@Url.Action("Create", "Patient")', window.GetData(), "确认添加记录吗？", '添加记录出现错误');
+                }
+            );
+    });
+</script>

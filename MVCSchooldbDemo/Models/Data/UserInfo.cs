@@ -7,7 +7,7 @@ using System.Web;
 
 namespace MVCSchooldbDemo.Models.Data
 {
-    [Table("T_User")]
+    [Table("TB_Users")]
     public class UserInfo
     {
         [Key]

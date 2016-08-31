@@ -10,11 +10,11 @@ using MVCSchooldbDemo.Models.Data;
 namespace MVCSchooldbDemo.Controllers
 {
     [Authorize]
-    public class RoleController : Controller
+    public partial class RoleController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }
@@ -26,15 +26,17 @@ namespace MVCSchooldbDemo.Controllers
             return result;
         }
 
-	    public ActionResult GetAllRoles()
-	    {
-		    return new JsonResult() {Data = _db.Roles.ToList(),
-				JsonRequestBehavior = JsonRequestBehavior.AllowGet
-			};
-	    }
+        public virtual ActionResult GetAllRoles()
+        {
+            return new JsonResult()
+            {
+                Data = _db.Roles.ToList(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
 
         [HttpPost]
-        public ActionResult GetRoleData(long? id)
+        public virtual ActionResult GetRoleData(long? id)
         {
             if (id != null)
             {
@@ -64,17 +66,15 @@ namespace MVCSchooldbDemo.Controllers
             return HttpNotFound();
         }
 
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             ViewBag.DialogTitle = "添加角色";
             return View();
         }
 
-        
+
         [HttpPost]
-        //        [ValidateAntiForgeryToken]
-        //        [Bind(Include = "Id,Sno,Sname,Ssex,Sage,Sdept")]
-        public ActionResult Create(RoleInfo role)
+        public virtual ActionResult Create(RoleInfo role)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace MVCSchooldbDemo.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(long? id)
+        public virtual ActionResult Edit(long? id)
         {
             if (id != null)
             {
@@ -100,7 +100,7 @@ namespace MVCSchooldbDemo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(RoleInfo item)
+        public virtual ActionResult Edit(RoleInfo item)
         {
             _db.Entry(item).State = EntityState.Modified;
             _db.SaveChanges();
@@ -108,7 +108,7 @@ namespace MVCSchooldbDemo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(List<long> ids)
+        public virtual ActionResult Delete(List<long> ids)
         {
             foreach (var id in ids)
             {

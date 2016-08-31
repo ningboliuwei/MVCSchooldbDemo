@@ -7,7 +7,7 @@ using System.Web;
 
 namespace MVCSchooldbDemo.Models.Data
 {
-    [Table("T_Role")]
+    [Table("TB_Role")]
     public class RoleInfo
     {
         [Key]

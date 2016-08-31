@@ -25,6 +25,9 @@ namespace MVCSchooldbDemo
 
         public DbSet<Models.Data.RoleInfo> Roles { get; set; }
 
+        public DbSet<Models.Data.PatientInfo> Patients { get; set; }
+        public DbSet<Models.Data.DataDictItemInfo> DataDictItems { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			Database.SetInitializer(new SchoolDbContextInitializer(modelBuilder));
