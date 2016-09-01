@@ -1,0 +1,18 @@
+﻿@model MVCSchooldbDemo.Models.Data.DataDictItemInfo
+@{
+    Layout = null;
+}
+<div class="editorLayout">
+    @Html.Partial("~/Views/DataDictItem/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForCreate.cshtml")
+</div>
+<script>
+    $(function() {
+        $('#btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('#formDataDictItem',  '#gridDataDictItem','#editorDataDictItem', '@Url.Action("Create", "DataDictItem")', window.GetData(), "确认添加记录吗？", '添加记录出现错误');
+                }
+            );
+    });
+</script>

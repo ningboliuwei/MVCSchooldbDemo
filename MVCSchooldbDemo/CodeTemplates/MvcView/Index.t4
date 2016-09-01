@@ -1,0 +1,105 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension=".cshtml" #>
+<#@ include file="Imports.include.t4" #>
+@model List<#= "<" + ViewDataTypeName + ">" #>
+@{
+    Layout = null;
+}
+<# var name = ViewDataTypeName.Substring(ViewDataTypeName.LastIndexOf(".") + 1).Replace("Info", "");#>
+
+<table id="grid<#=name#>" style="height: 100%"></table>
+<div id="tb<#=name#>">
+    <table class="searchTable">
+        <tr>
+            <td>字段1</td>
+            <td>
+                <input id="<#=name#>_Search_字段1" class="easyui-textbox" style="width: 110px">//TODO
+            </td>
+            <td>字段2</td>
+            <td>
+                <input id="<#=name#>_Search_字段2" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-search fa-16px" onclick="Search()">搜索</a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-times-circle-o fa-16px" onclick="ClearSearch()">清空搜索条件</a>
+            </td>
+        </tr>
+    </table>
+    <table class="buttonsTable">
+       <tr>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editor<#=name#>', '@Url.Action("Create", "<#=name#>")', '添加XX信息')">
+                    添加
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#grid<#=name#>',    '#editorPatient',    '@Url.Action("Edit", "<#=name#>")',
+    '编辑病人基本信息')">
+                    编辑
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#grid<#=name#>', '@Url.Action("Delete", "<#=name#>")')">
+                    删除
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#grid<#=name#>', '#editor<#=name#>', '@Url.Action("Details", "<#=name#>")', 'XX明细')">
+                    详细
+                </a>
+            </td>
+    </table>
+</div>
+<div id="editor<#=name#>" style="display: none; height: 450px; width: 500px;"></div>
+<script>
+    var columns = [
+        [
+            {
+                field: 'Id',
+                title: 'ID',
+                width: 100,
+                hidden: true
+            }
+        ]
+    ];
+
+    var gridTitle = 'XX记录';
+    var gridSortName = 'Id';
+    var gridSortOrder = 'asc';
+    var url = '@Url.Action("List", "<#=name#>")';
+
+    $(function() {
+        BindGrid('#grid<#=name#>','#tb<#=name#>', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    });
+
+    function Search() {
+        var queryData = {
+            字段1: $('#<#=name#>_Search_字段1').textbox('getText'),
+            字段2: $('#<#=name#>_Search_字段2').textbox('getText'),
+            字段3: ($('#<#=name#>_Search_字段3').textbox('getText') === 'ALL') ? '' : $('#<#=name#>_Search_字段3').textbox('getText')
+        };
+
+        BindGrid('#grid<#=name#>',
+            '#tb<#=name#>',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            { queryParasString: JSON.stringify(queryData) });
+    }
+
+    function ClearSearch() {
+        $('#<#=name#>_Search_字段1').textbox('clear');
+        $('#<#=name#>_Search_字段2').textbox('clear');
+
+        var data = $('#<#=name#>_Search_字段3').combobox('getData');
+        $('##<#=name#>_Search_字段3').combobox('select', data[0]["text"]);
+
+        BindGrid('#grid<#=name#>',
+            '#tb<#=name#>', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }
+</script>
+<#@ include file="ModelMetadataFunctions.cs.include.t4" #>

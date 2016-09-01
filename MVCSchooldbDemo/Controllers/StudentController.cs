@@ -6,10 +6,11 @@ using System.Web.Mvc;
 using MVCSchooldbDemo.Classes;
 using MVCSchooldbDemo.Common;
 using MVCSchooldbDemo.Models.Data;
+
 namespace MVCSchooldbDemo.Controllers
 {
     [Authorize]
-    public partial class StudentController : Controller
+    public class StudentController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
@@ -19,17 +20,17 @@ namespace MVCSchooldbDemo.Controllers
             return View();
         }
 
-        public string GetList(string queryParasString, int page, int rows, string sort, string order)
+        public ActionResult List(string queryParasString, int page, int rows, string sort, string order)
         {
             var result = DBHelper.GetResult(_db.Students.ToList(), queryParasString, page, rows, sort, order);
 
-            return result;
+            return new JsonResult {Data = result};
         }
 
 
         public virtual ActionResult Details(long? id)
         {
-            ViewBag.DialogTitle = "查看学生明细";//TODO
+            ViewBag.DialogTitle = "查看学生明细"; //TODO
             ViewBag.CurrentId = id;
             return View(new StudentInfo());
         }
@@ -47,7 +48,7 @@ namespace MVCSchooldbDemo.Controllers
 
                 if (!string.IsNullOrEmpty(item.SphotoGuid))
                 {
-                    var fileInfo = (_db.UploadFiles.Where(f => f.Guid == item.SphotoGuid)).ToList()[0];
+                    var fileInfo = _db.UploadFiles.Where(f => f.Guid == item.SphotoGuid).ToList()[0];
                     //                    var fileInfo = UploadFileHelper.GetFileInfoByGuid(item.SphotoGuid);
                     photoPath = fileInfo.BaseDirectory + fileInfo.FileName;
                 }
@@ -62,16 +63,16 @@ namespace MVCSchooldbDemo.Controllers
                         new
                         {
                             Item =
-                                new
-                                {
-                                    item.Sno,
-                                    item.Sname,
-                                    item.Sage,
-                                    item.Ssex,
-                                    item.Sdept,
-                                    item.SphotoGuid,
-                                    SphotoPath = photoPath
-                                },
+                            new
+                            {
+                                item.Sno,
+                                item.Sname,
+                                item.Sage,
+                                item.Ssex,
+                                item.Sdept,
+                                item.SphotoGuid,
+                                SphotoPath = photoPath
+                            },
                             CurrentIndex = currentIndex,
                             PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,
                             NextId = currentIndex == list.Count - 1 ? -1 : list[currentIndex + 1].Id
@@ -121,7 +122,6 @@ namespace MVCSchooldbDemo.Controllers
             } //死循环了
 
 
-
             return HttpNotFound();
         }
 
@@ -153,25 +153,23 @@ namespace MVCSchooldbDemo.Controllers
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {
                 _db.Dispose();
-            }
             base.Dispose(disposing);
         }
 
         public virtual ActionResult UploadPhoto(HttpPostedFileBase fileData)
         {
             var fileInfo = UploadFileHelper.Upload(fileData, "Photos/");
-            return new JsonResult { Data = fileInfo };
+            return new JsonResult {Data = fileInfo};
         }
 
-        //        }
-        //            return new JsonResult {Data = photoPath};
-        //
-        //           
-        //        {
-        //        public ActionResult GetPhotoPath(string photoGuid)
-
         //        [HttpPost]
+        //        public ActionResult GetPhotoPath(string photoGuid)
+        //        {
+        //           
+        //
+        //            return new JsonResult {Data = photoPath};
+
+        //        }
     }
 }

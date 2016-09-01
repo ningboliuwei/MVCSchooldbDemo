@@ -153,7 +153,7 @@
     var gridTitle = '病人基本信息';
     var gridSortName = 'Id';
     var gridSortOrder = 'asc';
-    var url = '@Url.Action("GetList", "Patient")';
+    var url = '@Url.Action("List", "Patient")';
 
     $(function() {
         BindGrid('#gridPatient','#tbPatient', url, columns, gridTitle, gridSortName, gridSortOrder, {});

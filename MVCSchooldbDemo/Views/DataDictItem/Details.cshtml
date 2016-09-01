@@ -1,0 +1,30 @@
+﻿@model MVCSchooldbDemo.Models.Data.DataDictItemInfo
+@{
+    Layout = null;
+}
+<div class="editorLayout">
+    @Html.Partial("~/Views/DataDictItem/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForDetails.cshtml")
+</div>
+
+<script>
+    $(function() {
+//need disable & enable next and previous buttons
+
+        $('#btnPrevious')
+            .bind('click',
+                function() {
+                    if (window.previousId !== -1) {
+                        window.ShowData('@Url.Action("GetItemData", "DataDictItem")' + '/' + window.previousId);
+                    }
+                });
+
+        $('#btnNext')
+         .bind('click',
+             function () {
+                 if (window.nextId !== -1) {
+                     window.ShowData('@Url.Action("GetItemData", "DataDictItem")' + '/' + window.nextId);
+                 }
+             });
+    });
+</script>

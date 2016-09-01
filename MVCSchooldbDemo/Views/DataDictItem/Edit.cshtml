@@ -1,0 +1,17 @@
+﻿@model MVCSchooldbDemo.Models.Data.DataDictItemInfo
+@{
+    Layout = null;
+}
+<div class="editorLayout">
+    @Html.Partial("~/Views/DataDictItem/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForEdit.cshtml")
+</div>
+<script>
+    $(function() {
+        $('#btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('#formDataDictItem','#gridDataDictItem','#editorDataDictItem','@Url.Action("Edit", "DataDictItem")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
+                });
+    });
+</script>

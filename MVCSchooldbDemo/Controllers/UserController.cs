@@ -20,7 +20,7 @@ namespace MVCSchooldbDemo.Controllers
             return View();
         }
 
-        public string GetList(string queryParasString, int page, int rows, string sort, string order)
+        public string List(string queryParasString, int page, int rows, string sort, string order)
         {
             var list = from r in _db.Roles
                        join u in _db.Users

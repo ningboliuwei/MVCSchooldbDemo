@@ -60,7 +60,7 @@
     var gridTitle = '角色';
     var gridSortName = 'Id';
     var gridSortOrder = 'asc';
-    var url = '@Url.Action("GetList", "Role")';
+    var url = '@Url.Action("List", "Role")';
 
     $(function() {
         BindGrid('#gridRole', '#tbRole', url, columns, gridTitle, gridSortName, gridSortOrder, {});

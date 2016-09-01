@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using MVCSchooldbDemo.Classes;
-using MVCSchooldbDemo.Common;
 using MVCSchooldbDemo.Models.Data;
 
 namespace MVCSchooldbDemo.Controllers
 {
     [Authorize]
-    public partial class RoleController : Controller
+    public class RoleController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
@@ -19,7 +17,7 @@ namespace MVCSchooldbDemo.Controllers
             return View();
         }
 
-        public string GetList(string queryParasString, int page, int rows, string sort, string order)
+        public string List(string queryParasString, int page, int rows, string sort, string order)
         {
             var result = DBHelper.GetResult(_db.Roles.ToList(), queryParasString, page, rows, sort, order);
 
@@ -28,7 +26,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult GetAllRoles()
         {
-            return new JsonResult()
+            return new JsonResult
             {
                 Data = _db.Roles.ToList(),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
@@ -50,11 +48,11 @@ namespace MVCSchooldbDemo.Controllers
                         new
                         {
                             Item =
-                                new
-                                {
-                                    item.Id,
-                                    item.Name
-                                },
+                            new
+                            {
+                                item.Id,
+                                item.Name
+                            },
                             CurrentIndex = currentIndex,
                             PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,
                             NextId = currentIndex == list.Count - 1 ? -1 : list[currentIndex + 1].Id
@@ -123,9 +121,7 @@ namespace MVCSchooldbDemo.Controllers
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {
                 _db.Dispose();
-            }
             base.Dispose(disposing);
         }
     }

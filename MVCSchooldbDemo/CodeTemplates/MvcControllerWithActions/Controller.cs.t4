@@ -27,9 +27,9 @@ namespace <#=Namespace#>
             return View();
         }
 
-		public string GetList(string queryParasString, int page, int rows, string sort, string order)
+		public string List(string queryParasString, int page, int rows, string sort, string order)
         {
-            var result = DBHelper.GetResult(_db.Roles.ToList(), queryParasString, page, rows, sort, order);
+            var result = DBHelper.GetResult(_db.<#=ControllerName.Replace("Controller", "")#>s.ToList(), queryParasString, page, rows, sort, order);
 
             return result;
         }

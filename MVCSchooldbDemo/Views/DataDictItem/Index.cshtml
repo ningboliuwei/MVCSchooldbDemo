@@ -1,0 +1,100 @@
+﻿@model List<MVCSchooldbDemo.Models.Data.DataDictItemInfo>
+@{
+    Layout = null;
+}
+
+<table id="gridDataDictItem" style="height: 100%"></table>
+<div id="tbDataDictItem">
+    <table class="searchTable">
+        <tr>
+            <td>//TODO</td>
+            <td>
+                <input id="DataDictItem_Search_字段1" class="easyui-textbox" style="width: 110px">//TODO
+            </td>
+            <td>//TODO</td>
+            <td>
+                <input id="DataDictItem_Search_字段2" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-search fa-16px" onclick="Search()">搜索</a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-times-circle-o fa-16px" onclick="ClearSearch()">清空搜索条件</a>
+            </td>
+        </tr>
+    </table>
+    <table class="buttonsTable">
+       <tr>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorDataDictItem', '@Url.Action("Create", "DataDictItem")', '添加XX信息')">
+                    添加
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridDataDictItem',    '#editorPatient',    '@Url.Action("Edit", "DataDictItem")',
+    '编辑病人基本信息')">
+                    编辑
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridDataDictItem', '@Url.Action("Delete", "DataDictItem")')">
+                    删除
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridDataDictItem', '#editorDataDictItem', '@Url.Action("Details", "DataDictItem")', 'XX明细')">
+                    详细
+                </a>
+            </td>
+    </table>
+</div>
+<div id="editorDataDictItem" style="display: none; height: 450px; width: 500px;"></div>
+<script>
+    var columns = [
+        [
+            {
+                field: 'Id',
+                title: 'ID',
+                width: 100,
+                hidden: true
+            }
+        ]
+    ];
+
+    var gridTitle = 'XX记录';
+    var gridSortName = 'Id';
+    var gridSortOrder = 'asc';
+    var url = '@Url.Action("List", "DataDictItem")';
+
+    $(function() {
+        BindGrid('#gridDataDictItem','#tbDataDictItem', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    });
+
+    function Search() {
+        var queryData = {
+            字段1: $('#DataDictItem_Search_字段1').textbox('getText'),
+            字段2: $('#DataDictItem_Search_字段2').textbox('getText'),
+            字段3: ($('#DataDictItem_Search_字段3').textbox('getText') === 'ALL') ? '' : $('#DataDictItem_Search_字段3').textbox('getText')
+        };
+
+        BindGrid('#gridDataDictItem',
+            '#tbDataDictItem',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            { queryParasString: JSON.stringify(queryData) });
+    }
+
+    function ClearSearch() {
+        $('#DataDictItem_Search_字段1').textbox('clear');
+        $('#DataDictItem_Search_字段2').textbox('clear');
+
+        var data = $('#DataDictItem_Search_字段3').combobox('getData');
+        $('##DataDictItem_Search_字段3').combobox('select', data[0]["text"]);
+
+        BindGrid('#gridDataDictItem',
+            '#tbDataDictItem', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }
+</script>

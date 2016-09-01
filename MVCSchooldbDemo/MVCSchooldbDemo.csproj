@@ -559,12 +559,9 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="CodeTemplates\ODataControllerWithContext\Controller.cs.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
-    <Content Include="CodeTemplates\MvcView\List.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
-    <Content Include="CodeTemplates\MvcView\Empty.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Edit.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Details.cs.t4" />
-    <Content Include="CodeTemplates\MvcView\Delete.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
     <Content Include="CodeTemplates\MvcViewWithoutModel\Imports.include.t4" />
     <Content Include="CodeTemplates\MvcViewWithoutModel\Empty.cs.t4" />
@@ -588,6 +585,8 @@
     <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs.t4" />
     <Content Include="CodeTemplates\MvcControllerWithActions\Controller.cs.t4" />
     <Content Include="CodeTemplates\MvcControllerEmpty\Controller.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Index.t4" />
+    <Content Include="CodeTemplates\MvcView\_Editor.cs.t4" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
@@ -641,6 +640,11 @@
     <Content Include="Views\Patient\Create.cshtml" />
     <Content Include="Views\Patient\Edit.cshtml" />
     <Content Include="Views\Patient\_Editor.cshtml" />
+    <Content Include="Views\DataDictItem\Index.cshtml" />
+    <Content Include="Views\DataDictItem\Create.cshtml" />
+    <Content Include="Views\DataDictItem\_Editor.cshtml" />
+    <Content Include="Views\DataDictItem\Edit.cshtml" />
+    <Content Include="Views\DataDictItem\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\EasyUI\themes\metro-blue\" />
@@ -649,7 +653,6 @@
     <Folder Include="Content\EasyUI\themes\metro-orange\" />
     <Folder Include="Content\EasyUI\themes\metro-red\" />
     <Folder Include="UploadedFiles\" />
-    <Folder Include="Views\DataDictItem\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

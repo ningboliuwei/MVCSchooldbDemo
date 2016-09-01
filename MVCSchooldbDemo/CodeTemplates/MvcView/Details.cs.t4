@@ -2,102 +2,34 @@
 <#@ output extension=".cshtml" #>
 <#@ include file="Imports.include.t4" #>
 @model <#= ViewDataTypeName #>
-<#
-// The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
-if(IsPartialView) {
-#>
-
-<#
-} else if(IsLayoutPageSelected) {
-#>
-
-@{
-    ViewBag.Title = "<#= ViewName#>";
-<#
-if (!String.IsNullOrEmpty(LayoutPageFile)) {
-#>
-    Layout = "<#= LayoutPageFile#>";
-<#
-}
-#>
-}
-
-<h2><#= ViewName#></h2>
-
-<#
-} else {
-#>
-
+<# var name = ViewDataTypeName.Substring(ViewDataTypeName.LastIndexOf(".") + 1).Replace("Info", "");#>
 @{
     Layout = null;
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title><#= ViewName #></title>
-</head>
-<body>
-<#
-    PushIndent("    ");
-}
-#>
-<div>
-    <h4><#= ViewDataTypeShortName #></h4>
-	<hr />
-    <dl class="dl-horizontal">
-<#
-foreach (PropertyMetadata property in ModelMetadata.Properties) {
-    if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
-#>
-<#
-        // This is a temporary work around until core scaffolding provides support for independent associations.
-        if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
-            continue;
-        }
-#>
-        <dt>
-            @Html.DisplayNameFor(model => model.<#= GetValueExpression(property) #>)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.<#= GetValueExpression(property) #>)
-        </dd>
-
-<#
-    }
-}
-#>
-    </dl>
+<div class="editorLayout">
+    @Html.Partial("~/Views/<#=name#>/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForDetails.cshtml")
 </div>
-<p>
-<#
-string pkName = GetPrimaryKeyName();
-if (pkName != null) {
-#>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.<#= pkName #> }) |
-    @Html.ActionLink("Back to List", "Index")
-<#
-} else {
-#>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-<#
-}
-#>
-</p>
-<#
-// The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
-#>
-<#
-if(!IsPartialView && !IsLayoutPageSelected) {
-    ClearIndent();
-#>
-</body>
-</html>
-<#
-}
-#>
+
+<script>
+    $(function() {
+//need disable & enable next and previous buttons
+
+        $('#btnPrevious')
+            .bind('click',
+                function() {
+                    if (window.previousId !== -1) {
+                        window.ShowData('@Url.Action("GetItemData", "<#=name#>")' + '/' + window.previousId);
+                    }
+                });
+
+        $('#btnNext')
+         .bind('click',
+             function () {
+                 if (window.nextId !== -1) {
+                     window.ShowData('@Url.Action("GetItemData", "<#=name#>")' + '/' + window.nextId);
+                 }
+             });
+    });
+</script>
 <#@ include file="ModelMetadataFunctions.cs.include.t4" #>

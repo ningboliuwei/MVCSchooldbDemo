@@ -103,7 +103,7 @@
     var gridTitle = '学生记录';
     var gridSortName = 'Id';
     var gridSortOrder = 'asc';
-    var url = '@Url.Action("GetList", "Student")';
+    var url = '@Url.Action("List", "Student")';
 
     $(function() {
         BindGrid('#gridStudent','#tbStudent', url, columns, gridTitle, gridSortName, gridSortOrder, {});

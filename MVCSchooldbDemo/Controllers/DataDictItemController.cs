@@ -20,9 +20,9 @@ namespace MVCSchooldbDemo.Controllers
             return View();
         }
 
-		public string GetList(string queryParasString, int page, int rows, string sort, string order)
+		public string List(string queryParasString, int page, int rows, string sort, string order)
         {
-            var result = DBHelper.GetResult(_db.Roles.ToList(), queryParasString, page, rows, sort, order);
+            var result = DBHelper.GetResult(_db.DataDictItems.ToList(), queryParasString, page, rows, sort, order);
 
             return result;
         }

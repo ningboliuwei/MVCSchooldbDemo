@@ -13,7 +13,7 @@ namespace MVCSchooldbDemo.Models.Data
     public class DataDictItemInfo
     {
         [Key]
-        public string Id { get; set; }
+        public long Id { get; set; }
         public string TypeName { get; set; }
         public string Values { get; set; }
     }
