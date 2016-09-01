@@ -29,7 +29,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Details(long? id)
         {
-            ViewBag.DialogTitle = "查看XXXX明细";
+            ViewBag.DialogTitle = "查看数据字典项目明细";
             ViewBag.CurrentId = id;
             return View(new DataDictItemInfo());
         }
@@ -51,7 +51,9 @@ namespace MVCSchooldbDemo.Controllers
                             Item =
                                 new
                                 {
-									//TODO
+                                    item.Id,
+                                    item.项目名,
+									item.项目值
                                 },
                             CurrentIndex = currentIndex,
                             PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,
@@ -66,7 +68,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加XXXX记录";//TODO
+            ViewBag.DialogTitle = "添加数据字典项目记录";//TODO
             return View();
         }
 
@@ -87,7 +89,7 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "编辑XXXX记录";//TODO
+                ViewBag.DialogTitle = "编辑数据字典项目记录";//TODO
                 ViewBag.CurrentId = id;
                 return View(new DataDictItemInfo());
             }

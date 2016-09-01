@@ -8,18 +8,13 @@
         <div title="标签1">
             <table class="editorTable">
                 <tr>
-                    <td class="editorNameColumn">字段1</td>
+                    <td class="editorNameColumn">项目名</td>
                     <td>
-                        <input id="字段1" class="easyui-textbox" />
+                        <input id="项目名" class="easyui-textbox" />
                     </td>
-					    <td class="editorNameColumn">字段2</td>
+					    <td class="editorNameColumn">项目值</td>
                     <td>
-                        <input id="字段2" class="easyui-textbox" />
-                    </td>
-
-                    <td class="editorNameColumn">字段3</td>
-                    <td>
-                        <input id="字段3" class="easyui-textbox" />
+                        <input id="项目值" class="easyui-textbox" data-options="multiline:true" />
                     </td>
                 </tr>
             </table>
@@ -40,9 +35,8 @@
 
     function GetData() {
         return {
-            字段1: $('#字段1').textbox('getText'),
-            字段2: $('#字段2').combobox('getText'),
-			字段3: $('#字段3').textbox('getText'),
+            项目名: $('#项目名').textbox('getText'),
+            项目值: $('#项目值').combobox('getText'),
         };
     }
 </script>
@@ -62,11 +56,8 @@
                 success: function(data) {
                     const item = data.Item;
 
-                    $('#Sno').textbox('setText', item.Sno);
-                    $('#Sname').textbox('setText', item.Sname);
-                    $('#Sage').textbox('setText', item.Sage);
-                    $('#Ssex').combobox('setText', item.Ssex);
-                    $('#Sdept').combobox('setText', item.Sdept);
+                    $('#项目名').textbox('setText', item.项目名);
+                    $('#项目值').textbox('setText', item.项目值);
 
                     window.previousId = data.PreviousId;
                     window.nextId = data.NextId;

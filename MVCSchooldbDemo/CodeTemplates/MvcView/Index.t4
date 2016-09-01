@@ -35,7 +35,7 @@
                 </a>
             </td>
             <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#grid<#=name#>',    '#editorPatient',    '@Url.Action("Edit", "<#=name#>")',
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#grid<#=name#>',    '#editor<#=name#>',    '@Url.Action("Edit", "<#=name#>")',
     '编辑病人基本信息')">
                     编辑
                 </a>

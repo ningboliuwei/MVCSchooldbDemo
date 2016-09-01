@@ -66,11 +66,9 @@
                 success: function(data) {
                     const item = data.Item;
 
-                    $('#Sno').textbox('setText', item.Sno);
-                    $('#Sname').textbox('setText', item.Sname);
-                    $('#Sage').textbox('setText', item.Sage);
-                    $('#Ssex').combobox('setText', item.Ssex);
-                    $('#Sdept').combobox('setText', item.Sdept);
+                    $('#字段1').textbox('setText', item.字段1);
+                    $('#字段2').textbox('setText', item.字段2);
+                    $('#字段3').combobox('setText', item.字段3);
 
                     window.previousId = data.PreviousId;
                     window.nextId = data.NextId;

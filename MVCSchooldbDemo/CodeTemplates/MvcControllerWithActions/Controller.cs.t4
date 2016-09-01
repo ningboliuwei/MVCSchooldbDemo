@@ -15,10 +15,11 @@ using MVCSchooldbDemo.Classes;
 using MVCSchooldbDemo.Common;
 using MVCSchooldbDemo.Models.Data;
 
+<#var name=ControllerName.Replace("Info","");#>
 namespace <#=Namespace#>
 {
     [Authorize]
-    public class <#= ControllerName #> : Controller
+    public class <#=ControllerName#> : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
@@ -29,7 +30,7 @@ namespace <#=Namespace#>
 
 		public string List(string queryParasString, int page, int rows, string sort, string order)
         {
-            var result = DBHelper.GetResult(_db.<#=ControllerName.Replace("Controller", "")#>s.ToList(), queryParasString, page, rows, sort, order);
+            var result = DBHelper.GetResult(_db.<#=name#>s.ToList(), queryParasString, page, rows, sort, order);
 
             return result;
         }
@@ -38,7 +39,7 @@ namespace <#=Namespace#>
         {
             ViewBag.DialogTitle = "查看XXXX明细";
             ViewBag.CurrentId = id;
-            return View(new <#=ControllerName.Replace("Controller", "")#>Info());
+            return View(new <#=name#>Info());
         }
 
 		[HttpPost]
@@ -46,8 +47,8 @@ namespace <#=Namespace#>
         {
             if (id != null)
             {
-                var item = DBHelper.FindByKeyword(_db.<#=ControllerName.Replace("Controller", "")#>s.ToList(), "Id", id).First();
-                var list = _db.<#=ControllerName.Replace("Controller", "")#>s.ToList();
+                var item = DBHelper.FindByKeyword(_db.<#=name#>s.ToList(), "Id", id).First();
+                var list = _db.<#=name#>s.ToList();
                 var currentIndex = list.IndexOf(item);
 
                 return new JsonResult
@@ -58,7 +59,8 @@ namespace <#=Namespace#>
                             Item =
                                 new
                                 {
-									//TODO
+									item.字段1,
+									item.字段2//TODO
                                 },
                             CurrentIndex = currentIndex,
                             PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,
@@ -78,11 +80,11 @@ namespace <#=Namespace#>
         }
 
         [HttpPost]
-        public virtual ActionResult Create(<#=ControllerName.Replace("Controller", "")#>Info item)
+        public virtual ActionResult Create(<#=name#>Info item)
         {
             if (ModelState.IsValid)
             {
-                _db.<#=ControllerName.Replace("Controller", "")#>s.Add(item);
+                _db.<#=name#>s.Add(item);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -96,14 +98,14 @@ namespace <#=Namespace#>
             {
                 ViewBag.DialogTitle = "编辑XXXX记录";//TODO
                 ViewBag.CurrentId = id;
-                return View(new <#=ControllerName.Replace("Controller", "")#>Info());
+                return View(new <#=name#>Info());
             }
             
 			return HttpNotFound();
         }
 
         [HttpPost]
-        public virtual ActionResult Edit(<#=ControllerName.Replace("Controller", "")#>Info item)
+        public virtual ActionResult Edit(<#=name#>Info item)
         {
             _db.Entry(item).State = EntityState.Modified;
             _db.SaveChanges();
@@ -115,12 +117,12 @@ namespace <#=Namespace#>
         {
             foreach (var id in ids)
             {
-                var item = DBHelper.FindByKeyword(_db.<#=ControllerName.Replace("Controller", "")#>s.ToList(), "Id", id).First();
-                _db.<#=ControllerName.Replace("Controller", "")#>s.Remove(item);
+                var item = DBHelper.FindByKeyword(_db.<#=name#>s.ToList(), "Id", id).First();
+                _db.<#=name#>s.Remove(item);
             }
 
             _db.SaveChanges();
-            return RedirectToAction("Index", "<#=ControllerName.Replace("Controller", "")#>");
+            return RedirectToAction("Index", "<#=name#>");
         }
     }
 }

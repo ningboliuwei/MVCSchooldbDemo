@@ -14,7 +14,7 @@ namespace MVCSchooldbDemo.Models.Data
     {
         [Key]
         public long Id { get; set; }
-        public string TypeName { get; set; }
-        public string Values { get; set; }
+        public string 项目名 { get; set; }
+        public string 项目值 { get; set; }
     }
 }
