@@ -28,9 +28,7 @@ textarea {
 }**/
 
 
-body {
-	font-family: "微软雅黑";
-}
+body { font-family: "微软雅黑"; }
 
 .editorLayout { padding: 0 20px 10px 20px; }
 
@@ -45,7 +43,10 @@ body {
 	padding: 5px 10px 5px 10px;
 }
 
-.editorNameColumn { background: #FAFAFA;width: 70px;}
+.editorNameColumn {
+	background: #FAFAFA;
+	width: 70px;
+}
 
 .searchTable td, th { padding: 5px 5px 0 5px; }
 

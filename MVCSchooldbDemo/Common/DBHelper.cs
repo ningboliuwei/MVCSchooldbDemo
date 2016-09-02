@@ -22,9 +22,7 @@ namespace MVCSchooldbDemo.Classes
         public static List<T> Sorting<T>(List<T> data, string sort, string order)
         {
             if (!string.IsNullOrEmpty(sort) && !string.IsNullOrEmpty(order))
-            {
                 data = data.OrderBy($"{sort} {order}").ToList();
-            }
 
             return data;
         }
@@ -40,12 +38,8 @@ namespace MVCSchooldbDemo.Classes
 
 
                 for (var i = 0; i < keywords.Count(); i++)
-                {
                     if (!string.IsNullOrEmpty(keywords[i]))
-                    {
                         data = data.Where($"{propertyNames[i]}.Contains(\"{keywords[i]}\")").ToList();
-                    }
-                }
             }
 
             return data;
@@ -56,13 +50,9 @@ namespace MVCSchooldbDemo.Classes
             string expression;
 
             if (keyword is string)
-            {
                 expression = $"{propertyName}=\"{keyword}\"";
-            }
             else
-            {
                 expression = $"{propertyName}={keyword}";
-            }
 
             return data.Where(expression).ToList();
         }
@@ -71,9 +61,7 @@ namespace MVCSchooldbDemo.Classes
             string order)
         {
             if (!string.IsNullOrEmpty(queryParasString))
-            {
                 data = FilterByKeywords(data, queryParasString);
-            }
 
             data = Sorting(data, sort, order);
 

@@ -23,6 +23,11 @@ namespace <#=Namespace#>
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
+		public <#=ControllerName#>()
+		{
+			ViewBag.Name = "<#=name#>";
+		}
+
         public ActionResult Index()
         {
             return View();

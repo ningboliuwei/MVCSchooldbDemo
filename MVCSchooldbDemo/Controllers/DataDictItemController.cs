@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web.Mvc;
 using MVCSchooldbDemo.Classes;
 using MVCSchooldbDemo.Models.Data;
-using Newtonsoft.Json;
 
 namespace MVCSchooldbDemo.Controllers
 {
@@ -12,6 +11,11 @@ namespace MVCSchooldbDemo.Controllers
     public class DataDictItemController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
+
+        public DataDictItemController()
+        {
+            ViewBag.Name = "DataDictItem";
+        }
 
         public ActionResult Index()
         {
@@ -66,7 +70,13 @@ namespace MVCSchooldbDemo.Controllers
 
         public ActionResult GetDataDictItemValues(string name)
         {
-            var result = DBHelper.FindByKeyword(_db.DataDictItems.ToList(), "项目名", name).First().项目值.Split(',').ToList().Select(v => new { 项目值 = v }); ;
+            var result =
+                DBHelper.FindByKeyword(_db.DataDictItems.ToList(), "项目名", name)
+                    .First()
+                    .项目值.Split(',')
+                    .ToList()
+                    .Select(v => new {项目值 = v});
+            ;
 
             return new JsonResult
             {

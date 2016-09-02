@@ -274,8 +274,20 @@ function BindCombobox(comboboxName, url, params, valueField, textField, initalTe
                     data.unshift({ [valueField]: 0, [textField]: initalText });
                     $(comboboxName).combobox("loadData", data);
                 }
+                $(comboboxName).combobox("select", data[0][[valueField]]);
             }
         });
+
+
+}
+
+function BindDataDictItemCombobox(itemName) {
+    BindCombobox(`#${itemName}`,
+        "/DataDictItem/GetDataDictItemValues",
+        { name: itemName },
+        "项目值",
+        "项目值",
+        null);
 }
 
 function RefreshCombobox(comboboxName) {

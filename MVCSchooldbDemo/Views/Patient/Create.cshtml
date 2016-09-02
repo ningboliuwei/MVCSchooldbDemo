@@ -1,7 +1,6 @@
 ﻿﻿@model MVCSchooldbDemo.Models.Data.PatientInfo
 @{
     Layout = null;
-
 }
 
 <div class="editorLayout">
@@ -10,10 +9,16 @@
 </div>
 <script>
     $(function() {
-        $('#btnOK')
+        $('#Patient_btnOK')
             .bind('click',
                 function() {
-                    EditorSubmit('#formPatient',  '#gridPatient','#editorPatient', '@Url.Action("Create", "Patient")', window.GetData(), "确认添加记录吗？", '添加记录出现错误');
+                    EditorSubmit('#formPatient',
+                        '#gridPatient',
+                        '#editorPatient',
+                        '@Url.Action("Create", "Patient")',
+                        window.GetData(),
+                        "确认添加记录吗？",
+                        '添加记录出现错误');
                 }
             );
     });

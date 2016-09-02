@@ -12,8 +12,14 @@ namespace MVCSchooldbDemo.Controllers
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
+        public RoleController()
+        {
+            ViewBag.Name = "Role";
+        }
+
         public virtual ActionResult Index()
         {
+            ViewBag.Name = "Role";
             return View();
         }
 

@@ -40,8 +40,7 @@
             </a>
         </td>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('#gridStudent',    '#editorStudent',    '@Url.Action("Edit", "Student")',
-    '修改学生记录')">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('#gridStudent', '#editorStudent', '@Url.Action("Edit", "Student")', '修改学生记录')">
                 编辑
             </a>
         </td>
@@ -106,11 +105,11 @@
     var url = '@Url.Action("List", "Student")';
 
     $(function() {
-        BindGrid('#gridStudent','#tbStudent', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+        BindGrid('#gridStudent', '#tbStudent', url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }); //Show all records
 
     function Search() {
-        var queryData = {
+        const queryData = {
             Sno: $('#SearchSno').textbox('getText'),
             Ssex: $('#SearchSsex').textbox('getText'),
             Sdept: ($('#SearchSdept').textbox('getText') === 'ALL') ? '' : $('#SearchSdept').textbox('getText')
@@ -130,10 +129,16 @@
         $('#SearchSno').textbox('clear');
         $('#SearchSsex').textbox('clear');
 
-        var data = $('#SearchSdept').combobox('getData');
+        const data = $('#SearchSdept').combobox('getData');
         $('#SearchSdept').combobox('select', data[0]["text"]);
 
         BindGrid('#gridStudent',
-            '#tbStudent', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+            '#tbStudent',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            {});
     }
 </script>

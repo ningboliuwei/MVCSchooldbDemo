@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Web;
 using System.Web.Mvc;
 using MVCSchooldbDemo.Classes;
 using MVCSchooldbDemo.Common;
@@ -11,9 +9,14 @@ using MVCSchooldbDemo.Models.Data;
 namespace MVCSchooldbDemo.Controllers
 {
     [Authorize]
-    public partial class UserController : Controller
+    public class UserController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
+
+        public UserController()
+        {
+            ViewBag.Name = "User";
+        }
 
         public virtual ActionResult Index()
         {
@@ -23,9 +26,9 @@ namespace MVCSchooldbDemo.Controllers
         public string List(string queryParasString, int page, int rows, string sort, string order)
         {
             var list = from r in _db.Roles
-                       join u in _db.Users
-           on r.Id equals u.RoleId
-                       select new { u.Id, u.Account, u.FullName, RoleName = r.Name };
+                join u in _db.Users
+                on r.Id equals u.RoleId
+                select new {u.Id, u.Account, u.FullName, RoleName = r.Name};
             var result = DBHelper.GetResult(list.ToList(), queryParasString, page, rows, sort, order);
 
             return result;
@@ -41,8 +44,8 @@ namespace MVCSchooldbDemo.Controllers
                 var currentIndex = list.IndexOf(user);
 
                 var item = (from r in _db.Roles
-                            where r.Id == user.RoleId
-                            select new { user.Id, user.Account, user.FullName, user.RoleId, RoleName = r.Name }).ToList().First();
+                    where r.Id == user.RoleId
+                    select new {user.Id, user.Account, user.FullName, user.RoleId, RoleName = r.Name}).ToList().First();
 
                 return new JsonResult
                 {
@@ -50,14 +53,14 @@ namespace MVCSchooldbDemo.Controllers
                         new
                         {
                             Item =
-                                new
-                                {
-                                    item.Id,
-                                    item.Account,
-                                    item.FullName,
-                                    item.RoleId,
-                                    item.RoleName
-                                },
+                            new
+                            {
+                                item.Id,
+                                item.Account,
+                                item.FullName,
+                                item.RoleId,
+                                item.RoleName
+                            },
                             CurrentIndex = currentIndex,
                             PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,
                             NextId = currentIndex == list.Count - 1 ? -1 : list[currentIndex + 1].Id
@@ -128,9 +131,7 @@ namespace MVCSchooldbDemo.Controllers
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {
                 _db.Dispose();
-            }
             base.Dispose(disposing);
         }
     }

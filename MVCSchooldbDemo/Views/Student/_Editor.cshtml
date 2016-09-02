@@ -73,8 +73,8 @@
             "*.*",
             "支持所有类型文件",
             function(file, data, response) {
-                var fileInfo = JSON.parse(data);
-                $('#Sphoto').attr('src', '../' + fileInfo.BaseDirectory + fileInfo.FileName);
+                const fileInfo = JSON.parse(data);
+                $('#Sphoto').attr('src', `../${fileInfo.BaseDirectory}${fileInfo.FileName}`);
             },
             function() {},
             function() {},
@@ -89,9 +89,9 @@
     });
 
     function GetData() {
-        var photoFilePath = $('#Sphoto').attr('src');
-        var photoFileName = photoFilePath.substr(photoFilePath.lastIndexOf('/') + 1);
-        var photoGuid = photoFileName.substr(0, photoFileName.lastIndexOf('.'));
+        const photoFilePath = $('#Sphoto').attr('src');
+        const photoFileName = photoFilePath.substr(photoFilePath.lastIndexOf('/') + 1);
+        const photoGuid = photoFileName.substr(0, photoFileName.lastIndexOf('.'));
 
         return {
             Sno: $('#Sno').textbox('getText'),
@@ -110,21 +110,21 @@
         window.previousId = -1;
         window.nextId = -1;
 
-        $(function() { ShowData('@Url.Action("GetStudentData", "Student")' + '/' + @ViewBag.CurrentId); });
+        $(function() { ShowData(`@Url.Action("GetStudentData", "Student")/${@ViewBag.CurrentId}`); });
 
         function ShowData(url) {
             $.ajax({
                 type: "POST",
                 url: url,
                 success: function(data) {
-                    var item = data.Item;
+                    const item = data.Item;
 
                     $('#Sno').textbox('setText', item.Sno);
                     $('#Sname').textbox('setText', item.Sname);
                     $('#Sage').textbox('setText', item.Sage);
                     $('#Ssex').combobox('setText', item.Ssex);
                     $('#Sdept').combobox('setText', item.Sdept);
-                    $('#Sphoto').attr('src', '../' + item.SphotoPath);
+                    $('#Sphoto').attr('src', `../${item.SphotoPath}`);
 
                     window.previousId = data.PreviousId;
                     window.nextId = data.NextId;

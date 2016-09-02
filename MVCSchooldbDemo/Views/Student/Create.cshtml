@@ -1,8 +1,6 @@
-﻿@using MVCSchooldbDemo.Models.Data
-﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
+﻿﻿@model MVCSchooldbDemo.Models.Data.StudentInfo
 @{
     Layout = null;
-  
 }
 
 
@@ -12,10 +10,16 @@
 </div>
 <script>
     $(function() {
-        $('#btnOK')
+        $('#@ViewBag.Name_btnOK')
             .bind('click',
                 function() {
-                    EditorSubmit('#formStudent',  '#gridStudent','#editorStudent', '@Url.Action("Create", "Student")', window.GetData(), "确认添加记录吗？", '添加记录出现错误');
+                    EditorSubmit('#formStudent',
+                        '#gridStudent',
+                        '#editorStudent',
+                        '@Url.Action("Create", "Student")',
+                        window.GetData(),
+                        "确认添加记录吗？",
+                        '添加记录出现错误');
                 }
             );
     });

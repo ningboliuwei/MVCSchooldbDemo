@@ -12,7 +12,7 @@
 </div>
 <script>
     $(function() {
-        $('#btnOK')
+        $('#<#=name#>_btnOK')
             .bind('click',
                 function() {
                     EditorSubmit('#form<#=name#>',  '#grid<#=name#>','#editor<#=name#>', '@Url.Action("Create", "<#=name#>")', window.GetData(), "确认添加记录吗？", '添加记录出现错误');

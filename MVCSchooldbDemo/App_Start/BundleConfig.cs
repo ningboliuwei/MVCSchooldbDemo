@@ -13,7 +13,7 @@ namespace MVCSchooldbDemo
                 "~/Scripts/easyui-lang-zh_CN.js",
                 "~/Scripts/jquery.uploadify.min.js",
                 "~/Scripts/common.js"
-                ));
+            ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/EasyUI/themes/metro-blue/easyui.css",

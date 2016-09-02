@@ -8,10 +8,16 @@
 </div>
 <script>
     $(function() {
-        $('#btnOK')
+        $('#DataDictItem_btnOK')
             .bind('click',
                 function() {
-                    EditorSubmit('#formDataDictItem','#gridDataDictItem','#editorDataDictItem','@Url.Action("Edit", "DataDictItem")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
+                    EditorSubmit('#formDataDictItem',
+                        '#gridDataDictItem',
+                        '#editorDataDictItem',
+                        '@Url.Action("Edit", "DataDictItem")',
+                        window.GetData(),
+                        "确认修改记录吗？",
+                        '修改记录出现错误');;
                 });
     });
 </script>

@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using MVCSchooldbDemo.Classes;
-using MVCSchooldbDemo.Common;
 using MVCSchooldbDemo.Models.Data;
 
 namespace MVCSchooldbDemo.Controllers
 {
     [Authorize]
-    public partial class PatientController : Controller
+    public class PatientController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
+
+        public PatientController()
+        {
+            ViewBag.Name = "Patient";
+        }
 
         // GET: Student
         public virtual ActionResult Index()
@@ -51,22 +53,22 @@ namespace MVCSchooldbDemo.Controllers
                         new
                         {
                             Item =
-                                new
-                                {
-                                    item.住院号,
-                                    item.姓名,
-                                    item.性别,
-                                    item.出生日期,
-                                    item.入组日期,
-                                    item.民族,
-                                    item.婚姻状况,
-                                    item.文化程度,
-                                    item.职业,
-                                    item.年收入,
-                                    item.保险类别,
-                                    item.联系电话,
-                                    item.联系地址,
-                                },
+                            new
+                            {
+                                item.住院号,
+                                item.姓名,
+                                item.性别,
+                                item.出生日期,
+                                item.入组日期,
+                                item.民族,
+                                item.婚姻状况,
+                                item.文化程度,
+                                item.职业,
+                                item.年收入,
+                                item.保险类别,
+                                item.联系电话,
+                                item.联系地址
+                            },
                             CurrentIndex = currentIndex,
                             PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,
                             NextId = currentIndex == list.Count - 1 ? -1 : list[currentIndex + 1].Id
@@ -83,6 +85,7 @@ namespace MVCSchooldbDemo.Controllers
             ViewBag.DialogTitle = "添加病人基本资料";
             return View();
         }
+
         [HttpPost]
         public virtual ActionResult Create(PatientInfo item)
         {
@@ -135,9 +138,7 @@ namespace MVCSchooldbDemo.Controllers
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {
                 _db.Dispose();
-            }
             base.Dispose(disposing);
         }
     }

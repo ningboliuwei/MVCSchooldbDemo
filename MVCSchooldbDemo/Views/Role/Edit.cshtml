@@ -10,10 +10,16 @@
 </div>
 <script>
     $(function() {
-        $('#btnOK')
+        $('#Role_btnOK')
             .bind('click',
                 function() {
-                    EditorSubmit('#formRole','#gridRole','#editorRole','@Url.Action("Edit", "Role")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
+                    EditorSubmit('#formRole',
+                        '#gridRole',
+                        '#editorRole',
+                        '@Url.Action("Edit", "Role")',
+                        window.GetData(),
+                        "确认修改记录吗？",
+                        '修改记录出现错误');;
                 });
     });
 </script>

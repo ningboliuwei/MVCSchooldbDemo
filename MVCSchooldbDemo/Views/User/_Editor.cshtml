@@ -29,9 +29,9 @@
         <tr>
             <td class="editorNameColumn">用户类别</td>
             <td>
-                <div onclick="$('#UserRole').combobox('clear');BindCombobox('#UserRole', '@Url.Action("GetAllRoles", "Role")', null, 'Id', 'Name', null);">
-                    <select id="UserRole" class="easyui-combobox" style="width: 100px"></select>
-                </div>
+                @*                <div onclick="$('#UserRole').combobox('clear');BindCombobox('#UserRole', '@Url.Action("GetAllRoles", "Role")', null, 'Id', 'Name', null);">*@
+                <select id="UserRole" class="easyui-combobox" style="width: 100px"></select>
+                @*                </div>*@
             </td>
         </tr>
     </table>
@@ -44,8 +44,8 @@
             'Id',
             'Name',
             null);
-//        $('#Role').combobox('select', 0);
-        $('#btnCancel')
+
+        $('#User_btnCancel')
             .bind('click',
                 function() {
                     CloseEditor('#editorUser');

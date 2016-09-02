@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 
 namespace MVCSchooldbDemo.Common
 {
@@ -11,10 +8,10 @@ namespace MVCSchooldbDemo.Common
     {
         public static string MD5(string encryptString)
         {
-            byte[] result = Encoding.Default.GetBytes(encryptString);
+            var result = Encoding.Default.GetBytes(encryptString);
             MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] output = md5.ComputeHash(result);
-            string encryptResult = BitConverter.ToString(output).Replace("-", "");
+            var output = md5.ComputeHash(result);
+            var encryptResult = BitConverter.ToString(output).Replace("-", "");
             return encryptResult;
         }
     }

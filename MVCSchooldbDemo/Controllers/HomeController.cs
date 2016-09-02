@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using MVCSchooldbDemo.Classes;
@@ -8,7 +7,7 @@ using MVCSchooldbDemo.Common;
 namespace MVCSchooldbDemo.Controllers
 {
     [Authorize]
-    public partial class HomeController : Controller
+    public class HomeController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
@@ -27,16 +26,10 @@ namespace MVCSchooldbDemo.Controllers
                 var users = DBHelper.FindByKeyword(_db.Users.ToList(), "Account", account);
 
                 if (users.Count == 0)
-                {
-                    //cannot find the account
                     return Content("-1");
-                }
 
                 if (users.First().Password != UtilityHelper.MD5(password))
-                {
-                    //right account, wrong password
                     return Content("-2");
-                }
                 //right account, right password
                 FormsAuthentication.SetAuthCookie(account, false);
                 Session["account"] = account;

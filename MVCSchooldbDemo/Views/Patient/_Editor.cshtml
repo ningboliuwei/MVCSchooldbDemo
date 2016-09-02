@@ -44,34 +44,27 @@
                     <td class="editorNameColumn">婚姻状况</td>
                     <td>
                         <select id="婚姻状况" class="easyui-combobox" style="width: 100px">
-                            <option>已婚</option>
-                            <option>未婚</option>
                         </select>
                     </td>
                     <td class="editorNameColumn">文化程度</td>
                     <td>
-                        <input id="文化程度" class="easyui-textbox"/>
+                        <select id="文化程度" class="easyui-combobox" style="width: 100px"></select>
                     </td>
                 </tr>
                 <tr>
                     <td class="editorNameColumn" style="width: 70px">职业</td>
                     <td>
-                        <input id="职业" class="easyui-textbox"/>
+                        <select id="职业" class="easyui-combobox" style="width: 100px"></select>
                     </td>
 
                     <td class="editorNameColumn">年收入</td>
                     <td>
                         <select id="年收入" class="easyui-combobox" style="width: 100px">
-                            <option>&lt; 10000</option>
-                            <option>10000 ~ 50000</option>
-                            <option>&gt; 50000</option>
                         </select>
                     </td>
                     <td class="editorNameColumn">保险类别</td>
                     <td>
                         <select id="保险类别" class="easyui-combobox" style="width: 100px">
-                            <option>公费</option>
-                            <option>自费</option>
                         </select>
                     </td>
                 </tr>
@@ -84,15 +77,14 @@
 </form>
 <script>
     $(function() {
-        const params = { name: '性别' };
-        BindCombobox('#性别',
-            '@Url.Action("GetDataDictItemValues", "DataDictItem")',
-            params,
-            '项目值',
-            '项目值',
-            null);
+        BindDataDictItemCombobox('性别');
+        BindDataDictItemCombobox('婚姻状况');
+        BindDataDictItemCombobox('职业');
+        BindDataDictItemCombobox('年收入');
+        BindDataDictItemCombobox('保险类别');
+        BindDataDictItemCombobox('文化程度');
 
-        $('#btnCancel')
+        $('#Patient_btnCancel')
             .bind('click',
                 function() {
                     CloseEditor('#editorPatient');

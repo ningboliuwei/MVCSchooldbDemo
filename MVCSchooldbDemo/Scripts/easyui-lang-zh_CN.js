@@ -39,17 +39,17 @@ if ($.fn.datebox) {
     $.fn.datebox.defaults.closeText = "关闭";
     $.fn.datebox.defaults.okText = "确定";
     $.fn.datebox.defaults.formatter = function(date) {
-        var y = date.getFullYear();
-        var m = date.getMonth() + 1;
-        var d = date.getDate();
-        return y + "-" + (m < 10 ? ("0" + m) : m) + "-" + (d < 10 ? ("0" + d) : d);
+        const y = date.getFullYear();
+        const m = date.getMonth() + 1;
+        const d = date.getDate();
+        return y + "-" + (m < 10 ? (`0${m}`) : m) + "-" + (d < 10 ? (`0${d}`) : d);
     };
     $.fn.datebox.defaults.parser = function(s) {
         if (!s) return new Date();
-        var ss = s.split("-");
-        var y = parseInt(ss[0], 10);
-        var m = parseInt(ss[1], 10);
-        var d = parseInt(ss[2], 10);
+        const ss = s.split("-");
+        const y = parseInt(ss[0], 10);
+        const m = parseInt(ss[1], 10);
+        const d = parseInt(ss[2], 10);
         if (!isNaN(y) && !isNaN(m) && !isNaN(d)) {
             return new Date(y, m - 1, d);
         } else {

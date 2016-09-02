@@ -13,7 +13,13 @@
         $('#btnOK')
             .bind('click',
                 function() {
-                    EditorSubmit('#formStudent','#gridStudent','#editorStudent','@Url.Action("Edit", "Student")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
+                    EditorSubmit('#formStudent',
+                        '#gridStudent',
+                        '#editorStudent',
+                        '@Url.Action("Edit", "Student")',
+                        window.GetData(),
+                        "确认修改记录吗？",
+                        '修改记录出现错误');;
                 });
     });
 </script>

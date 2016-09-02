@@ -9,6 +9,7 @@ namespace MVCSchooldbDemo.Models.Data
     {
         [Key]
         public long Id { get; set; }
+
         public string 编号 { get; set; }
         public string 住院号 { get; set; }
         public string 姓名 { get; set; }

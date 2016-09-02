@@ -36,27 +36,26 @@
     </table>
     <table class="buttonsTable">
         <tr>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorPatient', '@Url.Action("Create", "Patient")', '添加病人基本信息')">
-                    添加
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridPatient',    '#editorPatient',    '@Url.Action("Edit", "Patient")',
-    '编辑病人基本信息')">
-                    编辑
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridPatient', '@Url.Action("Delete", "Patient")')">
-                    删除
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridPatient', '#editorPatient', '@Url.Action("Details", "Patient")', '病人基本信息明细')">
-                    详细
-                </a>
-            </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorPatient', '@Url.Action("Create", "Patient")', '添加病人基本信息')">
+                添加
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridPatient', '#editorPatient', '@Url.Action("Edit", "Patient")', '编辑病人基本信息')">
+                编辑
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridPatient', '@Url.Action("Delete", "Patient")')">
+                删除
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridPatient', '#editorPatient', '@Url.Action("Details", "Patient")', '病人基本信息明细')">
+                详细
+            </a>
+        </td>
     </table>
 </div>
 <div id="editorPatient" style="display: none; height: 600px; width: 900px;"></div>
@@ -156,11 +155,11 @@
     var url = '@Url.Action("List", "Patient")';
 
     $(function() {
-        BindGrid('#gridPatient','#tbPatient', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+        BindGrid('#gridPatient', '#tbPatient', url, columns, gridTitle, gridSortName, gridSortOrder, {});
     }); //Show all records
 
     function Search() {
-        var queryData = {
+        const queryData = {
             住院号: $('#Patient_Search_住院号').textbox('getText'),
             姓名: $('#Patient_Search_姓名').textbox('getText'),
             联系电话: $('#Patient_Search_联系电话').textbox('getText')
@@ -185,6 +184,12 @@
 //        $('#SearchSdept').combobox('select', data[0]["text"]);
 
         BindGrid('#gridPatient',
-            '#tbPatient', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+            '#tbPatient',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            {});
     }
 </script>

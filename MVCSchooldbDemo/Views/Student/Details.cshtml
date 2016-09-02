@@ -16,16 +16,16 @@
             .bind('click',
                 function() {
                     if (window.previousId !== -1) {
-                        window.ShowData('@Url.Action("GetStudentData", "Student")' + '/' + window.previousId);
+                        window.ShowData(`@Url.Action("GetStudentData", "Student")/${window.previousId}`);
                     }
                 });
 
         $('#btnNext')
-         .bind('click',
-             function () {
-                 if (window.nextId !== -1) {
-                     window.ShowData('@Url.Action("GetStudentData", "Student")' + '/' + window.nextId);
-                 }
-             });
+            .bind('click',
+                function() {
+                    if (window.nextId !== -1) {
+                        window.ShowData(`@Url.Action("GetStudentData", "Student")/${window.nextId}`);
+                    }
+                });
     });
 </script>

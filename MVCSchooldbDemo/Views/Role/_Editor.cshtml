@@ -13,13 +13,12 @@
 </form>
 <script>
     $(function() {
-        $('#btnCancel')
+        $('#Role_btnCancel')
             .bind('click',
                 function() {
                     CloseEditor('#editorRole');
                 }
             );
-
     });
 
     function GetData() {
@@ -35,14 +34,14 @@
         window.previousId = -1;
         window.nextId = -1;
 
-        $(function() { ShowData('@Url.Action("GetItemData", "Role")' + '/' + @ViewBag.CurrentId); });
+        $(function() { ShowData(`@Url.Action("GetItemData", "Role")/${@ViewBag.CurrentId}`); });
 
         function ShowData(url) {
             $.ajax({
                 type: "POST",
                 url: url,
                 success: function(data) {
-                    var item = data.Item;
+                    const item = data.Item;
 
                     $('#Name').textbox('setText', item.Name);
 

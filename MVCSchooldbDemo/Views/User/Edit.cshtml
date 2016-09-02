@@ -10,10 +10,16 @@
 </div>
 <script>
     $(function() {
-        $('#btnOK')
+        $('#User_btnOK')
             .bind('click',
                 function() {
-                    EditorSubmit('#formUser','#gridUser','#editorUser','@Url.Action("Edit", "User")', window.GetData(), "确认修改用户吗？", '修改用户出现错误');;
+                    EditorSubmit('#formUser',
+                        '#gridUser',
+                        '#editorUser',
+                        '@Url.Action("Edit", "User")',
+                        window.GetData(),
+                        "确认修改用户吗？",
+                        '修改用户出现错误');;
                 });
     });
 </script>

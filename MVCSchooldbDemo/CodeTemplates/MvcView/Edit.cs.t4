@@ -12,7 +12,7 @@
 </div>
 <script>
     $(function() {
-        $('#btnOK')
+        $('#<#=name#>_btnOK')
             .bind('click',
                 function() {
                     EditorSubmit('#form<#=name#>','#grid<#=name#>','#editor<#=name#>','@Url.Action("Edit", "<#=name#>")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;

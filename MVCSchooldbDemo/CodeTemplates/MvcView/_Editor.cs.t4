@@ -34,7 +34,7 @@
 </form>
 <script>
     $(function() {
-        $('#btnCancel')
+        $('#<#=name#>_btnCancel')
             .bind('click',
                 function() {
                     CloseEditor('#editor<#=name#>');

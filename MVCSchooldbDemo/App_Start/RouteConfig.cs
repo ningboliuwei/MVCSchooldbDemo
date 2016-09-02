@@ -13,7 +13,7 @@ namespace MVCSchooldbDemo
                 "Default",
                 "{controller}/{action}/{id}",
                 new {controller = "Home", action = "Login", id = UrlParameter.Optional}
-                );
+            );
         }
     }
 }
