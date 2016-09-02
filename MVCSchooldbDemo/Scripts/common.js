@@ -169,7 +169,7 @@ function Edit(gridName, editorName, url, editorTitle) {
         return;
     } else {
         const id = rows[0].Id;
-
+        console.log(id);
         ShowEditor(editorName, url + "/" + id, editorTitle);
     }
 }
@@ -249,22 +249,24 @@ function InitTree(treeName, tabsName, data) {
         .tree({
             data: data,
             onClick: function(node) {
-                AddTab(tabsName, node.text, node.attributes.url);
+                if (node.attributes.url !== "#") {
+                    AddTab(tabsName, node.text, node.attributes.url);
+                }
             }
         });
 }
 
-function BindCombobox(comboboxName, url, valueField, textField, initalText, callbackOnHidePanel) {
+function BindCombobox(comboboxName, url, params, valueField, textField, initalText) {
     $(comboboxName)
         .combobox({
             url: url,
+            queryParams: params,
             panelHeight: "auto",
             valueField: valueField,
             textField: textField,
             dataType: "json",
             onShowPanel: function() {
                 $(comboboxName).combobox("reload");
-
             },
             onLoadSuccess: function() {
                 const data = $(comboboxName).combobox("getData");

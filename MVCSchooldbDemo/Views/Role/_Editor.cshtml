@@ -35,7 +35,7 @@
         window.previousId = -1;
         window.nextId = -1;
 
-        $(function() { ShowData('@Url.Action("GetRoleData", "Role")' + '/' + @ViewBag.CurrentId); });
+        $(function() { ShowData('@Url.Action("GetItemData", "Role")' + '/' + @ViewBag.CurrentId); });
 
         function ShowData(url) {
             $.ajax({

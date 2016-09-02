@@ -34,7 +34,7 @@ namespace MVCSchooldbDemo.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult GetRoleData(long? id)
+        public virtual ActionResult GetItemData(long? id)
         {
             if (id != null)
             {

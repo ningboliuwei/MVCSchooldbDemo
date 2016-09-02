@@ -9,11 +9,11 @@
         <tr>
             <td>项目名</td>
             <td>
-                <input id="DataDictItem_Search_项目名" class="easyui-textbox">
+                <input id="DataDictItem_Search_项目名" class="easyui-textbox" style="width: 100px">
             </td>
             <td>项目值</td>
             <td>
-                <input id="DataDictItem_Search_项目值" class="easyui-textbox">
+                <input id="DataDictItem_Search_项目值" class="easyui-textbox" style="width: 100px">
             </td>
             <td>
                 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-search fa-16px" onclick="Search()">搜索</a>
@@ -26,12 +26,12 @@
     <table class="buttonsTable">
         <tr>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorDataDictItem', '@Url.Action("Create", "DataDictItem")', '添加数据字典项目信息')">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorDataDictItem', '@Url.Action("Create", "DataDictItem")', '添加数据字典项目')">
                 添加
             </a>
         </td>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridDataDictItem', '#editorDataDictItem', '@Url.Action("Edit", "DataDictItem")', '编辑数据字典项目信息')">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridDataDictItem', '#editorDataDictItem', '@Url.Action("Edit", "DataDictItem")', '编辑数据字典项目')">
                 编辑
             </a>
         </td>
@@ -61,18 +61,18 @@
                 field: '项目名',
                 title: '项目名',
                 width: 100,
-                hidden: false
+                sortable: true
             },
             {
                 field: '项目值',
                 title: '项目值',
                 width: 100,
-                hidden: false
+                sortable: true
             }
         ]
     ];
 
-    var gridTitle = '数据字典项目记录';
+    var gridTitle = '数据字典项目';
     var gridSortName = 'Id';
     var gridSortOrder = 'asc';
     var url = '@Url.Action("List", "DataDictItem")';

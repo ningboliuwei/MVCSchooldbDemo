@@ -61,6 +61,12 @@
                 title: 'ID',
                 width: 100,
                 hidden: true
+            },
+			{
+                field: '字段1',
+                title: 'ID',
+                width: 100,
+                sortable: true
             }
         ]
     ];

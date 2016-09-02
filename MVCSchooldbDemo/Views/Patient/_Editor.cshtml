@@ -6,28 +6,23 @@
         <div title="Tab1">
             <table class="editorTable">
                 <tr>
-                    <td class="editorNameColumn" style="width: 70px">编号</td>
+                    <td class="editorNameColumn">编号</td>
                     <td>
-                        <input id="编号" class="easyui-textbox" />
+                        <input id="编号" class="easyui-textbox"/>
                     </td>
-
                     <td class="editorNameColumn">住院号</td>
                     <td>
-                        <input id="住院号" class="easyui-textbox" />
+                        <input id="住院号" class="easyui-textbox"/>
                     </td>
-
                     <td class="editorNameColumn">姓名</td>
                     <td>
-                        <input id="姓名" class="easyui-textbox" />
+                        <input id="姓名" class="easyui-textbox"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="editorNameColumn" style="width: 70px">性别</td>
+                    <td class="editorNameColumn">性别</td>
                     <td>
-                        <select id="性别" class="easyui-combobox" style="width: 70px">
-                            <option value="男">男</option>
-                            <option value="女">女</option>
-                        </select>
+                        <select id="性别" class="easyui-combobox" style="width: 100px"></select>
                     </td>
 
                     <td class="editorNameColumn">出生日期</td>
@@ -41,9 +36,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="editorNameColumn" style="width: 70px">民族</td>
+                    <td class="editorNameColumn">民族</td>
                     <td>
-                        <input id="民族" class="easyui-textbox" />
+                        <input id="民族" class="easyui-textbox"/>
                     </td>
 
                     <td class="editorNameColumn">婚姻状况</td>
@@ -55,13 +50,13 @@
                     </td>
                     <td class="editorNameColumn">文化程度</td>
                     <td>
-                        <input id="文化程度" class="easyui-textbox" />
+                        <input id="文化程度" class="easyui-textbox"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="editorNameColumn" style="width: 70px">职业</td>
                     <td>
-                        <input id="职业" class="easyui-textbox" />
+                        <input id="职业" class="easyui-textbox"/>
                     </td>
 
                     <td class="editorNameColumn">年收入</td>
@@ -89,6 +84,14 @@
 </form>
 <script>
     $(function() {
+        const params = { name: '性别' };
+        BindCombobox('#性别',
+            '@Url.Action("GetDataDictItemValues", "DataDictItem")',
+            params,
+            '项目值',
+            '项目值',
+            null);
+
         $('#btnCancel')
             .bind('click',
                 function() {
@@ -121,7 +124,7 @@
         window.previousId = -1;
         window.nextId = -1;
 
-        $(function() { ShowData(`@Url.Action("GetData", "Patient")/${@ViewBag.CurrentId}`); });
+        $(function() { ShowData('@Url.Action("GetData", "Patient")/${@ViewBag.CurrentId}'); });
 
         function ShowData(url) {
             $.ajax({

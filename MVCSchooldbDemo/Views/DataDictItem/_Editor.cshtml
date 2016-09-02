@@ -47,7 +47,8 @@
         window.previousId = -1;
         window.nextId = -1;
 
-        $(function() { ShowData(`@Url.Action("GetItemData", "DataDictItem")/${@ViewBag.CurrentId}`); });
+        $(function() { ShowData('@Url.Action("GetItemData", "DataDictItem")' + '/' + @ViewBag.CurrentId); });
+
 
         function ShowData(url) {
             $.ajax({

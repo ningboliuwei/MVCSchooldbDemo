@@ -12,13 +12,13 @@
         color: #404040;
     }
 
-    .tree-expanded {background: url('../../Content/Images/caret-down.png') no-repeat; }
+    .tree-expanded { background: url('../../Content/Images/caret-down.png') no-repeat; }
 
-    .tree-expanded-hover { background: url('../../Content/Images/caret-down-hover.png') no-repeat;}
+    .tree-expanded-hover { background: url('../../Content/Images/caret-down-hover.png') no-repeat; }
 
-    .tree-collapsed { background: url('../../Content/Images/caret-right.png') no-repeat ;}
+    .tree-collapsed { background: url('../../Content/Images/caret-right.png') no-repeat; }
 
-    .tree-collapsed-hover { background: url('../../Content/Images/caret-right-hover.png') no-repeat;}
+    .tree-collapsed-hover { background: url('../../Content/Images/caret-right-hover.png') no-repeat; }
 </style>
 <div id="aa" class="easyui-accordion" data-options="fit:true">
     <div title="数据管理" data-options="iconCls:'fa fa-database fa-16px',selected:false" style="overflow: auto;">
@@ -51,22 +51,35 @@
             [
                 {
                     "id": 1,
-                    "text": "用户管理",
+                    "text": "用户与角色管理",
                     "iconCls": "fa fa-user fa-16px fa-fw",
-                    "attributes": { url: "@Url.Action("Index", "User")" }
-                }, {
-                    "id": 2,
-                    "text": "角色管理",
-                    "iconCls": "fa fa-users fa-16px fa-fw",
-                    "attributes": { url: "@Url.Action("Index", "Role")" },
+                    "attributes": { url: "#" },
                     "children": [
                         {
+                            "id": 2,
+                            "text": "用户管理",
+                            "iconCls": "fa fa-user fa-16px fa-fw",
+                            "attributes": { url: "@Url.Action("Index", "User")" }
+                        }, {
                             "id": 3,
+                            "text": "角色管理",
+                            "iconCls": "fa fa-users fa-16px fa-fw",
+                            "attributes": { url: "@Url.Action("Index", "Role")" }
+                        }
+                    ]
+                }, {
+                    "id": 4,
+                    "text": "杂项管理",
+                    "iconCls": "fa fa-cubes fa-16px fa-fw",
+                    "attributes": { url: "#" },
+                    "children": [
+                        {
+                            "id": 5,
                             "text": "数据字典项目管理",
                             "iconCls": "fa fa-asterisk fa-16px fa-fw",
                             "attributes": { url: "@Url.Action("Index", "DataDictItem")" }
                         }, {
-                            "id": 4,
+                            "id": 6,
                             "text": "课程管理",
                             "iconCls": "fa fa-book fa-16px fa-fw"
                         }

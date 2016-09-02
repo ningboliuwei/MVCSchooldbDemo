@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using MVCSchooldbDemo.Classes;
-using MVCSchooldbDemo.Common;
 using MVCSchooldbDemo.Models.Data;
+using Newtonsoft.Json;
 
 namespace MVCSchooldbDemo.Controllers
 {
@@ -20,7 +18,7 @@ namespace MVCSchooldbDemo.Controllers
             return View();
         }
 
-		public string List(string queryParasString, int page, int rows, string sort, string order)
+        public string List(string queryParasString, int page, int rows, string sort, string order)
         {
             var result = DBHelper.GetResult(_db.DataDictItems.ToList(), queryParasString, page, rows, sort, order);
 
@@ -34,7 +32,7 @@ namespace MVCSchooldbDemo.Controllers
             return View(new DataDictItemInfo());
         }
 
-		[HttpPost]
+        [HttpPost]
         public virtual ActionResult GetItemData(long? id)
         {
             if (id != null)
@@ -49,12 +47,12 @@ namespace MVCSchooldbDemo.Controllers
                         new
                         {
                             Item =
-                                new
-                                {
-                                    item.Id,
-                                    item.项目名,
-									item.项目值
-                                },
+                            new
+                            {
+                                item.Id,
+                                item.项目名,
+                                item.项目值
+                            },
                             CurrentIndex = currentIndex,
                             PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,
                             NextId = currentIndex == list.Count - 1 ? -1 : list[currentIndex + 1].Id
@@ -66,9 +64,20 @@ namespace MVCSchooldbDemo.Controllers
             return HttpNotFound();
         }
 
+        public ActionResult GetDataDictItemValues(string name)
+        {
+            var result = DBHelper.FindByKeyword(_db.DataDictItems.ToList(), "项目名", name).First().项目值.Split(',').ToList().Select(v => new { 项目值 = v }); ;
+
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
         public virtual ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加数据字典项目记录";//TODO
+            ViewBag.DialogTitle = "添加数据字典项目记录"; //TODO
             return View();
         }
 
@@ -85,16 +94,17 @@ namespace MVCSchooldbDemo.Controllers
             return View();
         }
 
+        [HttpGet]
         public virtual ActionResult Edit(long? id)
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "编辑数据字典项目记录";//TODO
+                ViewBag.DialogTitle = "编辑数据字典项目记录"; //TODO
                 ViewBag.CurrentId = id;
                 return View(new DataDictItemInfo());
             }
-            
-			return HttpNotFound();
+
+            return HttpNotFound();
         }
 
         [HttpPost]
@@ -105,7 +115,7 @@ namespace MVCSchooldbDemo.Controllers
             return RedirectToAction("Index");
         }
 
-		[HttpPost]
+        [HttpPost]
         public virtual ActionResult Delete(List<long> ids)
         {
             foreach (var id in ids)
