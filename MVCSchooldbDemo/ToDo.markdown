@@ -91,6 +91,10 @@
 47. 增加 DataDictItemInfo 一系列 ================== 2016-09-01 √
 48. 通过自定义 T4 模板生成相应代码  ============== 2016-09-02 √
 49. 用户管理的『编辑』失效  ============== 由不同的 Editor 中同名的 btnOK 与 btnCancel 导致。需要将不同 editor 中的两个按钮的 id 设为不一样的  =========== 基本解决，需要进一步测试（并考虑修改已有代码，及重构优化 ======= 以修改 Views 及 Controller 模板）
+50. Editor 中的确定按钮等保持最下方 ========= 通过 postition:absolute 以及 bottom:0 实现。 ============== 2016-09-03 √
+51. datagrid 中日期格式不对 =============== 通过 common.js 中的 FormatHelper 实现 ======= 2016-09-03 √
+52. combobox 设置为只读 ============ editable : false in BindComboBox in common.js =========== 2016-09-03 √
+53. 点击 combobox 后，会自动选中第一项。
 
 
 

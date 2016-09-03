@@ -1,5 +1,59 @@
 ﻿var AlertType = { Error: "error", Question: "question", Info: "info", Warning: "warning" }; //警告框的 ICON 类型（仿枚举）
 
+//EasyUI用DataGrid用日期格式化
+var FormatHelper = {
+    DateFormatter: function(value, row, index) {
+        const date = new Date(value);
+        const year = date.getFullYear().toString();
+        var month = (date.getMonth() + 1);
+        var day = date.getDate().toString();
+
+        if (month < 10) {
+            month = `0${month}`;
+        }
+
+        if (day < 10) {
+            day = `0${day}`;
+        }
+
+        return year + "/" + month + "/" + day;
+    },
+
+    //EasyUI用DataGrid用日期格式化
+    DateTimeFormatter: function(value, row, index) {
+        const date = new Date(value);
+        const year = date.getFullYear().toString();
+        var month = (date.getMonth() + 1);
+        var day = date.getDate().toString();
+        var hour = date.getHours().toString();
+        var minutes = date.getMinutes().toString();
+        var seconds = date.getSeconds().toString();
+
+        if (month < 10) {
+            month = `0${month}`;
+        }
+
+        if (day < 10) {
+            day = `0${day}`;
+        }
+
+        if (hour < 10) {
+            hour = `0${hour}`;
+        }
+
+        if (minutes < 10) {
+            minutes = `0${minutes}`;
+        }
+
+        if (seconds < 10) {
+            seconds = `0${seconds}`;
+        }
+
+        return year + "/" + month + "/" + day + " " + hour + ":" + minutes + ":" + seconds;
+    }
+};
+
+
 //添加 Tab 的函数，若已存在则选中已有的 Tab
 function AddTab(tabsName, title, url) {
     if ($(tabsName).tabs("exists", title)) {
@@ -64,7 +118,8 @@ function ShowEditor(editorName, url, title) {
         .dialog({
             closed: true,
             title: title,
-            href: url
+            href: url,
+            modal: true
             //            cache: false,
             //            doSize: false
         });
@@ -265,16 +320,23 @@ function BindCombobox(comboboxName, url, params, valueField, textField, initalTe
             valueField: valueField,
             textField: textField,
             dataType: "json",
+            editable: false,
             onShowPanel: function() {
                 $(comboboxName).combobox("reload");
             },
-            onLoadSuccess: function() {
+            onLoadSuccess: function () {
+                var previousValue = $(comboboxName).combobox("getValue");
                 const data = $(comboboxName).combobox("getData");
                 if (initalText !== null && data[0][[textField]] !== initalText) {
                     data.unshift({ [valueField]: 0, [textField]: initalText });
                     $(comboboxName).combobox("loadData", data);
                 }
-                $(comboboxName).combobox("select", data[0][[valueField]]);
+
+                if ($(comboboxName).combobox('getText') === "") {
+                    $(comboboxName).combobox("select", data[0][[valueField]]);
+                } else {
+                    $(comboboxName).combobox("select", previousValue);
+                }
             }
         });
 
