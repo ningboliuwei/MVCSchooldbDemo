@@ -324,15 +324,15 @@ function BindCombobox(comboboxName, url, params, valueField, textField, initalTe
             onShowPanel: function() {
                 $(comboboxName).combobox("reload");
             },
-            onLoadSuccess: function () {
-                var previousValue = $(comboboxName).combobox("getValue");
+            onLoadSuccess: function() {
+                const previousValue = $(comboboxName).combobox("getValue");
                 const data = $(comboboxName).combobox("getData");
                 if (initalText !== null && data[0][[textField]] !== initalText) {
                     data.unshift({ [valueField]: 0, [textField]: initalText });
                     $(comboboxName).combobox("loadData", data);
                 }
 
-                if ($(comboboxName).combobox('getText') === "") {
+                if ($(comboboxName).combobox("getText") === "") {
                     $(comboboxName).combobox("select", data[0][[valueField]]);
                 } else {
                     $(comboboxName).combobox("select", previousValue);
@@ -355,3 +355,10 @@ function BindDataDictItemCombobox(itemName) {
 function RefreshCombobox(comboboxName) {
     $(comboboxName).combobox("reload");
 };
+
+function GenerateRadioButtonList(container, groupname, array) {
+    $.each(array,
+        function(i) {
+            container.append(`<input id='cbl_${array[i]}' type='radio' name='${groupname}' value='${array[i]}'/>${array[i]}`);
+        });
+}

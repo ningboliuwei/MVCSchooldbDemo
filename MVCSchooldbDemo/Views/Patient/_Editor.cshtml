@@ -79,7 +79,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="6">住所至康复中心交通是否便利：</td>
+                    <td id="test" colspan="6">住所至康复中心交通是否便利：</td>
                 </tr>
             </table>
         </div>
@@ -96,6 +96,8 @@
         BindDataDictItemCombobox('年收入');
         BindDataDictItemCombobox('保险类别');
         BindDataDictItemCombobox('文化程度');
+
+        GenerateRadioButtonList($("#test"),"test", ["a", "b", "c"]);
 
         $('#Patient_btnCancel')
             .bind('click',
@@ -153,5 +155,7 @@
                 dataType: "json"
             });
         };
+
+       
     </script>
 }

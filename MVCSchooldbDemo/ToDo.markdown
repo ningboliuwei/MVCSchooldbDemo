@@ -94,7 +94,7 @@
 50. Editor 中的确定按钮等保持最下方 ========= 通过 postition:absolute 以及 bottom:0 实现。 ============== 2016-09-03 √
 51. datagrid 中日期格式不对 =============== 通过 common.js 中的 FormatHelper 实现 ======= 2016-09-03 √
 52. combobox 设置为只读 ============ editable : false in BindComboBox in common.js =========== 2016-09-03 √
-53. 点击 combobox 后，会自动选中第一项。
+53. 点击 combobox 后，会自动选中第一项。   =============== 2016-09-03 √
 
 
 
