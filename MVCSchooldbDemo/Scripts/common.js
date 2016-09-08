@@ -1,4 +1,7 @@
-﻿var AlertType = { Error: "error", Question: "question", Info: "info", Warning: "warning" }; //警告框的 ICON 类型（仿枚举）
+﻿const DATA_DICT_ITEM_URL = "/DataDictItem/GetDataDictItemValues";
+
+var AlertType = { Error: "error", Question: "question", Info: "info", Warning: "warning" }; //警告框的 ICON 类型（仿枚举）
+var InputType = { Radio: "radio", Checkbox: "checkbox" }; //批量生成的控件类型
 
 //EasyUI用DataGrid用日期格式化
 var FormatHelper = {
@@ -311,7 +314,7 @@ function InitTree(treeName, tabsName, data) {
         });
 }
 
-function BindCombobox(comboboxName, url, params, valueField, textField, initalText) {
+function BindCombobox(comboboxName, url, params, valueField, textField, initialText) {
     $(comboboxName)
         .combobox({
             url: url,
@@ -327,8 +330,8 @@ function BindCombobox(comboboxName, url, params, valueField, textField, initalTe
             onLoadSuccess: function() {
                 const previousValue = $(comboboxName).combobox("getValue");
                 const data = $(comboboxName).combobox("getData");
-                if (initalText !== null && data[0][[textField]] !== initalText) {
-                    data.unshift({ [valueField]: 0, [textField]: initalText });
+                if (initialText !== null && data[0][[textField]] !== initialText) {
+                    data.unshift({ [valueField]: 0, [textField]: initialText });
                     $(comboboxName).combobox("loadData", data);
                 }
 
@@ -339,26 +342,52 @@ function BindCombobox(comboboxName, url, params, valueField, textField, initalTe
                 }
             }
         });
-
-
 }
 
-function BindDataDictItemCombobox(itemName) {
-    BindCombobox(`#${itemName}`,
-        "/DataDictItem/GetDataDictItemValues",
-        { name: itemName },
-        "项目值",
-        "项目值",
-        null);
+//function GetDataDictItemValues(itemName) {
+//    var data;
+//    $.ajax({
+//        type: "POST",
+//        url: DATA_DICT_ITEM_URL,
+//        async: false,
+//        data: { itemName: itemName },
+//        success: function(result) {
+//            data = result;
+//        },
+//        error: function() {
+//            Alert("错误", errorMsg, AlertType.Error);
+//        },
+//        dataType: "json"
+//    });
+//    return data;
+//}
+
+function BindDataDictItemToCombobox(comboboxName, itemName, initialText) {
+    BindCombobox(comboboxName, DATA_DICT_ITEM_URL, { itemName: itemName }, "id", "value", initialText);
 }
 
 function RefreshCombobox(comboboxName) {
     $(comboboxName).combobox("reload");
 };
 
-function GenerateRadioButtonList(container, groupname, array) {
-    $.each(array,
-        function(i) {
-            container.append(`<input id='cbl_${array[i]}' type='radio' name='${groupname}' value='${array[i]}'/>${array[i]}`);
-        });
+function GenerateInputListByDataDictItem(containerName, itemName, inputType) {
+    $.ajax({
+        type: "POST",
+        url: DATA_DICT_ITEM_URL,
+        data: { itemName: itemName },
+        success: function(array) {
+            $.each(array,
+                function(i) {
+                    $(containerName)
+                        .append(`<input id='${itemName}_${array[i]["id"]}' type='${inputType}' name='${itemName
+                            }' value='${array[i]["value"]}'/>${array[i]["value"]}`);
+                });
+        },
+        error: function() {
+            Alert("错误", errorMsg, AlertType.Error);
+        },
+        dataType: "json"
+    });
+
+
 }

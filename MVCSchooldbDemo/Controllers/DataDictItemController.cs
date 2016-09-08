@@ -68,15 +68,13 @@ namespace MVCSchooldbDemo.Controllers
             return HttpNotFound();
         }
 
-        public ActionResult GetDataDictItemValues(string name)
+        public ActionResult GetDataDictItemValues(string itemName)
         {
-            var result =
-                DBHelper.FindByKeyword(_db.DataDictItems.ToList(), "项目名", name)
-                    .First()
-                    .项目值.Split(',')
-                    .ToList()
-                    .Select(v => new {项目值 = v});
-            ;
+            var index = 0;
+            var result = DBHelper.FindByKeyword(_db.DataDictItems.ToList(), "项目名", itemName)
+                .First()
+                .项目值.Split(',')
+                .ToList().Select(v => new {id = index++, value = v});
 
             return new JsonResult
             {

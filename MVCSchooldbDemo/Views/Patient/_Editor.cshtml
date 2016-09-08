@@ -43,7 +43,7 @@
 
                     <td class="editorNameColumn">婚姻状况</td>
                     <td>
-                        <select id="婚姻状况" class="easyui-combobox editorInputComboBox" >
+                        <select id="婚姻状况" class="easyui-combobox editorInputComboBox">
                         </select>
                     </td>
                     <td class="editorNameColumn">文化程度</td>
@@ -54,7 +54,7 @@
                 <tr>
                     <td class="editorNameColumn" style="width: 70px">职业</td>
                     <td>
-                        <select id="职业" class="easyui-combobox editorInputComboBox" ></select>
+                        <select id="职业" class="easyui-combobox editorInputComboBox"></select>
                     </td>
 
                     <td class="editorNameColumn">年收入</td>
@@ -71,15 +71,27 @@
                 <tr>
                     <td class="editorNameColumn">联系电话</td>
                     <td>
-                        <select id="联系电话" class="easyui-combobox editorInputComboBox" ></select>
+                        <select id="联系电话" class="easyui-combobox editorInputComboBox"></select>
                     </td>
                     <td class="editorNameColumn">联系地址</td>
                     <td colspan="3">
-                        <input id="联系地址" class="easyui-textbox" style="width: 100%" />
+                        <input id="联系地址" class="easyui-textbox" style="width: 100%"/>
                     </td>
                 </tr>
                 <tr>
-                    <td id="test" colspan="6">住所至康复中心交通是否便利：</td>
+                    <td id="住所至康复中心交通是否便利" colspan="3">住所至康复中心交通是否便利</td>
+                </tr>
+                <tr>
+                    <td id="是否参与工作" colspan="6">是否参与工作</td>
+                </tr>
+                <tr>
+                    <td id="吸烟" colspan="6">吸烟</td>
+                </tr>
+                <tr>
+                    <td id="药物不良反应" colspan="6">药物不良反应</td>
+                </tr>
+                <tr>
+                    <td id="目前的疾病" colspan="6">目前的疾病</td>
                 </tr>
             </table>
         </div>
@@ -90,14 +102,18 @@
 </form>
 <script>
     $(function() {
-        BindDataDictItemCombobox('性别');
-        BindDataDictItemCombobox('婚姻状况');
-        BindDataDictItemCombobox('职业');
-        BindDataDictItemCombobox('年收入');
-        BindDataDictItemCombobox('保险类别');
-        BindDataDictItemCombobox('文化程度');
+        BindDataDictItemToCombobox('#性别', '性别', null);
+        BindDataDictItemToCombobox('#婚姻状况', '婚姻状况', null);
+        BindDataDictItemToCombobox('#职业', '职业', null);
+        BindDataDictItemToCombobox('#年收入', '年收入', null);
+        BindDataDictItemToCombobox('#文化程度', '文化程度', null);
+        BindDataDictItemToCombobox('#保险类别', '保险类别', null);
 
-        GenerateRadioButtonList($("#test"),"test", ["a", "b", "c"]);
+        GenerateInputListByDataDictItem("#住所至康复中心交通是否便利", "住所至康复中心交通是否便利", InputType.Radio);
+        GenerateInputListByDataDictItem("#是否参与工作", "是否参与工作", InputType.Radio);
+        GenerateInputListByDataDictItem("#吸烟", "吸烟", InputType.Radio);
+        GenerateInputListByDataDictItem("#药物不良反应", "药物不良反应", InputType.Radio);
+        GenerateInputListByDataDictItem("#目前的疾病", "目前的疾病", InputType.Checkbox);
 
         $('#Patient_btnCancel')
             .bind('click',
@@ -156,6 +172,6 @@
             });
         };
 
-       
+
     </script>
 }
