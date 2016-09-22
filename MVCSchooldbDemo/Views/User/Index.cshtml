@@ -22,27 +22,27 @@
                 </select>
             </td>
             <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="Search()">搜索</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-search fa-16px" onclick="Search()">搜索</a>
             </td>
             <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" onclick="ClearSearch()">清空搜索条件</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-times-circle-o fa-16px" onclick="ClearSearch()">清空搜索条件</a>
             </td>
         </tr>
     </table>
     <table class="buttonsTable">
         <tr>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" onclick="Add('#editorUser', '@Url.Action("Create", "User")', '添加用户');">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorUser', '@Url.Action("Create", "User")', '添加用户');">
                 添加
             </a>
         </td>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" onclick="Edit('#gridUser', '#editorUser', '@Url.Action("Edit", "User")', '修改用户记录')">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Edit('#gridUser', '#editorUser', '@Url.Action("Edit", "User")', '修改用户记录')">
                 编辑
             </a>
         </td>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" onclick="Delete('#gridUser', '@Url.Action("Delete", "User")')">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Delete('#gridUser', '@Url.Action("Delete", "User")')">
                 删除
             </a>
         </td>

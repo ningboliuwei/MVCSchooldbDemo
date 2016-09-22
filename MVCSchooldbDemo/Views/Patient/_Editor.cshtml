@@ -71,7 +71,7 @@
                 <tr>
                     <td class="editorNameColumn">联系电话</td>
                     <td>
-                        <select id="联系电话" class="easyui-combobox editorInputComboBox"></select>
+                        <input id="联系电话" class="easyui-textbox" />
                     </td>
                     <td class="editorNameColumn">联系地址</td>
                     <td colspan="3">
@@ -136,7 +136,9 @@
             文化程度: $('#文化程度').combobox('getText'),
             职业: $('#职业').textbox('getText'),
             年收入: $('#年收入').textbox('getText'),
-            保险类别: $('#保险类别').combobox('getText')
+            保险类别: $('#保险类别').combobox('getText'),
+            联系电话: $('#联系电话').combobox('getText'),
+            联系地址: $('#联系地址').combobox('getText')
         };
     }
 </script>
