@@ -1,16 +1,17 @@
-﻿@{
+﻿@model MVCSchooldbDemo.Models.Data.PatientInfo
+@{
     Layout = null;
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width"/>
-    <title>Edit</title>
-</head>
-<body>
-<div>
+<div class="editorLayout">
+    @Html.Partial("~/Views/Patient/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForEdit.cshtml")
 </div>
-</body>
-</html>
+<script>
+    $(function() {
+        $('#Patient_btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('#formPatient','#gridPatient','#editorPatient','@Url.Action("Edit", "Patient")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
+                });
+    });
+</script>

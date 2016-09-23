@@ -638,13 +638,13 @@
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Patient\Details.cshtml" />
     <Content Include="Views\Patient\Create.cshtml" />
-    <Content Include="Views\Patient\Edit.cshtml" />
     <Content Include="Views\Patient\_Editor.cshtml" />
     <Content Include="Views\DataDictItem\Index.cshtml" />
     <Content Include="Views\DataDictItem\Create.cshtml" />
     <Content Include="Views\DataDictItem\_Editor.cshtml" />
     <Content Include="Views\DataDictItem\Edit.cshtml" />
     <Content Include="Views\DataDictItem\Details.cshtml" />
+    <Content Include="Views\Patient\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\EasyUI\themes\metro-blue\" />
