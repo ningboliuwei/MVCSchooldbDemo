@@ -19,7 +19,7 @@ var FormatHelper = {
             day = `0${day}`;
         }
 
-        return year + "/" + month + "/" + day;
+        return year + "-" + month + "-" + day;
     },
 
     //EasyUI用DataGrid用日期格式化
@@ -52,9 +52,48 @@ var FormatHelper = {
             seconds = `0${seconds}`;
         }
 
-        return year + "/" + month + "/" + day + " " + hour + ":" + minutes + ":" + seconds;
+        return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
+    },
+    DateBoxFormatter: function(value, rec, index) {
+        if (value == undefined) {
+            return "";
+        }
+        /*json格式时间转js时间格式*/
+        value = value.substr(1, value.length - 2);
+        var obj = eval('(' + "{Date: new " + value + "}" + ')');
+        var dateValue = obj["Date"];
+        if (dateValue.getFullYear() < 1900) {
+            return "";
+        }
+        return dateValue.Format("yyyy-mm-dd");
     }
 };
+
+// 对Date的扩展，将 Date 转化为指定格式的String
+// 月(M)、日(d)、小时(H)、分(M)、秒(S)、季度(q) 可以用 1-2 个占位符， 
+// 年(y)可以用 1-4 个占位符，毫秒(s)只能用 1 个占位符(是 1-3 位的数字) 
+// 例子： 
+// (new Date()).Format("yyyy-mm-dd HH:MM:SS.s") ==> 2015-07-02 08:09:04.423 
+// (new Date()).Format("yyyy-m-d H:M:S.s")      ==> 2015-7-2 8:9:4.18 
+Date.prototype.Format = function(fmt) { //author: meizz 
+    var o = {
+        "m+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "H+": this.getHours(), //小时 
+        "M+": this.getMinutes(), //分 
+        "S+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "s": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt))
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+}
+//调用： 
+//var time1 = new Date().Format("yyyy-MM-dd");
+//var time2 = new Date().Format("yyyy-MM-dd HH:mm:ss")
 
 
 //添加 Tab 的函数，若已存在则选中已有的 Tab

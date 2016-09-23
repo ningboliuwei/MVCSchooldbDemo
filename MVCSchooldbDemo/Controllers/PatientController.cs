@@ -105,7 +105,7 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "编辑学生记录";
+                ViewBag.DialogTitle = "编辑病人基本信息";
                 ViewBag.CurrentId = id;
                 return View(new PatientInfo());
             }

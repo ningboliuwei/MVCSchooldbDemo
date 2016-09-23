@@ -71,7 +71,7 @@
                 <tr>
                     <td class="editorNameColumn">联系电话</td>
                     <td>
-                        <input id="联系电话" class="easyui-textbox" />
+                        <input id="联系电话" class="easyui-textbox"/>
                     </td>
                     <td class="editorNameColumn">联系地址</td>
                     <td colspan="3">
@@ -115,6 +115,9 @@
         GenerateInputListByDataDictItem("#药物不良反应", "药物不良反应", InputType.Radio);
         GenerateInputListByDataDictItem("#目前的疾病", "目前的疾病", InputType.Checkbox);
 
+        $('#出生日期').datebox({ formatter: FormatHelper.FormatHelper });
+        $('#入组日期').datebox({ formatter: FormatHelper.FormatHelper });
+
         $('#Patient_btnCancel')
             .bind('click',
                 function() {
@@ -137,8 +140,8 @@
             职业: $('#职业').textbox('getText'),
             年收入: $('#年收入').textbox('getText'),
             保险类别: $('#保险类别').combobox('getText'),
-            联系电话: $('#联系电话').combobox('getText'),
-            联系地址: $('#联系地址').combobox('getText')
+            联系电话: $('#联系电话').textbox('getText'),
+            联系地址: $('#联系地址').textbox('getText')
         };
     }
 </script>
@@ -149,7 +152,7 @@
         window.previousId = -1;
         window.nextId = -1;
 
-        $(function() { ShowData('@Url.Action("GetData", "Patient")/${@ViewBag.CurrentId}'); });
+        $(function() { ShowData(`@Url.Action("GetData", "Patient")/${@ViewBag.CurrentId}`); });
 
         function ShowData(url) {
             $.ajax({
@@ -158,11 +161,22 @@
                 success: function(data) {
                     const item = data.Item;
 
-                    $('#Sno').textbox('setText', item.Sno);
-                    $('#Sname').textbox('setText', item.Sname);
-                    $('#Sage').textbox('setText', item.Sage);
-                    $('#Ssex').combobox('setText', item.Ssex);
-                    $('#Sdept').combobox('setText', item.Sdept);
+                    $('#编号').textbox('setText', item.编号);
+                    $('#住院号').textbox('setText', item.住院号);
+                    $('#姓名').textbox('setText', item.姓名);
+                    $('#性别').combobox('setText', item.性别);
+                    $('#出生日期').datebox('setText',FormatHelper.DateBoxFormatter(item.出生日期));
+                    $('#入组日期').datebox('setText', FormatHelper.DateBoxFormatter(item.入组日期));
+                    console.log(item.出生日期);
+                    console.log(item.入组日期);
+                    $('#民族').combobox('setText', item.民族);
+                    $('#婚姻状况').combobox('setText', item.婚姻状况);
+                    $('#文化程度').combobox('setText', item.文化程度);
+                    $('#职业').textbox('setText', item.职业);
+                    $('#年收入').textbox('setText', item.年收入);
+                    $('#保险类别').combobox('setText', item.保险类别);
+                    $('#联系电话').textbox('setText', item.联系电话);
+                    $('#联系地址').textbox('setText', item.联系地址);
 
                     window.previousId = data.PreviousId;
                     window.nextId = data.NextId;
