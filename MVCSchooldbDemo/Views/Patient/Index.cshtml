@@ -22,8 +22,6 @@
             <td>保险类别</td>
             <td>
                 <select id="Patient_Search_保险类别" class="easyui-combobox" style="width: 100px">
-                    <option value="自费">自费</option>
-                    <option value="公务员医保">公务员医保</option>
                 </select>
             </td>
             <td>
@@ -158,6 +156,8 @@
 
     $(function() {
         BindGrid('#gridPatient', '#tbPatient', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+
+        BindDataDictItemToCombobox('#Patient_Search_保险类别', '保险类别', '所有类别');
     }); //Show all records
 
     function Search() {
@@ -165,6 +165,7 @@
             住院号: $('#Patient_Search_住院号').textbox('getText'),
             姓名: $('#Patient_Search_姓名').textbox('getText'),
             联系电话: $('#Patient_Search_联系电话').textbox('getText')
+//            保险类别: $('#Patient_Search_保险类别').combobox('getText')
         };
 
         BindGrid('#gridPatient',

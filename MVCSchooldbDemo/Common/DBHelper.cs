@@ -36,7 +36,6 @@ namespace MVCSchooldbDemo.Classes
                 var propertyNames = v.Properties().Select(p => p.Name).ToList();
                 var keywords = v.Properties().Select(p => p.Value.ToString()).ToList();
 
-
                 for (var i = 0; i < keywords.Count(); i++)
                     if (!string.IsNullOrEmpty(keywords[i]))
                         data = data.Where($"{propertyNames[i]}.Contains(\"{keywords[i]}\")").ToList();

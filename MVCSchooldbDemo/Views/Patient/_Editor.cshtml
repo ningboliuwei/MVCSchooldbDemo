@@ -134,7 +134,7 @@
             性别: $('#性别').combobox('getText'),
             出生日期: $('#出生日期').datebox('getText'),
             入组日期: $('#入组日期').datebox('getText'),
-            民族: $('#民族').combobox('getText'),
+            民族: $('#民族').textbox('getText'),
             婚姻状况: $('#婚姻状况').combobox('getText'),
             文化程度: $('#文化程度').combobox('getText'),
             职业: $('#职业').textbox('getText'),
@@ -167,9 +167,7 @@
                     $('#性别').combobox('setText', item.性别);
                     $('#出生日期').datebox('setText',FormatHelper.DateBoxFormatter(item.出生日期));
                     $('#入组日期').datebox('setText', FormatHelper.DateBoxFormatter(item.入组日期));
-                    console.log(item.出生日期);
-                    console.log(item.入组日期);
-                    $('#民族').combobox('setText', item.民族);
+                    $('#民族').textbox('setText', item.民族);
                     $('#婚姻状况').combobox('setText', item.婚姻状况);
                     $('#文化程度').combobox('setText', item.文化程度);
                     $('#职业').textbox('setText', item.职业);
@@ -177,6 +175,8 @@
                     $('#保险类别').combobox('setText', item.保险类别);
                     $('#联系电话').textbox('setText', item.联系电话);
                     $('#联系地址').textbox('setText', item.联系地址);
+
+                    console.log(item);
 
                     window.previousId = data.PreviousId;
                     window.nextId = data.NextId;
