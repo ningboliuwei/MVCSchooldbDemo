@@ -8,15 +8,15 @@
                 <tr>
                     <td class="editorNameColumn">编号</td>
                     <td>
-                        <input id="编号" class="easyui-textbox" data-options="required:true, missingMessage:'请输入编号'"/>
+                        <input id="编号" class="easyui-textbox" data-options="required:true, missingMessage:'请输入编号'" />
                     </td>
                     <td class="editorNameColumn">住院号</td>
                     <td>
-                        <input id="住院号" class="easyui-textbox" data-options="required:true, missingMessage:'请输入住院号'"/>
+                        <input id="住院号" class="easyui-textbox" data-options="required:true, missingMessage:'请输入住院号'" />
                     </td>
                     <td class="editorNameColumn">姓名</td>
                     <td>
-                        <input id="姓名" class="easyui-textbox" data-options="required:true, missingMessage:'请输入姓名'"/>
+                        <input id="姓名" class="easyui-textbox" data-options="required:true, missingMessage:'请输入姓名'" />
                     </td>
                 </tr>
                 <tr>
@@ -43,8 +43,7 @@
 
                     <td class="editorNameColumn">婚姻状况</td>
                     <td>
-                        <select id="婚姻状况" class="easyui-combobox editorInputComboBox">
-                        </select>
+                        <select id="婚姻状况" class="easyui-combobox editorInputComboBox"></select>
                     </td>
                     <td class="editorNameColumn">文化程度</td>
                     <td>
@@ -59,44 +58,72 @@
 
                     <td class="editorNameColumn">年收入</td>
                     <td>
-                        <select id="年收入" class="easyui-combobox editorInputComboBox">
-                        </select>
+                        <select id="年收入" class="easyui-combobox editorInputComboBox"></select>
                     </td>
                     <td class="editorNameColumn">保险类别</td>
                     <td>
-                        <select id="保险类别" class="easyui-combobox editorInputComboBox">
-                        </select>
+                        <select id="保险类别" class="easyui-combobox editorInputComboBox"></select>
                     </td>
                 </tr>
                 <tr>
                     <td class="editorNameColumn">联系电话</td>
                     <td>
-                        <input id="联系电话" class="easyui-textbox" data-options="required:true, missingMessage:'请输入联系电话'"/>
+                        <input id="联系电话" class="easyui-textbox" data-options="required:true, missingMessage:'请输入联系电话'" />
                     </td>
                     <td class="editorNameColumn">联系地址</td>
                     <td colspan="3">
-                        <input id="联系地址" class="easyui-textbox" style="width: 100%" data-options="required:true, missingMessage:'请输入联系地址'"/>
+                        <input id="联系地址" class="easyui-textbox" style="width: 100%" data-options="required:true, missingMessage:'请输入联系地址'" />
                     </td>
                 </tr>
                 <tr>
-                    <td id="住所至康复中心交通是否便利" colspan="3">住所至康复中心交通是否便利</td>
+                    <td colspan="3">
+                        <span id="住所至康复中心交通是否便利"><b>住所至康复中心交通是否便利</b></span>
+                    </td>
                 </tr>
                 <tr>
-                    <td id="是否参与工作" colspan="6">是否参与工作</td>
+                    <td colspan="6">
+                        <span id="是否参与工作"><b>是否参与工作</b></span>
+                    </td>
                 </tr>
                 <tr>
-                    <td id="吸烟" colspan="6">吸烟</td>
+                    <td colspan="6">
+                        <span id="吸烟"><b>吸烟</b></span>
+                    </td>
                 </tr>
                 <tr>
-                    <td id="药物不良反应" colspan="6">药物不良反应</td>
+                    <td colspan="6">
+                        <span id="药物不良反应"><b>药物不良反应</b></span>
+                    </td>
                 </tr>
                 <tr>
-                    <td id="目前的疾病" colspan="6">目前的疾病</td>
+                    <td colspan="6">
+                        <span id="目前的疾病"><b>目前的疾病<br /></b></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <b>危险因素及用药</b><br />
+                        <b>高血压</b><br />
+                        <span id="是否有高血压"><b>是否有高血压</b></span>
+                        <br />
+                        <span id="高血压控制情况"><b>控制情况</b></span>
+                        <br />
+                        <span id="降压药物"><b>降压药物</b></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <b>糖尿病</b><br />
+                        <span id="是否有糖尿病"><b>是否有糖尿病</b></span>
+                        <br />
+                        <span id="糖尿病控制情况"><b>控制情况</b></span>
+                        <br />
+                        <span id="降糖药物"><b>降糖药物</b></span>
+                    </td>
                 </tr>
             </table>
         </div>
-        <div title="Tab2">
-        </div>
+        <div title="Tab2"></div>
         <div Title="Tab3"></div>
     </div>
 </form>
@@ -115,6 +142,11 @@
         GenerateInputListByDataDictItem("#吸烟", "吸烟", InputType.Radio);
         GenerateInputListByDataDictItem("#药物不良反应", "药物不良反应", InputType.Radio);
         GenerateInputListByDataDictItem("#目前的疾病", "目前的疾病", InputType.Checkbox);
+        GenerateInputListByDataDictItem("#是否有高血压", "是否有高血压", InputType.Radio);
+        GenerateInputListByDataDictItem("#高血压控制情况", "高血压控制情况", InputType.Radio);
+        GenerateInputListByDataDictItem("#是否有糖尿病", "是否有糖尿病", InputType.Radio);
+        GenerateInputListByDataDictItem("#糖尿病控制情况", "糖尿病控制情况", InputType.Radio);
+        GenerateInputListByDataDictItem("#降糖药物", "降糖药物", InputType.Radio);
 
         $('#出生日期').datebox({ formatter: FormatHelper.FormatHelper });
         $('#入组日期').datebox({ formatter: FormatHelper.FormatHelper });
@@ -150,44 +182,44 @@
 @if (Model != null)
 {
     <script>
-        window.previousId = -1;
-        window.nextId = -1;
+    window.previousId = -1;
+    window.nextId = -1;
 
-        $(function() { ShowData(`@Url.Action("GetData", "Patient")/${@ViewBag.CurrentId}`); });
+    $(function() { ShowData(`@Url.Action("GetData", "Patient")/${@ViewBag.CurrentId}`); });
 
-        function ShowData(url) {
-            $.ajax({
-                type: "POST",
-                url: url,
-                success: function(data) {
-                    const item = data.Item;
+    function ShowData(url) {
+        $.ajax({
+            type: "POST",
+            url: url,
+            success: function(data) {
+                const item = data.Item;
 
-                    $('#编号').textbox('setText', item.编号);
-                    $('#住院号').textbox('setText', item.住院号);
-                    $('#姓名').textbox('setText', item.姓名);
-                    $('#性别').combobox('setText', item.性别);
-                    $('#出生日期').datebox('setText',FormatHelper.DateBoxFormatter(item.出生日期));
-                    $('#入组日期').datebox('setText', FormatHelper.DateBoxFormatter(item.入组日期));
-                    $('#民族').combobox('setText', item.民族);
-                    $('#婚姻状况').combobox('setText', item.婚姻状况);
-                    $('#文化程度').combobox('setText', item.文化程度);
-                    $('#职业').textbox('setText', item.职业);
-                    $('#年收入').textbox('setText', item.年收入);
-                    $('#保险类别').combobox('setText', item.保险类别);
-                    $('#联系电话').textbox('setText', item.联系电话);
-                    $('#联系地址').textbox('setText', item.联系地址);
+                $('#编号').textbox('setText', item.编号);
+                $('#住院号').textbox('setText', item.住院号);
+                $('#姓名').textbox('setText', item.姓名);
+                $('#性别').combobox('setText', item.性别);
+                $('#出生日期').datebox('setText', FormatHelper.DateBoxFormatter(item.出生日期));
+                $('#入组日期').datebox('setText', FormatHelper.DateBoxFormatter(item.入组日期));
+                $('#民族').combobox('setText', item.民族);
+                $('#婚姻状况').combobox('setText', item.婚姻状况);
+                $('#文化程度').combobox('setText', item.文化程度);
+                $('#职业').textbox('setText', item.职业);
+                $('#年收入').textbox('setText', item.年收入);
+                $('#保险类别').combobox('setText', item.保险类别);
+                $('#联系电话').textbox('setText', item.联系电话);
+                $('#联系地址').textbox('setText', item.联系地址);
 
-                    console.log(item);
+                console.log(item);
 
-                    window.previousId = data.PreviousId;
-                    window.nextId = data.NextId;
-                },
-                error: function() {
-                    Alert("错误", 'error', AlertType.Error);
-                },
-                dataType: "json"
-            });
-        };
+                window.previousId = data.PreviousId;
+                window.nextId = data.NextId;
+            },
+            error: function() {
+                Alert("错误", 'error', AlertType.Error);
+            },
+            dataType: "json"
+        });
+    };
 
 
     </script>
