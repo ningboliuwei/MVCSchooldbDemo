@@ -3,6 +3,8 @@
 var AlertType = { Error: "error", Question: "question", Info: "info", Warning: "warning" }; //警告框的 ICON 类型（仿枚举）
 var InputType = { Radio: "radio", Checkbox: "checkbox" }; //批量生成的控件类型
 
+
+
 //EasyUI用DataGrid用日期格式化
 var FormatHelper = {
     DateFormatter: function(value, row, index) {

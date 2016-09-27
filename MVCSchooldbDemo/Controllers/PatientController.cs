@@ -55,6 +55,7 @@ namespace MVCSchooldbDemo.Controllers
                             Item =
                             new
                             {
+								item.编号,
                                 item.住院号,
                                 item.姓名,
                                 item.性别,

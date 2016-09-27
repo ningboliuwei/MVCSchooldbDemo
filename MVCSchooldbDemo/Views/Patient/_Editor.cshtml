@@ -8,15 +8,15 @@
                 <tr>
                     <td class="editorNameColumn">编号</td>
                     <td>
-                        <input id="编号" class="easyui-textbox"/>
+                        <input id="编号" class="easyui-textbox" data-options="required:true, missingMessage:'请输入编号'"/>
                     </td>
                     <td class="editorNameColumn">住院号</td>
                     <td>
-                        <input id="住院号" class="easyui-textbox"/>
+                        <input id="住院号" class="easyui-textbox" data-options="required:true, missingMessage:'请输入住院号'"/>
                     </td>
                     <td class="editorNameColumn">姓名</td>
                     <td>
-                        <input id="姓名" class="easyui-textbox"/>
+                        <input id="姓名" class="easyui-textbox" data-options="required:true, missingMessage:'请输入姓名'"/>
                     </td>
                 </tr>
                 <tr>
@@ -27,18 +27,18 @@
 
                     <td class="editorNameColumn">出生日期</td>
                     <td>
-                        <input id="出生日期" class="easyui-datebox">
+                        <input id="出生日期" class="easyui-datebox" data-options="required:true, missingMessage:'请输入出生日期', validType:'date'">
                     </td>
 
                     <td class="editorNameColumn">入组日期</td>
                     <td>
-                        <input id="入组日期" class="easyui-datebox">
+                        <input id="入组日期" class="easyui-datebox" data-options="required:true, missingMessage:'请输入入组日期'">
                     </td>
                 </tr>
                 <tr>
                     <td class="editorNameColumn">民族</td>
                     <td>
-                        <input id="民族" class="easyui-textbox"/>
+                        <select id="民族" class="easyui-combobox editorInputComboBox"></select>
                     </td>
 
                     <td class="editorNameColumn">婚姻状况</td>
@@ -71,11 +71,11 @@
                 <tr>
                     <td class="editorNameColumn">联系电话</td>
                     <td>
-                        <input id="联系电话" class="easyui-textbox"/>
+                        <input id="联系电话" class="easyui-textbox" data-options="required:true, missingMessage:'请输入联系电话'"/>
                     </td>
                     <td class="editorNameColumn">联系地址</td>
                     <td colspan="3">
-                        <input id="联系地址" class="easyui-textbox" style="width: 100%"/>
+                        <input id="联系地址" class="easyui-textbox" style="width: 100%" data-options="required:true, missingMessage:'请输入联系地址'"/>
                     </td>
                 </tr>
                 <tr>
@@ -108,6 +108,7 @@
         BindDataDictItemToCombobox('#年收入', '年收入', null);
         BindDataDictItemToCombobox('#文化程度', '文化程度', null);
         BindDataDictItemToCombobox('#保险类别', '保险类别', null);
+        BindDataDictItemToCombobox('#民族', '民族', null);
 
         GenerateInputListByDataDictItem("#住所至康复中心交通是否便利", "住所至康复中心交通是否便利", InputType.Radio);
         GenerateInputListByDataDictItem("#是否参与工作", "是否参与工作", InputType.Radio);
@@ -134,7 +135,7 @@
             性别: $('#性别').combobox('getText'),
             出生日期: $('#出生日期').datebox('getText'),
             入组日期: $('#入组日期').datebox('getText'),
-            民族: $('#民族').textbox('getText'),
+            民族: $('#民族').combobox('getText'),
             婚姻状况: $('#婚姻状况').combobox('getText'),
             文化程度: $('#文化程度').combobox('getText'),
             职业: $('#职业').textbox('getText'),
@@ -167,7 +168,7 @@
                     $('#性别').combobox('setText', item.性别);
                     $('#出生日期').datebox('setText',FormatHelper.DateBoxFormatter(item.出生日期));
                     $('#入组日期').datebox('setText', FormatHelper.DateBoxFormatter(item.入组日期));
-                    $('#民族').textbox('setText', item.民族);
+                    $('#民族').combobox('setText', item.民族);
                     $('#婚姻状况').combobox('setText', item.婚姻状况);
                     $('#文化程度').combobox('setText', item.文化程度);
                     $('#职业').textbox('setText', item.职业);
