@@ -121,6 +121,26 @@
                         <span id="降糖药物"><b>降糖药物</b></span>
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="6">
+                        <b>血脂异常</b><br />
+                        <span id="是否存在血脂异常"><b>是否存在血脂异常</b></span>
+                        <br />
+                        <span id="降脂药物"><b>降脂药物</b></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <b>抗血小板及抗凝药物</b><br />
+                        <span id="抗血小板及抗凝药物"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <b>服药依从性</b><br />
+                        <span id="服药依从性"></span>
+                    </td>
+                </tr>
             </table>
         </div>
         <div title="Tab2"></div>
@@ -147,7 +167,11 @@
         GenerateInputListByDataDictItem("#降压药物", "降压药物", InputType.Radio);
         GenerateInputListByDataDictItem("#是否有糖尿病", "是否有糖尿病", InputType.Radio);
         GenerateInputListByDataDictItem("#糖尿病控制情况", "糖尿病控制情况", InputType.Radio);
-        GenerateInputListByDataDictItem("#降糖药物", "降糖药物", InputType.Radio);
+        GenerateInputListByDataDictItem("#降糖药物", "降糖药物", InputType.Checkbox);
+        GenerateInputListByDataDictItem("#是否存在血脂异常", "是否存在血脂异常", InputType.Radio);
+        GenerateInputListByDataDictItem("#降脂药物", "降脂药物", InputType.Checkbox);
+        GenerateInputListByDataDictItem("#抗血小板及抗凝药物", "抗血小板及抗凝药物", InputType.Radio);
+        GenerateInputListByDataDictItem("#服药依从性", "服药依从性", InputType.Checkbox);
 
         $('#出生日期').datebox({ formatter: FormatHelper.FormatHelper });
         $('#入组日期').datebox({ formatter: FormatHelper.FormatHelper });

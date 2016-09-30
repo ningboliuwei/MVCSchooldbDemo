@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
+using SQLite.CodeFirst;
 
 namespace MVCSchooldbDemo.Models.Data
 {
@@ -10,8 +11,9 @@ namespace MVCSchooldbDemo.Models.Data
     {
         [Key]
         public long Id { get; set; }
-
+        [Unique]
         public string 项目名 { get; set; }
+        [Unique]
         public string 项目值 { get; set; }
     }
 }
