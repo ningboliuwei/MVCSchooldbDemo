@@ -13,7 +13,6 @@ namespace MVCSchooldbDemo.Models.Data
         public long Id { get; set; }
         [Unique]
         public string 项目名 { get; set; }
-        [Unique]
         public string 项目值 { get; set; }
     }
 }

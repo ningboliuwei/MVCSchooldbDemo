@@ -3,8 +3,8 @@
 <div class="dialogTitle">@ViewBag.DialogTitle</div>
 <form id="formPatient" method="post" class="easyui-form" data-options="novalidate:true">
     <div id="editorTabs" class="easyui-tabs" style="padding: 5px;">
-        <div title="Tab1">
-            <table class="editorTable">
+        <div title="个人信息">
+            <table id="test1" class="editorTable">
                 <tr>
                     <td class="editorNameColumn">编号</td>
                     <td>
@@ -143,7 +143,30 @@
                 </tr>
             </table>
         </div>
-        <div title="Tab2"></div>
+        <div title="体格检查">
+            <table class="editorTable">
+                <tr>
+                    <td class="editorNameColumn">执行时间</td>
+                    <td colspan="9">
+                        <input id="体格检查执行时间" class="easyui-textbox" data-options="required:true, missingMessage:'请输入编号'" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>血压（mmHg）</b></td>
+                    <td><b>收缩压1</b><input id="收缩压1" class="easyui-textbox" style="width:50px" data-options="required:true, missingMessage:'请输入收缩压1'" /></td>
+                    <td><b>舒张压1</b><input id="舒张压1" class="easyui-textbox" style="width:50px" data-options="required:true, missingMessage:'请输入舒张压1'" /></td>
+                    <td><b>收缩压2</b><input id="收缩压2" class="easyui-textbox" style="width:50px" data-options="required:true, missingMessage:'请输入收缩压2'" /></td>
+                    <td><b>舒张压2</b></td><input id="舒张压2" class="easyui-textbox" style="width:50px"  data-options="required:true, missingMessage:'请输入舒张压2'" />
+                
+                
+                    <br/>
+                    <b>收缩压3</b><input id="收缩压3" class="easyui-textbox"  style="width:50px" data-options="required:true, missingMessage:'请输入收缩压3'" />
+                    <b>舒张压3</b><input id="舒张压3" class="easyui-textbox" style="width:50px"  data-options="required:true, missingMessage:'请输入舒张压3'" />
+                    <b>平均收缩压</b><input id="平均收缩压" class="easyui-textbox"  style="width:50px" data-options="required:true, missingMessage:'请输入平均收缩压'" />
+                    <b>平均舒张压</b><input id="平均舒张压" class="easyui-textbox"  style="width:50px" data-options="required:true, missingMessage:'请输入平均舒张压'" />
+                </tr>
+            </table>
+        </div>
         <div Title="Tab3"></div>
     </div>
 </form>
@@ -175,6 +198,8 @@
 
         $('#出生日期').datebox({ formatter: FormatHelper.FormatHelper });
         $('#入组日期').datebox({ formatter: FormatHelper.FormatHelper });
+
+        $('#编号')
 
         $('#Patient_btnCancel')
             .bind('click',

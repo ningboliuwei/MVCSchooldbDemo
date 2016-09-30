@@ -655,6 +655,7 @@
     <Folder Include="Content\EasyUI\themes\metro-green\" />
     <Folder Include="Content\EasyUI\themes\metro-orange\" />
     <Folder Include="Content\EasyUI\themes\metro-red\" />
+    <Folder Include="Docs\" />
     <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
