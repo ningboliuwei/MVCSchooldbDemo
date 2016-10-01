@@ -4,166 +4,333 @@
 <form id="formPatient" method="post" class="easyui-form" data-options="novalidate:true">
     <div id="editorTabs" class="easyui-tabs" style="padding: 5px;">
         <div title="个人信息">
-            <table id="test1" class="editorTable">
-                <tr>
-                    <td class="editorNameColumn">编号</td>
-                    <td>
-                        <input id="编号" class="easyui-textbox" data-options="required:true, missingMessage:'请输入编号'" />
-                    </td>
-                    <td class="editorNameColumn">住院号</td>
-                    <td>
-                        <input id="住院号" class="easyui-textbox" data-options="required:true, missingMessage:'请输入住院号'" />
-                    </td>
-                    <td class="editorNameColumn">姓名</td>
-                    <td>
-                        <input id="姓名" class="easyui-textbox" data-options="required:true, missingMessage:'请输入姓名'" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="editorNameColumn">性别</td>
-                    <td>
-                        <select id="性别" class="easyui-combobox editorInputComboBox"></select>
-                    </td>
+            <div>
+                <table id="test1" class="editorTable">
+                    <tr>
+                        <td class="editorNameColumnStandard">
+                            <b>编号</b>
+                        </td>
+                        <td>
+                            <input id="编号" class="easyui-textbox" data-options="required:true, missingMessage:'请输入编号'" />
+                        </td>
+                        <td class="editorNameColumnStandard">
+                            <b>住院号</b>
+                        </td>
+                        <td>
+                            <input id="住院号" class="easyui-textbox" data-options="required:true, missingMessage:'请输入住院号'" />
+                        </td>
+                        <td class="editorNameColumnStandard">
+                            <b>姓名</b>
+                        </td>
+                        <td>
+                            <input id="姓名" class="easyui-textbox" data-options="required:true, missingMessage:'请输入姓名'" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="editorNameColumnStandard">
+                            <b>性别</b>
+                        </td>
+                        <td>
+                            <select id="性别" class="easyui-combobox editorInputComboBox"></select>
+                        </td>
+                        <td class="editorNameColumnStandard">
+                            <b>出生日期</b>
+                        </td>
+                        <td>
+                            <input id="出生日期" class="easyui-datebox" data-options="required:true, missingMessage:'请输入出生日期', validType:'date'">
+                        </td>
 
-                    <td class="editorNameColumn">出生日期</td>
-                    <td>
-                        <input id="出生日期" class="easyui-datebox" data-options="required:true, missingMessage:'请输入出生日期', validType:'date'">
-                    </td>
+                        <td class="editorNameColumnStandard">
+                            <b>入组日期</b>
+                        </td>
+                        <td>
+                            <input id="入组日期" class="easyui-datebox" data-options="required:true, missingMessage:'请输入入组日期'">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="editorNameColumnStandard">
+                            <b>民族</b>
+                        </td>
+                        <td>
+                            <select id="民族" class="easyui-combobox editorInputComboBox"></select>
+                        </td>
 
-                    <td class="editorNameColumn">入组日期</td>
-                    <td>
-                        <input id="入组日期" class="easyui-datebox" data-options="required:true, missingMessage:'请输入入组日期'">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="editorNameColumn">民族</td>
-                    <td>
-                        <select id="民族" class="easyui-combobox editorInputComboBox"></select>
-                    </td>
+                        <td class="editorNameColumnStandard">
+                            <b>婚姻状况</b>
+                        </td>
+                        <td>
+                            <select id="婚姻状况" class="easyui-combobox editorInputComboBox"></select>
+                        </td>
+                        <td class="editorNameColumnStandard">
+                            <b>文化程度</b>
+                        </td>
+                        <td>
+                            <select id="文化程度" class="easyui-combobox editorInputComboBox"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="editorNameColumnStandard" style="width: 80px">
+                            <b>职业</b>
+                        </td>
+                        <td>
+                            <select id="职业" class="easyui-combobox editorInputComboBox"></select>
+                        </td>
 
-                    <td class="editorNameColumn">婚姻状况</td>
-                    <td>
-                        <select id="婚姻状况" class="easyui-combobox editorInputComboBox"></select>
-                    </td>
-                    <td class="editorNameColumn">文化程度</td>
-                    <td>
-                        <select id="文化程度" class="easyui-combobox editorInputComboBox"></select>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="editorNameColumn" style="width: 70px">职业</td>
-                    <td>
-                        <select id="职业" class="easyui-combobox editorInputComboBox"></select>
-                    </td>
-
-                    <td class="editorNameColumn">年收入</td>
-                    <td>
-                        <select id="年收入" class="easyui-combobox editorInputComboBox"></select>
-                    </td>
-                    <td class="editorNameColumn">保险类别</td>
-                    <td>
-                        <select id="保险类别" class="easyui-combobox editorInputComboBox"></select>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="editorNameColumn">联系电话</td>
-                    <td>
-                        <input id="联系电话" class="easyui-textbox" data-options="required:true, missingMessage:'请输入联系电话'" />
-                    </td>
-                    <td class="editorNameColumn">联系地址</td>
-                    <td colspan="3">
-                        <input id="联系地址" class="easyui-textbox" style="width: 100%" data-options="required:true, missingMessage:'请输入联系地址'" />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        <span id="住所至康复中心交通是否便利"><b>住所至康复中心交通是否便利</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <span id="是否参与工作"><b>是否参与工作</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <span id="吸烟"><b>吸烟</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <span id="药物不良反应"><b>药物不良反应</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <span id="目前的疾病"><b>目前的疾病<br /></b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <b>危险因素及用药</b><br />
-                        <b>高血压</b><br />
-                        <span id="是否有高血压"><b>是否有高血压</b></span>
-                        <br />
-                        <span id="高血压控制情况"><b>控制情况</b></span>
-                        <br />
-                        <span id="降压药物"><b>降压药物</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <b>糖尿病</b><br />
-                        <span id="是否有糖尿病"><b>是否有糖尿病</b></span>
-                        <br />
-                        <span id="糖尿病控制情况"><b>控制情况</b></span>
-                        <br />
-                        <span id="降糖药物"><b>降糖药物</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <b>血脂异常</b><br />
-                        <span id="是否存在血脂异常"><b>是否存在血脂异常</b></span>
-                        <br />
-                        <span id="降脂药物"><b>降脂药物</b></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <b>抗血小板及抗凝药物</b><br />
-                        <span id="抗血小板及抗凝药物"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <b>服药依从性</b><br />
-                        <span id="服药依从性"></span>
-                    </td>
-                </tr>
-            </table>
+                        <td class="editorNameColumnStandard">
+                            <b>年收入</b>
+                        </td>
+                        <td>
+                            <select id="年收入" class="easyui-combobox editorInputComboBox"></select>
+                        </td>
+                        <td class="editorNameColumnStandard">
+                            <b>保险类别</b>
+                        </td>
+                        <td>
+                            <select id="保险类别" class="easyui-combobox editorInputComboBox"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="editorNameColumnStandard">
+                            <b>联系电话</b>
+                        </td>
+                        <td>
+                            <input id="联系电话" class="easyui-textbox" data-options="required:true, missingMessage:'请输入联系电话'" />
+                        </td>
+                        <td class="editorNameColumnStandard">
+                            <b>联系地址</b>
+                        </td>
+                        <td colspan="3">
+                            <input id="联系地址" class="easyui-textbox" style="width: 100%" data-options="required:true, missingMessage:'请输入联系地址'" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table class="editorTable">
+                    <tr>
+                        <td class="editorNameColumnStandard">
+                            <b>住所至康复中心交通是否便利</b>
+                        </td>
+                        <td colspan="2">
+                            <span id="住所至康复中心交通是否便利"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="editorNameColumnStandard">
+                            <b>是否参与工作</b>
+                        </td>
+                        <td>
+                            <span id="是否参与工作"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="editorNameColumnStandard">
+                            <b>吸烟</b>
+                        </td>
+                        <td colspan="2">
+                            <span id="吸烟"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="editorNameColumnStandard">
+                            <b>药物不良反应</b>
+                        </td>
+                        <td colspan="2">
+                            <span id="药物不良反应"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="editorNameColumnStandard">
+                            <b>目前的疾病</b>
+                        </td>
+                        <td colspan="2">
+                            <span id="目前的疾病"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <b>危险因素及用药</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">
+                            <b>高血压</b>
+                        </td>
+                        <td>
+                            <b>是否有高血压</b>
+                        </td>
+                        <td>
+                            <span id="是否有高血压"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>控制情况</b>
+                        </td>
+                        <td>
+                            <span id="高血压控制情况"></span>
+                        </td>
+                    <tr>
+                        <td>
+                            <b>降压药物</b>
+                        </td>
+                        <td>
+                            <span id="降压药物"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">
+                            <b>糖尿病</b>
+                        </td>
+                        <td>
+                            <b>是否有糖尿病</b>
+                        </td>
+                        <td>
+                            <span id="是否有糖尿病"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>控制情况</b>
+                        </td>
+                        <td>
+                            <span id="糖尿病控制情况"></span>
+                        </td>
+                        <tr>
+                            <td>
+                                <b>降糖药物</b>
+                            </td>
+                            <td>
+                                <span id="降糖药物"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">
+                                <b>血脂异常</b>
+                            </td>
+                            <td>
+                                <b>是否存在血脂异常</b>
+                            </td>
+                            <td>
+                                <span id="是否存在血脂异常"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>降脂药物</b>
+                            </td>
+                            <td>
+                                <span id="降脂药物"></span>
+                            </td>
+                        </tr>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>抗血小板及抗凝药物</b><br />
+                        </td>
+                        <td colspan="2">
+                            <span id="抗血小板及抗凝药物"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>服药依从性</b><br />
+                        </td>
+                        <td>
+                            <span id="服药依从性"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <div title="体格检查">
             <table class="editorTable">
                 <tr>
-                    <td class="editorNameColumn">执行时间</td>
-                    <td colspan="9">
-                        <input id="体格检查执行时间" class="easyui-textbox" data-options="required:true, missingMessage:'请输入编号'" />
+                    <td class="editorNameColumnStandard">
+                        <b>执行时间</b>
+                    </td>
+                    <td colspan="8">
+                        <input id="体格检查执行时间" class="easyui-datetimebox" data-options="required:true, missingMessage:'请输入编号'" />
                     </td>
                 </tr>
                 <tr>
-                    <td><b>血压（mmHg）</b></td>
-                    <td><b>收缩压1</b><input id="收缩压1" class="easyui-textbox" style="width:50px" data-options="required:true, missingMessage:'请输入收缩压1'" /></td>
-                    <td><b>舒张压1</b><input id="舒张压1" class="easyui-textbox" style="width:50px" data-options="required:true, missingMessage:'请输入舒张压1'" /></td>
-                    <td><b>收缩压2</b><input id="收缩压2" class="easyui-textbox" style="width:50px" data-options="required:true, missingMessage:'请输入收缩压2'" /></td>
-                    <td><b>舒张压2</b></td><input id="舒张压2" class="easyui-textbox" style="width:50px"  data-options="required:true, missingMessage:'请输入舒张压2'" />
-                
-                
-                    <br/>
-                    <b>收缩压3</b><input id="收缩压3" class="easyui-textbox"  style="width:50px" data-options="required:true, missingMessage:'请输入收缩压3'" />
-                    <b>舒张压3</b><input id="舒张压3" class="easyui-textbox" style="width:50px"  data-options="required:true, missingMessage:'请输入舒张压3'" />
-                    <b>平均收缩压</b><input id="平均收缩压" class="easyui-textbox"  style="width:50px" data-options="required:true, missingMessage:'请输入平均收缩压'" />
-                    <b>平均舒张压</b><input id="平均舒张压" class="easyui-textbox"  style="width:50px" data-options="required:true, missingMessage:'请输入平均舒张压'" />
+                    <td rowspan="3" class="editorNameColumnStandard">
+                        <b>血压（mmHg）</b>
+                    </td>
+                    <td class="editorNameColumnStandard">
+                        <b>收缩压1</b>
+                    </td>
+                    <td>
+                        <input id="收缩压1" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入收缩压1'" />
+                    </td>
+                    <td class="editorNameColumnStandard">
+                        <b>舒张压1</b>
+                    </td>
+                    <td>
+                        <input id="舒张压1" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入舒张压1'" />
+                    </td>
+                    <td class="editorNameColumnStandard">
+                        <b>收缩压2</b>
+                    </td>
+                    <td>
+                        <input id="收缩压2" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入收缩压2'" />
+                    </td>
+                    <td class="editorNameColumnStandard">
+                        <b>舒张压2</b>
+                    </td>
+                    <td>
+                        <input id="舒张压2" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入舒张压2'" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="editorNameColumnStandard">
+                        <b>收缩压3</b>
+                    </td>
+                    <td>
+                        <input id="收缩压3" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入收缩压3'" />
+                    </td>
+                    <td class="editorNameColumnStandard">
+                        <b>舒张压3</b>
+                    </td>
+                    <td>
+                        <input id="舒张压3" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入舒张压3'" />
+                    </td>
+                    <td class="editorNameColumnStandard">
+                        <b>平均收缩压</b>
+                    </td>
+                    <td>
+                        <input id="平均收缩压" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入平均收缩压'" />
+                    </td>
+                    <td class="editorNameColumnStandard">
+                        <b>平均舒张压</b>
+                    </td>
+                    <td>
+                        <input id="平均舒张压" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入平均舒张压'" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="editorNameColumnStandard">
+                        <b>心率</b>
+                    </td>
+                    <td>
+                        <input id="心率" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'心率'" />
+                    </td>
+                    <td class="editorNameColumnStandard">
+                        <b>脉搏</b>
+                    </td>
+                    <td>
+                        <input id="脉搏" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入脉搏'" />
+                    </td>
+                    <td class="editorNameColumnStandard">
+                        <b>血氧饱和度</b>
+                    </td>
+                    <td colspan="3">
+                        <input id="血氧饱和度" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'血氧饱和度'" />
+                    </td>
+
+                    </td>
+                </tr>
                 </tr>
             </table>
         </div>
@@ -199,8 +366,7 @@
         $('#出生日期').datebox({ formatter: FormatHelper.FormatHelper });
         $('#入组日期').datebox({ formatter: FormatHelper.FormatHelper });
 
-        $('#编号')
-
+        $('#编号');
         $('#Patient_btnCancel')
             .bind('click',
                 function() {
@@ -232,44 +398,44 @@
 @if (Model != null)
 {
     <script>
-    window.previousId = -1;
-    window.nextId = -1;
+        window.previousId = -1;
+        window.nextId = -1;
 
-    $(function() { ShowData(`@Url.Action("GetData", "Patient")/${@ViewBag.CurrentId}`); });
+        $(function() { ShowData(`@Url.Action("GetData", "Patient")/${@ViewBag.CurrentId}`); });
 
-    function ShowData(url) {
-        $.ajax({
-            type: "POST",
-            url: url,
-            success: function(data) {
-                const item = data.Item;
+        function ShowData(url) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                success: function(data) {
+                    const item = data.Item;
 
-                $('#编号').textbox('setText', item.编号);
-                $('#住院号').textbox('setText', item.住院号);
-                $('#姓名').textbox('setText', item.姓名);
-                $('#性别').combobox('setText', item.性别);
-                $('#出生日期').datebox('setText', FormatHelper.DateBoxFormatter(item.出生日期));
-                $('#入组日期').datebox('setText', FormatHelper.DateBoxFormatter(item.入组日期));
-                $('#民族').combobox('setText', item.民族);
-                $('#婚姻状况').combobox('setText', item.婚姻状况);
-                $('#文化程度').combobox('setText', item.文化程度);
-                $('#职业').textbox('setText', item.职业);
-                $('#年收入').textbox('setText', item.年收入);
-                $('#保险类别').combobox('setText', item.保险类别);
-                $('#联系电话').textbox('setText', item.联系电话);
-                $('#联系地址').textbox('setText', item.联系地址);
+                    $('#编号').textbox('setText', item.编号);
+                    $('#住院号').textbox('setText', item.住院号);
+                    $('#姓名').textbox('setText', item.姓名);
+                    $('#性别').combobox('setText', item.性别);
+                    $('#出生日期').datebox('setText', FormatHelper.DateBoxFormatter(item.出生日期));
+                    $('#入组日期').datebox('setText', FormatHelper.DateBoxFormatter(item.入组日期));
+                    $('#民族').combobox('setText', item.民族);
+                    $('#婚姻状况').combobox('setText', item.婚姻状况);
+                    $('#文化程度').combobox('setText', item.文化程度);
+                    $('#职业').textbox('setText', item.职业);
+                    $('#年收入').textbox('setText', item.年收入);
+                    $('#保险类别').combobox('setText', item.保险类别);
+                    $('#联系电话').textbox('setText', item.联系电话);
+                    $('#联系地址').textbox('setText', item.联系地址);
 
-                console.log(item);
+                    console.log(item);
 
-                window.previousId = data.PreviousId;
-                window.nextId = data.NextId;
-            },
-            error: function() {
-                Alert("错误", 'error', AlertType.Error);
-            },
-            dataType: "json"
-        });
-    };
+                    window.previousId = data.PreviousId;
+                    window.nextId = data.NextId;
+                },
+                error: function() {
+                    Alert("错误", 'error', AlertType.Error);
+                },
+                dataType: "json"
+            });
+        };
 
 
     </script>

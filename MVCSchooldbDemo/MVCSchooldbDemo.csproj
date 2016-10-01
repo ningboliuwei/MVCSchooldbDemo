@@ -587,6 +587,7 @@
     <Content Include="CodeTemplates\MvcControllerEmpty\Controller.cs.t4" />
     <Content Include="CodeTemplates\MvcView\Index.t4" />
     <Content Include="CodeTemplates\MvcView\_Editor.cs.t4" />
+    <Content Include="Docs\EditorDesign.xlsx" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
@@ -655,7 +656,6 @@
     <Folder Include="Content\EasyUI\themes\metro-green\" />
     <Folder Include="Content\EasyUI\themes\metro-orange\" />
     <Folder Include="Content\EasyUI\themes\metro-red\" />
-    <Folder Include="Docs\" />
     <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>

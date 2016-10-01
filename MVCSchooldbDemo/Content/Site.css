@@ -13,10 +13,16 @@
 	padding: 5px 10px 5px 10px;
 }
 
-.editorNameColumn {
+.editorNameColumnStandard {
 	background: #FAFAFA;
 	width: 70px;
 }
+
+.editorNameColumnNarrow {
+	background: #FAFAFA;
+	width: 35px;
+}
+
 
 .editorInputComboBox {
 	width: 100px;

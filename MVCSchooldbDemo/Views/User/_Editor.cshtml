@@ -3,31 +3,31 @@
 <form id="formUser" method="post" class="easyui-form" data-options="novalidate:true">
     <table class="editorTable">
         <tr>
-            <td class="editorNameColumn" style="width: 100px">账号</td>
+            <td class="editorNameColumnStandard" style="width: 100px">账号</td>
             <td>
                 <input id="Account" class="easyui-textbox"/>
             </td>
         </tr>
         <tr>
-            <td class="editorNameColumn">密码</td>
+            <td class="editorNameColumnStandard">密码</td>
             <td>
                 <input id="Password" class="easyui-textbox"/>
             </td>
         </tr>
         <tr>
-            <td class="editorNameColumn">确认密码</td>
+            <td class="editorNameColumnStandard">确认密码</td>
             <td>
                 <input id="ConfirmPassword" class="easyui-textbox"/>
             </td>
         </tr>
         <tr>
-            <td class="editorNameColumn">全名</td>
+            <td class="editorNameColumnStandard">全名</td>
             <td>
                 <input id="FullName" class="easyui-textbox"/>
             </td>
         </tr>
         <tr>
-            <td class="editorNameColumn">用户类别</td>
+            <td class="editorNameColumnStandard">用户类别</td>
             <td>
                 @*                <div onclick="$('#UserRole').combobox('clear');BindCombobox('#UserRole', '@Url.Action("GetAllRoles", "Role")', null, 'Id', 'Name', null);">*@
                 <select id="UserRole" class="easyui-combobox" style="width: 100px"></select>
