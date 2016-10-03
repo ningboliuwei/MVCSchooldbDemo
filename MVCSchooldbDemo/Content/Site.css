@@ -1,21 +1,24 @@
-﻿body { font-family: "微软雅黑"; }
+﻿body {
+	font-family: "微软雅黑";
+}
 
-.editorLayout { padding: 0 20px 10px 20px; }
+.editorLayout {
+	padding: 0 20px 10px 20px;
+}
 
 .editorTable {
 	border-collapse: collapse;
-	margin: 0 auto;
 	width: 100%;
 }
 
-.editorTable td, th {
-	border: 1px dotted #ccc;
-	padding: 5px 10px 5px 10px;
-}
+	.editorTable td, .editorTable th {
+		border: 1px dotted #ccc;
+		padding: 5px 10px 5px 10px;
+	}
 
 .editorNameColumnStandard {
 	background: #FAFAFA;
-	width: 70px;
+	width: 80px;
 }
 
 .editorNameColumnNarrow {
@@ -28,9 +31,13 @@
 	width: 100px;
 }
 
-.searchTable td, th { padding: 5px 5px 0 5px; }
+.searchTable td, .searchTable th {
+	padding: 5px 5px 0 5px;
+}
 
-.buttonsTable td, th { padding: 5px 5px 5px 5px; }
+.buttonsTable td, .buttonsTable th {
+	padding: 5px 5px 5px 5px;
+}
 
 .dialogTitle {
 	font-size: 20px;
@@ -41,7 +48,7 @@
 	padding: 20px;
 	bottom: 0;
 	right: 0;
-	position:absolute;
+	position: absolute;
 }
 
 #footer {
@@ -49,11 +56,14 @@
 	text-align: center;
 }
 
-#header { }
+#header {
+}
 
 .navBar {
 	float: right;
 	margin: auto 10px auto auto;
 }
 
-.fa-icon { padding-top: 2px; }
+.fa-icon {
+	padding-top: 2px;
+}
