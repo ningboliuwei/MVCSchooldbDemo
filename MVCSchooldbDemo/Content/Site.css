@@ -8,12 +8,18 @@
 
 .editorTable {
 	border-collapse: collapse;
-	width: 100%;
+	margin: 3px;
 }
 
-	.editorTable td, .editorTable th {
+	.editorTable td {
 		border: 1px dotted #ccc;
 		padding: 5px 10px 5px 10px;
+	}
+
+	.editorTable th {
+		border: 1px dotted #ccc;
+		padding: 5px 10px 5px 10px;
+		text-align: center;
 	}
 
 .editorNameColumnStandard {
@@ -23,8 +29,14 @@
 
 .editorNameColumnNarrow {
 	background: #FAFAFA;
-	width: 35px;
+	width: 60px;
 }
+
+.editorNameColumnWide {
+	background: #FAFAFA;
+	width: 100px;
+}
+
 
 
 .editorInputComboBox {

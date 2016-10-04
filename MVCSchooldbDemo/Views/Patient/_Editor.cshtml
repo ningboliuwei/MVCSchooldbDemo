@@ -66,7 +66,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th style="width: 80px">
+                    <th>
                         职业
                     </th>
                     <td>
@@ -103,18 +103,16 @@
             </table>
             <table class="editorTable">
                 <tr>
-                    <th class="editorNameColumnStandard">
+                    <th class="editorNameColumnWide">
                         住所至康复中心交通是否便利
                     </th>
                     <td>
                         <span id="住所至康复中心交通是否便利"></span>
                     </td>
-                </tr>
-                <tr>
-                    <th>
+                    <th class="editorNameColumnWide">
                         是否参与工作
                     </th>
-                    <td>
+                    <td colspan="2">
                         <span id="是否参与工作"></span>
                     </td>
                 </tr>
@@ -125,12 +123,10 @@
                     <td>
                         <span id="吸烟"></span>
                     </td>
-                </tr>
-                <tr>
                     <th>
                         药物不良反应
                     </th>
-                    <td>
+                    <td colspan="2">
                         <span id="药物不良反应"></span>
                     </td>
                 </tr>
@@ -138,7 +134,7 @@
                     <th>
                         目前的疾病
                     </th>
-                    <td>
+                    <td colspan="4">
                         <span id="目前的疾病"></span>
                     </td>
                 </tr>
@@ -147,21 +143,15 @@
         <div title="危险因素及用药">
             <table class="editorTable">
                 <tr>
-                    <th colspan="3">
-                        危险因素及用药
-                    </th>
-                </tr>
-                <tr>
-                    <th rowspan="3">高血压</th>
-                    <th>
+                    <th rowspan="3" class="editorNameColumnStandard">高血压</th>
+                    <th class="editorNameColumnWide">
                         是否有高血压
                     </th>
                     <td>
                         <span id="是否有高血压"></span>
-                    </td>
                 </tr>
                 <tr>
-                    <th>
+                    <th class="editorNameColumnStandard">
                         控制情况
                     </th>
                     <td>
@@ -169,7 +159,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>
+                    <th class="editorNameColumnStandard">
                         降压药物
                     </th>
                     <td>
@@ -202,9 +192,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th rowspan="2">
-                        血脂异常
-                    </th>
+                    <th rowspan="2">血脂异常</th>
                     <th>
                         是否存在血脂异常
                     </th>
@@ -221,18 +209,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>
+                    <th colspan="2">
                         抗血小板及抗凝药物
                     </th>
-                    <td colspan="2">
+                    <td>
                         <span id="抗血小板及抗凝药物"></span>
                     </td>
                 </tr>
                 <tr>
-                    <th>
+                    <th colspan="2">
                         服药依从性
                     </th>
-                    <td colspan="2">
+                    <td>
                         <span id="服药依从性"></span>
                     </td>
                 </tr>
@@ -328,70 +316,315 @@
                 <tr>
                     <th rowspan="3">人体测量</th>
                     <th>身高（m）</th>
-                    <td><input id="身高" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'身高'" /></td>
+                    <td>
+                        <input id="身高" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'身高'" />
+                    </td>
                     <th>体重（kg）</th>
-                    <td><input id="体重" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'体重'" /></td>
+                    <td>
+                        <input id="体重" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'体重'" />
+                    </td>
                     <th>BMI</th>
-                    <td><input id="BMI" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'BMI'" /></td>
+                    <td>
+                        <input id="BMI" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'BMI'" />
+                    </td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <th>腰围</th>
-                    <td><input id="腰围" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'腰围'" /></td>
+                    <td>
+                        <input id="腰围" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'腰围'" />
+                    </td>
                     <th>臀围</th>
-                    <td><input id="臀围" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'臀围'" /></td>
+                    <td>
+                        <input id="臀围" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'臀围'" />
+                    </td>
                     <th>腰臀比</th>
-                    <td><input id="腰臀比" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'腰臀比'" /></td>
+                    <td>
+                        <input id="腰臀比" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'腰臀比'" />
+                    </td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <th colspan="3">握力(优势手 max + 非优势手 max)/2</th>
-                    <td><input id="握力" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'腰围'" /></td>
+                    <td>
+                        <input id="握力" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'腰围'" />
+                    </td>
                     <th colspan="1">脉搏波传播速度（cm/s）</th>
-                    <td><input id="脉搏波传播速度" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'腰臀比'" /></td>
+                    <td>
+                        <input id="脉搏波传播速度" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'腰臀比'" />
+                    </td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <th rowspan="5">人体分析</th>
+                    <th rowspan="7">人体分析</th>
                     <th>脂肪重量（kg）</th>
-                    <td><input id="脂肪重量" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'脂肪重量'" /></td>
+                    <td>
+                        <input id="脂肪重量" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'脂肪重量'" />
+                    </td>
                     <th>脂肪占体重比（%）</th>
-                    <td><input id="脂肪占体重比" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'脂肪占体重比'" /></td>
+                    <td>
+                        <input id="脂肪占体重比" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'脂肪占体重比'" />
+                    </td>
                     <th>骨质重量（kg）</th>
-                    <td><input id="骨质重量" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'骨质重量'" /></td>
+                    <td>
+                        <input id="骨质重量" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'骨质重量'" />
+                    </td>
                     <th>骨质占体重比（%）</th>
-                    <td><input id="骨质占体重比" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'骨质占体重比'" /></td>
+                    <td>
+                        <input id="骨质占体重比" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'骨质占体重比'" />
+                    </td>
 
                 </tr>
                 <tr>
                     <th>蛋白质重量（kg）</th>
-                    <td><input id="蛋白质重量" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'蛋白质重量'" /></td>
+                    <td>
+                        <input id="蛋白质重量" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'蛋白质重量'" />
+                    </td>
                     <th>蛋白质占体重比（%）</th>
-                    <td><input id="蛋白质占体重比" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'蛋白质占体重比'" /></td>
+                    <td>
+                        <input id="蛋白质占体重比" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'蛋白质占体重比'" />
+                    </td>
                     <th>水分重量（kg）</th>
-                    <td><input id="水分重量" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'水分重量'" /></td>
+                    <td>
+                        <input id="水分重量" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'水分重量'" />
+                    </td>
                     <th>水分占体重比（%）</th>
-                    <td><input id="水分占体重比" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'水分占体重比'" /></td>
+                    <td>
+                        <input id="水分占体重比" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'水分占体重比'" />
+                    </td>
 
                 </tr>
                 <tr>
                     <th>肌肉重量（kg）</th>
-                    <td><input id="肌肉重量" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'肌肉重量'" /></td>
+                    <td>
+                        <input id="肌肉重量" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'肌肉重量'" />
+                    </td>
                     <th>内脏脂肪指数</th>
-                    <td><input id="内脏脂肪指数" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'内脏脂肪指数'" /></td>
+                    <td>
+                        <input id="内脏脂肪指数" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'内脏脂肪指数'" />
+                    </td>
                     <th>基础代谢率</th>
-                    <td><input id="基础代谢率" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'基础代谢率'" /></td>
+                    <td>
+                        <input id="基础代谢率" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'基础代谢率'" />
+                    </td>
                     <th>体脂率</th>
-                    <td><input id="体脂率" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'体脂率'" /></td>
+                    <td>
+                        <input id="体脂率" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'体脂率'" />
+                    </td>
                 </tr>
-                <tr><th>肺部</th><td colspan="7"><input id="肺部" class="easyui-textbox" style="width: 100%" data-options="required:true, missingMessage:'肺部'" /></td></tr>
-                <tr><th>心脏</th><td colspan="7"><input id="心脏" class="easyui-textbox" style="width: 100%" data-options="required:true, missingMessage:'请输入心脏'" /></td></tr>
+                <tr>
+                    <th>肺部</th>
+                    <td colspan="7">
+                        <input id="肺部" class="easyui-textbox" style="width: 100%" data-options="required:true, missingMessage:'肺部'" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>心脏</th>
+                    <td colspan="7">
+                        <input id="心脏" class="easyui-textbox" style="width: 100%" data-options="required:true, missingMessage:'请输入心脏'" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>神经系统</th>
+                    <td colspan="2">
+                        <span id="神经系统是否存在影响运动的疾病"></span>
+                    </td>
+                    <th colspan="2">如有，具体为何种疾病</th>
+                    <td colspan="3">
+                        <input id="神经系统影响运动的疾病" class="easyui-textbox" style="width: 100%" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>运动系统</th>
+                    <td colspan="2">
+                        <span id="运动系统是否存在影响运动的疾病"></span>
+                    </td>
+                    <th colspan="2">如有，具体为何种疾病</th>
+                    <td colspan="3">
+                        <input id="运动系统影响运动的疾病" class="easyui-textbox" style="width: 100%" />
+                    </td>
+                </tr>
+
             </table>
         </div>
-        <div Title="Tab3"></div>
+        <div Title="实验室和影像学检查">
+            <table class="editorTable">
+                <tr>
+                    <th class="editorNameColumnStandard">
+                        血常规
+                    </th>
+                    <th class="editorNameColumnStandard">
+                        Hb
+                    </th>
+                    <td>
+                        <input id="Hb" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入Hb'" />
+                    </td>
+                    <th class="editorNameColumnStandard">
+                        MCV
+                    </th>
+                    <td>
+                        <input id="MCV" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入MCV'" />
+                    </td>
+                    <th class="editorNameColumnStandard">
+                        MCH
+                    </th>
+                    <td>
+                        <input id="MCH" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入MCH'" />
+                    </td>
+                    <th class="editorNameColumnStandard">
+                        MCHC
+                    </th>
+                    <td>
+                        <input id="MCHC" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入MCHC'" />
+                    </td>
+                </tr>
+                <tr>
+                    <th rowspan="2">
+                        肝功能
+                    </th>
+                    <th>
+                        ALT（Ul/L）
+                    </th>
+                    <td>
+                        <input id="ALT" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入ALT'" />
+                    </td>
+                    <th>
+                        ASL（Ul/L）
+                    </th>
+                    <td>
+                        <input id="ASL" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入ASL'" />
+                    </td>
+                    <th>
+                        白蛋白（g/L）
+                    </th>
+                    <td>
+                        <input id="白蛋白" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入白蛋白'" />
+                    </td>
+                    <th>
+                        r-GT（Ul/L）
+                    </th>
+                    <td>
+                        <input id="r-GT" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入r-GT'" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        总胆红素（umol/L）
+                    </th>
+                    <td>
+                        <input id="总胆红素" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入总胆红素'" />
+                    </td>
+                    <th>
+                        间接胆红素（umol/L）
+                    </th>
+                    <td>
+                        <input id="间接胆红素" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入间接胆红素'" />
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th rowspan="2">
+                        肾功能
+                    </th>
+                    <th>
+                        肌酐（mmol/L，mg/dL）
+                    </th>
+                    <td>
+                        <input id="肌酐" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入肌酐'" />
+                    </td>
+                    <th>
+                        尿素氮（mmol/L）
+                    </th>
+                    <td>
+                        <input id="尿素氮" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入尿素氮'" />
+                    </td>
+                    <th>
+                        尿酸（umol/L）
+                    </th>
+                    <td>
+                        <input id="尿酸" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入尿酸'" />
+                    </td>
+                    <th>
+                        胱抑素C（mg/L）
+                    </th>
+                    <td>
+                        <input id="胱抑素C" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入胱抑素C'" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        eGFR
+                    </th>
+                    <td>
+                        <input id="eGFR" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入eGFR'" />
+                    </td>
+                    <th>
+                        CKD分期
+                    </th>
+                    <td>
+                        <input id="CKD分期" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入CKD分期'" />
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>
+                        血脂（mmol/L，mg/dL）
+                    </th>
+                    <th>
+                        TG
+                    </th>
+                    <td>
+                        <input id="TG" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入TG'" />
+                    </td>
+                    <th>
+                        TC
+                    </th>
+                    <td>
+                        <input id="TC" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入TC'" />
+                    </td>
+                    <th>
+                        LDL-C
+                    </th>
+                    <td>
+                        <input id=" LDL-C" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入 LDL-C'" />
+                    </td>
+                    <th>
+                        HDL-C
+                    </th>
+                    <td>
+                        <input id="HDL-C" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入HDL-C'" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        
+                    </th>
+                    <th>
+                        糖化血红蛋白（%）
+                    </th>
+                    <td>
+                        <input id="糖化血红蛋白" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入糖化血红蛋白'" />
+                    </td>
+                    <th>
+                        同型半胱氨酸hcy（umol/L）
+                    </th>
+                    <td>
+                        <input id="同型半胱氨酸hcy" class="easyui-textbox" style="width: 80px" data-options="required:true, missingMessage:'请输入同型半胱氨酸hcy'" />
+                    </td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+
+            </table>
+        </div>
     </div>
 </form>
 <script>
@@ -411,7 +644,7 @@
         GenerateInputListByDataDictItem("#目前的疾病", "目前的疾病", InputType.Checkbox);
         GenerateInputListByDataDictItem("#是否有高血压", "是否有高血压", InputType.Radio);
         GenerateInputListByDataDictItem("#高血压控制情况", "高血压控制情况", InputType.Radio);
-        GenerateInputListByDataDictItem("#降压药物", "降压药物", InputType.Radio);
+        GenerateInputListByDataDictItem("#降压药物", "降压药物", InputType.Checkbox);
         GenerateInputListByDataDictItem("#是否有糖尿病", "是否有糖尿病", InputType.Radio);
         GenerateInputListByDataDictItem("#糖尿病控制情况", "糖尿病控制情况", InputType.Radio);
         GenerateInputListByDataDictItem("#降糖药物", "降糖药物", InputType.Checkbox);
@@ -419,6 +652,8 @@
         GenerateInputListByDataDictItem("#降脂药物", "降脂药物", InputType.Checkbox);
         GenerateInputListByDataDictItem("#抗血小板及抗凝药物", "抗血小板及抗凝药物", InputType.Radio);
         GenerateInputListByDataDictItem("#服药依从性", "服药依从性", InputType.Checkbox);
+        GenerateInputListByDataDictItem("#神经系统是否存在影响运动的疾病", "神经系统是否存在影响运动的疾病", InputType.Radio);
+        GenerateInputListByDataDictItem("#运动系统是否存在影响运动的疾病", "运动系统是否存在影响运动的疾病", InputType.Radio);
 
         $('#出生日期').datebox({ formatter: FormatHelper.FormatHelper });
         $('#入组日期').datebox({ formatter: FormatHelper.FormatHelper });
