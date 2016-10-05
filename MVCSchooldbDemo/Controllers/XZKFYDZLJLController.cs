@@ -17,7 +17,7 @@ namespace MVCSchooldbDemo.Controllers
 
 		public XZKFYDZLJLController()
 		{
-			ViewBag.Name = "XZKFYDZLJL";
+			ViewBag.Name = "心脏康复运动治疗记录";
 		}
 
         public ActionResult Index()
@@ -34,7 +34,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Details(long? id)
         {
-            ViewBag.DialogTitle = "查看XXXX明细";
+            ViewBag.DialogTitle = "查看心脏康复运动治疗记录明细";
             ViewBag.CurrentId = id;
             return View(new XZKFYDZLJLInfo());
         }
@@ -72,7 +72,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加XXXX记录";//TODO
+            ViewBag.DialogTitle = "添加心脏康复运动治疗记录";//TODO
             return View();
         }
 
@@ -93,7 +93,7 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "编辑XXXX记录";//TODO
+                ViewBag.DialogTitle = "编辑心脏康复运动治疗记录";//TODO
                 ViewBag.CurrentId = id;
                 return View(new XZKFYDZLJLInfo());
             }

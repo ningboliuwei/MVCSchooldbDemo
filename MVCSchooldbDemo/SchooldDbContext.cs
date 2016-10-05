@@ -36,8 +36,8 @@ namespace MVCSchooldbDemo
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-			//            Database.SetInitializer(new SchoolDbContextInitializer(modelBuilder));
-			Database.SetInitializer(new MigrateDatabaseToLatestVersion<SchooldDbContext, Configuration>());
+			            Database.SetInitializer(new SchoolDbContextInitializer(modelBuilder));
+//			Database.SetInitializer(new MigrateDatabaseToLatestVersion<SchooldDbContext, Configuration>());
 		}
     }
 }

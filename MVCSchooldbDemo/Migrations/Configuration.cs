@@ -9,7 +9,7 @@ namespace MVCSchooldbDemo.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(MVCSchooldbDemo.SchooldDbContext context)
