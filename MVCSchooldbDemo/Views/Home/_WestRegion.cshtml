@@ -39,7 +39,7 @@
     </div>
 </div>
 <script>
-    $(function() {
+    $(function () {
         InitTree('#tt',
             '#tabsHome',
             [
@@ -54,17 +54,24 @@
                         "text": "病人基本信息管理",
                         "iconCls": "fa fa-bed fa-16px fa-fw",
                         "attributes": { url: "@Url.Action("Index", "Patient")" }
-                    }, {
-                        "id": 3,
-                        "text": "心脏康复运动处方管理",
-                        "iconCls": "fa fa-heart fa-16px fa-fw",
-                        "attributes": { url: "@Url.Action("Index", "XZKFYDCF")" }
-               }, {
-                   "id": 4,
-                   "text": "心脏康复运动治疗记录管理",
-                   "iconCls": "fa fa-medkit fa-16px fa-fw",
-                   "attributes": { url: '#' }
-               }]},
+                    },
+                        {
+                            "id": 2,
+                            "text": "心脏运动实验报告管理",
+                            "iconCls": "fa fa-heartbeat fa-16px fa-fw",
+                            "attributes": { url: "@Url.Action("Index", "XZKFYDCF")" }
+                        }, {
+                            "id": 3,
+                            "text": "心脏康复运动处方管理",
+                            "iconCls": "fa fa-heart fa-16px fa-fw",
+                            "attributes": { url: "@Url.Action("Index", "XZKFYDCF")" }
+                        }, {
+                            "id": 4,
+                            "text": "心脏康复运动治疗记录管理",
+                            "iconCls": "fa fa-medkit fa-16px fa-fw",
+                            "attributes": { url: '#' }
+                        }]
+                },
                 {
                     "id": 5,
                     "text": "量表",
