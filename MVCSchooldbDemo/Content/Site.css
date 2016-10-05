@@ -54,10 +54,11 @@
 .dialogTitle {
 	font-size: 20px;
 	font-weight: bold;
+	padding: 5px 5px 0 5px;
 }
 
 .dialogButton {
-	padding: 20px;
+	padding: 30px;
 	bottom: 0;
 	right: 0;
 	position: absolute;
@@ -78,4 +79,20 @@
 
 .fa-icon {
 	padding-top: 2px;
+}
+
+.easyui-radio {
+	position: relative;
+	border: 1px solid #95B8E7;
+	background-color: #fff;
+	vertical-align: middle;
+	display: inline-block;
+	overflow: hidden;
+	white-space: nowrap;
+	margin: 0;
+	padding: 0;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	display: block;
 }

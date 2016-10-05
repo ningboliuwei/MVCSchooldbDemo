@@ -1,11 +1,4 @@
-﻿<#@ template language="C#" HostSpecific="True" #>
-<#@ output extension="cs" #>
-<#@ import namespace="System" #>
-<#@ parameter type="System.String" name="ControllerName" #>
-<#@ parameter type="System.String" name="ControllerRootName" #>
-<#@ parameter type="System.String" name="Namespace" #>
-<#@ parameter type="System.String" name="AreaName" #>
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -15,17 +8,16 @@ using MVCSchooldbDemo.Classes;
 using MVCSchooldbDemo.Common;
 using MVCSchooldbDemo.Models.Data;
 
-<#var name=ControllerName.Replace("Controller","");#>
-namespace <#=Namespace#>
+namespace MVCSchooldbDemo.Controllers
 {
     [Authorize]
-    public class <#=ControllerName#> : Controller
+    public class XZKFYDCFController : Controller
     {
         private readonly SchooldDbContext _db = new SchooldDbContext();
 
-		public <#=ControllerName#>()
+		public XZKFYDCFController()
 		{
-			ViewBag.Name = "<#=name#>";
+			ViewBag.Name = "心脏康复运动处方";
 		}
 
         public ActionResult Index()
@@ -35,16 +27,16 @@ namespace <#=Namespace#>
 
 		public string List(string queryParasString, int page, int rows, string sort, string order)
         {
-            var result = DBHelper.GetResult(_db.<#=name#>s.ToList(), queryParasString, page, rows, sort, order);
+            var result = DBHelper.GetResult(_db.XZKFYDCFs.ToList(), queryParasString, page, rows, sort, order);
 
             return result;
         }
 
         public virtual ActionResult Details(long? id)
         {
-            ViewBag.DialogTitle = "查看XXXX明细";
+            ViewBag.DialogTitle = "查看心脏康复运动处方明细";
             ViewBag.CurrentId = id;
-            return View(new <#=name#>Info());
+            return View(new XZKFYDCFInfo());
         }
 
 		[HttpPost]
@@ -52,8 +44,8 @@ namespace <#=Namespace#>
         {
             if (id != null)
             {
-                var item = DBHelper.FindByKeyword(_db.<#=name#>s.ToList(), "Id", id).First();
-                var list = _db.<#=name#>s.ToList();
+                var item = DBHelper.FindByKeyword(_db.XZKFYDCFs.ToList(), "Id", id).First();
+                var list = _db.XZKFYDCFs.ToList();
                 var currentIndex = list.IndexOf(item);
 
                 return new JsonResult
@@ -64,9 +56,13 @@ namespace <#=Namespace#>
                             Item =
                                 new
                                 {
-									item.字段1,
-									item.字段2//TODO
-                                },
+									item.病人编号,
+									item.基础心率,
+									item.运动峰值心率,
+									item.基础血压,
+									item.运动峰值血压,
+									item.心肺联合运动试验平板运动实验结果
+								},
                             CurrentIndex = currentIndex,
                             PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,
                             NextId = currentIndex == list.Count - 1 ? -1 : list[currentIndex + 1].Id
@@ -80,16 +76,16 @@ namespace <#=Namespace#>
 
         public virtual ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加XXXX记录";//TODO
+            ViewBag.DialogTitle = "添加心脏康复运动处方记录";//TODO
             return View();
         }
 
         [HttpPost]
-        public virtual ActionResult Create(<#=name#>Info item)
+        public virtual ActionResult Create(XZKFYDCFInfo item)
         {
             if (ModelState.IsValid)
             {
-                _db.<#=name#>s.Add(item);
+                _db.XZKFYDCFs.Add(item);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -101,16 +97,16 @@ namespace <#=Namespace#>
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "编辑XXXX记录";//TODO
+                ViewBag.DialogTitle = "编辑心脏康复运动处方记录";//TODO
                 ViewBag.CurrentId = id;
-                return View(new <#=name#>Info());
+                return View(new XZKFYDCFInfo());
             }
             
 			return HttpNotFound();
         }
 
         [HttpPost]
-        public virtual ActionResult Edit(<#=name#>Info item)
+        public virtual ActionResult Edit(XZKFYDCFInfo item)
         {
             _db.Entry(item).State = EntityState.Modified;
             _db.SaveChanges();
@@ -122,12 +118,12 @@ namespace <#=Namespace#>
         {
             foreach (var id in ids)
             {
-                var item = DBHelper.FindByKeyword(_db.<#=name#>s.ToList(), "Id", id).First();
-                _db.<#=name#>s.Remove(item);
+                var item = DBHelper.FindByKeyword(_db.XZKFYDCFs.ToList(), "Id", id).First();
+                _db.XZKFYDCFs.Remove(item);
             }
 
             _db.SaveChanges();
-            return RedirectToAction("Index", "<#=name#>");
+            return RedirectToAction("Index", "XZKFYDCF");
         }
     }
 }

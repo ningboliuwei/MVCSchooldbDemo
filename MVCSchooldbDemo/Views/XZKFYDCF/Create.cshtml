@@ -1,0 +1,18 @@
+﻿@model MVCSchooldbDemo.Models.Data.XZKFYDCFInfo
+@{
+    Layout = null;
+}
+<div class="editorLayout">
+    @Html.Partial("~/Views/XZKFYDCF/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForCreate.cshtml")
+</div>
+<script>
+    $(function() {
+        $('#XZKFYDCF_btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('#formXZKFYDCF',  '#gridXZKFYDCF','#editorXZKFYDCF', '@Url.Action("Create", "XZKFYDCF")', window.GetData(), "确认添加记录吗？", '添加记录出现错误');
+                }
+            );
+    });
+</script>

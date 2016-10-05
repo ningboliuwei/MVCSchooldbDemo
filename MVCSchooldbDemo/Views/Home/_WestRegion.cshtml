@@ -1,5 +1,7 @@
 ﻿<style>
-    .tree-folder, .tree-file { background: none; }
+    .tree-folder, .tree-file {
+        background: none;
+    }
 
     .tree-node {
         height: 16px;
@@ -12,19 +14,27 @@
         color: #404040;
     }
 
-    .tree-expanded { background: url('../../Content/Images/caret-down.png') no-repeat; }
+    .tree-expanded {
+        background: url('../../Content/Images/caret-down.png') no-repeat;
+    }
 
-    .tree-expanded-hover { background: url('../../Content/Images/caret-down-hover.png') no-repeat; }
+    .tree-expanded-hover {
+        background: url('../../Content/Images/caret-down-hover.png') no-repeat;
+    }
 
-    .tree-collapsed { background: url('../../Content/Images/caret-right.png') no-repeat; }
+    .tree-collapsed {
+        background: url('../../Content/Images/caret-right.png') no-repeat;
+    }
 
-    .tree-collapsed-hover { background: url('../../Content/Images/caret-right-hover.png') no-repeat; }
+    .tree-collapsed-hover {
+        background: url('../../Content/Images/caret-right-hover.png') no-repeat;
+    }
 </style>
 <div id="aa" class="easyui-accordion" data-options="fit:true">
-    <div title="数据管理" data-options="iconCls:'fa fa-database fa-16px',selected:false" style="overflow: auto;">
+    <div title="数据管理" data-options="iconCls:'fa fa-database fa-16px',selected:true" style="overflow: auto;">
         <ul id="tt" class="easyui-tree" data-options="animate:true,lines:false"></ul>
     </div>
-    <div title="系统维护" data-options="iconCls:'fa fa-cog fa-16px',selected:true" style="overflow: auto;">
+    <div title="系统维护" data-options="iconCls:'fa fa-cog fa-16px',selected:false" style="overflow: auto;">
         <ul id="tt2" class="easyui-tree" data-options="animate:true,lines:false"></ul>
     </div>
 </div>
@@ -34,15 +44,85 @@
             '#tabsHome',
             [
                 {
-                    "id": 1,
-                    "text": "学生管理",
-                    "iconCls": "fa fa-graduation-cap fa-16px fa-fw",
-                    "attributes": { url: "@Url.Action("Index", "Student")" }
-                }, {
-                    "id": 2,
-                    "text": "病人管理",
-                    "iconCls": "fa fa-bed fa-16px fa-fw",
-                    "attributes": { url: "@Url.Action("Index", "Patient")" }
+                    "id": 0,
+                    "text": "基础数据管理",
+                    "iconCls": "fa fa-info fa-16px fa-fw",
+                    "attributes": { url: "@Url.Action("Index", "Patient")" },
+                    "children": [
+                    {
+                        "id": 1,
+                        "text": "病人基本信息管理",
+                        "iconCls": "fa fa-bed fa-16px fa-fw",
+                        "attributes": { url: "@Url.Action("Index", "Patient")" }
+                    }, {
+                        "id": 3,
+                        "text": "心脏康复运动处方管理",
+                        "iconCls": "fa fa-heart fa-16px fa-fw",
+                        "attributes": { url: "@Url.Action("Index", "XZKFYDCF")" }
+               }, {
+                   "id": 4,
+                   "text": "心脏康复运动治疗记录管理",
+                   "iconCls": "fa fa-medkit fa-16px fa-fw",
+                   "attributes": { url: '#' }
+               }]},
+                {
+                    "id": 5,
+                    "text": "量表",
+                    "iconCls": "fa fa-wpforms fa-16px fa-fw",
+                    "attributes": { url: '#' },
+                    "children": [
+                      {
+                          "id": 6,
+                          "text": "简易智能量表",
+                          "iconCls": "fa fa-wpforms fa-16px fa-fw",
+                          "attributes": { url: '#' }
+                      }, {
+                          "id": 7,
+                          "text": "Barthel 指数评价表",
+                          "iconCls": "fa fa-wpforms fa-16px fa-fw",
+                          "attributes": { url: '#' }
+                      }, {
+                          "id": 8,
+                          "text": "工具性日常生活活动量表",
+                          "iconCls": "fa fa-wpforms fa-16px fa-fw",
+                          "attributes": { url: '#' }
+                      }, {
+                          "id": 9,
+                          "text": "微型营养评定法量表",
+                          "iconCls": "fa fa-wpforms fa-16px fa-fw",
+                          "attributes": { url: '#' }
+                      }, {
+                          "id": 10,
+                          "text": "住院患者营养风险筛查 NRS-2002 评估量表",
+                          "iconCls": "fa fa-wpforms fa-16px fa-fw",
+                          "attributes": { url: '#' }
+                      }, {
+                          "id": 11,
+                          "text": "匹兹堡睡眠质量指数量(PSQI)表",
+                          "iconCls": "fa fa-wpforms fa-16px fa-fw",
+                          "attributes": { url: '#' }
+                      }, {
+                          "id": 12,
+                          "text": "健康状况调查简表（SF-36）",
+                          "iconCls": "fa fa-wpforms fa-16px fa-fw",
+                          "attributes": { url: '#' }
+                      }, {
+                          "id": 13,
+                          "text": "西雅图心绞痛量表",
+                          "iconCls": "fa fa-wpforms fa-16px fa-fw",
+                          "attributes": { url: '#' }
+                      }, {
+                          "id": 14,
+                          "text": "9 条目病人健康问卷",
+                          "iconCls": "fa fa-wpforms fa-16px fa-fw",
+                          "attributes": { url: '#' }
+                      }, {
+                          "id": 15,
+                          "text": "HAD 量表",
+                          "iconCls": "fa fa-wpforms fa-16px fa-fw",
+                          "attributes": { url: '#' }
+                      }
+                    ]
                 }
             ]);
 
@@ -78,11 +158,6 @@
                             "text": "数据字典项目管理",
                             "iconCls": "fa fa-asterisk fa-16px fa-fw",
                             "attributes": { url: "@Url.Action("Index", "DataDictItem")" }
-                        }, {
-                            "id": 6,
-                            "text": "课程管理",
-                            "iconCls": "fa fa-book fa-16px fa-fw",
-                            "attributes": { url: "#" }
                         }
                     ]
 

@@ -1,0 +1,106 @@
+﻿@model List<MVCSchooldbDemo.Models.Data.XZKFYDCFInfo>
+@{
+    Layout = null;
+}
+
+<table id="gridXZKFYDCF" style="height: 100%"></table>
+<div id="tbXZKFYDCF">
+    <table class="searchTable">
+        <tr>
+            <td>字段1</td>
+            <td>
+                <input id="XZKFYDCF_Search_字段1" class="easyui-textbox" style="width: 110px">//TODO
+            </td>
+            <td>字段2</td>
+            <td>
+                <input id="XZKFYDCF_Search_字段2" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-search fa-16px" onclick="Search()">搜索</a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-times-circle-o fa-16px" onclick="ClearSearch()">清空搜索条件</a>
+            </td>
+        </tr>
+    </table>
+    <table class="buttonsTable">
+       <tr>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorXZKFYDCF', '@Url.Action("Create", "XZKFYDCF")', '添加XX信息')">
+                    添加
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridXZKFYDCF',    '#editorXZKFYDCF',    '@Url.Action("Edit", "XZKFYDCF")',
+    '编辑病人基本信息')">
+                    编辑
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridXZKFYDCF', '@Url.Action("Delete", "XZKFYDCF")')">
+                    删除
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridXZKFYDCF', '#editorXZKFYDCF', '@Url.Action("Details", "XZKFYDCF")', 'XX明细')">
+                    详细
+                </a>
+            </td>
+    </table>
+</div>
+<div id="editorXZKFYDCF" style="display: none; height: 450px; width: 500px;"></div>
+<script>
+    var columns = [
+        [
+            {
+                field: 'Id',
+                title: 'ID',
+                width: 100,
+                hidden: true
+            },
+			{
+                field: '字段1',
+                title: 'ID',
+                width: 100,
+                sortable: true
+            }
+        ]
+    ];
+
+    var gridTitle = 'XX记录';
+    var gridSortName = 'Id';
+    var gridSortOrder = 'asc';
+    var url = '@Url.Action("List", "XZKFYDCF")';
+
+    $(function() {
+        BindGrid('#gridXZKFYDCF','#tbXZKFYDCF', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    });
+
+    function Search() {
+        var queryData = {
+            字段1: $('#XZKFYDCF_Search_字段1').textbox('getText'),
+            字段2: $('#XZKFYDCF_Search_字段2').textbox('getText'),
+            字段3: ($('#XZKFYDCF_Search_字段3').textbox('getText') === 'ALL') ? '' : $('#XZKFYDCF_Search_字段3').textbox('getText')
+        };
+
+        BindGrid('#gridXZKFYDCF',
+            '#tbXZKFYDCF',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            { queryParasString: JSON.stringify(queryData) });
+    }
+
+    function ClearSearch() {
+        $('#XZKFYDCF_Search_字段1').textbox('clear');
+        $('#XZKFYDCF_Search_字段2').textbox('clear');
+
+        var data = $('#XZKFYDCF_Search_字段3').combobox('getData');
+        $('##XZKFYDCF_Search_字段3').combobox('select', data[0]["text"]);
+
+        BindGrid('#gridXZKFYDCF',
+            '#tbXZKFYDCF', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }
+</script>
