@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using MVCSchooldbDemo.Migrations;
 using MVCSchooldbDemo.Models.Data;
 
 namespace MVCSchooldbDemo
@@ -29,11 +30,14 @@ namespace MVCSchooldbDemo
         public DbSet<PatientInfo> Patients { get; set; }
         public DbSet<DataDictItemInfo> DataDictItems { get; set; }
 
-		public DbSet<XZKFYDCFInfo> XZKFYDCFs { get; set; }
+		public DbSet<XZKFYDCFInfo> XZKFYDCFs { get; set; }//心脏康复运动处方
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		public DbSet<XZKFYDZLJLInfo> XZKFYDZLJLs { get; set; }//心脏康复运动治疗记录
+
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer(new SchoolDbContextInitializer(modelBuilder));
-        }
+			//            Database.SetInitializer(new SchoolDbContextInitializer(modelBuilder));
+			Database.SetInitializer(new MigrateDatabaseToLatestVersion<SchooldDbContext, Configuration>());
+		}
     }
 }

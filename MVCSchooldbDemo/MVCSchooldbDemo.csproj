@@ -163,9 +163,11 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\XZKFYDCFController.cs" />
+    <Compile Include="Controllers\XZKFYDZLJLController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Data\DataDictItemInfo.cs" />
     <Compile Include="Models\Data\PatientInfo.cs" />
     <Compile Include="Models\Data\RoleInfo.cs" />
@@ -173,6 +175,7 @@
     <Compile Include="Models\Data\UploadedFileInfo.cs" />
     <Compile Include="Models\Data\UserInfo.cs" />
     <Compile Include="Models\Data\XZKFYDCFInfo.cs" />
+    <Compile Include="Models\Data\XZKFYDZLJLInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchoolDbContextInitializer.cs" />
     <Compile Include="SchooldDbContext.cs" />
@@ -656,6 +659,10 @@
     <Content Include="Views\XZKFYDCF\Edit.cshtml" />
     <Content Include="Views\XZKFYDCF\Details.cshtml" />
     <Content Include="Views\XZKFYDCF\Index.cshtml" />
+    <Content Include="Views\XZKFYDZLJL\Index.cshtml" />
+    <Content Include="Views\XZKFYDZLJL\_Editor.cshtml" />
+    <Content Include="Views\XZKFYDZLJL\Create.cshtml" />
+    <Content Include="Views\XZKFYDZLJL\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\EasyUI\themes\metro-blue\" />
