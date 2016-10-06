@@ -34,7 +34,9 @@ namespace MVCSchooldbDemo
 
 		public DbSet<XZKFYDZLJLInfo> XZKFYDZLJLs { get; set; }//心脏康复运动治疗记录
 
-		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public DbSet<BADLInfo> BADLs { get; set; }//心脏康复运动治疗记录
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 			            Database.SetInitializer(new SchoolDbContextInitializer(modelBuilder));
 //			Database.SetInitializer(new MigrateDatabaseToLatestVersion<SchooldDbContext, Configuration>());

@@ -1,0 +1,106 @@
+﻿@model List<MVCSchooldbDemo.Models.Data.BADLInfo>
+@{
+    Layout = null;
+}
+
+<table id="gridBADL" style="height: 100%"></table>
+<div id="tbBADL">
+    <table class="searchTable">
+        <tr>
+            <td>字段1</td>
+            <td>
+                <input id="BADL_Search_字段1" class="easyui-textbox" style="width: 110px">//TODO
+            </td>
+            <td>字段2</td>
+            <td>
+                <input id="BADL_Search_字段2" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-search fa-16px" onclick="Search()">搜索</a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-times-circle-o fa-16px" onclick="ClearSearch()">清空搜索条件</a>
+            </td>
+        </tr>
+    </table>
+    <table class="buttonsTable">
+       <tr>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorBADL', '@Url.Action("Create", "BADL")', '添加XX信息')">
+                    添加
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridBADL',    '#editorBADL',    '@Url.Action("Edit", "BADL")',
+    '编辑病人基本信息')">
+                    编辑
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridBADL', '@Url.Action("Delete", "BADL")')">
+                    删除
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridBADL', '#editorBADL', '@Url.Action("Details", "BADL")', 'XX明细')">
+                    详细
+                </a>
+            </td>
+    </table>
+</div>
+<div id="editorBADL" style="display: none; height: 900px; width: 1000px;"></div>
+<script>
+    var columns = [
+        [
+            {
+                field: 'Id',
+                title: 'ID',
+                width: 100,
+                hidden: true
+            },
+			{
+                field: '字段1',
+                title: 'ID',
+                width: 100,
+                sortable: true
+            }
+        ]
+    ];
+
+    var gridTitle = 'XX记录';
+    var gridSortName = 'Id';
+    var gridSortOrder = 'asc';
+    var url = '@Url.Action("List", "BADL")';
+
+    $(function() {
+        BindGrid('#gridBADL','#tbBADL', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    });
+
+    function Search() {
+        var queryData = {
+            字段1: $('#BADL_Search_字段1').textbox('getText'),
+            字段2: $('#BADL_Search_字段2').textbox('getText'),
+            字段3: ($('#BADL_Search_字段3').textbox('getText') === 'ALL') ? '' : $('#BADL_Search_字段3').textbox('getText')
+        };
+
+        BindGrid('#gridBADL',
+            '#tbBADL',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            { queryParasString: JSON.stringify(queryData) });
+    }
+
+    function ClearSearch() {
+        $('#BADL_Search_字段1').textbox('clear');
+        $('#BADL_Search_字段2').textbox('clear');
+
+        var data = $('#BADL_Search_字段3').combobox('getData');
+        $('##BADL_Search_字段3').combobox('select', data[0]["text"]);
+
+        BindGrid('#gridBADL',
+            '#tbBADL', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }
+</script>

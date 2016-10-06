@@ -1,0 +1,17 @@
+﻿@model MVCSchooldbDemo.Models.Data.BADLInfo
+@{
+    Layout = null;
+}
+<div class="editorLayout">
+    @Html.Partial("~/Views/BADL/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForEdit.cshtml")
+</div>
+<script>
+    $(function() {
+        $('#BADL_btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('#formBADL','#gridBADL','#editorBADL','@Url.Action("Edit", "BADL")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
+                });
+    });
+</script>

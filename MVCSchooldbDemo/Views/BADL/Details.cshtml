@@ -1,0 +1,30 @@
+﻿@model MVCSchooldbDemo.Models.Data.BADLInfo
+@{
+    Layout = null;
+}
+<div class="editorLayout">
+    @Html.Partial("~/Views/BADL/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForDetails.cshtml")
+</div>
+
+<script>
+    $(function() {
+//need disable & enable next and previous buttons
+
+        $('#BADL_btnPrevious')
+            .bind('click',
+                function() {
+                    if (window.previousId !== -1) {
+                        window.ShowData('@Url.Action("GetItemData", "BADL")' + '/' + window.previousId);
+                    }
+                });
+
+        $('#BADL_btnNext')
+         .bind('click',
+             function () {
+                 if (window.nextId !== -1) {
+                     window.ShowData('@Url.Action("GetItemData", "BADL")' + '/' + window.nextId);
+                 }
+             });
+    });
+</script>
