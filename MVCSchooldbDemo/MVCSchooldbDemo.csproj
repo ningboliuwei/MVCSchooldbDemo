@@ -158,6 +158,7 @@
     <Compile Include="Common\UtilityHelper.cs" />
     <Compile Include="Controllers\BADLController.cs" />
     <Compile Include="Controllers\DataDictItemController.cs" />
+    <Compile Include="Controllers\GJXRCSHHDLBController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Data\BADLInfo.cs" />
     <Compile Include="Models\Data\DataDictItemInfo.cs" />
+    <Compile Include="Models\Data\GJXRCSHHDLBInfo.cs" />
     <Compile Include="Models\Data\PatientInfo.cs" />
     <Compile Include="Models\Data\RoleInfo.cs" />
     <Compile Include="Models\Data\StudentInfo.cs" />
@@ -677,6 +679,11 @@
     <Content Include="Views\XYTXJTLB\_Editor.cshtml" />
     <Content Include="Views\XYTXJTLB\Create.cshtml" />
     <Content Include="Views\XYTXJTLB\Edit.cshtml" />
+    <Content Include="Views\GJXRCSHHDLB\_Editor.cshtml" />
+    <Content Include="Views\GJXRCSHHDLB\Index.cshtml" />
+    <Content Include="Views\GJXRCSHHDLB\Create.cshtml" />
+    <Content Include="Views\GJXRCSHHDLB\Edit.cshtml" />
+    <Content Include="Views\GJXRCSHHDLB\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\EasyUI\themes\metro-blue\" />

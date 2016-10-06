@@ -1,0 +1,79 @@
+﻿@model MVCSchooldbDemo.Models.Data.GJXRCSHHDLBInfo
+@{
+    Layout = null;
+}
+<div class="dialogTitle">@ViewBag.DialogTitle</div>
+<form id="formGJXRCSHHDLB" method="post" class="easyui-form" data-options="novalidate:true">
+    <div id="editorTabs" class="easyui-tabs" style="padding: 5px;">
+        <div title="标签1">
+            <table class="editorTable">
+                <tr>
+                    <td class="editorNameColumn">字段1</td>
+                    <td>
+                        <input id="字段1" class="easyui-textbox" />
+                    </td>
+					    <td class="editorNameColumn">字段2</td>
+                    <td>
+                        <input id="字段2" class="easyui-textbox" />
+                    </td>
+
+                    <td class="editorNameColumn">字段3</td>
+                    <td>
+                        <input id="字段3" class="easyui-textbox" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div title="标签2">
+        </div>
+    </div>
+</form>
+<script>
+    $(function() {
+        $('#GJXRCSHHDLB_btnCancel')
+            .bind('click',
+                function() {
+                    CloseEditor('#editorGJXRCSHHDLB');
+                }
+            );
+    });
+
+    function GetData() {
+        return {
+            字段1: $('#字段1').textbox('getText'),
+            字段2: $('#字段2').combobox('getText'),
+			字段3: $('#字段3').textbox('getText'),
+        };
+    }
+</script>
+
+@if (Model != null)
+{
+    <script>
+        window.previousId = -1;
+        window.nextId = -1;
+		$(function() { ShowData('@Url.Action("GetItemData", "GJXRCSHHDLB")' + '/' + @ViewBag.CurrentId); });
+
+
+        function ShowData(url) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                success: function(data) {
+                    const item = data.Item;
+
+                    $('#字段1').textbox('setText', item.字段1);
+                    $('#字段2').textbox('setText', item.字段2);
+                    $('#字段3').combobox('setText', item.字段3);
+
+                    window.previousId = data.PreviousId;
+                    window.nextId = data.NextId;
+                },
+                error: function() {
+                    Alert("错误", 'error', AlertType.Error);
+                },
+                dataType: "json"
+            });
+        };
+    </script>
+}
