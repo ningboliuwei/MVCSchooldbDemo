@@ -35,6 +35,7 @@ namespace MVCSchooldbDemo
 		public DbSet<XZKFYDZLJLInfo> XZKFYDZLJLs { get; set; }//心脏康复运动治疗记录
 
         public DbSet<BADLInfo> BADLs { get; set; }//心脏康复运动治疗记录
+        public DbSet<XYTXJTLBInfo> XYTXJTLBs { get; set; }//西雅图心绞痛量表
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

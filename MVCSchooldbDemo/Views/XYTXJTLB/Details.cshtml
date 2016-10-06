@@ -1,0 +1,30 @@
+﻿@model MVCSchooldbDemo.Models.Data.XYTXJTLBInfo
+@{
+    Layout = null;
+}
+<div class="editorLayout">
+    @Html.Partial("~/Views/XYTXJTLB/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForDetails.cshtml")
+</div>
+
+<script>
+    $(function() {
+//need disable & enable next and previous buttons
+
+        $('#XYTXJTLB_btnPrevious')
+            .bind('click',
+                function() {
+                    if (window.previousId !== -1) {
+                        window.ShowData('@Url.Action("GetItemData", "XYTXJTLB")' + '/' + window.previousId);
+                    }
+                });
+
+        $('#XYTXJTLB_btnNext')
+         .bind('click',
+             function () {
+                 if (window.nextId !== -1) {
+                     window.ShowData('@Url.Action("GetItemData", "XYTXJTLB")' + '/' + window.nextId);
+                 }
+             });
+    });
+</script>

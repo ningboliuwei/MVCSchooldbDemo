@@ -1,0 +1,106 @@
+﻿@model List<MVCSchooldbDemo.Models.Data.XYTXJTLBInfo>
+@{
+    Layout = null;
+}
+
+<table id="gridXYTXJTLB" style="height: 100%"></table>
+<div id="tbXYTXJTLB">
+    <table class="searchTable">
+        <tr>
+            <td>字段1</td>
+            <td>
+                <input id="XYTXJTLB_Search_字段1" class="easyui-textbox" style="width: 110px">//TODO
+            </td>
+            <td>字段2</td>
+            <td>
+                <input id="XYTXJTLB_Search_字段2" class="easyui-textbox" style="width: 110px">
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-search fa-16px" onclick="Search()">搜索</a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-times-circle-o fa-16px" onclick="ClearSearch()">清空搜索条件</a>
+            </td>
+        </tr>
+    </table>
+    <table class="buttonsTable">
+       <tr>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorXYTXJTLB', '@Url.Action("Create", "XYTXJTLB")', '添加XX信息')">
+                    添加
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridXYTXJTLB',    '#editorXYTXJTLB',    '@Url.Action("Edit", "XYTXJTLB")',
+    '编辑病人基本信息')">
+                    编辑
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridXYTXJTLB', '@Url.Action("Delete", "XYTXJTLB")')">
+                    删除
+                </a>
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridXYTXJTLB', '#editorXYTXJTLB', '@Url.Action("Details", "XYTXJTLB")', 'XX明细')">
+                    详细
+                </a>
+            </td>
+    </table>
+</div>
+<div id="editorXYTXJTLB" style="display: none; height: 800px; width: 800px;"></div>
+<script>
+    var columns = [
+        [
+            {
+                field: 'Id',
+                title: 'ID',
+                width: 100,
+                hidden: true
+            },
+			{
+                field: '字段1',
+                title: 'ID',
+                width: 100,
+                sortable: true
+            }
+        ]
+    ];
+
+    var gridTitle = 'XX记录';
+    var gridSortName = 'Id';
+    var gridSortOrder = 'asc';
+    var url = '@Url.Action("List", "XYTXJTLB")';
+
+    $(function() {
+        BindGrid('#gridXYTXJTLB','#tbXYTXJTLB', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    });
+
+    function Search() {
+        var queryData = {
+            字段1: $('#XYTXJTLB_Search_字段1').textbox('getText'),
+            字段2: $('#XYTXJTLB_Search_字段2').textbox('getText'),
+            字段3: ($('#XYTXJTLB_Search_字段3').textbox('getText') === 'ALL') ? '' : $('#XYTXJTLB_Search_字段3').textbox('getText')
+        };
+
+        BindGrid('#gridXYTXJTLB',
+            '#tbXYTXJTLB',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            { queryParasString: JSON.stringify(queryData) });
+    }
+
+    function ClearSearch() {
+        $('#XYTXJTLB_Search_字段1').textbox('clear');
+        $('#XYTXJTLB_Search_字段2').textbox('clear');
+
+        var data = $('#XYTXJTLB_Search_字段3').combobox('getData');
+        $('##XYTXJTLB_Search_字段3').combobox('select', data[0]["text"]);
+
+        BindGrid('#gridXYTXJTLB',
+            '#tbXYTXJTLB', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+    }
+</script>

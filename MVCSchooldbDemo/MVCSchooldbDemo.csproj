@@ -163,6 +163,7 @@
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\XYTXJTLBController.cs" />
     <Compile Include="Controllers\XZKFYDCFController.cs" />
     <Compile Include="Controllers\XZKFYDZLJLController.cs" />
     <Compile Include="Global.asax.cs">
@@ -176,6 +177,7 @@
     <Compile Include="Models\Data\StudentInfo.cs" />
     <Compile Include="Models\Data\UploadedFileInfo.cs" />
     <Compile Include="Models\Data\UserInfo.cs" />
+    <Compile Include="Models\Data\XYTXJTLBInfo.cs" />
     <Compile Include="Models\Data\XZKFYDCFInfo.cs" />
     <Compile Include="Models\Data\XZKFYDZLJLInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -670,6 +672,11 @@
     <Content Include="Views\BADL\_Editor.cshtml" />
     <Content Include="Views\BADL\Create.cshtml" />
     <Content Include="Views\BADL\Edit.cshtml" />
+    <Content Include="Views\XYTXJTLB\Index.cshtml" />
+    <Content Include="Views\XYTXJTLB\Details.cshtml" />
+    <Content Include="Views\XYTXJTLB\_Editor.cshtml" />
+    <Content Include="Views\XYTXJTLB\Create.cshtml" />
+    <Content Include="Views\XYTXJTLB\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\EasyUI\themes\metro-blue\" />
