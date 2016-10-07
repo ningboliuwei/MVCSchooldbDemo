@@ -1,7 +1,7 @@
 @keyframes hover-color {
 	from { border-color: #c0c0c0; }
 
-	to { border-color: #6CAEF5; }
+	to { border-color: #404040; }
 }
 
 .magic-radio,
@@ -81,7 +81,7 @@
 .magic-radio + label:before { border-radius: 50%; }
 
 .magic-radio + label:after {
-	background: #6CAEF5;
+	background: #404040;
 	border-radius: 50%; /*初始值 50%*/
 	height: 6px; /*初始值 8*/
 	left: 6px; /*初始值 6*/
@@ -89,7 +89,7 @@
 	width: 6px; /*初始值 8*/
 }
 
-.magic-radio:checked + label:before { border: 1px solid #6CAEF5; }
+.magic-radio:checked + label:before { border: 1px solid #404040; }
 
 .magic-radio:checked[disabled] + label:before { border: 1px solid #c9e2f9; }
 
@@ -106,18 +106,18 @@
   transform: rotate(40deg);
   border-width: 3px;
   border-style: solid;
-  border-color: #6CAEF5;
+  border-color: #404040;
   border-top: 0;
   border-left: 0px; }
 
 
 .magic-checkbox:checked + label:before {
 	background: #ffffff;
-	border: 1px solid #6CAEF5;
+	border: 1px solid #404040;
 }
 
 .magic-checkbox:checked[disabled] + label:before {
 	background: #fafafa;
-	border: 1px solid #6CAEF5;
+	border: 1px solid #404040;
 
 }
