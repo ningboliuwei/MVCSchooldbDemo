@@ -219,6 +219,7 @@
     <Content Include="Content\Images\loginbj.png" />
     <Content Include="Content\Images\validatebox_warning.png" />
     <Content Include="Content\Login.css" />
+    <Content Include="Content\magic-check.css" />
     <Content Include="Content\Uploadify\uploadify-cancel.png" />
     <Content Include="Content\Uploadify\uploadify.swf" />
     <Content Include="Content\EasyUI\themes\black\accordion.css" />

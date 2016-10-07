@@ -416,13 +416,15 @@ function GenerateInputListByDataDictItem(containerName, itemName, inputType) {
         type: "POST",
         url: DATA_DICT_ITEM_URL,
         data: { itemName: itemName },
+        async:false,
         success: function(array) {
             $.each(array,
                 function(i) {
                     $(containerName)
-                        .append(`<input id='${itemName}_${array[i]["id"]}' type='${inputType}' name='${itemName
-                            }' value='${array[i]["value"]}'/>${array[i]["value"]}`);
+                        .append(`<input class='magic-radio' id='${itemName}_${array[i]["id"]}' type='${inputType}' name='${itemName
+                        }' /><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]}</label>`);
                 });
+            //value='${array[i]["value"]}'
         },
         error: function() {
             Alert("错误", errorMsg, AlertType.Error);
