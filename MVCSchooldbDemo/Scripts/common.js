@@ -421,8 +421,7 @@ function GenerateInputListByDataDictItem(containerName, itemName, inputType) {
             $.each(array,
                 function(i) {
                     $(containerName)
-                        .append(`<input class='magic-radio' id='${itemName}_${array[i]["id"]}' type='${inputType}' name='${itemName
-                        }' /><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]}</label>`);
+                        .append(`<input class="magic-${inputType}" id='${itemName}_${array[i]["id"]}' type='${inputType}' name='${itemName}' /><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]}</label>`);
                 });
             //value='${array[i]["value"]}'
         },
