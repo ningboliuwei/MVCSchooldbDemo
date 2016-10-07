@@ -1,12 +1,12 @@
 @keyframes hover-color {
 	from { border-color: #c0c0c0; }
 
-	to { border-color: #3e97eb; }
+	to { border-color: #6CAEF5; }
 }
 
 .magic-radio,
 .magic-checkbox {
-	display: none;
+	display: none;/*不为 none 的话，原生的会显示出来*/
 	position: absolute;
 }
 
@@ -54,7 +54,9 @@
 	cursor: not-allowed;
 }
 
-.magic-radio[disabled] + label:hover, .magic-radio[disabled] + label:before, .magic-radio[disabled] + label:after,
+.magic-radio[disabled] + label:hover, 
+.magic-radio[disabled] + label:before, 
+.magic-radio[disabled] + label:after,
 .magic-checkbox[disabled] + label:hover,
 .magic-checkbox[disabled] + label:before,
 .magic-checkbox[disabled] + label:after { cursor: not-allowed; }
@@ -79,15 +81,15 @@
 .magic-radio + label:before { border-radius: 50%; }
 
 .magic-radio + label:after {
-	background: #3e97eb;
+	background: #6CAEF5;
 	border-radius: 50%; /*初始值 50%*/
 	height: 6px; /*初始值 8*/
-	left: 5px; /*初始值 6*/
-	top: 5px; /*初始值 6*/
+	left: 6px; /*初始值 6*/
+	top: 6px; /*初始值 6*/
 	width: 6px; /*初始值 8*/
 }
 
-.magic-radio:checked + label:before { border: 1px solid #3e97eb; }
+.magic-radio:checked + label:before { border: 1px solid #6CAEF5; }
 
 .magic-radio:checked[disabled] + label:before { border: 1px solid #c9e2f9; }
 
@@ -99,22 +101,23 @@
   top: 3px;
   left: 6px;
   box-sizing: border-box;
-  width: 4px;
-  height: 8px;
+  width: 6px;
+  height: 10px;
   transform: rotate(40deg);
-  border-width: 2px;
+  border-width: 3px;
   border-style: solid;
-  border-color: #3e97eb;
+  border-color: #6CAEF5;
   border-top: 0;
   border-left: 0px; }
 
 
 .magic-checkbox:checked + label:before {
 	background: #ffffff;
-	border: #3e97eb;
+	border: 1px solid #6CAEF5;
 }
 
 .magic-checkbox:checked[disabled] + label:before {
 	background: #fafafa;
-	border: #3e97eb;
+	border: 1px solid #6CAEF5;
+
 }
