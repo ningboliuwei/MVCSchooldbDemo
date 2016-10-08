@@ -2,7 +2,7 @@
 
 var AlertType = { Error: "error", Question: "question", Info: "info", Warning: "warning" }; //警告框的 ICON 类型（仿枚举）
 var InputType = { Radio: "radio", Checkbox: "checkbox" }; //批量生成的控件类型
-
+var Direction = {Vertical: "vertical", Horizontal: "horizontal"};//批量生成的控件方向
 
 
 //EasyUI用DataGrid用日期格式化
@@ -433,32 +433,41 @@ function RefreshCombobox(comboboxName) {
     $(comboboxName).combobox("reload");
 };
 
-function GenerateInputListByDataDictItem(controlName, itemName, inputType) {
+function GenerateInputListByDataDictItem() {
 
-    var cname = "";
-    var iname = "";
-    var itype = "";
+    var controlName = "";
+    var itemName = "";
+    var inputType = "";
+    var direction = "";
 
-    if (arguments.length === 2) {//参数只有 itemName　和　inputType
-        iname = arguments[0];
-        cname = `#${arguments[0]}`;
-        itype = arguments[1];
+    if (arguments.length === 3) {//参数只有 itemName, inputType 和 direction
+        itemName = arguments[0];
+        controlName = `#${arguments[0]}`;
+        inputType = arguments[1];
+        direction = arguments[2];
     }
-    else if (arguments.length === 3) {//参数有 controlName, itemName 和 inputType
-        iname = arguments[1];
-        cname = arguments[0];
-        itype = arguments[2];
+    else if (arguments.length === 4) {//参数有 controlName, itemName, inputType, direction
+        itemName = arguments[1];
+        controlName = arguments[0];
+        inputType = arguments[2];
+        direction = arguments[3];
     }
 
     $.ajax({
         type: "POST",
         url: DATA_DICT_ITEM_URL,
-        data: { itemName: iname },
+        data: { itemName: itemName },
         async:false,
         success: function (array) {
+            var count = 0;
             $.each(array,
-                function(i) {
-                    $(cname).append(`<input class="magic-${itype}" id='${iname}_${array[i]["id"]}' type='${itype}' name='${iname}' /><label for='${iname}_${array[i]["id"]}'>${array[i]["value"]}</label>`);
+                function (i) {
+                    count++;
+                    $(controlName).append(`<input class="magic-${inputType}" id='${itemName}_${array[i]["id"]}' type='${inputType}' name='${itemName}' /><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]}</label>`);
+                    
+                    if (direction === Direction.Vertical) {
+                        $(controlName).append('<br/>');
+                    }
                 });
             //value='${array[i]["value"]}'
         },
