@@ -98,6 +98,7 @@
 54. 菜单中病人管理只存放基本信息（即表格那栏的信息，其余的部分提取出来）
 55. 登录成功后跳转到 Home/Index，版权信息会先显示  ============  通过使用脚本，加载成功后再显示版权信息
 56. 修复了生成 Controller 代码的，生成的集合名带 Controller 字样的问题。 ================= 已解决 2016-10-05
+57. 改进了 common.js 中的 BindDataDictItemToCombobox 和 GenerateInputListByDataDictItem，使用了可变参数机制，参数调用时更加方便。 ===== 已解决 2016-10-08
 
 
 

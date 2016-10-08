@@ -403,25 +403,62 @@ function BindCombobox(comboboxName, url, params, valueField, textField, initialT
 //    return data;
 //}
 
-function BindDataDictItemToCombobox(comboboxName, itemName, initialText) {
-    BindCombobox(comboboxName, DATA_DICT_ITEM_URL, { itemName: itemName }, "id", "value", initialText);
+function BindDataDictItemToCombobox(controlName, itemName, initialText) {
+    var cname = "";
+    var iname = "";
+    var itext = "";
+    if (arguments.length === 1) {//参数只有 itemName
+        iname = arguments[0];
+        cname = `#${arguments[0]}`;
+        itext = null;
+    }
+
+    if (arguments.length === 2) {//参数只有 itemName　和　initialText
+        iname = arguments[0];
+        cname = `#${arguments[0]}`;
+        itext = arguments[1];
+    }
+    else if (arguments.length === 3) {//参数有 controlName, itemName 和 initialText
+        iname = arguments[1];
+        cname = arguments[0];
+        itext = arguments[2];
+    }
+
+    console.log(cname);
+
+    BindCombobox(cname, DATA_DICT_ITEM_URL, { itemName: iname }, "id", "value", itext);
 }
 
 function RefreshCombobox(comboboxName) {
     $(comboboxName).combobox("reload");
 };
 
-function GenerateInputListByDataDictItem(containerName, itemName, inputType) {
+function GenerateInputListByDataDictItem(controlName, itemName, inputType) {
+
+    var cname = "";
+    var iname = "";
+    var itype = "";
+
+    if (arguments.length === 2) {//参数只有 itemName　和　inputType
+        iname = arguments[0];
+        cname = `#${arguments[0]}`;
+        itype = arguments[1];
+    }
+    else if (arguments.length === 3) {//参数有 controlName, itemName 和 inputType
+        iname = arguments[1];
+        cname = arguments[0];
+        itype = arguments[2];
+    }
+
     $.ajax({
         type: "POST",
         url: DATA_DICT_ITEM_URL,
-        data: { itemName: itemName },
+        data: { itemName: iname },
         async:false,
-        success: function(array) {
+        success: function (array) {
             $.each(array,
                 function(i) {
-                    $(containerName)
-                        .append(`<input class="magic-${inputType}" id='${itemName}_${array[i]["id"]}' type='${inputType}' name='${itemName}' /><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]}</label>`);
+                    $(cname).append(`<input class="magic-${itype}" id='${iname}_${array[i]["id"]}' type='${itype}' name='${iname}' /><label for='${iname}_${array[i]["id"]}'>${array[i]["value"]}</label>`);
                 });
             //value='${array[i]["value"]}'
         },
