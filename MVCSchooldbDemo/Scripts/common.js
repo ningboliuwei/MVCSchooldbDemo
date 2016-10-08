@@ -2,7 +2,7 @@
 
 var AlertType = { Error: "error", Question: "question", Info: "info", Warning: "warning" }; //警告框的 ICON 类型（仿枚举）
 var InputType = { Radio: "radio", Checkbox: "checkbox" }; //批量生成的控件类型
-var Direction = {Vertical: "vertical", Horizontal: "horizontal"};//批量生成的控件方向
+var Direction = { Vertical: "vertical", Horizontal: "horizontal" }; //批量生成的控件方向
 
 
 //EasyUI用DataGrid用日期格式化
@@ -62,8 +62,8 @@ var FormatHelper = {
         }
         /*json格式时间转js时间格式*/
         value = value.substr(1, value.length - 2);
-        var obj = eval('(' + "{Date: new " + value + "}" + ')');
-        var dateValue = obj["Date"];
+        const obj = eval(`({Date: new ${value}})`);
+        const dateValue = obj["Date"];
         if (dateValue.getFullYear() < 1900) {
             return "";
         }
@@ -78,7 +78,7 @@ var FormatHelper = {
 // (new Date()).Format("yyyy-mm-dd HH:MM:SS.s") ==> 2015-07-02 08:09:04.423 
 // (new Date()).Format("yyyy-m-d H:M:S.s")      ==> 2015-7-2 8:9:4.18 
 Date.prototype.Format = function(fmt) { //author: meizz 
-    var o = {
+    const o = {
         "m+": this.getMonth() + 1, //月份 
         "d+": this.getDate(), //日 
         "H+": this.getHours(), //小时 
@@ -88,11 +88,11 @@ Date.prototype.Format = function(fmt) { //author: meizz
         "s": this.getMilliseconds() //毫秒 
     };
     if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    for (var k in o)
-        if (new RegExp("(" + k + ")").test(fmt))
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    for (let k in o)
+        if (new RegExp(`(${k})`).test(fmt))
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : ((`00${o[k]}`).substr((`${o[k]}`).length)));
     return fmt;
-}
+};
 //调用： 
 //var time1 = new Date().Format("yyyy-MM-dd");
 //var time2 = new Date().Format("yyyy-MM-dd HH:mm:ss")
@@ -403,30 +403,29 @@ function BindCombobox(comboboxName, url, params, valueField, textField, initialT
 //    return data;
 //}
 
-function BindDataDictItemToCombobox(controlName, itemName, initialText) {
-    var cname = "";
-    var iname = "";
-    var itext = "";
-    if (arguments.length === 1) {//参数只有 itemName
-        iname = arguments[0];
-        cname = `#${arguments[0]}`;
-        itext = null;
+function BindDataDictItemToCombobox() {
+    var controlName = "";
+    var itemName = "";
+    var initialText = "";
+    if (arguments.length === 1) { //参数只有 itemName
+        itemName = arguments[0];
+        controlName = `#${arguments[0]}`;
+        initialText = null;
     }
 
-    if (arguments.length === 2) {//参数只有 itemName　和　initialText
-        iname = arguments[0];
-        cname = `#${arguments[0]}`;
-        itext = arguments[1];
-    }
-    else if (arguments.length === 3) {//参数有 controlName, itemName 和 initialText
-        iname = arguments[1];
-        cname = arguments[0];
-        itext = arguments[2];
+    if (arguments.length === 2) { //参数只有 itemName　和　initialText
+        itemName = arguments[0];
+        controlName = `#${arguments[0]}`;
+        initialText = arguments[1];
+    } else if (arguments.length === 3) { //参数有 controlName, itemName 和 initialText
+        itemName = arguments[1];
+        controlName = arguments[0];
+        initialText = arguments[2];
     }
 
-    console.log(cname);
+    console.log(controlName);
 
-    BindCombobox(cname, DATA_DICT_ITEM_URL, { itemName: iname }, "id", "value", itext);
+    BindCombobox(controlName, DATA_DICT_ITEM_URL, { itemName: itemName }, "id", "value", initialText);
 }
 
 function RefreshCombobox(comboboxName) {
@@ -440,13 +439,12 @@ function GenerateInputListByDataDictItem() {
     var inputType = "";
     var direction = "";
 
-    if (arguments.length === 3) {//参数只有 itemName, inputType 和 direction
+    if (arguments.length === 3) { //参数只有 itemName, inputType 和 direction
         itemName = arguments[0];
         controlName = `#${arguments[0]}`;
         inputType = arguments[1];
         direction = arguments[2];
-    }
-    else if (arguments.length === 4) {//参数有 controlName, itemName, inputType, direction
+    } else if (arguments.length === 4) { //参数有 controlName, itemName, inputType, direction
         itemName = arguments[1];
         controlName = arguments[0];
         inputType = arguments[2];
@@ -457,16 +455,19 @@ function GenerateInputListByDataDictItem() {
         type: "POST",
         url: DATA_DICT_ITEM_URL,
         data: { itemName: itemName },
-        async:false,
-        success: function (array) {
+        async: false,
+        success: function(array) {
             var count = 0;
             $.each(array,
-                function (i) {
+                function(i) {
                     count++;
-                    $(controlName).append(`<input class="magic-${inputType}" id='${itemName}_${array[i]["id"]}' type='${inputType}' name='${itemName}' /><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]}</label>`);
-                    
-                    if (direction === Direction.Vertical) {
-                        $(controlName).append('<br/>');
+                    $(controlName)
+                        .append(`<input class="magic-${inputType}" id='${itemName}_${array[i]["id"]}' type='${inputType
+                            }' name='${itemName}' /><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]
+                            }</label>`);
+
+                    if (direction == Direction.Vertical) {
+                        $(controlName).append("<br/>");
                     }
                 });
             //value='${array[i]["value"]}'
