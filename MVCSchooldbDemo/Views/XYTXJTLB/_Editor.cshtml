@@ -2,99 +2,118 @@
 @{
     Layout = null;
 }
+
 <div class="dialogTitle">@ViewBag.DialogTitle</div>
 <form id="formXYTXJTLB" method="post" class="easyui-form" data-options="novalidate:true">
-    <div id="editorTabs" class="easyui-tabs" style="padding: 5px;">
-        <div title="标签1">
+    <div id="editorTabs" class="easyui-tabs">
+        <div title="西雅图心绞痛量表">
             <table class="editorTable">
                 <tr>
-                    <th>1. 过去 4 周内，由于胸痛、胸部紧榨感和心绞痛所致下列各项受限程度</th>
+                    <th style="width: 250px;">1. 过去 4 周内，由于胸痛、胸部紧榨感和心绞痛所致下列各项受限程度</th>
                     <td></td>
                 </tr>
                 <tr>
                     <th>自己穿衣</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_自己穿衣"></span></td>
                 </tr>
                 <tr>
                     <th>室内走路</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_室内走路"></span></td>
                 </tr>
                 <tr>
                     <th>淋浴</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_淋浴"></span></td>
                 </tr>
                 <tr>
                     <th>爬坡或楼梯（三层，不停）</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_爬坡或楼梯"></span></td>
                 </tr>
                 <tr>
                     <th>户外活动或提杂物</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_户外活动或提杂物"></span></td>
                 </tr>
                 <tr>
                     <th>轻快步行一段路（一公里）</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_轻快步行一段路"></span></td>
                 </tr>
                 <tr>
                     <th>慢跑（一公里）</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_慢跑"></span></td>
                 </tr>
                 <tr>
                     <th>提起或移动重物</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_提起或移动重物"></span></td>
                 </tr>
                 <tr>
                     <th>剧烈运动（如游泳或打球）</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_剧烈运动"></span></td>
                 </tr>
                 <tr>
                     <th>2. 与 4 周前比较，作最大强度的活动是，胸痛、胸部紧榨感和心绞痛的发作情况</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_心绞痛发作情况"></span></td>
                 </tr>
                 <tr>
                     <th>3. 过去 4 周内，胸痛、胸部紧榨感和心绞痛的平均发作次数</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_心绞痛平均发作次数"></span></td>
                 </tr>
                 <tr>
                     <th>4. 过去 4 周内，因胸痛、胸部紧榨感和心绞痛服用硝基药物（如硝酸甘油）平均次数</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_服用药物平均次数"></span></td>
                 </tr>
                 <tr>
                     <th>5. 因胸痛、胸部紧榨感和心绞痛遵守医嘱服药带来的烦恼</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_带来的烦恼"></span></td>
                 </tr>
                 <tr>
                     <th>6. 对治疗胸痛、胸部紧榨感和心绞痛的各种措施的满意程度</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_措施满意程度"></span></td>
                 </tr>
                 <tr>
                     <th>7. 对医生就胸痛、胸部紧榨感和心绞痛的解释满意程度</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_解释满意程度"></span></td>
                 </tr>
                 <tr>
                     <th>8. 总的来说，对目前胸痛、胸部紧榨感和心绞痛的治疗满意程度</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_治疗满意程度"></span></td>
                 </tr>
                 <tr>
                     <th>9. 过去 4 周内，因胸痛、胸部紧榨感和心绞痛影响生活乐趣的程度</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_影响生活乐趣程度"></span></td>
                 </tr>
                 <tr>
                     <th>10. 在您的未来生活中如果还有胸痛、胸部紧榨感和心绞痛，您会感觉怎样</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_若继续发病未来感觉"></span></td>
                 </tr>
                 <tr>
                     <th>11. 心脏病发作和突然死亡的担心程度</th>
-                    <td></td>
+                    <td><span id="西雅图心绞痛量表_担心程度"></span></td>
                 </tr>
             </table>
-        </div>
-        <div title="标签2">
         </div>
     </div>
 </form>
 <script>
     $(function() {
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_自己穿衣", "西雅图心绞痛量表_自己穿衣", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_室内走路", "西雅图心绞痛量表_室内走路", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_淋浴", "西雅图心绞痛量表_淋浴", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_爬坡或楼梯", "西雅图心绞痛量表_爬坡或楼梯", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_户外活动或提杂物", "西雅图心绞痛量表_户外活动或提杂物", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_轻快步行一段路", "西雅图心绞痛量表_轻快步行一段路", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_慢跑", "西雅图心绞痛量表_慢跑", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_提起或移动重物", "西雅图心绞痛量表_提起或移动重物", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_剧烈运动", "西雅图心绞痛量表_剧烈运动", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_心绞痛发作情况", "西雅图心绞痛量表_心绞痛发作情况", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_心绞痛平均发作次数", "西雅图心绞痛量表_心绞痛平均发作次数", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_服用药物平均次数", "西雅图心绞痛量表_服用药物平均次数", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_带来的烦恼", "西雅图心绞痛量表_带来的烦恼", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_措施满意程度", "西雅图心绞痛量表_措施满意程度", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_解释满意程度", "西雅图心绞痛量表_解释满意程度", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_治疗满意程度", "西雅图心绞痛量表_治疗满意程度", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_影响生活乐趣程度", "西雅图心绞痛量表_影响生活乐趣程度", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_若继续发病未来感觉", "西雅图心绞痛量表_若继续发病未来感觉", InputType.Radio);
+        GenerateInputListByDataDictItem("#西雅图心绞痛量表_担心程度", "西雅图心绞痛量表_担心程度", InputType.Radio);
+
         $('#XYTXJTLB_btnCancel')
             .bind('click',
                 function() {
