@@ -21,8 +21,7 @@
             </td>
             <td>保险类别</td>
             <td>
-                <select id="Patient_Search_保险类别" class="easyui-combobox" style="width: 100px">
-                </select>
+                <select id="Patient_Search_保险类别" class="easyui-combobox" style="width: 100px"></select>
             </td>
             <td>
                 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-search fa-16px" onclick="Search()">搜索</a>
@@ -56,7 +55,7 @@
         </td>
     </table>
 </div>
-<div id="editorPatient" style="display: none; height: 95%; width: 1000px;"></div>
+<div id="editorPatient" style="display: none; height: 95%; overflow: scroll; width: 1000px;"></div>
 <script>
     var columns = [
         [
@@ -170,7 +169,7 @@
             住院号: $('#Patient_Search_住院号').textbox('getText'),
             姓名: $('#Patient_Search_姓名').textbox('getText'),
             联系电话: $('#Patient_Search_联系电话').textbox('getText')
-//            保险类别: $('#Patient_Search_保险类别').combobox('getText')
+            //            保险类别: $('#Patient_Search_保险类别').combobox('getText')
         };
 
         BindGrid('#gridPatient',
@@ -188,8 +187,8 @@
         $('#Patient_Search_姓名').textbox('clear');
         $('#Patient_Search_联系电话').textbox('clear');
 
-//        var data = $('#SearchSdept').combobox('getData');
-//        $('#SearchSdept').combobox('select', data[0]["text"]);
+        //        var data = $('#SearchSdept').combobox('getData');
+        //        $('#SearchSdept').combobox('select', data[0]["text"]);
 
         BindGrid('#gridPatient',
             '#tbPatient',

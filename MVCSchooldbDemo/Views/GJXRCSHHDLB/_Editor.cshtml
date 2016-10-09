@@ -3,73 +3,68 @@
     Layout = null;
 }
 <div class="editorTitle">@ViewBag.DialogTitle</div>
-<form id="formGJXRCSHHDLB" method="post" class="easyui-form" data-options="novalidate:true" >
-    <div id="editorTabs" class="easyui-tab editorTabs">
-        <div title="工具性日常生活活动量表">
-            <table class="editorTable">
-                <tr>
-                    <th colspan="2">工具性日常生活活动量表<br/>(Instrumental Activities of Daily Living Scale)</th>
-                </tr>
-                <tr>
-                    <th colspan="2">工具性日常生活活动能力（IADL）（以最近一个月的表现为准）</th>
-                </tr>
-                <tr>
-                    <th class="editorNameColumnStandard">1. 上街购物</th>
-                    <td>
-                        <span id="工具性日常生活活动量表_上街购物"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="editorNameColumnStandard">2. 外出活动</th>
-                    <td>
-                        <span id="工具性日常生活活动量表_外出活动"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="editorNameColumnStandard">3. 食物烹调</th>
-                    <td>
-                        <span id="工具性日常生活活动量表_食物烹调"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="editorNameColumnStandard">4. 家务维持</th>
-                    <td>
-                        <span id="工具性日常生活活动量表_家务维持"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="editorNameColumnStandard">5. 洗衣服</th>
-                    <td>
-                        <span id="工具性日常生活活动量表_洗衣服"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="editorNameColumnStandard">6. 使用电话的能力</th>
-                    <td>
-                        <span id="工具性日常生活活动量表_使用电话的能力"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="editorNameColumnStandard">7. 服用药物</th>
-                    <td>
-                        <span id="工具性日常生活活动量表_服用药物"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="editorNameColumnStandard">8. 处理财务的能力</th>
-                    <td>
-                        <span id="工具性日常生活活动量表_处理财务的能力"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        （注：上街购物、外出活动、食物烹调、家务维持、洗衣服等五项中有三项以上需要协 助者即为轻度失能）
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-</form>
+   <form id="formGJXRCSHHDLB" method="post" class="easyui-form" data-options="novalidate:true">
+       <div id="editorTabs" class="easyui-tabs editorTabs" >
+           <div title="工具性日常生活活动量表">
+               <table class="editorTable">
+                   <tr>
+                       <th colspan="2">工具性日常生活活动量表<br />(Instrumental Activities of Daily Living Scale)</th>
+                   </tr>
+                   <tr>
+                       <th colspan="2">工具性日常生活活动能力（IADL）（以最近一个月的表现为准）</th>
+                   </tr>
+                   <tr>
+                       <th class="editorNameColumnStandard">1. 上街购物</th>
+                       <td>
+                           <span id="工具性日常生活活动量表_上街购物"></span>
+                       </td>
+                   </tr>
+                   <tr>
+                       <th class="editorNameColumnStandard">2. 外出活动</th>
+                       <td>
+                           <span id="工具性日常生活活动量表_外出活动"></span>
+                       </td>
+                   </tr>
+                   <tr>
+                       <th class="editorNameColumnStandard">3. 食物烹调</th>
+                       <td>
+                           <span id="工具性日常生活活动量表_食物烹调"></span>
+                       </td>
+                   </tr>
+                   <tr>
+                       <th class="editorNameColumnStandard">4. 家务维持</th>
+                       <td>
+                           <span id="工具性日常生活活动量表_家务维持"></span>
+                       </td>
+                   </tr>
+                   <tr>
+                       <th class="editorNameColumnStandard">5. 洗衣服</th>
+                       <td>
+                           <span id="工具性日常生活活动量表_洗衣服"></span>
+                       </td>
+                   </tr>
+                   <tr>
+                       <th class="editorNameColumnStandard">6. 使用电话的能力</th>
+                       <td>
+                           <span id="工具性日常生活活动量表_使用电话的能力"></span>
+                       </td>
+                   </tr>
+                   <tr>
+                       <th class="editorNameColumnStandard">7. 服用药物</th>
+                       <td>
+                           <span id="工具性日常生活活动量表_服用药物"></span>
+                       </td>
+                   </tr>
+                   <tr>
+                       <th class="editorNameColumnStandard">8. 处理财务的能力</th>
+                       <td>
+                           <span id="工具性日常生活活动量表_处理财务的能力"></span>
+                       </td>
+                   </tr>
+               </table>
+           </div>
+       </div>
+</form> 
 <script>
     GenerateInputListByDataDictItem('工具性日常生活活动量表_上街购物', InputType.Radio, Direction.Vertical);
     GenerateInputListByDataDictItem('工具性日常生活活动量表_外出活动', InputType.Radio, Direction.Vertical);

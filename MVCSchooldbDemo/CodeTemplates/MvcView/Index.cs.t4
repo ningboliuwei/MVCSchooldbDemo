@@ -52,7 +52,7 @@
             </td>
     </table>
 </div>
-<div id="editor<#=name#>" style="display: none; height: 450px; width: 500px;"></div>
+<div id="editor<#=name#>" style="overflow: scroll; display: none; height: 850px; width: 950px;"></div>
 <script>
     var columns = [
         [
