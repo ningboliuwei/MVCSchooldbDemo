@@ -373,7 +373,7 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
             valueField: valueField,
             textField: textField,
             dataType: "json",
-            async: true,
+            async: false,
             editable: editable,
             onLoadSuccess: function () {
                 var data = $(controlName).combobox("getData");
@@ -394,7 +394,10 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
 //                }
             },
             onShowPanel: function () {
-                $(controlName).combobox('reload');
+//                有机会再做得完美吧，暂时先去掉了
+//                $(controlName).combobox('reload');
+            },
+            onSelect:function(record) {
             }
         });
 }

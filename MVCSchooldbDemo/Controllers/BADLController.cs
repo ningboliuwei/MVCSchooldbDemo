@@ -125,5 +125,11 @@ namespace MVCSchooldbDemo.Controllers
 			_db.SaveChanges();
 			return RedirectToAction("Index", "BADL");
 		}
+
+		[HttpPost]
+		public int SumScore(object d)
+		{
+			return 0;
+		}
 	}
 }
