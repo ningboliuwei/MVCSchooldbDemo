@@ -24,31 +24,30 @@
         </tr>
     </table>
     <table class="buttonsTable">
-       <tr>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorXZKFYDCF', '@Url.Action("Create", "XZKFYDCF")', '添加')">
-                    添加
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridXZKFYDCF',    '#editorXZKFYDCF',    '@Url.Action("Edit", "XZKFYDCF")',
-    '编辑')">
-                    编辑
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridXZKFYDCF', '@Url.Action("Delete", "XZKFYDCF")')">
-                    删除
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridXZKFYDCF', '#editorXZKFYDCF', '@Url.Action("Details", "XZKFYDCF")', '明细')">
-                    明细
-                </a>
-            </td>
+        <tr>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorXZKFYDCF', '@Url.Action("Create", "XZKFYDCF")', '添加')">
+                添加
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridXZKFYDCF', '#editorXZKFYDCF', '@Url.Action("Edit", "XZKFYDCF")', '编辑')">
+                编辑
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridXZKFYDCF', '@Url.Action("Delete", "XZKFYDCF")')">
+                删除
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridXZKFYDCF', '#editorXZKFYDCF', '@Url.Action("Details", "XZKFYDCF")', '明细')">
+                明细
+            </a>
+        </td>
     </table>
 </div>
-<div id="editorXZKFYDCF" class="editorContainer" style=" width: 850px;"></div>
+<div id="editorXZKFYDCF" class="editorContainer" style="width: 850px;"></div>
 <script>
     var columns = [
         [
@@ -58,7 +57,7 @@
                 width: 100,
                 hidden: true
             },
-			{
+            {
                 field: '字段1',
                 title: 'ID',
                 width: 100,
@@ -73,14 +72,16 @@
     var url = '@Url.Action("List", "XZKFYDCF")';
 
     $(function() {
-        BindGrid('#gridXZKFYDCF','#tbXZKFYDCF', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+        BindGrid('#gridXZKFYDCF', '#tbXZKFYDCF', url, columns, gridTitle, gridSortName, gridSortOrder, {});
     });
 
     function Search() {
-        var queryData = {
+        const queryData = {
             字段1: $('#XZKFYDCF_Search_字段1').textbox('getText'),
             字段2: $('#XZKFYDCF_Search_字段2').textbox('getText'),
-            字段3: ($('#XZKFYDCF_Search_字段3').textbox('getText') === 'ALL') ? '' : $('#XZKFYDCF_Search_字段3').textbox('getText')
+            字段3: ($('#XZKFYDCF_Search_字段3').textbox('getText') === 'ALL')
+                ? ''
+                : $('#XZKFYDCF_Search_字段3').textbox('getText')
         };
 
         BindGrid('#gridXZKFYDCF',
@@ -97,10 +98,16 @@
         $('#XZKFYDCF_Search_字段1').textbox('clear');
         $('#XZKFYDCF_Search_字段2').textbox('clear');
 
-        var data = $('#XZKFYDCF_Search_字段3').combobox('getData');
+        const data = $('#XZKFYDCF_Search_字段3').combobox('getData');
         $('##XZKFYDCF_Search_字段3').combobox('select', data[0]["text"]);
 
         BindGrid('#gridXZKFYDCF',
-            '#tbXZKFYDCF', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+            '#tbXZKFYDCF',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            {});
     }
 </script>

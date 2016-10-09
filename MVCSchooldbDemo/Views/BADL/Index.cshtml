@@ -24,31 +24,30 @@
         </tr>
     </table>
     <table class="buttonsTable">
-       <tr>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorBADL', '@Url.Action("Create", "BADL")', '添加')">
-                    添加
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridBADL',    '#editorBADL',    '@Url.Action("Edit", "BADL")',
-    '编辑')">
-                    编辑
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridBADL', '@Url.Action("Delete", "BADL")')">
-                    删除
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridBADL', '#editorBADL', '@Url.Action("Details", "BADL")', '明细')">
-                    明细
-                </a>
-            </td>
+        <tr>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorBADL', '@Url.Action("Create", "BADL")', '添加')">
+                添加
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridBADL', '#editorBADL', '@Url.Action("Edit", "BADL")', '编辑')">
+                编辑
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridBADL', '@Url.Action("Delete", "BADL")')">
+                删除
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridBADL', '#editorBADL', '@Url.Action("Details", "BADL")', '明细')">
+                明细
+            </a>
+        </td>
     </table>
 </div>
-<div id="editorBADL"  class="editorContainer" style=" width: 850px;"></div>
+<div id="editorBADL" class="editorContainer" style="width: 850px;"></div>
 <script>
     var columns = [
         [
@@ -58,7 +57,7 @@
                 width: 100,
                 hidden: true
             },
-			{
+            {
                 field: '字段1',
                 title: 'ID',
                 width: 100,
@@ -73,11 +72,11 @@
     var url = '@Url.Action("List", "BADL")';
 
     $(function() {
-        BindGrid('#gridBADL','#tbBADL', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+        BindGrid('#gridBADL', '#tbBADL', url, columns, gridTitle, gridSortName, gridSortOrder, {});
     });
 
     function Search() {
-        var queryData = {
+        const queryData = {
             字段1: $('#BADL_Search_字段1').textbox('getText'),
             字段2: $('#BADL_Search_字段2').textbox('getText'),
             字段3: ($('#BADL_Search_字段3').textbox('getText') === 'ALL') ? '' : $('#BADL_Search_字段3').textbox('getText')
@@ -97,10 +96,16 @@
         $('#BADL_Search_字段1').textbox('clear');
         $('#BADL_Search_字段2').textbox('clear');
 
-        var data = $('#BADL_Search_字段3').combobox('getData');
+        const data = $('#BADL_Search_字段3').combobox('getData');
         $('##BADL_Search_字段3').combobox('select', data[0]["text"]);
 
         BindGrid('#gridBADL',
-            '#tbBADL', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+            '#tbBADL',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            {});
     }
 </script>

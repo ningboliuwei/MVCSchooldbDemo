@@ -37,7 +37,7 @@
         </td>
     </table>
 </div>
-<div id="editorRole"  class="editorContainer" style=" width: 850px;"></div>
+<div id="editorRole" class="editorContainer" style="width: 850px;"></div>
 <script>
     var columns = [
         [
@@ -65,7 +65,7 @@
         BindGrid('#gridRole', '#tbRole', url, columns, gridTitle, gridSortName, gridSortOrder, {});
 
         BindCombobox('#Role_SearchRole',
-            '@Url.Action("GetAllRoles", "Role")',
+            '@Url.Action("GetAllItems", "Role")',
             null,
             'Id',
             'Name',

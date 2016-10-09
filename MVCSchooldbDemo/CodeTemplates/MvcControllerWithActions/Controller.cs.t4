@@ -47,8 +47,18 @@ namespace <#=Namespace#>
             return View(new <#=name#>Info());
         }
 
+		public virtual ActionResult GetAllItems()
+        {
+            return new JsonResult
+            {
+                Data = _db.<#=name#>s.ToList(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+
 		[HttpPost]
-        public virtual ActionResult GetItemData(long? id)
+        public virtual ActionResult GetSingleItem(long? id)
         {
             if (id != null)
             {

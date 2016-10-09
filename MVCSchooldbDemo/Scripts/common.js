@@ -355,7 +355,16 @@ function InitTree(treeName, tabsName, data) {
         });
 }
 
-function BindCombobox(comboboxName, url, params, valueField, textField, initialText) {
+function BindCombobox() { //(comboxName, url, params, valueField, initialText?, editable?, onChange?)
+    var comboboxName = arguments[0];
+    const url = arguments[1];
+    const params = arguments[2];
+    var valueField = arguments[3];
+    var textField = arguments[4];
+    var initialText = arguments[5] ? arguments[5] : null; //arguments[5] 是 initialText，若不存在则使用默认值 null，也可以显式使用
+    const editable = arguments[6] ? arguments[6] : false; //arguments[6] 是 editable，若不存在则使用默认值 false
+    const onChange = arguments[7] ? arguments[7] : function() {}; //arguments[7] 是 onChange 事件，若不存在则使用空事件
+
     $(comboboxName)
         .combobox({
             url: url,
@@ -364,23 +373,25 @@ function BindCombobox(comboboxName, url, params, valueField, textField, initialT
             valueField: valueField,
             textField: textField,
             dataType: "json",
-            editable: false,
+            async: true,
+            editable: editable,
+            onSelect: function(record) { console.log(record) },
             onShowPanel: function() {
-                $(comboboxName).combobox("reload");
+//                $(comboboxName).combobox("reload");//导致点击 combobox 时出现两次 onSelect 事件
             },
             onLoadSuccess: function() {
-                const previousValue = $(comboboxName).combobox("getValue");
-                const data = $(comboboxName).combobox("getData");
-                if (initialText !== null && data[0][[textField]] !== initialText) {
-                    data.unshift({ [valueField]: 0, [textField]: initialText });
-                    $(comboboxName).combobox("loadData", data);
-                }
-
-                if ($(comboboxName).combobox("getText") === "") {
-                    $(comboboxName).combobox("select", data[0][[valueField]]);
-                } else {
-                    $(comboboxName).combobox("select", previousValue);
-                }
+//                const previousValue = $(comboboxName).combobox("getValue");
+//                const data = $(comboboxName).combobox("getData");
+//                if (initialText !== null && data[0][[textField]] !== initialText) {
+//                    data.unshift({ [valueField]: 0, [textField]: initialText });
+//                    $(comboboxName).combobox("loadData", data);
+//                }
+//
+//                if ($(comboboxName).combobox("getText") === "") {
+//                    $(comboboxName).combobox("select", data[0][[valueField]]);
+//                } else {
+//                    $(comboboxName).combobox("select", previousValue);
+//                }
             }
         });
 }
@@ -403,27 +414,10 @@ function BindCombobox(comboboxName, url, params, valueField, textField, initialT
 //    return data;
 //}
 
-function BindDataDictItemToCombobox() {
-    var controlName = "";
-    var itemName = "";
-    var initialText = "";
-    if (arguments.length === 1) { //参数只有 itemName
-        itemName = arguments[0];
-        controlName = `#${arguments[0]}`;
-        initialText = null;
-    }
-
-    if (arguments.length === 2) { //参数只有 itemName　和　initialText
-        itemName = arguments[0];
-        controlName = `#${arguments[0]}`;
-        initialText = arguments[1];
-    } else if (arguments.length === 3) { //参数有 controlName, itemName 和 initialText
-        itemName = arguments[1];
-        controlName = arguments[0];
-        initialText = arguments[2];
-    }
-
-    console.log(controlName);
+function BindDataDictItemToCombobox() { //(itemName, initialText?, controlName?)
+    const itemName = arguments[0];
+    const initialText = arguments[1] ? arguments[1] : null;
+    const controlName = arguments[2] ? arguments[2] : `#${arguments[0]}`;
 
     BindCombobox(controlName, DATA_DICT_ITEM_URL, { itemName: itemName }, "id", "value", initialText);
 }
@@ -432,24 +426,11 @@ function RefreshCombobox(comboboxName) {
     $(comboboxName).combobox("reload");
 };
 
-function GenerateInputListByDataDictItem() {
-
-    var controlName = "";
-    var itemName = "";
-    var inputType = "";
-    var direction = "";
-
-    if (arguments.length === 3) { //参数只有 itemName, inputType 和 direction
-        itemName = arguments[0];
-        controlName = `#${arguments[0]}`;
-        inputType = arguments[1];
-        direction = arguments[2];
-    } else if (arguments.length === 4) { //参数有 controlName, itemName, inputType, direction
-        itemName = arguments[1];
-        controlName = arguments[0];
-        inputType = arguments[2];
-        direction = arguments[3];
-    }
+function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, controlName?
+    var itemName = arguments[0];
+    var inputType = arguments[1];
+    var direction = arguments[2] ? arguments[2] : Direction.Horizontal;
+    var controlName = arguments[3] ? arguments[3] : `#${arguments[0]}`;
 
     $.ajax({
         type: "POST",
@@ -466,7 +447,7 @@ function GenerateInputListByDataDictItem() {
                             }' name='${itemName}' /><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]
                             }</label>`);
 
-                    if (direction == Direction.Vertical) {
+                    if (direction === Direction.Vertical) {
                         $(controlName).append("<br/>");
                     }
                 });

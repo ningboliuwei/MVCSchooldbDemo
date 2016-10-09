@@ -15,7 +15,7 @@
             .bind('click',
                 function() {
                     if (window.previousId !== -1) {
-                        window.ShowData(`@Url.Action("GetItemData", "DataDictItem")/${window.previousId}`);
+                        window.ShowData(`@Url.Action("GetSingleItem", "DataDictItem")/${window.previousId}`);
                     }
                 });
 
@@ -23,7 +23,7 @@
             .bind('click',
                 function() {
                     if (window.nextId !== -1) {
-                        window.ShowData(`@Url.Action("GetItemData", "DataDictItem")/${window.nextId}`);
+                        window.ShowData(`@Url.Action("GetSingleItem", "DataDictItem")/${window.nextId}`);
                     }
                 });
     });

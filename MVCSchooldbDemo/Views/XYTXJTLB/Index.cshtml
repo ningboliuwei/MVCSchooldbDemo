@@ -24,31 +24,30 @@
         </tr>
     </table>
     <table class="buttonsTable">
-       <tr>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorXYTXJTLB', '@Url.Action("Create", "XYTXJTLB")', '添加')">
-                    添加
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridXYTXJTLB',    '#editorXYTXJTLB',    '@Url.Action("Edit", "XYTXJTLB")',
-    '编辑病人基本信息')">
-                    编辑
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridXYTXJTLB', '@Url.Action("Delete", "XYTXJTLB")')">
-                    删除
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridXYTXJTLB', '#editorXYTXJTLB', '@Url.Action("Details", "XYTXJTLB")', '明细')">
-                    明细
-                </a>
-            </td>
+        <tr>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorXYTXJTLB', '@Url.Action("Create", "XYTXJTLB")', '添加')">
+                添加
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridXYTXJTLB', '#editorXYTXJTLB', '@Url.Action("Edit", "XYTXJTLB")', '编辑病人基本信息')">
+                编辑
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridXYTXJTLB', '@Url.Action("Delete", "XYTXJTLB")')">
+                删除
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridXYTXJTLB', '#editorXYTXJTLB', '@Url.Action("Details", "XYTXJTLB")', '明细')">
+                明细
+            </a>
+        </td>
     </table>
 </div>
-<div id="editorXYTXJTLB"  class="editorContainer" style=" width: 850px;"></div>
+<div id="editorXYTXJTLB" class="editorContainer" style="width: 850px;"></div>
 <script>
     var columns = [
         [
@@ -58,7 +57,7 @@
                 width: 100,
                 hidden: true
             },
-			{
+            {
                 field: '字段1',
                 title: 'ID',
                 width: 100,
@@ -67,20 +66,22 @@
         ]
     ];
 
-    var gridTitle = 'XX记录';
+    var gridTitle = 'BADL：Barthel 指数评价表';
     var gridSortName = 'Id';
     var gridSortOrder = 'asc';
     var url = '@Url.Action("List", "XYTXJTLB")';
 
     $(function() {
-        BindGrid('#gridXYTXJTLB','#tbXYTXJTLB', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+        BindGrid('#gridXYTXJTLB', '#tbXYTXJTLB', url, columns, gridTitle, gridSortName, gridSortOrder, {});
     });
 
     function Search() {
-        var queryData = {
+        const queryData = {
             字段1: $('#XYTXJTLB_Search_字段1').textbox('getText'),
             字段2: $('#XYTXJTLB_Search_字段2').textbox('getText'),
-            字段3: ($('#XYTXJTLB_Search_字段3').textbox('getText') === 'ALL') ? '' : $('#XYTXJTLB_Search_字段3').textbox('getText')
+            字段3: ($('#XYTXJTLB_Search_字段3').textbox('getText') === 'ALL')
+                ? ''
+                : $('#XYTXJTLB_Search_字段3').textbox('getText')
         };
 
         BindGrid('#gridXYTXJTLB',
@@ -97,10 +98,16 @@
         $('#XYTXJTLB_Search_字段1').textbox('clear');
         $('#XYTXJTLB_Search_字段2').textbox('clear');
 
-        var data = $('#XYTXJTLB_Search_字段3').combobox('getData');
+        const data = $('#XYTXJTLB_Search_字段3').combobox('getData');
         $('##XYTXJTLB_Search_字段3').combobox('select', data[0]["text"]);
 
         BindGrid('#gridXYTXJTLB',
-            '#tbXYTXJTLB', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+            '#tbXYTXJTLB',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            {});
     }
 </script>

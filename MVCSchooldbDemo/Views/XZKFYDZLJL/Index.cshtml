@@ -24,31 +24,30 @@
         </tr>
     </table>
     <table class="buttonsTable">
-       <tr>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorXZKFYDZLJL', '@Url.Action("Create", "XZKFYDZLJL")', '添加')">
-                    添加
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridXZKFYDZLJL',    '#editorXZKFYDZLJL',    '@Url.Action("Edit", "XZKFYDZLJL")',
-    '编辑')">
-                    编辑
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridXZKFYDZLJL', '@Url.Action("Delete", "XZKFYDZLJL")')">
-                    删除
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridXZKFYDZLJL', '#editorXZKFYDZLJL', '@Url.Action("Details", "XZKFYDZLJL")', '明细')">
-                    明细
-                </a>
-            </td>
+        <tr>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorXZKFYDZLJL', '@Url.Action("Create", "XZKFYDZLJL")', '添加')">
+                添加
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridXZKFYDZLJL', '#editorXZKFYDZLJL', '@Url.Action("Edit", "XZKFYDZLJL")', '编辑')">
+                编辑
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridXZKFYDZLJL', '@Url.Action("Delete", "XZKFYDZLJL")')">
+                删除
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridXZKFYDZLJL', '#editorXZKFYDZLJL', '@Url.Action("Details", "XZKFYDZLJL")', '明细')">
+                明细
+            </a>
+        </td>
     </table>
 </div>
-<div id="editorXZKFYDZLJL" class="editorContainer" style=" width: 850px;"></div>
+<div id="editorXZKFYDZLJL" class="editorContainer" style="width: 850px;"></div>
 <script>
     var columns = [
         [
@@ -58,7 +57,7 @@
                 width: 100,
                 hidden: true
             },
-			{
+            {
                 field: '字段1',
                 title: 'ID',
                 width: 100,
@@ -73,14 +72,16 @@
     var url = '@Url.Action("List", "XZKFYDZLJL")';
 
     $(function() {
-        BindGrid('#gridXZKFYDZLJL','#tbXZKFYDZLJL', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+        BindGrid('#gridXZKFYDZLJL', '#tbXZKFYDZLJL', url, columns, gridTitle, gridSortName, gridSortOrder, {});
     });
 
     function Search() {
-        var queryData = {
+        const queryData = {
             字段1: $('#XZKFYDZLJL_Search_字段1').textbox('getText'),
             字段2: $('#XZKFYDZLJL_Search_字段2').textbox('getText'),
-            字段3: ($('#XZKFYDZLJL_Search_字段3').textbox('getText') === 'ALL') ? '' : $('#XZKFYDZLJL_Search_字段3').textbox('getText')
+            字段3: ($('#XZKFYDZLJL_Search_字段3').textbox('getText') === 'ALL')
+                ? ''
+                : $('#XZKFYDZLJL_Search_字段3').textbox('getText')
         };
 
         BindGrid('#gridXZKFYDZLJL',
@@ -97,10 +98,16 @@
         $('#XZKFYDZLJL_Search_字段1').textbox('clear');
         $('#XZKFYDZLJL_Search_字段2').textbox('clear');
 
-        var data = $('#XZKFYDZLJL_Search_字段3').combobox('getData');
+        const data = $('#XZKFYDZLJL_Search_字段3').combobox('getData');
         $('##XZKFYDZLJL_Search_字段3').combobox('select', data[0]["text"]);
 
         BindGrid('#gridXZKFYDZLJL',
-            '#tbXZKFYDZLJL', url, columns, gridTitle, gridSortName, gridSortOrder, {});
+            '#tbXZKFYDZLJL',
+            url,
+            columns,
+            gridTitle,
+            gridSortName,
+            gridSortOrder,
+            {});
     }
 </script>

@@ -6,8 +6,9 @@
 <div class="editorTitle">@ViewBag.DialogTitle</div>
 <form id="formDataDictItem" method="post" class="easyui-form" data-options="novalidate:true">
     <div id="editorTabs" class="easyui-tabs editorTabs">
-        <div title="标签1">
-            <table class="editorTable" style="height: 300px">
+        <div title="数据字典">
+            <table class="editorTable">
+                <tr>
                 <tr>
                     <td class="editorNameColumnStandard">项目名</td>
                     <td>
@@ -20,8 +21,7 @@
                 </tr>
             </table>
         </div>
-        <div title="标签2">
-        </div>
+
     </div>
 </form>
 <script>
@@ -48,7 +48,7 @@
         window.previousId = -1;
         window.nextId = -1;
 
-        $(function() { ShowData(`@Url.Action("GetItemData", "DataDictItem")/${@ViewBag.CurrentId}`); });
+        $(function() { ShowData(`@Url.Action("GetSingleItem", "DataDictItem")/${@ViewBag.CurrentId}`); });
 
 
         function ShowData(url) {

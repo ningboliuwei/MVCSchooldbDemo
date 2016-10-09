@@ -48,7 +48,7 @@
         </td>
     </table>
 </div>
-<div id="editorUser"  class="editorContainer" style=" width: 850px;"></div>
+<div id="editorUser" class="editorContainer" style="width: 850px;"></div>
 <script>
     var url = '@Url.Action("List", "User")';
     var columns = [
@@ -90,7 +90,7 @@
         BindGrid('#gridUser', '#tbUser', url, columns, gridTitle, gridSortName, gridSortOrder, {});
 
         BindCombobox('#User_SearchRole',
-            '@Url.Action("GetAllRoles", "Role")',
+            '@Url.Action("GetAllItems", "Role")',
             null,
             'Id',
             'Name',

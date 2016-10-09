@@ -15,16 +15,16 @@
             .bind('click',
                 function() {
                     if (window.previousId !== -1) {
-                        window.ShowData('@Url.Action("GetItemData", "XZKFYDZLJL")' + '/' + window.previousId);
+                        window.ShowData(`@Url.Action("GetSingleItem", "XZKFYDZLJL")/${window.previousId}`);
                     }
                 });
 
         $('#XZKFYDZLJL_btnNext')
-         .bind('click',
-             function () {
-                 if (window.nextId !== -1) {
-                     window.ShowData('@Url.Action("GetItemData", "XZKFYDZLJL")' + '/' + window.nextId);
-                 }
-             });
+            .bind('click',
+                function() {
+                    if (window.nextId !== -1) {
+                        window.ShowData(`@Url.Action("GetSingleItem", "XZKFYDZLJL")/${window.nextId}`);
+                    }
+                });
     });
 </script>

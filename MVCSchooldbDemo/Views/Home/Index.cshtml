@@ -5,22 +5,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
-    <meta name="description" content="The description of my page" />
+    <meta name="description" content="The description of my page"/>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body class="easyui-layout">
-    <div data-options="region:'north'" style="height: 48px;">@Html.Partial("_NorthRegion")</div>
-    <div data-options="region:'west',split:true,iconCls:'fa fa-bars fa-16px'" title="导航菜单" style="width: 320px;">
-        @Html.Partial("_WestRegion")
-    </div>
-    <div data-options="region:'center',title:'主窗口',iconCls:'fa fa-table fa-16px'">
-        @Html.Partial("_CenterRegion")
-    </div>
-    <div data-options="region:'south',split:false" style="height: 40px;">@Html.Partial("_SouthRegion")</div>
+<div data-options="region:'north'" style="height: 48px;">@Html.Partial("_NorthRegion")</div>
+<div data-options="region:'west',split:true,iconCls:'fa fa-bars fa-16px'" title="导航菜单" style="width: 320px;">
+    @Html.Partial("_WestRegion")
+</div>
+<div data-options="region:'center',title:'主窗口',iconCls:'fa fa-table fa-16px'">
+    @Html.Partial("_CenterRegion")
+</div>
+<div data-options="region:'south',split:false" style="height: 40px;">@Html.Partial("_SouthRegion")</div>
 </body>
 </html>

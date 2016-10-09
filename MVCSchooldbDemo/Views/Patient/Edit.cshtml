@@ -11,7 +11,13 @@
         $('#Patient_btnOK')
             .bind('click',
                 function() {
-                    EditorSubmit('#formPatient','#gridPatient','#editorPatient','@Url.Action("Edit", "Patient")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
+                    EditorSubmit('#formPatient',
+                        '#gridPatient',
+                        '#editorPatient',
+                        '@Url.Action("Edit", "Patient")',
+                        window.GetData(),
+                        "确认修改记录吗？",
+                        '修改记录出现错误');;
                 });
     });
 </script>

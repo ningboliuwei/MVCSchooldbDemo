@@ -1,4 +1,4 @@
-@keyframes hover-color {
+锘緻keyframes hover-color {
 	from { border-color: #c0c0c0; }
 
 	to { border-color: #404040; }
@@ -6,7 +6,7 @@
 
 .magic-radio,
 .magic-checkbox {
-	display: none;/*不为 none 的话，原生的会显示出来*/
+	display: none; /*锟斤拷为 none 锟侥伙拷锟斤拷原锟斤拷锟侥伙拷锟斤拷示锟斤拷锟斤拷*/
 	position: absolute;
 }
 
@@ -16,8 +16,8 @@
 .magic-radio + label,
 .magic-checkbox + label {
 	cursor: pointer;
-	display: inline-block; /*初始值为 block，改为 inline-block 后不换行*/
-	padding: 0 6px 0 20px; /*初始值 30*/
+	display: inline-block; /*锟斤拷始值为 block锟斤拷锟斤拷为 inline-block 锟襟不伙拷锟斤拷*/
+	padding: 0 6px 0 20px; /*锟斤拷始值 30*/
 	position: relative;
 	vertical-align: middle;
 }
@@ -34,11 +34,11 @@
 	border: 1px solid #c0c0c0;
 	content: '';
 	display: inline-block;
-	height: 12px; /*初始值为 20*/
+	height: 12px; /*锟斤拷始值为 20*/
 	left: 2px;
 	position: absolute;
 	top: 2px;
-	width: 12px; /*初始值为 20*/
+	width: 12px; /*锟斤拷始值为 20*/
 }
 
 .magic-radio + label:after,
@@ -54,8 +54,8 @@
 	cursor: not-allowed;
 }
 
-.magic-radio[disabled] + label:hover, 
-.magic-radio[disabled] + label:before, 
+.magic-radio[disabled] + label:hover,
+.magic-radio[disabled] + label:before,
 .magic-radio[disabled] + label:after,
 .magic-checkbox[disabled] + label:hover,
 .magic-checkbox[disabled] + label:before,
@@ -76,17 +76,17 @@
 .magic-radio:checked + label:after,
 .magic-checkbox:checked + label:after { display: inline-block; }
 
-/*初始值 block*/
+/*锟斤拷始值 block*/
 
 .magic-radio + label:before { border-radius: 50%; }
 
 .magic-radio + label:after {
 	background: #555555;
-	border-radius: 50%; /*初始值 50%*/
-	height: 6px; /*初始值 8*/
-	left: 6px; /*初始值 6*/
-	top: 6px; /*初始值 6*/
-	width: 6px; /*初始值 8*/
+	border-radius: 50%; /*锟斤拷始值 50%*/
+	height: 6px; /*锟斤拷始值 8*/
+	left: 6px; /*锟斤拷始值 6*/
+	top: 6px; /*锟斤拷始值 6*/
+	width: 6px; /*锟斤拷始值 8*/
 }
 
 .magic-radio:checked + label:before { border: 1px solid #555555; }
@@ -98,17 +98,18 @@
 .magic-checkbox + label:before { border-radius: 3px; }
 
 .magic-checkbox + label:after {
-  top: 3px;
-  left: 6px;
-  box-sizing: border-box;
-  width: 6px;
-  height: 10px;
-  transform: rotate(40deg);
-  border-width: 2px;
-  border-style: solid;
-  border-color: #555555;
-  border-top: 0;
-  border-left: 0px; }
+	border-color: #555555;
+	border-left: 0px;
+	border-style: solid;
+	border-top: 0;
+	border-width: 2px;
+	box-sizing: border-box;
+	height: 10px;
+	left: 6px;
+	top: 3px;
+	transform: rotate(40deg);
+	width: 6px;
+}
 
 
 .magic-checkbox:checked + label:before {
@@ -119,5 +120,4 @@
 .magic-checkbox:checked[disabled] + label:before {
 	background: #fafafa;
 	border: 1px solid #555555;
-
 }

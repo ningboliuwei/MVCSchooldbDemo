@@ -205,7 +205,7 @@
     <script>
         window.previousId = -1;
         window.nextId = -1;
-        $(function() { ShowData(`@Url.Action("GetItemData", "XZKFYDZLJL")/${@ViewBag.CurrentId}`); });
+        $(function() { ShowData(`@Url.Action("GetSingleItem", "XZKFYDZLJL")/${@ViewBag.CurrentId}`); });
 
 
         function ShowData(url) {

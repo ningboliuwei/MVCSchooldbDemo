@@ -11,7 +11,13 @@
         $('#XYTXJTLB_btnOK')
             .bind('click',
                 function() {
-                    EditorSubmit('#formXYTXJTLB',  '#gridXYTXJTLB','#editorXYTXJTLB', '@Url.Action("Create", "XYTXJTLB")', window.GetData(), "确认添加记录吗？", '添加记录出现错误');
+                    EditorSubmit('#formXYTXJTLB',
+                        '#gridXYTXJTLB',
+                        '#editorXYTXJTLB',
+                        '@Url.Action("Create", "XYTXJTLB")',
+                        window.GetData(),
+                        "确认添加记录吗？",
+                        '添加记录出现错误');
                 }
             );
     });

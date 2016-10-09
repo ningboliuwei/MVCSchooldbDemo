@@ -11,7 +11,13 @@
         $('#GJXRCSHHDLB_btnOK')
             .bind('click',
                 function() {
-                    EditorSubmit('#formGJXRCSHHDLB',  '#gridGJXRCSHHDLB','#editorGJXRCSHHDLB', '@Url.Action("Create", "GJXRCSHHDLB")', window.GetData(), "确认添加记录吗？", '添加记录出现错误');
+                    EditorSubmit('#formGJXRCSHHDLB',
+                        '#gridGJXRCSHHDLB',
+                        '#editorGJXRCSHHDLB',
+                        '@Url.Action("Create", "GJXRCSHHDLB")',
+                        window.GetData(),
+                        "确认添加记录吗？",
+                        '添加记录出现错误');
                 }
             );
     });

@@ -11,7 +11,13 @@
         $('#GJXRCSHHDLB_btnOK')
             .bind('click',
                 function() {
-                    EditorSubmit('#formGJXRCSHHDLB','#gridGJXRCSHHDLB','#editorGJXRCSHHDLB','@Url.Action("Edit", "GJXRCSHHDLB")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
+                    EditorSubmit('#formGJXRCSHHDLB',
+                        '#gridGJXRCSHHDLB',
+                        '#editorGJXRCSHHDLB',
+                        '@Url.Action("Edit", "GJXRCSHHDLB")',
+                        window.GetData(),
+                        "确认修改记录吗？",
+                        '修改记录出现错误');;
                 });
     });
 </script>

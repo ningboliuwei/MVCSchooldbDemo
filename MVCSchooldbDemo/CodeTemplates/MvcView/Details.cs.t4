@@ -19,7 +19,7 @@
             .bind('click',
                 function() {
                     if (window.previousId !== -1) {
-                        window.ShowData('@Url.Action("GetItemData", "<#=name#>")' + '/' + window.previousId);
+                        window.ShowData('@Url.Action("GetSingleItem", "<#=name#>")' + '/' + window.previousId);
                     }
                 });
 
@@ -27,7 +27,7 @@
          .bind('click',
              function () {
                  if (window.nextId !== -1) {
-                     window.ShowData('@Url.Action("GetItemData", "<#=name#>")' + '/' + window.nextId);
+                     window.ShowData('@Url.Action("GetSingleItem", "<#=name#>")' + '/' + window.nextId);
                  }
              });
     });

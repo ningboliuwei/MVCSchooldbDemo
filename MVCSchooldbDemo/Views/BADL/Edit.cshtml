@@ -11,7 +11,13 @@
         $('#BADL_btnOK')
             .bind('click',
                 function() {
-                    EditorSubmit('#formBADL','#gridBADL','#editorBADL','@Url.Action("Edit", "BADL")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
+                    EditorSubmit('#formBADL',
+                        '#gridBADL',
+                        '#editorBADL',
+                        '@Url.Action("Edit", "BADL")',
+                        window.GetData(),
+                        "确认修改记录吗？",
+                        '修改记录出现错误');;
                 });
     });
 </script>
