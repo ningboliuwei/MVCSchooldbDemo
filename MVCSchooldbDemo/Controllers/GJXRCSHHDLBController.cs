@@ -18,6 +18,7 @@ namespace MVCSchooldbDemo.Controllers
 		public GJXRCSHHDLBController()
 		{
 			ViewBag.Name = "GJXRCSHHDLB";
+			ViewBag.DialogTitle = "工具性日常生活活动量表";
 		}
 
         public ActionResult Index()
@@ -34,7 +35,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Details(long? id)
         {
-            ViewBag.DialogTitle = "查看XXXX明细";
+           
             ViewBag.CurrentId = id;
             return View(new GJXRCSHHDLBInfo());
         }
@@ -72,7 +73,6 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加XXXX记录";//TODO
             return View();
         }
 
@@ -93,7 +93,6 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "编辑XXXX记录";//TODO
                 ViewBag.CurrentId = id;
                 return View(new GJXRCSHHDLBInfo());
             }

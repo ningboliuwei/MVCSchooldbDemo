@@ -15,7 +15,8 @@ namespace MVCSchooldbDemo.Controllers
         public PatientController()
         {
             ViewBag.Name = "Patient";
-        }
+			ViewBag.DialogTitle = "病人基本资料";
+		}
 
         // GET: Student
         public virtual ActionResult Index()
@@ -33,7 +34,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Details(long? id)
         {
-            ViewBag.DialogTitle = "查看病人基本资料";
+            
             ViewBag.CurrentId = id;
             return View(new PatientInfo());
         }
@@ -83,7 +84,6 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加病人基本资料";
             return View();
         }
 
@@ -106,7 +106,6 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "编辑病人基本信息";
                 ViewBag.CurrentId = id;
                 return View(new PatientInfo());
             }

@@ -21,12 +21,12 @@
     <table class="buttonsTable">
         <tr>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px" onclick="Add('#editorRole', '@Url.Action("Create", "Role")', '添加角色')">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px" onclick="Add('#editorRole', '@Url.Action("Create", "Role")', '添加')">
                 添加
             </a>
         </td>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridRole', '#editorRole', '@Url.Action("Edit", "Role")', '修改角色')">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridRole', '#editorRole', '@Url.Action("Edit", "Role")', '编辑')">
                 编辑
             </a>
         </td>
@@ -37,7 +37,7 @@
         </td>
     </table>
 </div>
-<div id="editorRole" style="display: none; height: 450px; width: 500px;overflow: scroll;"></div>
+<div id="editorRole"  class="editorContainer" style=" width: 850px;"></div>
 <script>
     var columns = [
         [

@@ -26,7 +26,7 @@
     <table class="buttonsTable">
        <tr>
             <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorXYTXJTLB', '@Url.Action("Create", "XYTXJTLB")', '添加XX信息')">
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorXYTXJTLB', '@Url.Action("Create", "XYTXJTLB")', '添加')">
                     添加
                 </a>
             </td>
@@ -42,13 +42,13 @@
                 </a>
             </td>
             <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridXYTXJTLB', '#editorXYTXJTLB', '@Url.Action("Details", "XYTXJTLB")', 'XX明细')">
-                    详细
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridXYTXJTLB', '#editorXYTXJTLB', '@Url.Action("Details", "XYTXJTLB")', '明细')">
+                    明细
                 </a>
             </td>
     </table>
 </div>
-<div id="editorXYTXJTLB" style="display: none; height: 850px; width: 900px; overflow: scroll;"></div>
+<div id="editorXYTXJTLB"  class="editorContainer" style=" width: 850px;"></div>
 <script>
     var columns = [
         [

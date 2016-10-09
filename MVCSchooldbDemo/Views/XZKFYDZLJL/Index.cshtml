@@ -26,13 +26,13 @@
     <table class="buttonsTable">
        <tr>
             <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorXZKFYDZLJL', '@Url.Action("Create", "XZKFYDZLJL")', '添加XX信息')">
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorXZKFYDZLJL', '@Url.Action("Create", "XZKFYDZLJL")', '添加')">
                     添加
                 </a>
             </td>
             <td>
                 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridXZKFYDZLJL',    '#editorXZKFYDZLJL',    '@Url.Action("Edit", "XZKFYDZLJL")',
-    '编辑病人基本信息')">
+    '编辑')">
                     编辑
                 </a>
             </td>
@@ -42,13 +42,13 @@
                 </a>
             </td>
             <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridXZKFYDZLJL', '#editorXZKFYDZLJL', '@Url.Action("Details", "XZKFYDZLJL")', 'XX明细')">
-                    详细
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridXZKFYDZLJL', '#editorXZKFYDZLJL', '@Url.Action("Details", "XZKFYDZLJL")', '明细')">
+                    明细
                 </a>
             </td>
     </table>
 </div>
-<div id="editorXZKFYDZLJL" style="display: none; height: 800px; width: 1000px;overflow: scroll;"></div>
+<div id="editorXZKFYDZLJL" class="editorContainer" style=" width: 850px;"></div>
 <script>
     var columns = [
         [

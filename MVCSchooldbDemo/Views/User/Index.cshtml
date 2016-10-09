@@ -32,12 +32,12 @@
     <table class="buttonsTable">
         <tr>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorUser', '@Url.Action("Create", "User")', '添加用户');">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorUser', '@Url.Action("Create", "User")', '添加');">
                 添加
             </a>
         </td>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Edit('#gridUser', '#editorUser', '@Url.Action("Edit", "User")', '修改用户记录')">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Edit('#gridUser', '#editorUser', '@Url.Action("Edit", "User")', '编辑')">
                 编辑
             </a>
         </td>
@@ -48,7 +48,7 @@
         </td>
     </table>
 </div>
-<div id="editorUser" style="display: none; height: 450px; width: 500px;overflow: scroll;"></div>
+<div id="editorUser"  class="editorContainer" style=" width: 850px;"></div>
 <script>
     var url = '@Url.Action("List", "User")';
     var columns = [

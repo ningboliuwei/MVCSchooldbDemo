@@ -26,6 +26,7 @@ namespace <#=Namespace#>
 		public <#=ControllerName#>()
 		{
 			ViewBag.Name = "<#=name#>";
+			ViewBag.DialogTitle = "XXXXXX";
 		}
 
         public ActionResult Index()
@@ -42,7 +43,6 @@ namespace <#=Namespace#>
 
         public virtual ActionResult Details(long? id)
         {
-            ViewBag.DialogTitle = "查看XXXX明细";
             ViewBag.CurrentId = id;
             return View(new <#=name#>Info());
         }
@@ -80,7 +80,6 @@ namespace <#=Namespace#>
 
         public virtual ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加XXXX记录";//TODO
             return View();
         }
 
@@ -101,7 +100,6 @@ namespace <#=Namespace#>
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "编辑XXXX记录";//TODO
                 ViewBag.CurrentId = id;
                 return View(new <#=name#>Info());
             }

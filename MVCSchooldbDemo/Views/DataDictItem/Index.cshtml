@@ -26,12 +26,12 @@
     <table class="buttonsTable">
         <tr>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorDataDictItem', '@Url.Action("Create", "DataDictItem")', '添加数据字典项目')">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorDataDictItem', '@Url.Action("Create", "DataDictItem")', '添加')">
                 添加
             </a>
         </td>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridDataDictItem', '#editorDataDictItem', '@Url.Action("Edit", "DataDictItem")', '编辑数据字典项目')">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridDataDictItem', '#editorDataDictItem', '@Url.Action("Edit", "DataDictItem")', '编辑')">
                 编辑
             </a>
         </td>
@@ -41,13 +41,13 @@
             </a>
         </td>
         <td>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridDataDictItem', '#editorDataDictItem', '@Url.Action("Details", "DataDictItem")', '数据字典项目明细')">
-                详细
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridDataDictItem', '#editorDataDictItem', '@Url.Action("Details", "DataDictItem")', '明细')">
+                明细
             </a>
         </td>
     </table>
 </div>
-<div id="editorDataDictItem" style="display: none; height: 450px; width: 550px;overflow: scroll;"></div>
+<div id="editorDataDictItem"  class="editorContainer" style=" width: 850px;"></div>
 <script>
     var columns = [
         [

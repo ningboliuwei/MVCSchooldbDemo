@@ -15,7 +15,8 @@ namespace MVCSchooldbDemo.Controllers
         public RoleController()
         {
             ViewBag.Name = "Role";
-        }
+			ViewBag.DialogTitle = "角色";
+		}
 
         public virtual ActionResult Index()
         {
@@ -72,7 +73,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加角色";
+           
             return View();
         }
 
@@ -95,7 +96,6 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "编辑角色";
                 ViewBag.CurrentId = id;
                 return View(new RoleInfo());
             }

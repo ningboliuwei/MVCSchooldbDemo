@@ -15,7 +15,8 @@ namespace MVCSchooldbDemo.Controllers
         public DataDictItemController()
         {
             ViewBag.Name = "DataDictItem";
-        }
+			ViewBag.DialogTitle = "数据字典";
+		}
 
         public ActionResult Index()
         {
@@ -31,7 +32,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Details(long? id)
         {
-            ViewBag.DialogTitle = "查看数据字典项目明细";
+            
             ViewBag.CurrentId = id;
             return View(new DataDictItemInfo());
         }
@@ -85,7 +86,6 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加数据字典项目记录"; //TODO
             return View();
         }
 
@@ -107,7 +107,6 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "编辑数据字典项目记录"; //TODO
                 ViewBag.CurrentId = id;
                 return View(new DataDictItemInfo());
             }

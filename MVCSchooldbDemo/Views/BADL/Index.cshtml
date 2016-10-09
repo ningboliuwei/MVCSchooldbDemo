@@ -26,13 +26,13 @@
     <table class="buttonsTable">
        <tr>
             <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorBADL', '@Url.Action("Create", "BADL")', '添加XX信息')">
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorBADL', '@Url.Action("Create", "BADL")', '添加')">
                     添加
                 </a>
             </td>
             <td>
                 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridBADL',    '#editorBADL',    '@Url.Action("Edit", "BADL")',
-    '编辑病人基本信息')">
+    '编辑')">
                     编辑
                 </a>
             </td>
@@ -42,13 +42,13 @@
                 </a>
             </td>
             <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridBADL', '#editorBADL', '@Url.Action("Details", "BADL")', 'XX明细')">
-                    详细
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridBADL', '#editorBADL', '@Url.Action("Details", "BADL")', '明细')">
+                    明细
                 </a>
             </td>
     </table>
 </div>
-<div id="editorBADL" style="display: none; height: 850px; width: 800px;overflow: scroll;"></div>
+<div id="editorBADL"  class="editorContainer" style=" width: 850px;"></div>
 <script>
     var columns = [
         [

@@ -18,6 +18,7 @@ namespace MVCSchooldbDemo.Controllers
 		public XYTXJTLBController()
 		{
 			ViewBag.Name = "西雅图心绞痛量表";
+			ViewBag.DialogTitle = "西雅图心绞痛量表";
 		}
 
         public ActionResult Index()
@@ -34,7 +35,6 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Details(long? id)
         {
-            ViewBag.DialogTitle = "查看西雅图心绞痛量表明细";
             ViewBag.CurrentId = id;
             return View(new XYTXJTLBInfo());
         }
@@ -72,7 +72,6 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加XXXX记录";//TODO
             return View();
         }
 
@@ -93,7 +92,6 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "编辑XXXX记录";//TODO
                 ViewBag.CurrentId = id;
                 return View(new XYTXJTLBInfo());
             }

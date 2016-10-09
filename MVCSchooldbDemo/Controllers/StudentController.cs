@@ -30,7 +30,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Details(long? id)
         {
-            ViewBag.DialogTitle = "查看学生明细"; //TODO
+            ViewBag.DialogTitle = "明细"; //TODO
             ViewBag.CurrentId = id;
             return View(new StudentInfo());
         }
@@ -87,7 +87,7 @@ namespace MVCSchooldbDemo.Controllers
         // GET: Student/Create
         public virtual ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加学生记录";
+            ViewBag.DialogTitle = "添加";
             return View();
         }
 
@@ -116,7 +116,7 @@ namespace MVCSchooldbDemo.Controllers
                 //                var student = DBHelper.FindByKeyword(_db.Students.ToList(), "Id", id).First();
                 //                ViewBag.DialogTitle = "编辑学生记录";
                 //                return View(student);
-                ViewBag.DialogTitle = "编辑学生记录";
+                ViewBag.DialogTitle = "编辑";
                 ViewBag.CurrentId = id;
                 return View(new StudentInfo());
             } //死循环了

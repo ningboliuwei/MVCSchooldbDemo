@@ -18,6 +18,7 @@ namespace MVCSchooldbDemo.Controllers
 		public BADLController()
 		{
 			ViewBag.Name = "BADL";
+			ViewBag.DialogTitle = "BADL 评估：Barthel 指数评价表";//TODO
 		}
 
         public ActionResult Index()
@@ -34,7 +35,6 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Details(long? id)
         {
-            ViewBag.DialogTitle = "查看XXXX明细";
             ViewBag.CurrentId = id;
             return View(new BADLInfo());
         }
@@ -72,7 +72,6 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加XXXX记录";//TODO
             return View();
         }
 
@@ -93,7 +92,6 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "编辑XXXX记录";//TODO
                 ViewBag.CurrentId = id;
                 return View(new BADLInfo());
             }

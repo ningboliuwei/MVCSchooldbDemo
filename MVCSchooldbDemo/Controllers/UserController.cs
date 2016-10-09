@@ -16,7 +16,8 @@ namespace MVCSchooldbDemo.Controllers
         public UserController()
         {
             ViewBag.Name = "User";
-        }
+			ViewBag.DialogTitle = "用户";
+		}
 
         public virtual ActionResult Index()
         {
@@ -74,7 +75,7 @@ namespace MVCSchooldbDemo.Controllers
 
         public virtual ActionResult Create()
         {
-            ViewBag.DialogTitle = "添加用户";
+            
             return View();
         }
 
@@ -98,7 +99,6 @@ namespace MVCSchooldbDemo.Controllers
         {
             if (id != null)
             {
-                ViewBag.DialogTitle = "编辑用户";
                 ViewBag.CurrentId = id;
                 return View(new UserInfo());
             }

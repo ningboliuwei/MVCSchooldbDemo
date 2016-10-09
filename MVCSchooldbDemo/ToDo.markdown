@@ -102,6 +102,7 @@
 58. 改进了 common.js 中的 BindDataDictItemToCombobox 和 GenerateInputListByDataDictItem，可以设定展示的方向。 ===== 已解决 2016-10-08
 59. 改善了 _Editor 的表格显示（可以顶外层的宽度），通过 CSS3 的	width:calc(100% - 6px); 配合  margin: 3px auto 3px auto; 实现 ，并改善了 _Editor 出现滚动条时的显示（可以看到右边框），通过     <div id="editorTabs" class="easyui-tabs" style="width: 100%;"> 实现（需要改 T4 模板）_ ======= 已解决 2016-10-08
 60. 解决了当 _Editor 太长，出现滚动条，表格宽度不对的问题  ============== 通过在 Index 的 Editor div 中使用： overflow: scroll; 解决。另外 CSS 已完美，增加了 editorTabs 类  ======_2016-10-09
+61. 增加了 editorContainer CSS 类，放在 Index 中 ============ 已解决（固定了高度为 850px，宽度分别设置）
 
 
 
