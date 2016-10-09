@@ -3,12 +3,19 @@
 }
 
 .editorLayout {
-	padding: 0 20px 10px 20px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+.editorTabs {
+	width: 100%;
+	margin: 0 auto;
 }
 
 .editorTable {
 	border-collapse: collapse;
 	margin: 3px;
+	width: calc(100% - 6px);
 }
 
 	.editorTable td {
@@ -37,8 +44,6 @@
 	width: 100px;
 }
 
-
-
 .editorInputComboBox {
 	width: 100px;
 }
@@ -51,17 +56,15 @@
 	padding: 5px 5px 5px 5px;
 }
 
-.dialogTitle {
+.editorTitle {
 	font-size: 20px;
 	font-weight: bold;
-	padding: 5px 5px 0 5px;
+	margin: 0 0 5px 0;
 }
 
-.dialogButton {
-	padding: 30px;
-	bottom: 0;
-	right: 0;
-	position: absolute;
+.editorButton {
+	margin: 20px 0 20px 0;
+	float: left;
 }
 
 #footer {
@@ -80,35 +83,3 @@
 .fa-icon {
 	padding-top: 2px;
 }
-
-.easyui-radio {
-	position: relative;
-	border: 1px solid #95B8E7;
-	background-color: #fff;
-	vertical-align: middle;
-	display: inline-block;
-	overflow: hidden;
-	white-space: nowrap;
-	margin: 0;
-	padding: 0;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
-	display: block;
-}
-
-   .radioSpan {
-      position: relative;
-      border: 1px solid #95B8E7;
-      background-color: #fff;
-      vertical-align: middle;
-      display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
-      margin: 0;
-      padding: 0;
-      -moz-border-radius: 5px 5px 5px 5px;
-      -webkit-border-radius: 5px 5px 5px 5px;
-      border-radius: 5px 5px 5px 5px;
-      display:block;
-    }

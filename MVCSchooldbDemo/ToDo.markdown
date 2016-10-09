@@ -100,6 +100,7 @@
 56. 修复了生成 Controller 代码的，生成的集合名带 Controller 字样的问题。 ================= 已解决 2016-10-05
 57. 改进了 common.js 中的 BindDataDictItemToCombobox 和 GenerateInputListByDataDictItem，使用了可变参数机制，参数调用时更加方便。 ===== 已解决 2016-10-08
 58. 改进了 common.js 中的 BindDataDictItemToCombobox 和 GenerateInputListByDataDictItem，可以设定展示的方向。 ===== 已解决 2016-10-08
+59. 改善了 _Editor 的表格显示（可以顶外层的宽度），通过 CSS3 的	width:calc(100% - 6px); 配合  margin: 3px auto 3px auto; 实现 ，并改善了 _Editor 出现滚动条时的显示（可以看到右边框），通过     <div id="editorTabs" class="easyui-tabs" style="width: 100%;"> 实现（需要改 T4 模板）_ ======= 已解决 2016-10-08
 
 
 

@@ -6,9 +6,9 @@
     Layout = null;
 }
 <# var name = ViewDataTypeName.Substring(ViewDataTypeName.LastIndexOf(".") + 1).Replace("Info", "");#>
-<div class="dialogTitle">@ViewBag.DialogTitle</div>
+<div class="editorTitle">@ViewBag.DialogTitle</div>
 <form id="form<#=name#>" method="post" class="easyui-form" data-options="novalidate:true">
-    <div id="editorTabs" class="easyui-tabs" style="padding: 5px;">
+    <div id="editorTabs" class="easyui-tabs" style="width: 100%;">
         <div title="标签1">
             <table class="editorTable">
                 <tr>
