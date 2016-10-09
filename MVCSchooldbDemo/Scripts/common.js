@@ -7,7 +7,7 @@ var Direction = { Vertical: "vertical", Horizontal: "horizontal" }; //批量生�
 
 //EasyUI用DataGrid用日期格式化
 var FormatHelper = {
-    DateFormatter: function(value, row, index) {
+    DateFormatter: function (value, row, index) {
         const date = new Date(value);
         const year = date.getFullYear().toString();
         var month = (date.getMonth() + 1);
@@ -25,7 +25,7 @@ var FormatHelper = {
     },
 
     //EasyUI用DataGrid用日期格式化
-    DateTimeFormatter: function(value, row, index) {
+    DateTimeFormatter: function (value, row, index) {
         const date = new Date(value);
         const year = date.getFullYear().toString();
         var month = (date.getMonth() + 1);
@@ -56,7 +56,7 @@ var FormatHelper = {
 
         return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
     },
-    DateBoxFormatter: function(value, rec, index) {
+    DateBoxFormatter: function (value, rec, index) {
         if (value == undefined) {
             return "";
         }
@@ -77,7 +77,7 @@ var FormatHelper = {
 // 例子： 
 // (new Date()).Format("yyyy-mm-dd HH:MM:SS.s") ==> 2015-07-02 08:09:04.423 
 // (new Date()).Format("yyyy-m-d H:M:S.s")      ==> 2015-7-2 8:9:4.18 
-Date.prototype.Format = function(fmt) { //author: meizz 
+Date.prototype.Format = function (fmt) { //author: meizz 
     const o = {
         "m+": this.getMonth() + 1, //月份 
         "d+": this.getDate(), //日 
@@ -149,7 +149,7 @@ function Alert(title, msg, icon) {
 function Confirm(title, msg, callback) {
     $.messager.confirm(title,
         msg,
-        function(result) {
+        function (result) {
             if (result) {
                 callback();
             }
@@ -187,16 +187,16 @@ function FormSubmit(formName, gridName, editorName, url, errorMsg) {
         .form("submit",
         {
             url: url,
-            onSubmit: function() {
+            onSubmit: function () {
                 return $(this).form("enableValidation").form("validate");
             },
-            success: function() {
-                $(function() {
+            success: function () {
+                $(function () {
                     RefreshGrid(gridName);
                     CloseEditor(editorName);
                 });
             },
-            error: function() {
+            error: function () {
                 Alert("错误", errorMsg, AlertType.Error);
             }
         });
@@ -207,13 +207,13 @@ function Post(gridName, editorName, url, data, errorMsg) {
         type: "POST",
         url: url,
         data: data,
-        success: function() {
-            $(function() {
+        success: function () {
+            $(function () {
                 RefreshGrid(gridName);
                 CloseEditor(editorName);
             });
         },
-        error: function() {
+        error: function () {
             Alert("错误", errorMsg, AlertType.Error);
         },
         dataType: "html"
@@ -237,7 +237,7 @@ function Delete(gridName, url) {
     } else {
         Confirm("确认",
             "确认删除选中的记录吗？",
-            function() {
+            function () {
                 const ids = [];
 
                 for (let i = 0; i < rows.length; i++) {
@@ -249,7 +249,7 @@ function Delete(gridName, url) {
                     type: "POST",
                     data: JSON.stringify(ids),
                     contentType: "application/json;charset=utf-8",
-                    success: function() {
+                    success: function () {
                         RefreshGrid(gridName);
                     }
                 });
@@ -337,7 +337,7 @@ function EditorSubmit(formName, gridName, editorName, url, data, confirmMsg, err
     if (ValidateForm(formName)) {
         Confirm("确认",
             confirmMsg,
-            function() {
+            function () {
                 Post(gridName, editorName, url, data, errorMsg);
             });
     }
@@ -347,7 +347,7 @@ function InitTree(treeName, tabsName, data) {
     $(treeName)
         .tree({
             data: data,
-            onClick: function(node) {
+            onClick: function (node) {
                 if (node.attributes.url !== "#") {
                     AddTab(tabsName, node.text, node.attributes.url);
                 }
@@ -355,17 +355,17 @@ function InitTree(treeName, tabsName, data) {
         });
 }
 
-function BindCombobox() { //(comboxName, url, params, valueField, initialText?, editable?, onChange?)
-    var comboboxName = arguments[0];
+function BindCombobox() { //(controlName, url, params, valueField, textField, initialText?, editable?, onChange?)
+    var controlName = arguments[0];
     const url = arguments[1];
     const params = arguments[2];
     var valueField = arguments[3];
     var textField = arguments[4];
     var initialText = arguments[5] ? arguments[5] : null; //arguments[5] 是 initialText，若不存在则使用默认值 null，也可以显式使用
     const editable = arguments[6] ? arguments[6] : false; //arguments[6] 是 editable，若不存在则使用默认值 false
-    const onChange = arguments[7] ? arguments[7] : function() {}; //arguments[7] 是 onChange 事件，若不存在则使用空事件
+    const onChange = arguments[7] ? arguments[7] : function () { }; //arguments[7] 是 onChange 事件，若不存在则使用空事件
 
-    $(comboboxName)
+    $(controlName)
         .combobox({
             url: url,
             queryParams: params,
@@ -375,23 +375,26 @@ function BindCombobox() { //(comboxName, url, params, valueField, initialText?, 
             dataType: "json",
             async: true,
             editable: editable,
-            onSelect: function(record) { console.log(record) },
-            onShowPanel: function() {
-//                $(comboboxName).combobox("reload");//导致点击 combobox 时出现两次 onSelect 事件
-            },
-            onLoadSuccess: function() {
-//                const previousValue = $(comboboxName).combobox("getValue");
-//                const data = $(comboboxName).combobox("getData");
-//                if (initialText !== null && data[0][[textField]] !== initialText) {
-//                    data.unshift({ [valueField]: 0, [textField]: initialText });
-//                    $(comboboxName).combobox("loadData", data);
-//                }
-//
-//                if ($(comboboxName).combobox("getText") === "") {
-//                    $(comboboxName).combobox("select", data[0][[valueField]]);
+            onLoadSuccess: function () {
+                var data = $(controlName).combobox("getData");
+
+                if (initialText !== null && data[0][[textField]] !== initialText) {
+                    for (var i = 0; i < data.length; i++) {//否则原有的项目的 Id 仍然是 0, 1, 2 ...
+                        data[i][[valueField]] = data[i][[valueField]] + 1;
+                    }
+                    data.unshift({ [valueField]: 0, [textField]: initialText });
+                    $(controlName).combobox("loadData", data);
+                }
+//                似乎去掉也可以正常工作，先保留
+//                const previousValue = $(controlName).combobox("getValue");//获取当前选中的值
+//                if ($(controlName).combobox("getText") === "") {//如果当前未选中任何项
+//                    $(controlName).combobox("select", data[0][[valueField]]);//则选中第一项
 //                } else {
-//                    $(comboboxName).combobox("select", previousValue);
+//                    $(controlName).combobox("select", previousValue);//否则选中之前选中的那项
 //                }
+            },
+            onShowPanel: function () {
+                $(controlName).combobox('reload');
             }
         });
 }
@@ -437,15 +440,15 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, 
         url: DATA_DICT_ITEM_URL,
         data: { itemName: itemName },
         async: false,
-        success: function(array) {
+        success: function (array) {
             var count = 0;
             $.each(array,
-                function(i) {
+                function (i) {
                     count++;
                     $(controlName)
                         .append(`<input class="magic-${inputType}" id='${itemName}_${array[i]["id"]}' type='${inputType
-                            }' name='${itemName}' /><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]
-                            }</label>`);
+                    }' name='${itemName}' /><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]
+                    }</label>`);
 
                     if (direction === Direction.Vertical) {
                         $(controlName).append("<br/>");
@@ -453,7 +456,7 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, 
                 });
             //value='${array[i]["value"]}'
         },
-        error: function() {
+        error: function () {
             Alert("错误", errorMsg, AlertType.Error);
         },
         dataType: "json"
