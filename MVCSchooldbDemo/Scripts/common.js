@@ -373,7 +373,7 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
             valueField: valueField,
             textField: textField,
             dataType: "json",
-            async: false,
+            async: true,
             editable: editable,
             onLoadSuccess: function () {
                 var data = $(controlName).combobox("getData");
@@ -385,19 +385,19 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
                     data.unshift({ [valueField]: 0, [textField]: initialText });
                     $(controlName).combobox("loadData", data);
                 }
-//                似乎去掉也可以正常工作，先保留
-//                const previousValue = $(controlName).combobox("getValue");//获取当前选中的值
-//                if ($(controlName).combobox("getText") === "") {//如果当前未选中任何项
-//                    $(controlName).combobox("select", data[0][[valueField]]);//则选中第一项
-//                } else {
-//                    $(controlName).combobox("select", previousValue);//否则选中之前选中的那项
-//                }
             },
             onShowPanel: function () {
-//                有机会再做得完美吧，暂时先去掉了
-//                $(controlName).combobox('reload');
+//                暂时无法解决点开后不能自动选中之前项的问题
+//                const previousValue = $(controlName).combobox("getValue");//获取当前选中的值
+//                console.log(previousValue);
+//                if ($(controlName).combobox("getText") === "") {//如果当前未选中任何项
+//                    console.log($(controlName).combobox("getText"));
+//                    $(controlName).combobox("setValue", data[0][[valueField]]);//则选中第一项
+//                } else {
+//                    $(controlName).combobox("setValue", previousValue);//否则选中之前选中的那项
+//                }
             },
-            onSelect:function(record) {
+            onSelect: function (record) {
             }
         });
 }
@@ -442,7 +442,7 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, 
         type: "POST",
         url: DATA_DICT_ITEM_URL,
         data: { itemName: itemName },
-        async: false,
+        async: true,
         success: function (array) {
             var count = 0;
             $.each(array,
