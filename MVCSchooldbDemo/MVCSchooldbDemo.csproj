@@ -557,6 +557,7 @@
     <Content Include="Content\EasyUI\themes\metro\window.css" />
     <Content Include="Content\EasyUI\themes\mobile.css" />
     <Content Include="Content\Uploadify\uploadify.css" />
+    <Content Include="Docs\心康数据库初始数据.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />

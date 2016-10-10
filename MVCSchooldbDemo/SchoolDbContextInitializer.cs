@@ -4,7 +4,7 @@ using SQLite.CodeFirst;
 
 namespace MVCSchooldbDemo
 {
-	public class SchoolDbContextInitializer : SqliteDropCreateDatabaseWhenModelChanges<SchooldDbContext>
+	public class SchoolDbContextInitializer : SqliteCreateDatabaseIfNotExists<SchooldDbContext>
 	{
 		public SchoolDbContextInitializer(DbModelBuilder modelBuilder) : base(modelBuilder)
 		{

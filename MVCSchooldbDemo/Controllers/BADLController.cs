@@ -86,12 +86,19 @@ namespace MVCSchooldbDemo.Controllers
 		{
 			if (ModelState.IsValid)
 			{
+				item.总分 = GetSum(item);
 				_db.BADLs.Add(item);
 				_db.SaveChanges();
 				return RedirectToAction("Index");
 			}
 
 			return View();
+		}
+
+		[HttpPost]
+		public int GetSum(BADLInfo item)
+		{
+			return item.大便 + item.小便 + item.修饰 + item.用厕 + item.进食 + item.转移 + item.活动 + item.穿衣 + item.上下楼梯 + item.洗澡;
 		}
 
 		public virtual ActionResult Edit(long? id)
@@ -127,7 +134,7 @@ namespace MVCSchooldbDemo.Controllers
 		}
 
 		[HttpPost]
-		public int SumScore(object d)
+		public int SumScore(string d)
 		{
 			return 0;
 		}

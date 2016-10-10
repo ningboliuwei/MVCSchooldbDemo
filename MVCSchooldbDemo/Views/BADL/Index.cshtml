@@ -7,13 +7,9 @@
 <div id="tbBADL">
     <table class="searchTable">
         <tr>
-            <td>字段1</td>
+            <td>被评估人</td>
             <td>
-                <input id="BADL_Search_字段1" class="easyui-textbox" style="width: 110px">//TODO
-            </td>
-            <td>字段2</td>
-            <td>
-                <input id="BADL_Search_字段2" class="easyui-textbox" style="width: 110px">
+                <input id="BADL_Search_被评估人" class="easyui-textbox" style="width: 110px">
             </td>
             <td>
                 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-search fa-16px" onclick="Search()">搜索</a>
@@ -58,15 +54,34 @@
                 hidden: true
             },
             {
-                field: '字段1',
-                title: 'ID',
+                field: '被评估人',
+                title: '被评估人',
+                width: 100,
+                sortable: true
+            },
+             {
+                 field: '总分',
+                 title: '总分',
+                 width: 100,
+                 sortable: true
+             },
+            {
+                field: '评估日期',
+                title: '评估日期',
+                width: 100,
+                sortable: true,
+                formatter: FormatHelper.DateFormatter
+            },
+            {
+                field: '康复护士',
+                title: '康复护士',
                 width: 100,
                 sortable: true
             }
         ]
     ];
 
-    var gridTitle = 'XX记录';
+    var gridTitle = '';
     var gridSortName = 'Id';
     var gridSortOrder = 'asc';
     var url = '@Url.Action("List", "BADL")';
@@ -77,9 +92,7 @@
 
     function Search() {
         const queryData = {
-            字段1: $('#BADL_Search_字段1').textbox('getText'),
-            字段2: $('#BADL_Search_字段2').textbox('getText'),
-            字段3: ($('#BADL_Search_字段3').textbox('getText') === 'ALL') ? '' : $('#BADL_Search_字段3').textbox('getText')
+            被评估人: $('#BADL_Search_被评估人').textbox('getText'),
         };
 
         BindGrid('#gridBADL',
@@ -93,11 +106,7 @@
     }
 
     function ClearSearch() {
-        $('#BADL_Search_字段1').textbox('clear');
-        $('#BADL_Search_字段2').textbox('clear');
-
-        const data = $('#BADL_Search_字段3').combobox('getData');
-        $('##BADL_Search_字段3').combobox('select', data[0]["text"]);
+        $('#BADL_Search_被评估人').textbox('clear');
 
         BindGrid('#gridBADL',
             '#tbBADL',
