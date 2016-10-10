@@ -8,12 +8,14 @@
 </div>
 
 <script>
-    $(function() {
-//need disable & enable next and previous buttons
+    $(function () {
+        //need disable & enable next and previous buttons
+        SetReadonly();
+
 
         $('#BADL_btnPrevious')
             .bind('click',
-                function() {
+                function () {
                     if (window.previousId !== -1) {
                         window.ShowData(`@Url.Action("GetSingleItem", "BADL")/${window.previousId}`);
                     }
@@ -21,10 +23,14 @@
 
         $('#BADL_btnNext')
             .bind('click',
-                function() {
+                function () {
                     if (window.nextId !== -1) {
                         window.ShowData(`@Url.Action("GetSingleItem", "BADL")/${window.nextId}`);
                     }
                 });
     });
+
+    function SetReadonly() {
+        $("#Barthel指数评价表_大便, #Barthel指数评价表_小便, #Barthel指数评价表_修饰, #Barthel指数评价表_用厕, #Barthel指数评价表_进食, #Barthel指数评价表_转移, #Barthel指数评价表_活动, #Barthel指数评价表_穿衣, #Barthel指数评价表_上下楼梯, #Barthel指数评价表_洗澡, #Barthel指数评价表_被评估人, #Barthel指数评价表_评估日期, #Barthel指数评价表_康复护士").combobox({ readonly: true });
+    }
 </script>

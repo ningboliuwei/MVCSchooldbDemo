@@ -1,0 +1,17 @@
+﻿@model MVCSchooldbDemo.Models.Data.XZKFYDZLJLInfo
+@{
+    Layout = null;
+}
+<div class="editorLayout">
+    @Html.Partial("~/Views/XZKFYDZLJL/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForEdit.cshtml")
+</div>
+<script>
+    $(function() {
+        $('#XZKFYDZLJL_btnOK')
+            .bind('click',
+                function() {
+                    EditorSubmit('#formXZKFYDZLJL','#gridXZKFYDZLJL','#editorXZKFYDZLJL','@Url.Action("Edit", "XZKFYDZLJL")', window.GetData(), "确认修改记录吗？", '修改记录出现错误');;
+                });
+    });
+</script>

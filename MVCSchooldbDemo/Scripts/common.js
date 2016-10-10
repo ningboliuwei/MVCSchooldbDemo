@@ -387,15 +387,15 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
                 }
             },
             onShowPanel: function () {
-//                暂时无法解决点开后不能自动选中之前项的问题
-//                const previousValue = $(controlName).combobox("getValue");//获取当前选中的值
-//                console.log(previousValue);
-//                if ($(controlName).combobox("getText") === "") {//如果当前未选中任何项
-//                    console.log($(controlName).combobox("getText"));
-//                    $(controlName).combobox("setValue", data[0][[valueField]]);//则选中第一项
-//                } else {
-//                    $(controlName).combobox("setValue", previousValue);//否则选中之前选中的那项
-//                }
+                //                暂时无法解决点开后不能自动选中之前项的问题
+                //                const previousValue = $(controlName).combobox("getValue");//获取当前选中的值
+                //                console.log(previousValue);
+                //                if ($(controlName).combobox("getText") === "") {//如果当前未选中任何项
+                //                    console.log($(controlName).combobox("getText"));
+                //                    $(controlName).combobox("setValue", data[0][[valueField]]);//则选中第一项
+                //                } else {
+                //                    $(controlName).combobox("setValue", previousValue);//否则选中之前选中的那项
+                //                }
             },
             onSelect: function (record) {
             }

@@ -686,6 +686,7 @@
     <Content Include="Views\GJXRCSHHDLB\Create.cshtml" />
     <Content Include="Views\GJXRCSHHDLB\Edit.cshtml" />
     <Content Include="Views\GJXRCSHHDLB\Details.cshtml" />
+    <Content Include="Views\XZKFYDZLJL\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\EasyUI\themes\metro-blue\" />
