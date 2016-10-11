@@ -172,6 +172,8 @@
             保险类别: ($('#Patient_Search_保险类别').combobox('getValue') === 0) ? '' : $('#Patient_Search_保险类别').combobox('getText')
         };
 
+        console.log($('#Patient_Search_保险类别').combobox('getValue'));
+
         BindGrid('#gridPatient',
             '#tbPatient',
             url,
