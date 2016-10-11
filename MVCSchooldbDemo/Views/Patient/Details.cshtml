@@ -1,16 +1,30 @@
-﻿@{
+﻿@model MVCSchooldbDemo.Models.Data.PatientInfo
+@{
     Layout = null;
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width"/>
-    <title>Details</title>
-</head>
-<body>
-<div>
+<div class="editorLayout">
+    @Html.Partial("~/Views/Patient/_Editor.cshtml")
+    @Html.Partial("~/Views/Shared/LayoutEditor/_ButtonsForDetails.cshtml")
 </div>
-</body>
-</html>
+
+<script>
+    $(function() {
+//need disable & enable next and previous buttons
+
+        $('#Patient_btnPrevious')
+            .bind('click',
+                function() {
+                    if (window.previousId !== -1) {
+                        window.ShowData('@Url.Action("GetSingleItem", "Patient")' + '/' + window.previousId);
+                    }
+                });
+
+        $('#Patient_btnNext')
+         .bind('click',
+             function () {
+                 if (window.nextId !== -1) {
+                     window.ShowData('@Url.Action("GetSingleItem", "Patient")' + '/' + window.nextId);
+                 }
+             });
+    });
+</script>

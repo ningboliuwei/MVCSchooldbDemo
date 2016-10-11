@@ -653,7 +653,6 @@
     <Content Include="Views\Home\_SouthRegion.cshtml" />
     <Content Include="Views\Home\_NorthRegion.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
-    <Content Include="Views\Patient\Details.cshtml" />
     <Content Include="Views\Patient\Create.cshtml" />
     <Content Include="Views\Patient\_Editor.cshtml" />
     <Content Include="Views\DataDictItem\Index.cshtml" />
@@ -687,6 +686,7 @@
     <Content Include="Views\GJXRCSHHDLB\Edit.cshtml" />
     <Content Include="Views\GJXRCSHHDLB\Details.cshtml" />
     <Content Include="Views\XZKFYDZLJL\Edit.cshtml" />
+    <Content Include="Views\Patient\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\EasyUI\themes\metro-blue\" />

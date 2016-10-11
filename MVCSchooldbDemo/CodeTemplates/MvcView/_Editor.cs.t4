@@ -66,9 +66,12 @@
                 success: function(data) {
                     const item = data.Item;
 
+					$(function() { //等全部 combobox 加载完毕？
                     $('#字段1').textbox('setText', item.字段1);
                     $('#字段2').textbox('setText', item.字段2);
                     $('#字段3').combobox('setText', item.字段3);
+
+					});
 
                     window.previousId = data.PreviousId;
                     window.nextId = data.NextId;

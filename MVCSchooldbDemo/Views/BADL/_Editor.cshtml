@@ -185,8 +185,8 @@
             .bind('click',
                 function() {
                     CloseEditor('#editorBADL');
-                }
-            );
+                });
+
     });
 
     function GetData() {
@@ -215,16 +215,16 @@
         $.ajax({
             type: "POST",
             url: url,
-            async: false,//否则会不同步
+            async: false, //否则会不同步
             data: { item: data }, //和 Action 参数要匹配
             success: function(result) {
                 $('#Barthel指数评价表_总分').text(`总分：${result}`);
             },
             dataType: "json"
         });
-
-
     }
+
+
 </script>
 
 @if (Model != null)
@@ -238,25 +238,28 @@
             $.ajax({
                 type: "POST",
                 url: url,
+                async:true,
                 success: function(data) {
                     const item = data.Item;
 
-                    $('#Barthel指数评价表_大便').combobox('setText', item.大便);
-                    $('#Barthel指数评价表_小便').combobox('setText', item.小便);
-                    $('#Barthel指数评价表_修饰').combobox('setText', item.修饰);
-                    $('#Barthel指数评价表_用厕').combobox('setText', item.用厕);
-                    $('#Barthel指数评价表_进食').combobox('setText', item.进食);
-                    $('#Barthel指数评价表_转移').combobox('setText', item.转移);
-                    $('#Barthel指数评价表_活动').combobox('setText', item.活动);
-                    $('#Barthel指数评价表_穿衣').combobox('setText', item.穿衣);
-                    $('#Barthel指数评价表_上下楼梯').combobox('setText', item.上下楼梯);
-                    $('#Barthel指数评价表_洗澡').combobox('setText', item.洗澡);
+                    $(function() { //等全部 combobox 加载完毕？
+                        $('#Barthel指数评价表_大便').combobox('setText', item.大便);
+                        $('#Barthel指数评价表_小便').combobox('setText', item.小便);
+                        $('#Barthel指数评价表_修饰').combobox('setText', item.修饰);
+                        $('#Barthel指数评价表_用厕').combobox('setText', item.用厕);
+                        $('#Barthel指数评价表_进食').combobox('setText', item.进食);
+                        $('#Barthel指数评价表_转移').combobox('setText', item.转移);
+                        $('#Barthel指数评价表_活动').combobox('setText', item.活动);
+                        $('#Barthel指数评价表_穿衣').combobox('setText', item.穿衣);
+                        $('#Barthel指数评价表_上下楼梯').combobox('setText', item.上下楼梯);
+                        $('#Barthel指数评价表_洗澡').combobox('setText', item.洗澡);
 
-                    $('#Barthel指数评价表_被评估人').combobox('setText', item.被评估人);
-                    $('#Barthel指数评价表_评估日期').datebox('setText', FormatHelper.DateBoxFormatter(item.评估日期));
-                    $('#Barthel指数评价表_康复护士').textbox('setText', item.康复护士);
-                    
-                    $('#Barthel指数评价表_总分').text(`总分：${item.总分}`);
+                        $('#Barthel指数评价表_被评估人').combobox('setText', item.被评估人);
+                        $('#Barthel指数评价表_评估日期').datebox('setText', FormatHelper.DateBoxFormatter(item.评估日期));
+                        $('#Barthel指数评价表_康复护士').textbox('setText', item.康复护士);
+
+                        $('#Barthel指数评价表_总分').text(`总分：${item.总分}`);
+                    });
 
                     window.previousId = data.PreviousId;
                     window.nextId = data.NextId;
@@ -267,5 +270,6 @@
                 dataType: "json"
             });
         };
+
     </script>
 }

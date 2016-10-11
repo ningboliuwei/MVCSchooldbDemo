@@ -807,20 +807,22 @@
                 success: function(data) {
                     const item = data.Item;
 
-                    $('#编号').textbox('setText', item.编号);
-                    $('#住院号').textbox('setText', item.住院号);
-                    $('#姓名').textbox('setText', item.姓名);
-                    $('#性别').combobox('setText', item.性别);
-                    $('#出生日期').datebox('setText', FormatHelper.DateBoxFormatter(item.出生日期));
-                    $('#入组日期').datebox('setText', FormatHelper.DateBoxFormatter(item.入组日期));
-                    $('#民族').combobox('setText', item.民族);
-                    $('#婚姻状况').combobox('setText', item.婚姻状况);
-                    $('#文化程度').combobox('setText', item.文化程度);
-                    $('#职业').textbox('setText', item.职业);
-                    $('#年收入').textbox('setText', item.年收入);
-                    $('#保险类别').combobox('setText', item.保险类别);
-                    $('#联系电话').textbox('setText', item.联系电话);
-                    $('#联系地址').textbox('setText', item.联系地址);
+                    $(function() {
+                        $('#编号').textbox('setText', item.编号);
+                        $('#住院号').textbox('setText', item.住院号);
+                        $('#姓名').textbox('setText', item.姓名);
+                        $('#性别').combobox('setText', item.性别);
+                        $('#出生日期').datebox('setText', FormatHelper.DateBoxFormatter(item.出生日期));
+                        $('#入组日期').datebox('setText', FormatHelper.DateBoxFormatter(item.入组日期));
+                        $('#民族').combobox('setText', item.民族);
+                        $('#婚姻状况').combobox('setText', item.婚姻状况);
+                        $('#文化程度').combobox('setText', item.文化程度);
+                        $('#职业').textbox('setText', item.职业);
+                        $('#年收入').textbox('setText', item.年收入);
+                        $('#保险类别').combobox('setText', item.保险类别);
+                        $('#联系电话').textbox('setText', item.联系电话);
+                        $('#联系地址').textbox('setText', item.联系地址);
+                    });
 
                     window.previousId = data.PreviousId;
                     window.nextId = data.NextId;

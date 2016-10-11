@@ -105,6 +105,8 @@
 61. 增加了 editorContainer CSS 类，放在 Index 中 ============ 已解决（固定了高度为 850px，宽度分别设置）
 62. 为 Controller 模板及各个类添加 GetAllItems() 方法，并统一使用了 GetSingleItem() 方法 =========  已解决 2016-10-09
 63. 修改 BindComboBox 方法为支持 editable 的方法（最后加一个 true 参数），顺带支持了 AutoComplete（如 Barthel 表） ======== 已解决 2016-10-09
+64. 使用 combobox 显示数据时，因为 combobox 没来得及绑定好所有项目就 setText，导致出现问题   ==================  在 setText 语句外围再加上 $(function(){}) 疑似解决？
+65. 
 
 
 

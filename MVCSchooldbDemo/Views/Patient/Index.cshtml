@@ -168,8 +168,8 @@
         const queryData = {
             住院号: $('#Patient_Search_住院号').textbox('getText'),
             姓名: $('#Patient_Search_姓名').textbox('getText'),
-            联系电话: $('#Patient_Search_联系电话').textbox('getText')
-            //            保险类别: $('#Patient_Search_保险类别').combobox('getText')
+            联系电话: $('#Patient_Search_联系电话').textbox('getText'),
+            保险类别: ($('#Patient_Search_保险类别').combobox('getValue') === 0) ? '' : $('#Patient_Search_保险类别').combobox('getText')
         };
 
         BindGrid('#gridPatient',
