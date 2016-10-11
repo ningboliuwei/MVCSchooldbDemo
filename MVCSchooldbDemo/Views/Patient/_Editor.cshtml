@@ -765,6 +765,8 @@
         $('#出生日期').datebox({ formatter: FormatHelper.FormatHelper });
         $('#入组日期').datebox({ formatter: FormatHelper.FormatHelper });
 
+       
+
         $('#Patient_btnCancel')
             .bind('click',
                 function() {
@@ -774,6 +776,8 @@
     });
 
     function GetData() {
+        GetCheckedInfo('#吸烟 input');
+
         return {
             编号: $('#编号').textbox('getText'),
             住院号: $('#住院号').textbox('getText'),

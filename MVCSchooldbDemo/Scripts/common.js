@@ -268,7 +268,6 @@ function Edit(gridName, editorName, url, editorTitle) {
         return;
     } else {
         const id = rows[0].Id;
-        console.log(id);
         ShowEditor(editorName, url + "/" + id, editorTitle);
     }
 }
@@ -375,10 +374,10 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
             async: false,
             editable: editable,
             onLoadSuccess: function () {
-                var data = $(controlName).combobox("getData");
-                
+                const data = $(controlName).combobox("getData");
+
                 if (initialText !== null && data[0][[textField]] !== initialText) {
-                    for (var i = 0; i < data.length; i++) {//否则原有的项目的 Id 仍然是 0, 1, 2 ...
+                    for (let i = 0; i < data.length; i++) { //否则原有的项目的 Id 仍然是 0, 1, 2 ...
                         data[i][[valueField]] = data[i][[valueField]] + 1;
                     }
                     data.unshift({ [valueField]: -1, [textField]: initialText });
@@ -467,6 +466,10 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, 
         },
         dataType: "json"
     });
+}
 
-
+function GetCheckedInfo(selector) {
+    $(function() {
+        $.each($(selector), function(index, element) { console.log(element);console.log(element); });
+    });
 }
