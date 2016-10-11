@@ -57,7 +57,7 @@ var FormatHelper = {
         return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
     },
     DateBoxFormatter: function (value, rec, index) {
-        if (value == undefined) {
+        if (value === undefined) {
             return "";
         }
         /*json格式时间转js时间格式*/
@@ -452,12 +452,14 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, 
                     count++;
                     $(controlName)
                         .append(`<input class="magic-${inputType}" id='${itemName}_${array[i]["id"]}' type='${inputType
-                    }' name='${itemName}' /><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]
+                    }' name='${itemName}'  /><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]
                     }</label>`);
 
                     if (direction === Direction.Vertical) {
                         $(controlName).append("<br/>");
                     }
+
+                    // 
                 });
             //value='${array[i]["value"]}'
         },

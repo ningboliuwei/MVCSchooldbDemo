@@ -776,7 +776,8 @@
     });
 
     function GetData() {
-        GetCheckedInfo('#吸烟 input');
+        $.each($('#吸烟 input'), function(){console.log($.prop(this, 'checked'))});;
+        $.each($('#目前的疾病 input'), function(){console.log($.prop(this, 'checked'))});;
 
         return {
             编号: $('#编号').textbox('getText'),

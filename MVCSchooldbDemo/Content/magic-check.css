@@ -135,15 +135,12 @@
 		border-left: 0;
 	}
 
-}
+	.magic-checkbox:checked + label:before {
+		background: #ffffff;
+		border: 1px solid #555555;
+	}
 
-
-.magic-checkbox:checked + label:before {
-	background: #ffffff;
-	border: 1px solid #555555;
-}
-
-.magic-checkbox:checked[disabled] + label:before {
-	background: #fafafa;
-	border: 1px solid #555555;
-}
+	.magic-checkbox:checked[disabled] + label:before {
+		background: #fafafa;
+		border: 1px solid #555555;
+	}
