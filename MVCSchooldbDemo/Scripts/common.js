@@ -372,7 +372,7 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
             valueField: valueField,
             textField: textField,
             dataType: "json",
-            async: true,
+            async: false,
             editable: editable,
             onLoadSuccess: function () {
                 var data = $(controlName).combobox("getData");
@@ -381,8 +381,12 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
                     for (var i = 0; i < data.length; i++) {//否则原有的项目的 Id 仍然是 0, 1, 2 ...
                         data[i][[valueField]] = data[i][[valueField]] + 1;
                     }
-                    data.unshift({ [valueField]: 0, [textField]: initialText });
+                    data.unshift({ [valueField]: -1, [textField]: initialText });
                     $(controlName).combobox("loadData", data);
+                }
+
+                if ($(controlName).combobox("getText") === "") {
+                    $(controlName).combobox("setValue", -1);
                 }
             },
             onShowPanel: function () {

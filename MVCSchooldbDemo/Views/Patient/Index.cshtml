@@ -33,26 +33,26 @@
     </table>
     <table class="buttonsTable">
         <tr>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorPatient', '@Url.Action("Create", "Patient")', '添加')">
-                    添加
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridPatient', '#editorPatient', '@Url.Action("Edit", "Patient")', '编辑')">
-                    编辑
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridPatient', '@Url.Action("Delete", "Patient")')">
-                    删除
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridPatient', '#editorPatient', '@Url.Action("Details", "Patient")', '明细')">
-                    明细
-                </a>
-            </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-plus-square fa-16px fa-fw" onclick="Add('#editorPatient', '@Url.Action("Create", "Patient")', '添加')">
+                添加
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-pencil-square fa-16px" onclick="Edit('#gridPatient', '#editorPatient', '@Url.Action("Edit", "Patient")', '编辑')">
+                编辑
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-trash fa-16px" onclick="Delete('#gridPatient', '@Url.Action("Delete", "Patient")')">
+                删除
+            </a>
+        </td>
+        <td>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="fa fa-list-alt fa-16px" onclick="Details('#gridPatient', '#editorPatient', '@Url.Action("Details", "Patient")', '明细')">
+                明细
+            </a>
+        </td>
     </table>
 </div>
 <div id="editorPatient" class="editorContainer" style="width: 1000px;"></div>
@@ -159,7 +159,7 @@
     var gridSortOrder = 'asc';
     var url = '@Url.Action("List", "Patient")';
 
-    $(function () {
+    $(function() {
         BindGrid('#gridPatient', '#tbPatient', url, columns, gridTitle, gridSortName, gridSortOrder, {});
         BindDataDictItemToCombobox('保险类别', '所有类别', '#Patient_Search_保险类别');
     }); //Show all records
@@ -169,10 +169,10 @@
             住院号: $('#Patient_Search_住院号').textbox('getText'),
             姓名: $('#Patient_Search_姓名').textbox('getText'),
             联系电话: $('#Patient_Search_联系电话').textbox('getText'),
-            保险类别: ($('#Patient_Search_保险类别').combobox('getValue') === 0) ? '' : $('#Patient_Search_保险类别').combobox('getText')
+            保险类别: $('#Patient_Search_保险类别').combobox('getValue') == -1
+                ? '' //此处不能用 === （三个等号），否则会出错
+                : $('#Patient_Search_保险类别').combobox('getText')
         };
-
-        console.log($('#Patient_Search_保险类别').combobox('getValue'));
 
         BindGrid('#gridPatient',
             '#tbPatient',
