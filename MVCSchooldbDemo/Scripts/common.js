@@ -364,7 +364,6 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
     var initialText = arguments[5] ? arguments[5] : null; //arguments[5] 是 initialText，若不存在则使用默认值 null，也可以显式使用
     const editable = arguments[6] ? arguments[6] : false; //arguments[6] 是 editable，若不存在则使用默认值 false
     const onChange = arguments[7] ? arguments[7] : function () { }; //arguments[7] 是 onChange 事件，若不存在则使用空事件
-
     $(controlName)
         .combobox({
             url: url,
@@ -377,7 +376,7 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
             editable: editable,
             onLoadSuccess: function () {
                 var data = $(controlName).combobox("getData");
-
+                
                 if (initialText !== null && data[0][[textField]] !== initialText) {
                     for (var i = 0; i < data.length; i++) {//否则原有的项目的 Id 仍然是 0, 1, 2 ...
                         data[i][[valueField]] = data[i][[valueField]] + 1;
