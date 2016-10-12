@@ -12,11 +12,13 @@
                 <tr>
                     <td class="editorNameColumnStandard">项目名</td>
                     <td>
-                        <input id="项目名" class="easyui-textbox"/>
+                        <input id="项目名" class="easyui-textbox" style="width: 100%;" />
                     </td>
+                </tr>
+                <tr>
                     <td class="editorNameColumnStandard">项目值</td>
                     <td>
-                        <input id="项目值" class="easyui-textbox" data-options="multiline:true" style="height: 280px;"/>
+                        <input id="项目值" class="easyui-textbox" data-options="multiline:true" style="width: 100%;height: 300px;" />
                     </td>
                 </tr>
             </table>
@@ -45,30 +47,30 @@
 @if (Model != null)
 {
     <script>
-        window.previousId = -1;
-        window.nextId = -1;
+    window.previousId = -1;
+    window.nextId = -1;
 
-        $(function() { ShowData(`@Url.Action("GetSingleItem", "DataDictItem")/${@ViewBag.CurrentId}`); });
+    $(function() { ShowData(`@Url.Action("GetSingleItem", "DataDictItem")/${@ViewBag.CurrentId}`); });
 
 
-        function ShowData(url) {
-            $.ajax({
-                type: "POST",
-                url: url,
-                success: function(data) {
-                    const item = data.Item;
+    function ShowData(url) {
+        $.ajax({
+            type: "POST",
+            url: url,
+            success: function(data) {
+                const item = data.Item;
 
-                    $('#项目名').textbox('setText', item.项目名);
-                    $('#项目值').textbox('setText', item.项目值);
+                $('#项目名').textbox('setText', item.项目名);
+                $('#项目值').textbox('setText', item.项目值);
 
-                    window.previousId = data.PreviousId;
-                    window.nextId = data.NextId;
-                },
-                error: function() {
-                    Alert("错误", 'error', AlertType.Error);
-                },
-                dataType: "json"
-            });
-        };
+                window.previousId = data.PreviousId;
+                window.nextId = data.NextId;
+            },
+            error: function() {
+                Alert("错误", 'error', AlertType.Error);
+            },
+            dataType: "json"
+        });
+    };
     </script>
 }

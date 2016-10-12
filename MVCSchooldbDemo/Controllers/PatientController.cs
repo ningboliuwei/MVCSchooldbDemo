@@ -68,7 +68,12 @@ namespace MVCSchooldbDemo.Controllers
 								item.年收入,
 								item.保险类别,
 								item.联系电话,
-								item.联系地址
+								item.联系地址,
+								item.住所至康复中心交通是否便利,
+								item.是否参与工作,
+								item.吸烟,
+								item.药物不良反应,
+								item.目前的疾病
 							},
 							CurrentIndex = currentIndex,
 							PreviousId = currentIndex == 0 ? -1 : list[currentIndex - 1].Id,

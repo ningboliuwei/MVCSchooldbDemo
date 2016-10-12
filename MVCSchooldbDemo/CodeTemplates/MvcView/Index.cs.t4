@@ -13,7 +13,7 @@
         <tr>
             <td>字段1</td>
             <td>
-                <input id="<#=name#>_Search_字段1" class="easyui-textbox" style="width: 110px">//TODO
+                <input id="<#=name#>_Search_字段1" class="easyui-textbox" style="width: 110px">
             </td>
             <td>字段2</td>
             <td>

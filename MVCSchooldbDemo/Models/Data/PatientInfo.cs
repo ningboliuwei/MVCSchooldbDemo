@@ -24,5 +24,10 @@ namespace MVCSchooldbDemo.Models.Data
 		public string 保险类别 { get; set; }
 		public string 联系电话 { get; set; }
 		public string 联系地址 { get; set; }
+		public string 住所至康复中心交通是否便利 { get; set; }
+		public string 是否参与工作 { get; set; }
+		public string 吸烟 { get; set; }
+		public string 药物不良反应 { get; set; }
+		public string 目前的疾病 { get; set; }
 	}
 }

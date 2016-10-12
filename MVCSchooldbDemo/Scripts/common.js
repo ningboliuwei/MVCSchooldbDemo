@@ -7,7 +7,7 @@ var Direction = { Vertical: "vertical", Horizontal: "horizontal" }; //批量生�
 
 //EasyUI用DataGrid用日期格式化
 var FormatHelper = {
-    DateFormatter: function (value, row, index) {
+    DateFormatter: function(value, row, index) {
         const date = new Date(value);
         const year = date.getFullYear().toString();
         var month = (date.getMonth() + 1);
@@ -25,7 +25,7 @@ var FormatHelper = {
     },
 
     //EasyUI用DataGrid用日期格式化
-    DateTimeFormatter: function (value, row, index) {
+    DateTimeFormatter: function(value, row, index) {
         const date = new Date(value);
         const year = date.getFullYear().toString();
         var month = (date.getMonth() + 1);
@@ -56,7 +56,7 @@ var FormatHelper = {
 
         return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
     },
-    DateBoxFormatter: function (value, rec, index) {
+    DateBoxFormatter: function(value, rec, index) {
         if (value === undefined) {
             return "";
         }
@@ -77,7 +77,7 @@ var FormatHelper = {
 // 例子： 
 // (new Date()).Format("yyyy-mm-dd HH:MM:SS.s") ==> 2015-07-02 08:09:04.423 
 // (new Date()).Format("yyyy-m-d H:M:S.s")      ==> 2015-7-2 8:9:4.18 
-Date.prototype.Format = function (fmt) { //author: meizz 
+Date.prototype.Format = function(fmt) { //author: meizz 
     const o = {
         "m+": this.getMonth() + 1, //月份 
         "d+": this.getDate(), //日 
@@ -149,7 +149,7 @@ function Alert(title, msg, icon) {
 function Confirm(title, msg, callback) {
     $.messager.confirm(title,
         msg,
-        function (result) {
+        function(result) {
             if (result) {
                 callback();
             }
@@ -187,16 +187,16 @@ function FormSubmit(formName, gridName, editorName, url, errorMsg) {
         .form("submit",
         {
             url: url,
-            onSubmit: function () {
+            onSubmit: function() {
                 return $(this).form("enableValidation").form("validate");
             },
-            success: function () {
-                $(function () {
+            success: function() {
+                $(function() {
                     RefreshGrid(gridName);
                     CloseEditor(editorName);
                 });
             },
-            error: function () {
+            error: function() {
                 Alert("错误", errorMsg, AlertType.Error);
             }
         });
@@ -207,13 +207,13 @@ function Post(gridName, editorName, url, data, errorMsg) {
         type: "POST",
         url: url,
         data: data,
-        success: function () {
-            $(function () {
+        success: function() {
+            $(function() {
                 RefreshGrid(gridName);
                 CloseEditor(editorName);
             });
         },
-        error: function () {
+        error: function() {
             Alert("错误", errorMsg, AlertType.Error);
         },
         dataType: "html"
@@ -237,7 +237,7 @@ function Delete(gridName, url) {
     } else {
         Confirm("确认",
             "确认删除选中的记录吗？",
-            function () {
+            function() {
                 const ids = [];
 
                 for (let i = 0; i < rows.length; i++) {
@@ -249,7 +249,7 @@ function Delete(gridName, url) {
                     type: "POST",
                     data: JSON.stringify(ids),
                     contentType: "application/json;charset=utf-8",
-                    success: function () {
+                    success: function() {
                         RefreshGrid(gridName);
                     }
                 });
@@ -336,7 +336,7 @@ function EditorSubmit(formName, gridName, editorName, url, data, confirmMsg, err
     if (ValidateForm(formName)) {
         Confirm("确认",
             confirmMsg,
-            function () {
+            function() {
                 Post(gridName, editorName, url, data, errorMsg);
             });
     }
@@ -346,7 +346,7 @@ function InitTree(treeName, tabsName, data) {
     $(treeName)
         .tree({
             data: data,
-            onClick: function (node) {
+            onClick: function(node) {
                 if (node.attributes.url !== "#") {
                     AddTab(tabsName, node.text, node.attributes.url);
                 }
@@ -362,7 +362,7 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
     var textField = arguments[4];
     var initialText = arguments[5] ? arguments[5] : null; //arguments[5] 是 initialText，若不存在则使用默认值 null，也可以显式使用
     const editable = arguments[6] ? arguments[6] : false; //arguments[6] 是 editable，若不存在则使用默认值 false
-    const onChange = arguments[7] ? arguments[7] : function () { }; //arguments[7] 是 onChange 事件，若不存在则使用空事件
+    const onChange = arguments[7] ? arguments[7] : function() {}; //arguments[7] 是 onChange 事件，若不存在则使用空事件
     $(controlName)
         .combobox({
             url: url,
@@ -373,7 +373,7 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
             dataType: "json",
             async: false,
             editable: editable,
-            onLoadSuccess: function () {
+            onLoadSuccess: function() {
                 const data = $(controlName).combobox("getData");
 
                 if (initialText !== null && data[0][[textField]] !== initialText) {
@@ -388,7 +388,7 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
                     $(controlName).combobox("setValue", -1);
                 }
             },
-            onShowPanel: function () {
+            onShowPanel: function() {
                 //                暂时无法解决点开后不能自动选中之前项的问题
                 //                const previousValue = $(controlName).combobox("getValue");//获取当前选中的值
                 //                console.log(previousValue);
@@ -399,7 +399,7 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
                 //                    $(controlName).combobox("setValue", previousValue);//否则选中之前选中的那项
                 //                }
             },
-            onSelect: function (record) {
+            onSelect: function(record) {
             }
         });
 }
@@ -445,15 +445,16 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, 
         url: DATA_DICT_ITEM_URL,
         data: { itemName: itemName },
         async: true,
-        success: function (array) {
+        success: function(array) {
             var count = 0;
             $.each(array,
-                function (i) {
+                function(i) {
                     count++;
                     $(controlName)
                         .append(`<input class="magic-${inputType}" id='${itemName}_${array[i]["id"]}' type='${inputType
-                        }' name='${itemName}' value='${array[i]["value"]}'/><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]
-                    }</label>`);
+                            }' name='${itemName}' value='${array[i]["value"]}'/><label for='${itemName}_${array[i]["id"]
+                            }'>${array[i]["value"]
+                            }</label>`);
 
                     if (direction === Direction.Vertical) {
                         $(controlName).append("<br/>");
@@ -463,7 +464,7 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, 
                 });
             //value='${array[i]["value"]}'
         },
-        error: function () {
+        error: function() {
             Alert("错误", errorMsg, AlertType.Error);
         },
         dataType: "json"
@@ -472,16 +473,37 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, 
 
 function GetInputListCheckedValues(containerName) {
     var result = "";
-    $.each($(containerName + ' input'), function () {
-        if ($.prop(this, 'checked')) {
-            result += $.prop(this, 'value') + ';' ;
-        };
-    });
+    $.each($(containerName + " input"),
+        function() {
+            if ($.prop(this, "checked")) {
+                result += $.prop(this, "value") + ";";
+            };
+        });
 
-//    if (result.endsWith(';')) {
-//        result.trim(';');
-    //    }
-    console.log(result.endsWith(';'));
-    
+    if (result.endsWith(";")) {
+        result = result.substr(0, result.length - 1); //去掉末尾多余的分号
+    }
+
     return result;
 }
+
+function SetInputListCheckedValues(containerName, valueString) {
+    if (valueString != null) {
+        $(function() {// magic code!!!! DO NOT CHANGE!!!!
+            var s = valueString;
+            if (s.endsWith(";") === false) {
+                s = s + ";";
+            }
+            var values = s.split(";");
+            $.each($(containerName + " input"),
+                function() {
+                    $.prop(this, "checked", false); //先把当前的取消选择
+                    for (let i = 0; i < values.length; i++) {
+                        if ($.prop(this, "value") === values[i]) {
+                            $.prop(this, "checked", true);
+                        }
+                    }
+                });
+        });
+    }
+};

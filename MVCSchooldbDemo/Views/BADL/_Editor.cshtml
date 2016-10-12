@@ -238,11 +238,12 @@
             $.ajax({
                 type: "POST",
                 url: url,
-                async:true,
                 success: function(data) {
                     const item = data.Item;
-
+                 
+                    $.parser.parse();  //有奇效？
                     $(function() { //等全部 combobox 加载完毕？
+                       
                         $('#Barthel指数评价表_大便').combobox('setText', item.大便);
                         $('#Barthel指数评价表_小便').combobox('setText', item.小便);
                         $('#Barthel指数评价表_修饰').combobox('setText', item.修饰);
