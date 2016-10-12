@@ -452,7 +452,7 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, 
                     count++;
                     $(controlName)
                         .append(`<input class="magic-${inputType}" id='${itemName}_${array[i]["id"]}' type='${inputType
-                    }' name='${itemName}'  /><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]
+                        }' name='${itemName}' value='${array[i]["value"]}'/><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]
                     }</label>`);
 
                     if (direction === Direction.Vertical) {
@@ -470,8 +470,18 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, 
     });
 }
 
-function GetCheckedInfo(selector) {
-    $(function() {
-        $.each($(selector), function(index, element) { console.log(element);console.log(element); });
+function GetInputListCheckedValues(containerName) {
+    var result = "";
+    $.each($(containerName + ' input'), function () {
+        if ($.prop(this, 'checked')) {
+            result += $.prop(this, 'value') + ';' ;
+        };
     });
+
+//    if (result.endsWith(';')) {
+//        result.trim(';');
+    //    }
+    console.log(result.endsWith(';'));
+    
+    return result;
 }
