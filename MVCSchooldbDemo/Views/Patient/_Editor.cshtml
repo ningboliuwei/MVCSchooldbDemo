@@ -734,15 +734,12 @@
         </div>
     </div>
 </form>
+
 <script>
     $(function() {
-        BindDataDictItemToCombobox('性别');
-        BindDataDictItemToCombobox('婚姻状况');
-        BindDataDictItemToCombobox('职业');
-        BindDataDictItemToCombobox('年收入');
-        BindDataDictItemToCombobox('文化程度');
-        BindDataDictItemToCombobox('保险类别');
-        BindDataDictItemToCombobox('民族');
+
+
+
 
         GenerateInputListByDataDictItem("住所至康复中心交通是否便利", InputType.Radio);
         GenerateInputListByDataDictItem("是否参与工作", InputType.Radio);
@@ -764,7 +761,6 @@
 
         $('#出生日期').datebox({ formatter: FormatHelper.FormatHelper });
         $('#入组日期').datebox({ formatter: FormatHelper.FormatHelper });
-
 
         $('#Patient_btnCancel')
             .bind('click',
@@ -797,65 +793,79 @@
             目前的疾病: GetInputListCheckedValues('#目前的疾病')
         };
     }
+
+    function f1(a) {
+        if (a) {
+
+        } else {
+
+        }
+    }
 </script>
 
 @if (Model != null)
+
 {
     <script>
-    window.previousId = -1;
-    window.nextId = -1;
-    $(function() { ShowData(`@Url.Action("GetSingleItem", "Patient")/${@ViewBag.CurrentId}`); });
+        window.previousId = -1;
+        window.nextId = -1;
+        $(function() { ShowData(`@Url.Action("GetSingleItem", "Patient")/${@ViewBag.CurrentId}`); });
 
-    function ShowData(url) {
-        $.ajax({
-            type: "POST",
-            url: url,
-            success: function(data) {
-                const item = data.Item;
-
-         
+        function ShowData(url) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                success: function(data) {
+                    const item = data.Item;
 
                     $('#编号').textbox('setText', item.编号);
                     $('#住院号').textbox('setText', item.住院号);
                     $('#姓名').textbox('setText', item.姓名);
-                    $('#性别').combobox('setText', item.性别);
+
+                    BindDataDictItemToCombobox('性别', item.性别);
+                    BindDataDictItemToCombobox('婚姻状况',item.婚姻状况);
+                    BindDataDictItemToCombobox('职业',item.职业);
+                    BindDataDictItemToCombobox('年收入',item.年收入);
+                    BindDataDictItemToCombobox('文化程度',item.文化程度);
+                    BindDataDictItemToCombobox('保险类别',item.保险类别);
+                    BindDataDictItemToCombobox('民族',item.民族);
+
                     $('#出生日期').datebox('setText', FormatHelper.DateBoxFormatter(item.出生日期));
                     $('#入组日期').datebox('setText', FormatHelper.DateBoxFormatter(item.入组日期));
-                    $('#民族').combobox('setText', item.民族);
-                    $('#婚姻状况').combobox('setText', item.婚姻状况);
-                    $('#文化程度').combobox('setText', item.文化程度);
+
                     $('#职业').textbox('setText', item.职业);
                     $('#年收入').textbox('setText', item.年收入);
                     $('#保险类别').combobox('setText', item.保险类别);
                     $('#联系电话').textbox('setText', item.联系电话);
                     $('#联系地址').textbox('setText', item.联系地址);
-                   
+
+
                     SetInputListCheckedValues('#住所至康复中心交通是否便利', item.住所至康复中心交通是否便利);
                     SetInputListCheckedValues('#是否参与工作', item.是否参与工作);
                     SetInputListCheckedValues('#吸烟', item.吸烟);
                     SetInputListCheckedValues('#药物不良反应', item.药物不良反应);
                     SetInputListCheckedValues('#目前的疾病', item.目前的疾病);
 
-//                $.parser.onComplete = function(){
-//                                        SetInputListCheckedValues('#住所至康复中心交通是否便利', item.住所至康复中心交通是否便利);
-//                                        SetInputListCheckedValues('#是否参与工作', item.是否参与工作);
-//                                        SetInputListCheckedValues('#吸烟', item.吸烟);
-//                                        SetInputListCheckedValues('#药物不良反应', item.药物不良反应);
-//                                        SetInputListCheckedValues('#目前的疾病', item.目前的疾病);
-//                    console.log('ok');
-//                }
-
-
-                window.previousId = data.PreviousId;
-                window.nextId = data.NextId;
-            },
-            error: function() {
-                Alert("错误", 'error', AlertType.Error);
-            },
-            dataType: "json"
-        });
-    };
-
-
+                    window.previousId = data.PreviousId;
+                    window.nextId = data.NextId;
+                },
+                error: function() {
+                    Alert("错误", 'error', AlertType.Error);
+                },
+                dataType: "json"
+            });
+        };
+    </script>
+}
+else
+{
+    <script>
+        BindDataDictItemToCombobox('性别');
+        BindDataDictItemToCombobox('婚姻状况');
+        BindDataDictItemToCombobox('职业');
+        BindDataDictItemToCombobox('年收入');
+        BindDataDictItemToCombobox('文化程度');
+        BindDataDictItemToCombobox('保险类别');
+        BindDataDictItemToCombobox('民族');
     </script>
 }

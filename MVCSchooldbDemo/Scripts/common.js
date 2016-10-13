@@ -361,7 +361,6 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, va
     var valueField = arguments[3];
     var textField = arguments[4];
     var value = arguments[5];
-    console.log('bindcombo'+value);
     var initialText = arguments[6] ? arguments[6] : null; //arguments[5] 是 initialText，若不存在则使用默认值 null，也可以显式使用
     const editable = arguments[7] ? arguments[7] : false; //arguments[6] 是 editable，若不存在则使用默认值 false
 
@@ -374,41 +373,33 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, va
             textField: textField,
             dataType: "json",
             editable: editable,
-            onLoadSuccess: function () {
-                const data = $(controlName).combobox("getData");
-                if (value !== null) {
-                    for (let i = 0; i < data.length; i++) {
-                        if (data[i].selected == null && data[i][[textField]] === value ) {
-                            data[i].selected = true;
-                            $(controlName).combobox("loadData", data);
+            loader: function(param, success, error) {
+                $.ajax({
+                    url: url,
+                    dataType: 'json',
+                    data: params,
+                    success: function (data) {
+                        if (value !== null) {//select the specifit value
+                            for (let i = 0; i < data.length; i++) {
+                                if (data[i].selected == null && data[i][[textField]] === value) {
+                                    data[i].selected = true;
+                                }
+                            }
                         }
-                    }
-                }
 
-                if (initialText !== null && data[0][[textField]] !== initialText) {
-                    for (let i = 0; i < data.length; i++) { //否则原有的项目的 Id 仍然是 0, 1, 2 ...
-                        data[i][[valueField]] = data[i][[valueField]] + 1;
-                    }
-                    data.unshift({ [valueField]: -1, [textField]: initialText });
-                    $(controlName).combobox("loadData", data);
-                }
+                        if (initialText !== null && data[0][[textField]] !== initialText) {//add the initial value
+                            for (let i = 0; i < data.length; i++) { //否则原有的项目的 Id 仍然是 0, 1, 2 ...
+                                data[i][[valueField]] = data[i][[valueField]] + 1;
+                            }
+                            data.unshift({ [valueField]: -1, [textField]: initialText });
+                        }
 
-             
-//
-//                if ($(controlName).combobox("getText") === "") {
-//                    $(controlName).combobox("setValue", -1);
-//                }
+                        success(data);
+                    }
+                });
             },
             onShowPanel: function () {
-                //                暂时无法解决点开后不能自动选中之前项的问题
-                //                const previousValue = $(controlName).combobox("getValue");//获取当前选中的值
-                //                console.log(previousValue);
-                //                if ($(controlName).combobox("getText") === "") {//如果当前未选中任何项
-                //                    console.log($(controlName).combobox("getText"));
-                //                    $(controlName).combobox("setValue", data[0][[valueField]]);//则选中第一项
-                //                } else {
-                //                    $(controlName).combobox("setValue", previousValue);//否则选中之前选中的那项
-                //                }
+         
             },
             onSelect: function (record) {
             }
@@ -433,7 +424,7 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, va
 //    return data;
 //}
 
-function BindDataDictItemToCombobox() { //(itemName, initialText?, controlName?)
+function BindDataDictItemToCombobox() { //(itemName, value, initialText?, controlName?)
     const itemName = arguments[0];
     const value = arguments[1] ? arguments[1] : null;
     const initialText = arguments[2] ? arguments[2] : null;
