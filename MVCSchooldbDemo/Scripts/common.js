@@ -373,7 +373,7 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, va
             textField: textField,
             dataType: "json",
             editable: editable,
-            loader: function(param, success, error) {
+            loader: function (param, success, error) {
                 $.ajax({
                     url: url,
                     dataType: 'json',
@@ -399,7 +399,7 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, va
                 });
             },
             onShowPanel: function () {
-         
+
             },
             onSelect: function (record) {
             }
@@ -437,11 +437,17 @@ function RefreshCombobox(comboboxName) {
     $(comboboxName).combobox("reload");
 };
 
-function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, controlName?
+function GenerateInputListByDataDictItem() { //itemName, inputType, valueString?, direction?, controlName?
     var itemName = arguments[0];
     var inputType = arguments[1];
-    var direction = arguments[2] ? arguments[2] : Direction.Horizontal;
-    var controlName = arguments[3] ? arguments[3] : `#${arguments[0]}`;
+    var valueString = arguments[2] ? arguments[2] : null;
+    var direction = arguments[3] ? arguments[3] : Direction.Horizontal;
+    var controlName = arguments[4] ? arguments[4] : `#${arguments[0]}`;
+
+    var values = [];
+    if (valueString != null) {
+        values = valueString.split(";");
+    }
 
     $.ajax({
         type: "POST",
@@ -450,14 +456,25 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, 
         async: true,
         success: function (array) {
             var count = 0;
+            console.log(values);
+            console.log(array);
             $.each(array,
                 function (i) {
                     count++;
+
+                    var checkedString = "";
+
+                    for (let j = 0; j < values.length; j++) {
+                        if (array[i] === values[j]) {
+                            console.log('found');
+                            checkedString = "checked";
+                        }
+                    }
+
                     $(controlName)
-                        .append(`<input class="magic-${inputType}" id='${itemName}_${array[i]["id"]}' type='${inputType
-                    }' name='${itemName}' value='${array[i]["value"]}'/><label for='${itemName}_${array[i]["id"]
-                    }'>${array[i]["value"]
-                    }</label>`);
+                        .append(`<input class="magic-${inputType}" id='${itemName}_${array[i]["id"]}' type='${
+                                inputType}' name='${itemName}' value='${array[i]["value"]}' ${checkedString
+                    }/><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]}</label>`);
 
                     if (direction === Direction.Vertical) {
                         $(controlName).append("<br/>");
@@ -473,6 +490,7 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, direction?, 
         dataType: "json"
     });
 }
+//}
 
 function GetInputListCheckedValues(containerName) {
     var result = "";
@@ -497,16 +515,17 @@ function SetInputListCheckedValues(containerName, valueString) {
             s = s + ";";
         }
         var values = s.split(";");
-        $(containerName).ready(function () {
-            $.each($(containerName + " input"),
-                function () {
-                    $.prop(this, "checked", false); //先把当前的取消选择
-                    for (let i = 0; i < values.length; i++) {
-                        if ($.prop(this, "value") === values[i]) {
-                            $.prop(this, "checked", true);
+        $(containerName)
+            .ready(function () {
+                $.each($(containerName + " input"),
+                    function () {
+                        $.prop(this, "checked", false); //先把当前的取消选择
+                        for (let i = 0; i < values.length; i++) {
+                            if ($.prop(this, "value") === values[i]) {
+                                $.prop(this, "checked", true);
+                            }
                         }
-                    }
-                });
-        });
+                    });
+            });
     }
 };
