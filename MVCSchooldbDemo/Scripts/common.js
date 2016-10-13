@@ -354,15 +354,17 @@ function InitTree(treeName, tabsName, data) {
         });
 }
 
-function BindCombobox() { //(controlName, url, params, valueField, textField, initialText?, editable?, onChange?)
+function BindCombobox() { //(controlName, url, params, valueField, textField, value, initialText?, editable?, onChange?)
     var controlName = arguments[0];
     const url = arguments[1];
     const params = arguments[2];
     var valueField = arguments[3];
     var textField = arguments[4];
-    var initialText = arguments[5] ? arguments[5] : null; //arguments[5] 是 initialText，若不存在则使用默认值 null，也可以显式使用
-    const editable = arguments[6] ? arguments[6] : false; //arguments[6] 是 editable，若不存在则使用默认值 false
-    const onChange = arguments[7] ? arguments[7] : function () { }; //arguments[7] 是 onChange 事件，若不存在则使用空事件
+    var value = arguments[5];
+    console.log('bindcombo'+value);
+    var initialText = arguments[6] ? arguments[6] : null; //arguments[5] 是 initialText，若不存在则使用默认值 null，也可以显式使用
+    const editable = arguments[7] ? arguments[7] : false; //arguments[6] 是 editable，若不存在则使用默认值 false
+
     $(controlName)
         .combobox({
             url: url,
@@ -371,10 +373,17 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
             valueField: valueField,
             textField: textField,
             dataType: "json",
-            async: false,
             editable: editable,
             onLoadSuccess: function () {
                 const data = $(controlName).combobox("getData");
+                if (value !== null) {
+                    for (let i = 0; i < data.length; i++) {
+                        if (data[i].selected == null && data[i][[textField]] === value ) {
+                            data[i].selected = true;
+                            $(controlName).combobox("loadData", data);
+                        }
+                    }
+                }
 
                 if (initialText !== null && data[0][[textField]] !== initialText) {
                     for (let i = 0; i < data.length; i++) { //否则原有的项目的 Id 仍然是 0, 1, 2 ...
@@ -384,9 +393,11 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
                     $(controlName).combobox("loadData", data);
                 }
 
-                if ($(controlName).combobox("getText") === "") {
-                    $(controlName).combobox("setValue", -1);
-                }
+             
+//
+//                if ($(controlName).combobox("getText") === "") {
+//                    $(controlName).combobox("setValue", -1);
+//                }
             },
             onShowPanel: function () {
                 //                暂时无法解决点开后不能自动选中之前项的问题
@@ -424,10 +435,11 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, in
 
 function BindDataDictItemToCombobox() { //(itemName, initialText?, controlName?)
     const itemName = arguments[0];
-    const initialText = arguments[1] ? arguments[1] : null;
-    const controlName = arguments[2] ? arguments[2] : `#${arguments[0]}`;
+    const value = arguments[1] ? arguments[1] : null;
+    const initialText = arguments[2] ? arguments[2] : null;
+    const controlName = arguments[3] ? arguments[3] : `#${arguments[0]}`;
 
-    BindCombobox(controlName, DATA_DICT_ITEM_URL, { itemName: itemName }, "id", "value", initialText);
+    BindCombobox(controlName, DATA_DICT_ITEM_URL, { itemName: itemName }, "id", "value", value, initialText);
 }
 
 function RefreshCombobox(comboboxName) {
@@ -494,9 +506,9 @@ function SetInputListCheckedValues(containerName, valueString) {
             s = s + ";";
         }
         var values = s.split(";");
-        $(containerName).ready(function() {
+        $(containerName).ready(function () {
             $.each($(containerName + " input"),
-                function() {
+                function () {
                     $.prop(this, "checked", false); //先把当前的取消选择
                     for (let i = 0; i < values.length; i++) {
                         if ($.prop(this, "value") === values[i]) {
