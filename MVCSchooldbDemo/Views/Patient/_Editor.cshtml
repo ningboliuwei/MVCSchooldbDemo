@@ -813,9 +813,7 @@
             success: function(data) {
                 const item = data.Item;
 
-                $.parser.parse();  //有奇效？
-
-                $(function() { //等全部 combobox 加载完毕？
+         
 
                     $('#编号').textbox('setText', item.编号);
                     $('#住院号').textbox('setText', item.住院号);
@@ -837,7 +835,6 @@
                     SetInputListCheckedValues('#吸烟', item.吸烟);
                     SetInputListCheckedValues('#药物不良反应', item.药物不良反应);
                     SetInputListCheckedValues('#目前的疾病', item.目前的疾病);
-                });
 
 //                $.parser.onComplete = function(){
 //                                        SetInputListCheckedValues('#住所至康复中心交通是否便利', item.住所至康复中心交通是否便利);
