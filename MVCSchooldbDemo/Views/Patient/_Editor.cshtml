@@ -787,23 +787,24 @@
         BindDataDictItemToCombobox('保险类别');
         BindDataDictItemToCombobox('民族');
 
-        //        GenerateInputListByDataDictItem("住所至康复中心交通是否便利", InputType.Radio);
-        //        GenerateInputListByDataDictItem("是否参与工作", InputType.Radio);
-        //        GenerateInputListByDataDictItem("吸烟", InputType.Radio);
-        //        GenerateInputListByDataDictItem("药物不良反应", InputType.Radio);
-        //        GenerateInputListByDataDictItem("目前的疾病", InputType.Checkbox);
-        //        GenerateInputListByDataDictItem("是否有高血压", InputType.Radio);
-        //        GenerateInputListByDataDictItem("高血压控制情况", InputType.Radio);
-        //        GenerateInputListByDataDictItem("降压药物", InputType.Checkbox);
-        //        GenerateInputListByDataDictItem("是否有糖尿病", InputType.Radio);
-        //        GenerateInputListByDataDictItem("糖尿病控制情况", InputType.Radio);
-        //        GenerateInputListByDataDictItem("降糖药物", InputType.Checkbox);
-        //        GenerateInputListByDataDictItem("是否存在血脂异常", InputType.Radio);
-        //        GenerateInputListByDataDictItem("降脂药物", InputType.Checkbox);
-        //        GenerateInputListByDataDictItem("抗血小板及抗凝药物", InputType.Radio);
-        //        GenerateInputListByDataDictItem("服药依从性", InputType.Checkbox);
-        //        GenerateInputListByDataDictItem("神经系统是否存在影响运动的疾病", InputType.Radio);
-        //        GenerateInputListByDataDictItem("运动系统是否存在影响运动的疾病", InputType.Radio);
+        GenerateInputListByDataDictItem("住所至康复中心交通是否便利", InputType.Radio);
+        GenerateInputListByDataDictItem("是否参与工作", InputType.Radio);
+        GenerateInputListByDataDictItem("吸烟", InputType.Radio);
+        GenerateInputListByDataDictItem("药物不良反应", InputType.Radio);
+        GenerateInputListByDataDictItem("目前的疾病", InputType.Checkbox);
+
+        GenerateInputListByDataDictItem("是否有高血压", InputType.Radio);
+        GenerateInputListByDataDictItem("高血压控制情况", InputType.Radio);
+        GenerateInputListByDataDictItem("降压药物", InputType.Checkbox);
+        GenerateInputListByDataDictItem("是否有糖尿病", InputType.Radio);
+        GenerateInputListByDataDictItem("糖尿病控制情况", InputType.Radio);
+        GenerateInputListByDataDictItem("降糖药物", InputType.Checkbox);
+        GenerateInputListByDataDictItem("是否存在血脂异常", InputType.Radio);
+        GenerateInputListByDataDictItem("降脂药物", InputType.Checkbox);
+        GenerateInputListByDataDictItem("抗血小板及抗凝药物", InputType.Radio);
+        GenerateInputListByDataDictItem("服药依从性", InputType.Checkbox);
+        GenerateInputListByDataDictItem("神经系统是否存在影响运动的疾病", InputType.Radio);
+        GenerateInputListByDataDictItem("运动系统是否存在影响运动的疾病", InputType.Radio);
 
         //***********************动态数据控件（新建）***********************
     </script>
@@ -850,11 +851,6 @@ else
                     GenerateInputListByDataDictItem("药物不良反应", InputType.Radio, item.药物不良反应);
                     GenerateInputListByDataDictItem("目前的疾病", InputType.Checkbox, item.目前的疾病);
 
-                    //                    SetInputListCheckedValues('#住所至康复中心交通是否便利', item.住所至康复中心交通是否便利);
-                    //                    SetInputListCheckedValues('#是否参与工作', item.是否参与工作);
-                    //                    SetInputListCheckedValues('#吸烟', item.吸烟);
-                    //                    SetInputListCheckedValues('#药物不良反应', item.药物不良反应);
-                    //                    SetInputListCheckedValues('#目前的疾病', item.目前的疾病);
                     //***********************动态数据控件（显示数据）***********************
 
                     window.previousId = data.PreviousId;

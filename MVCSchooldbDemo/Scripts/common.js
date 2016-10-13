@@ -456,8 +456,7 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, valueString?
         async: true,
         success: function (array) {
             var count = 0;
-            console.log(values);
-            console.log(array);
+          
             $.each(array,
                 function (i) {
                     count++;
@@ -465,8 +464,7 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, valueString?
                     var checkedString = "";
 
                     for (let j = 0; j < values.length; j++) {
-                        if (array[i] === values[j]) {
-                            console.log('found');
+                        if (array[i]['value'] === values[j]) {
                             checkedString = "checked";
                         }
                     }
@@ -479,8 +477,6 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, valueString?
                     if (direction === Direction.Vertical) {
                         $(controlName).append("<br/>");
                     }
-
-                    // 
                 });
             //value='${array[i]["value"]}'
         },
