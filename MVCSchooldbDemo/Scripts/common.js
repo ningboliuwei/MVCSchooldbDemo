@@ -457,6 +457,7 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, valueString?
         async: true,
         success: function (array) {
             var count = 0;
+            var s = "";
 
             $.each(array,
                 function (i) {
@@ -469,17 +470,16 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, valueString?
                             checkedString = "checked";
                         }
                     }
-                    //class="magic-${inputType}"
-                    $(controlName)
-                        .append(`<input class='easyui-validatebox' id='${itemName}_${array[i]["id"]}' type='${
-                            inputType}' name='${itemName}' value='${array[i]["value"]}' ${checkedString
-                    }/><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]}</label>`);
+
+                    s += `<input class='magic-${inputType}' id='${itemName}_${array[i]["id"]}' type='${inputType}' name='${itemName}' value='${array[i]["value"]}' ${checkedString}/><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]}</label>`;
 
                     if (direction === Direction.Vertical) {
-                        $(controlName).append("<br/>");
+                        s += "<br/>";
                     }
                 });
-            //value='${array[i]["value"]}'
+
+            $(controlName).append(s);
+            return true;
         },
         error: function () {
             Alert("错误", errorMsg, AlertType.Error);
@@ -535,6 +535,6 @@ function ShowLoadingMask(control) {
 }
 
 function HideLoadingMask(control) {
-   $(`${control} .datagrid-mask-msg`).remove();
-   $(`${control} .datagrid-mask`).remove();
+    $(`${control} .datagrid-mask-msg`).remove();
+    $(`${control} .datagrid-mask`).remove();
 }
