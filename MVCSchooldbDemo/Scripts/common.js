@@ -163,7 +163,8 @@ function ShowEditor(editorName, url, title) {
             closed: true,
             title: title,
             href: url,
-            modal: true
+            modal: true,
+            minimized: true
             //            cache: false,
             //            doSize: false
         });
@@ -355,7 +356,7 @@ function InitTree(treeName, tabsName, data) {
 }
 
 function BindCombobox() { //(controlName, url, params, valueField, textField, value, initialText?, editable?, onChange?)
-    var controlName = arguments[0];
+    const controlName = arguments[0];
     const url = arguments[1];
     const params = arguments[2];
     var valueField = arguments[3];
@@ -376,10 +377,10 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, va
             loader: function (param, success, error) {
                 $.ajax({
                     url: url,
-                    dataType: 'json',
+                    dataType: "json",
                     data: params,
                     success: function (data) {
-                        if (value !== null) {//select the specifit value
+                        if (value !== null) { //select the specifit value
                             for (let i = 0; i < data.length; i++) {
                                 if (data[i].selected == null && data[i][[textField]] === value) {
                                     data[i].selected = true;
@@ -387,7 +388,7 @@ function BindCombobox() { //(controlName, url, params, valueField, textField, va
                             }
                         }
 
-                        if (initialText !== null && data[0][[textField]] !== initialText) {//add the initial value
+                        if (initialText !== null && data[0][[textField]] !== initialText) { //add the initial value
                             for (let i = 0; i < data.length; i++) { //否则原有的项目的 Id 仍然是 0, 1, 2 ...
                                 data[i][[valueField]] = data[i][[valueField]] + 1;
                             }
@@ -440,7 +441,7 @@ function RefreshCombobox(comboboxName) {
 function GenerateInputListByDataDictItem() { //itemName, inputType, valueString?, direction?, controlName?
     var itemName = arguments[0];
     var inputType = arguments[1];
-    var valueString = arguments[2] ? arguments[2] : null;
+    const valueString = arguments[2] ? arguments[2] : null;
     var direction = arguments[3] ? arguments[3] : Direction.Horizontal;
     var controlName = arguments[4] ? arguments[4] : `#${arguments[0]}`;
 
@@ -456,7 +457,7 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, valueString?
         async: true,
         success: function (array) {
             var count = 0;
-          
+
             $.each(array,
                 function (i) {
                     count++;
@@ -464,14 +465,14 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, valueString?
                     var checkedString = "";
 
                     for (let j = 0; j < values.length; j++) {
-                        if (array[i]['value'] === values[j]) {
+                        if (array[i]["value"] === values[j]) {
                             checkedString = "checked";
                         }
                     }
-
+                    //class="magic-${inputType}"
                     $(controlName)
-                        .append(`<input class="magic-${inputType}" id='${itemName}_${array[i]["id"]}' type='${
-                                inputType}' name='${itemName}' value='${array[i]["value"]}' ${checkedString
+                        .append(`<input class='easyui-validatebox' id='${itemName}_${array[i]["id"]}' type='${
+                            inputType}' name='${itemName}' value='${array[i]["value"]}' ${checkedString
                     }/><label for='${itemName}_${array[i]["id"]}'>${array[i]["value"]}</label>`);
 
                     if (direction === Direction.Vertical) {
@@ -506,7 +507,7 @@ function GetInputListCheckedValues(containerName) {
 
 function SetInputListCheckedValues(containerName, valueString) {
     if (valueString != null) {
-        var s = valueString;
+        let s = valueString;
         if (s.endsWith(";") === false) {
             s = s + ";";
         }
@@ -525,3 +526,15 @@ function SetInputListCheckedValues(containerName, valueString) {
             });
     }
 };
+
+function ShowLoadingMask(control) {
+    $("<div class='datagrid-mask' style='display:block'></div>").appendTo(control);
+    var msg = $("<div class='datagrid-mask-msg' style='display:block;left:50%'></div>").html('正在处理，请稍候……').appendTo(control);
+    msg._outerHeight(40);
+    msg.css({ marginLeft: (-msg.outerWidth() / 2), lineHeight: (msg.height() + "px") });
+}
+
+function HideLoadingMask(control) {
+   $(`${control} .datagrid-mask-msg`).remove();
+   $(`${control} .datagrid-mask`).remove();
+}

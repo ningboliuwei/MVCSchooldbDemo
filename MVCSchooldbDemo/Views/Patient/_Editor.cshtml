@@ -2,7 +2,7 @@
 
 <div class="editorTitle">@ViewBag.DialogTitle</div>
 <form id="formPatient" method="post" class="easyui-form" data-options="novalidate:true">
-    <div id="editorTabs" class="easyui-tabs editorTabs">
+    <div id="editorTabs" class="easyui-tabs editorTabs" >
         <div title="个人信息">
             <table id="test1" class="editorTable editorTabs">
                 <tr>
@@ -736,6 +736,8 @@
 </form>
 
 <script>
+
+    ShowLoadingMask("#formPatient");
     //公共部分
     $(function() {
 
@@ -805,6 +807,8 @@
         GenerateInputListByDataDictItem("服药依从性", InputType.Checkbox);
         GenerateInputListByDataDictItem("神经系统是否存在影响运动的疾病", InputType.Radio);
         GenerateInputListByDataDictItem("运动系统是否存在影响运动的疾病", InputType.Radio);
+
+//        HideLoadingMask("#formPatient");
 
         //***********************动态数据控件（新建）***********************
     </script>
