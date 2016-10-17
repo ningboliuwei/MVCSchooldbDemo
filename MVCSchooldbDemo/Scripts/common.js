@@ -529,16 +529,14 @@ function SetInputListCheckedValues(containerName, valueString) {
 };
 
 function ShowLoadingMask(control) {
-//    $(control).css("display","none");
-
-    $("<div class='datagrid-mask' style='display:block'></div>").appendTo(control);
-    var msg = $("<div class='datagrid-mask-msg' style='display:block;left:50%'></div>").html('正在处理，请稍候……').appendTo(control);
+    $("<div class='loadingMask' style='display:block'></div>").appendTo(control);
+    var msg = $("<div class='loadingMaskMessage' style='display:block;left:50%'></div>").html('正在处理，请稍候……').appendTo(control);
     msg._outerHeight(40);
     msg.css({ marginLeft: (-msg.outerWidth() / 2), lineHeight: (msg.height() + "px") });
 }
 
 function HideLoadingMask(control) {
-    $(`${control} .datagrid-mask-msg`).remove();
-    $(`${control} .datagrid-mask`).remove();
+    $(`${control} .loadingMask`).remove();
+    $(`${control} .loadingMaskMessage`).remove();
 //    $(control).css("display", "block");
 }
