@@ -450,19 +450,18 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, valueString?
         values = valueString.split(";");
     }
 
+    var result = false;
+
     $.ajax({
         type: "POST",
         url: DATA_DICT_ITEM_URL,
         data: { itemName: itemName },
-        async: true,
+        async: false,
         success: function (array) {
-            var count = 0;
             var s = "";
 
             $.each(array,
                 function (i) {
-                    count++;
-
                     var checkedString = "";
 
                     for (let j = 0; j < values.length; j++) {
@@ -479,13 +478,15 @@ function GenerateInputListByDataDictItem() { //itemName, inputType, valueString?
                 });
 
             $(controlName).append(s);
-            return true;
+            result = true;
         },
         error: function () {
             Alert("错误", errorMsg, AlertType.Error);
         },
         dataType: "json"
     });
+
+    return result;
 }
 //}
 
@@ -528,6 +529,8 @@ function SetInputListCheckedValues(containerName, valueString) {
 };
 
 function ShowLoadingMask(control) {
+//    $(control).css("display","none");
+
     $("<div class='datagrid-mask' style='display:block'></div>").appendTo(control);
     var msg = $("<div class='datagrid-mask-msg' style='display:block;left:50%'></div>").html('正在处理，请稍候……').appendTo(control);
     msg._outerHeight(40);
@@ -537,4 +540,5 @@ function ShowLoadingMask(control) {
 function HideLoadingMask(control) {
     $(`${control} .datagrid-mask-msg`).remove();
     $(`${control} .datagrid-mask`).remove();
+//    $(control).css("display", "block");
 }

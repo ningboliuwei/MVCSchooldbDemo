@@ -1,10 +1,10 @@
 ﻿@model MVCSchooldbDemo.Models.Data.PatientInfo
 
-<script>ShowLoadingMask("#formPatient");</script>
+<script>ShowLoadingMask("#defaultTab");</script>
 <div class="editorTitle">@ViewBag.DialogTitle</div>
 <form id="formPatient" method="post" class="easyui-form" data-options="novalidate:true">
     <div id="editorTabs" class="easyui-tabs editorTabs">
-        <div title="个人信息">
+        <div id="defaultTab" title="个人信息">
             <table id="test1" class="editorTable editorTabs">
                 <tr>
                     <th class="editorNameColumnStandard">
@@ -737,12 +737,8 @@
 </form>
 
 <script>
-
-
     //公共部分
     $(function() {
-
-
         $('#出生日期').datebox({ formatter: FormatHelper.FormatHelper });
         $('#入组日期').datebox({ formatter: FormatHelper.FormatHelper });
 
@@ -811,9 +807,8 @@
             GenerateInputListByDataDictItem("服药依从性", InputType.Checkbox);
             GenerateInputListByDataDictItem("神经系统是否存在影响运动的疾病", InputType.Radio);
             GenerateInputListByDataDictItem("运动系统是否存在影响运动的疾病", InputType.Radio);
-
-
             //***********************动态数据控件（新建）***********************
+            HideLoadingMask("#defaultTab");
         });
     </script>
 }
@@ -863,6 +858,7 @@ else
 
 
                     //***********************动态数据控件（显示数据）***********************
+                    HideLoadingMask("#defaultTab");
 
                     window.previousId = data.PreviousId;
                     window.nextId = data.NextId;

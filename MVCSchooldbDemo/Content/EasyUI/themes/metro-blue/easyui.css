@@ -254,7 +254,10 @@
 .window-proxy {
   border: 1px dashed #c3d9e0;
 }
-.window-proxy-mask,
+.window-proxy-
+
+
+,
 .window-mask {
   background: #eee;
 }
